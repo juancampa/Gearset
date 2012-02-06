@@ -1,0 +1,9 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.EnumItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+
+  <ComboBox Name="ComboBox1" MaxWidth="200" Width="Auto"/>
+  
+</local:VisualItemBase>

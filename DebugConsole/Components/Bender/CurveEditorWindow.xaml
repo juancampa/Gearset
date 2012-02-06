@@ -1,0 +1,381 @@
+﻿<Window x:Class="Gearset.Components.CurveEditorWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+    xmlns:local="clr-namespace:Gearset.Components"
+    xmlns:cec="clr-namespace:Gearset.Components.CurveEditorControl"
+    xmlns:Behaviours="clr-namespace:Wpf.Behaviours"
+    Title="Finder"
+    Width="800"
+    Height="600"
+    Background="{DynamicResource background1}"
+    FontSize="11"
+    WindowStyle="None"
+    UseLayoutRounding="True"
+    SnapsToDevicePixels="True"
+    Icon="..\..\Cog.ico"
+    ShowInTaskbar="False"
+    ShowActivated="False">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Common\CommonStyle.xaml"/>
+                <ResourceDictionary Source="..\Common\ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="..\InspectorWPF\Resources\InspectorStyle.xaml"/>
+                <ResourceDictionary>
+                    <local:CurveTreeTemplateSelector x:Key="curveTreeTemplateSelector"/>
+                    <local:CurveLoopTypeToBooleanConverter x:Key="loopConverter"/>
+                    <ContextMenu x:Key="leafContextMenu">
+                        <MenuItem Header="Save Curve as XML" Click="SaveCurve_Click"/>
+                        <MenuItem Header="Remove" Click="RemoveCurve_Click"/>
+                        <Separator/>
+                        <MenuItem Header="Pre Loop">
+                            <MenuItem IsCheckable="True" Header="Constant"      IsChecked="{Binding PreLoop, Converter={StaticResource loopConverter}, ConverterParameter='Constant'}"/>
+                            <MenuItem IsCheckable="True" Header="Cycle"         IsChecked="{Binding PreLoop, Converter={StaticResource loopConverter}, ConverterParameter='Cycle'}"/>
+                            <MenuItem IsCheckable="True" Header="CycleOffset"   IsChecked="{Binding PreLoop, Converter={StaticResource loopConverter}, ConverterParameter='CycleOffset'}"/>
+                            <MenuItem IsCheckable="True" Header="Oscillate"     IsChecked="{Binding PreLoop, Converter={StaticResource loopConverter}, ConverterParameter='Oscillate'}"/>
+                            <MenuItem IsCheckable="True" Header="Linear"        IsChecked="{Binding PreLoop, Converter={StaticResource loopConverter}, ConverterParameter='Linear'}"/>
+                        </MenuItem>
+                        <MenuItem Header="Post Loop">
+                            <MenuItem IsCheckable="True" Header="Constant"      IsChecked="{Binding PostLoop, Converter={StaticResource loopConverter}, ConverterParameter='Constant'}"/>
+                            <MenuItem IsCheckable="True" Header="Cycle"         IsChecked="{Binding PostLoop, Converter={StaticResource loopConverter}, ConverterParameter='Cycle'}"/>
+                            <MenuItem IsCheckable="True" Header="CycleOffset"   IsChecked="{Binding PostLoop, Converter={StaticResource loopConverter}, ConverterParameter='CycleOffset'}"/>
+                            <MenuItem IsCheckable="True" Header="Oscillate"     IsChecked="{Binding PostLoop, Converter={StaticResource loopConverter}, ConverterParameter='Oscillate'}"/>
+                            <MenuItem IsCheckable="True" Header="Linear"        IsChecked="{Binding PostLoop, Converter={StaticResource loopConverter}, ConverterParameter='Linear'}"/>
+                        </MenuItem>
+                    </ContextMenu>
+
+                    <Style x:Key="curveTreeLeafContainerStyle" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource inspectorTreeViewItem}">
+                        <Setter Property="ContextMenu" Value="{StaticResource leafContextMenu}"/>
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                    </Style>
+
+                    <Style x:Key="curveTreeNodeContainerStyle" TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource inspectorTreeViewItem}">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}"/>
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"/>
+                    </Style>
+                    
+                    <local:CurveTreeContainerStyleSelector x:Key="curveTreeContainerStyleSelector" 
+                                                           LeafStyle="{StaticResource curveTreeLeafContainerStyle}"
+                                                           NodeStyle="{StaticResource curveTreeNodeContainerStyle}"/>
+
+                    <HierarchicalDataTemplate x:Key="curveTreeNodeTemplate" DataType="CurveTreeNode" ItemsSource="{Binding Children}">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding IsVisible}" IsEnabled="{Binding AreParentsVisible, Mode=TwoWay}"/>
+                            <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}" Background="Transparent"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                    
+                    <HierarchicalDataTemplate x:Key="curveTreeLeafTemplate" DataType="CurveTreeLeaf">
+                        <Grid HorizontalAlignment="Stretch" ContextMenu="{StaticResource leafContextMenu}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding IsVisible}" IsEnabled="{Binding AreParentsVisible, Mode=TwoWay}"/>
+                                <Rectangle Fill="{Binding ColorBrush}" Width="6" Margin="2 2 2 1" VerticalAlignment="Stretch"/>
+                                <local:EditableTextBlock Text="{Binding Name, Mode=TwoWay}" Background="Transparent"/>
+                            </StackPanel>
+                        </Grid>
+                    </HierarchicalDataTemplate>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <!--Tool Bar-->
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="3">
+            <Button DockPanel.Dock="Right" Name="CloseButton" Width="16" Height="16" Click="Close_Click">
+                <Image Width="7" Height="7">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="../Common/icon_close.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="../Common/icon_close_over.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <Button DockPanel.Dock="Right" Name="MaximizeButton" Width="16" Height="16" Click="Maximize_Click">
+                <Image Width="9" Height="7">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="../Common/icon_maximize.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="../Common/icon_maximize_over.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <!--<Button DockPanel.Dock="Right" Width="Auto" Content="Save log" Click="MenuItem_Click"/>-->
+
+            <!--Left side-->
+            <Image DockPanel.Dock="Left" Width="12" Margin="0 0 2 0" Source="../Common/icon_title.png"/>
+            <TextBlock DockPanel.Dock="Left" FontSize="12" Foreground="White" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">Bender</TextBlock>
+            <Rectangle Fill="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"/>
+        </DockPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <!-- Streams -->
+                <ColumnDefinition Width="1*"/>
+                <!-- Splitter -->
+                <ColumnDefinition Width="Auto"/>
+                <!-- Logger -->
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--<Rectangle Fill="Red" Grid.Column="1"/>-->
+            <GridSplitter Grid.Column="1" Background="{DynamicResource highlight1}" Width="4" VerticalAlignment="Stretch" ResizeDirection="Columns" ResizeBehavior="PreviousAndNext" />
+
+            <!-- Curve Tree -->
+            <DockPanel Grid.Column="0" Grid.Row="1">
+                <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource border1}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <!--<Button Width="Auto" Name="EnableAllButton" Click="EnableAllButton_Click">Show All</Button>
+                        <Button Width="Auto" Name="DisableAllButton" Click="DisableAllButton_Click">Hide All</Button>-->
+                    </StackPanel>
+                </Border>
+                <TreeView 
+                  Background="Transparent" 
+                  Name="curveTree" 
+                  ItemsSource="{Binding Root.Children}" 
+                  ItemTemplateSelector="{StaticResource curveTreeTemplateSelector}"
+                  ItemContainerStyleSelector="{StaticResource curveTreeContainerStyleSelector}"
+                  SelectedItemChanged="curveTree_SelectedItemChanged"/>
+            </DockPanel>
+
+            <Grid Grid.Column="2" Grid.Row="1" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="20"/>
+                </Grid.RowDefinitions>
+                <cec:CurveEditorControl2 Grid.RowSpan="2" Grid.ColumnSpan="2"
+                    x:Name="curveEditorControl" 
+                    HorizontalAlignment="Stretch" 
+                    VerticalAlignment="Stretch">
+                    <cec:CurveEditorControl2.InputBindings>
+                        <KeyBinding Command="{Binding SetTangentsCommand}" Key="D1" CommandParameter="Smooth"/>
+                        <KeyBinding Command="{Binding SetTangentsCommand}" Key="D2" CommandParameter="Linear"/>
+                        <KeyBinding Command="{Binding SetTangentsCommand}" Key="D3" CommandParameter="Flat"/>
+                        <!--<KeyBinding Command="{Binding SetTangentsCommand}" Key="D4" CommandParameter="Step"/>-->
+                        <KeyBinding Command="{Binding SetTangentsCommand}" Key="D4" CommandParameter="Custom"/>
+                    </cec:CurveEditorControl2.InputBindings>
+                </cec:CurveEditorControl2>
+                <cec:GridRuler x:Name="verticalRuler" Grid.RowSpan="2" Orientation="Vertical" Min="{Binding ElementName=curveEditorControl, Path=MinY}" Max="{Binding ElementName=curveEditorControl, Path=MaxY}" Width="30"/>
+                <cec:GridRuler x:Name="horizontalRuler" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Min="{Binding ElementName=curveEditorControl, Path=MinX}" Max="{Binding ElementName=curveEditorControl, Path=MaxX}" Height="20"/>
+
+
+
+                <!-- Tool/Controls on top of the curve editor control -->
+                <Grid Grid.Column="1" Grid.Row="0" Margin="3">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <!--Add Keys-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+
+                            <ToggleButton Content="Add Keys" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="60" IsChecked="{Binding AddKeys}"
+                                  ToolTip="Add new keys. Hold 'A' to add keys quickly."/>
+                        </Grid>
+
+                        <!--Scale Keys-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+
+                            <ToggleButton Content="Scale Keys" Grid.ColumnSpan="2" Grid.RowSpan="2" Height="60" IsChecked="{Binding ScaleKeys}"
+                                  ToolTip="Scale the selected keys. Hold 'S' to scale keys quickly."/>
+                        </Grid>
+                    </StackPanel>
+
+                    <!--Tangents-->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <!--Smooth-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Smooth" Grid.ColumnSpan="2" Command="{Binding SmoothCommand}"/>
+                            <ToggleButton Content="In" Grid.Column="0" Grid.Row="1" IsChecked="{Binding SmoothIn}"/>
+                            <ToggleButton Content="Out" Grid.Column="1" Grid.Row="1" IsChecked="{Binding SmoothOut}"/>
+                        </Grid>
+
+                        <!--Linear-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Linear" Grid.ColumnSpan="2" Command="{Binding LinearCommand}"/>
+                            <ToggleButton Content="In" Grid.Column="0" Grid.Row="1" IsChecked="{Binding LinearIn}"/>
+                            <ToggleButton Content="Out" Grid.Column="1" Grid.Row="1" IsChecked="{Binding LinearOut}"/>
+                        </Grid>
+
+                        <!--Flat-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Flat" Grid.ColumnSpan="2" Command="{Binding FlatCommand}" VerticalAlignment="Stretch"/>
+                            <ToggleButton Content="In" Grid.Column="0" Grid.Row="1" IsChecked="{Binding FlatIn}"/>
+                            <ToggleButton Content="Out" Grid.Column="1" Grid.Row="1" IsChecked="{Binding FlatOut}"/>
+                        </Grid>
+
+                        <!--Custom-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Custom" Grid.ColumnSpan="2" Command="{Binding CustomCommand}"/>
+                            <ToggleButton Content="In" Grid.Column="0" Grid.Row="1" IsChecked="{Binding CustomIn}"/>
+                            <ToggleButton Content="Out" Grid.Column="1" Grid.Row="1" IsChecked="{Binding CustomOut}"/>
+                        </Grid>
+
+                        <!--Step-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton Content="Stepped" Grid.ColumnSpan="2" Grid.RowSpan="2" IsChecked="{Binding Stepped}"/>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!--Zoom-->
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                        <!--Zoom + -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Zoom +" Grid.ColumnSpan="2"     Command="{Binding ZoomIn}"/>
+                            <Button Content="X +" Grid.Column="0" Grid.Row="1" Command="{Binding ZoomInX}"/>
+                            <Button Content="X -" Grid.Column="1" Grid.Row="1" Command="{Binding ZoomOutX}"/>
+                        </Grid>
+
+                        <!-- Zoom - -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Zoom -" Grid.ColumnSpan="2"     Command="{Binding ZoomOut}"/>
+                            <Button Content="Y +" Grid.Column="0" Grid.Row="1" Command="{Binding ZoomInY}"/>
+                            <Button Content="Y -" Grid.Column="1" Grid.Row="1" Command="{Binding ZoomOutY}"/>
+                        </Grid>
+
+                        <!--Zoom Box-->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <ToggleButton Content="Zoom Box" Grid.ColumnSpan="2" Grid.RowSpan="2" IsChecked="{Binding ZoomBox}"
+                                  ToolTip="Zooms to the selected region. Hold 'Z' to zoom quickly."/>
+                        </Grid>
+
+                        <!--Show All/Selection -->
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="30"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="20"/>
+                            </Grid.RowDefinitions>
+                            <Button Content="Show All" Grid.ColumnSpan="2" Command="{Binding ZoomAllCommand}"/>
+                            <Button Content="Selection" Grid.ColumnSpan="2" Grid.Row="1" Command="{Binding ZoomSelectionCommand}"/>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!-- Status Display -->
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="1">
+                            <TextBlock Text="Pos:" Foreground="{DynamicResource normalText1}"/>
+                            <local:NumericSpinner Background="#3000" ShowNaN="False"  Value="{Binding KeyPosition, Mode=TwoWay}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="1">
+                            <TextBlock Text="Val:" Foreground="{DynamicResource normalText1}"/>
+                            <local:NumericSpinner Background="#3000" ShowNaN="False" Value="{Binding KeyValue, Mode=TwoWay}"/>
+                        </StackPanel>
+                        <TextBlock Margin="1 0" HorizontalAlignment="Stretch" TextAlignment="Right" Text="{Binding StatusText}" Padding="0 0" Foreground="{DynamicResource highlight1}"/>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+
+</Window>

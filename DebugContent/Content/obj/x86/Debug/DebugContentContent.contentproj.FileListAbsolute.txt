@@ -1,0 +1,2 @@
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\Xdtk\DebugContent\Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\Content\obj\x86\Debug\ResolveAssemblyReference.cache

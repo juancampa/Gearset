@@ -1,0 +1,12 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.BoolButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    <UserControl.Resources>
+
+        
+    </UserControl.Resources>
+
+    <ToggleButton Name="ToggleButton" Width="80" Height="Auto"/>
+</local:VisualItemBase>

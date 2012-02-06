@@ -1,0 +1,12 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.Texture2DMarkerItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    <Grid Width="Auto" Height="Auto">
+        <Border BorderThickness="1" BorderBrush="{DynamicResource normal1}">
+            <Image Height="250" Name="image"/>
+        </Border>
+        <Button VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="Auto" Height="Auto" Background="#2000" Click="Button_Click">Refresh</Button>
+    </Grid>
+</local:VisualItemBase>

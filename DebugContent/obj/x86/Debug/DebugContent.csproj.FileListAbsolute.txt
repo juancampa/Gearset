@@ -1,0 +1,16 @@
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Textures\close.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Textures\cursor.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Textures\open.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Textures\black.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Textures\white.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Fonts\Alert.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Fonts\Default.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Fonts\Tiny.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Textures\mark_0.xnb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\Content\Fonts\Default.spritefont
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\WindowsGameLibrary1.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\x86\Debug\WindowsGameLibrary1.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\obj\x86\Debug\WindowsGameLibrary1.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\obj\x86\Debug\WindowsGameLibrary1.pdb

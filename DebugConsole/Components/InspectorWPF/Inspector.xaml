@@ -1,0 +1,450 @@
+﻿<Window x:Class="Gearset.Components.InspectorWPF.Inspector"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    xmlns:xdtk="clr-namespace:Gearset"
+    Title="Inspector"
+    Width="420"
+    Height="600"
+    Background="{DynamicResource background1}"
+    FontSize="11"
+    WindowStyle="None"
+    UseLayoutRounding="True"
+    Icon="..\..\Cog.ico"
+    ShowInTaskbar="False"
+    ShowActivated="False">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Common\CommonStyle.xaml"/>
+                <ResourceDictionary Source="..\Common\ScrollViewerStyle.xaml"/>
+                <ResourceDictionary Source="Resources\InspectorStyle.xaml"/>
+                <ResourceDictionary>
+                    <!--Template selectors-->
+                    <local:NodeTemplateSelector x:Key="nodeTemplateSelector"/>
+                    <local:MethodCallerTemplateSelector x:Key="methodCallerTemplateSelector"/>
+                    <local:TypeToSpinnerModeConverter x:Key="typeToSpinnerModeConverter"/>
+                    <local:NullToVisibilityConverter x:Key="nullToVisibilityConverter"/>
+
+                    <!--Context Menu for Inspector items-->
+                    <ContextMenu x:Key="itemMenu">
+                        <MenuItem Header="Inspect" Click="Inspect_Click"/>
+                        <MenuItem Header="Show Private Members" Click="ShowPrivate_Click"/>
+                        <MenuItem Header="Make Null" Click="Clear_Click"/>
+                        <Separator/>
+                        <MenuItem Header="Remove" Click="Remove_Click"/>
+                    </ContextMenu>
+
+                    <!--NUMERIC-->
+                    <HierarchicalDataTemplate x:Key="floatFieldTemplate" DataType="InspectorNode">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:NumericItem TreeNode="{Binding Mode=OneTime}" Mode="{Binding Path=Type, Converter={StaticResource typeToSpinnerModeConverter}}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--BOOLEAN-->
+                    <HierarchicalDataTemplate x:Key="boolFieldTemplate" DataType="InspectorNode">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:BoolButton TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--STRING-->
+                    <HierarchicalDataTemplate x:Key="stringFieldTemplate" DataType="InspectorNode">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:StringItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+
+                    <!--ENUMS-->
+                    <HierarchicalDataTemplate x:Key="enumFieldTemplate" DataType="InspectorNode">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:EnumItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Vector2-->
+                    <HierarchicalDataTemplate x:Key="vector2FieldTemplate" DataType="InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:Vector2Spinner TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Vector3-->
+                    <HierarchicalDataTemplate x:Key="vector3FieldTemplate" DataType="InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:Vector3Spinner TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Quaternion-->
+                    <HierarchicalDataTemplate x:Key="quaternionFieldTemplate" DataType="InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:QuaternionSpinner TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Texture2D-->
+                    <HierarchicalDataTemplate x:Key="texture2DFieldTemplate" DataType="InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:Texture2DItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Color-->
+                    <HierarchicalDataTemplate x:Key="colorFieldTemplate" DataType="InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:ColorItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Curve-->
+                    <HierarchicalDataTemplate x:Key="curveFieldTemplate" DataType="InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                      <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                        <local:VisualItemWrapper.VisualItem>
+                          <local:CurveItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                        </local:VisualItemWrapper.VisualItem>
+                      </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--GearConfig-->
+                    <HierarchicalDataTemplate x:Key="gearConfigTemplate" DataType="InspectorManager.InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:GearConfigItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--GearConfig-->
+                    <HierarchicalDataTemplate x:Key="clearableGearConfigTemplate" DataType="InspectorManager.InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:ClearableGearConfigItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--GENERIC, for types we don't know how to handle.-->
+                    <HierarchicalDataTemplate x:Key="genericFieldTemplate" DataType="InspectorManager.InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <local:VisualItemWrapper Text="{Binding Path=FriendlyName}" ContextMenu="{StaticResource itemMenu}">
+                            <local:VisualItemWrapper.VisualItem>
+                                <local:GenericItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Right"/>
+                            </local:VisualItemWrapper.VisualItem>
+                        </local:VisualItemWrapper>
+                    </HierarchicalDataTemplate>
+
+                    <!--Collection marker (especial child object added to collections).-->
+                    <HierarchicalDataTemplate x:Key="collectionFieldTemplate" DataType="InspectorManager.InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <Expander Header="Items" MouseDown="Expander_MouseDown">
+                            <local:CollectionMarkerItem TreeNode="{Binding Mode=OneTime}"/>
+                        </Expander>
+                    </HierarchicalDataTemplate>
+
+                    <!--Texture2D marker (especial child object added to Texture2D).-->
+                    <DataTemplate x:Key="texture2DMarkerTemplate" DataType="InspectorManager.InspectorNode">
+                        <local:Texture2DMarkerItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Stretch"/>
+                    </DataTemplate>
+
+                    <!--ROOT-->
+                    <HierarchicalDataTemplate x:Key="rootTemplate" DataType="InspectorManager.InspectorNode" ItemsSource="{Binding ChildrenView.View}">
+                        <DockPanel HorizontalAlignment="Stretch" ContextMenu="{StaticResource itemMenu}">
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" />
+                        </DockPanel>
+                    </HierarchicalDataTemplate>
+
+                    <!--ACTIONS-->
+                    <HierarchicalDataTemplate x:Key="actionFieldTemplate" DataType="InspectorManager.InspectorNode">
+                        <DockPanel HorizontalAlignment="Stretch">
+                            <local:ActionItem TreeNode="{Binding Mode=OneTime}" HorizontalAlignment="Stretch" />
+                        </DockPanel>
+                    </HierarchicalDataTemplate>
+
+                    <!--METHOD CALLERS-->
+                    <HierarchicalDataTemplate x:Key="methodCallerItemTemplate" DataType="MethodCaller" ItemsSource="{Binding Path=Parameters}">
+                        <DockPanel HorizontalAlignment="Stretch">
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left" />
+                            <Button Name="InvokeButton" Click="InvokeButton_Click" DockPanel.Dock="Right" IsEnabled="{Binding Path=IsReady}">Invoke</Button>
+                            <!--<ToggleButton IsChecked="{Binding CallAutomatically}" Content="Auto" HorizontalAlignment="Right" Width="50" />-->
+                        </DockPanel>
+                    </HierarchicalDataTemplate>
+
+                    <!--METHOD PARAM-->
+                    <HierarchicalDataTemplate x:Key="methodParamItemTemplate" DataType="MethodParamContainer">
+                        <Grid AllowDrop="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="{Binding Path=ParameterType}" Grid.Column="0" Width="Auto" Foreground="#999" />
+                            <TextBlock Text="{Binding Path=ParameterInfo.Name}" Grid.Column="1" Margin="4 0 0 0"/>
+                            <TextBlock Text="{Binding Path=ParameterName}" Grid.Column="2" Width="Auto" HorizontalAlignment="Right"/>
+                        </Grid>
+                    </HierarchicalDataTemplate>
+
+                    <DataTemplate x:Key="overlaidPlotTemplate" DataType="OverlaidPlot">
+                        <StackPanel Orientation="Horizontal">
+                            <CheckBox IsChecked="{Binding Path=Visible}"  Margin="0 0 5 0"/>
+                            <TextBlock Text="{Binding Path=Sampler.Name}" Foreground="#999"/>
+                        </StackPanel>
+                    </DataTemplate>
+
+                    <!--SEARCHBOX STYLE-->
+                    <Style x:Key="searchBoxStyle" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Style.Resources>
+                            <TextBlock x:Key="placeholder" Text="Search by name or type" FontSize="11" Foreground="#999"/>
+                        </Style.Resources>
+                        <Setter Property="Width" Value="200"/>
+                        <Setter Property="TextAlignment" Value="Left"/>
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="Background" Value="{DynamicResource normal1}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource normalText1}"/>
+                        <Setter Property="BorderThickness" Value="1 0 0 0"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource border1}"/>
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Stretch="None" Viewport="5 5 200 16" ViewportUnits="Absolute" AlignmentX="Left" AlignmentY="Top" Visual="{StaticResource placeholder}"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Stretch="None" AlignmentX="Left" Visual="{StaticResource placeholder}"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Background" Value="{DynamicResource normal1}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="methodsListBoxStyle" TargetType="ListBox">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <TextBlock Foreground="#666" FontSize="11" Text="Select something in the Inspector to see its methods here."/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <Style x:Key="plotsListBoxStyle" TargetType="ListBox">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Style.Triggers>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <TextBlock Foreground="#666" FontSize="11" Text="There are currently no plots."/>
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Menu-->
+            <RowDefinition Height="Auto"/>
+            <!--Notice-->
+            <RowDefinition Height="Auto"/>
+            <!--Inspector TreeView-->
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+      
+
+        <!--<Menu Height="Auto" Name="Menu1" Background="#1fff" Foreground="#eee" FontSize="12" Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Name="SavePersistorData" Click="SavePersistorData_Click" Header="Save Inspector Data"/>
+            </MenuItem>
+            <MenuItem Name="About" Header="Help" Click="About_Click">
+                <MenuItem Header="Go to online help"/>
+                <MenuItem Header="About"/>
+            </MenuItem>
+        </Menu>-->
+        <DockPanel Grid.Row="0" Height="16">
+            <Button DockPanel.Dock="Right" Name="CloseButton" Width="16" Height="16" Click="Close_Click">
+                <Image Width="7" Height="7">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="../Common/icon_close.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="../Common/icon_close_over.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <Button DockPanel.Dock="Right" Name="MaximizeButton" Width="16" Height="16" Click="Maximize_Click">
+                <Image Width="9" Height="7">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="../Common/icon_maximize.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="../Common/icon_maximize_over.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="0 0 5 0">
+                <TextBox Name="SearchTextBox" Style="{StaticResource searchBoxStyle}" Text="{Binding Config.SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Click="Button_Click">Clear</Button>
+            </StackPanel>
+            <ToggleButton DockPanel.Dock="Right" Name="ShowModifiedButton" 
+                          IsChecked="{Binding Config.ModifiedOnly}"
+                          ToolTip="Only show fields/properties that have been modified from the Inspector.">Modified Only</ToggleButton>
+
+            <!--Left side-->
+            <Image DockPanel.Dock="Left" Margin="0 0 2 0" Width="12" Source="../Common/icon_title.png"/>
+            <TextBlock DockPanel.Dock="Left" FontSize="12" Foreground="White" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">Inspector</TextBlock>
+
+            <!--Rest of the title bar-->
+            <Rectangle Fill="Transparent" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown"/>
+        </DockPanel>
+
+        <!--Notices-->
+        <Grid Grid.Row="1" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Name="GreenBar" HorizontalAlignment="Stretch" Width="6" Fill="{DynamicResource alert1}">
+                <Rectangle.Triggers>
+                    <!-- Animates the rectangle's opacity. -->
+                    <EventTrigger RoutedEvent="Border.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="GreenBar"
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1.0" To="0.5" Duration="0:0:0.5" 
+                                    AutoReverse="True" RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Rectangle.Triggers>
+            </Rectangle>
+            <ListBox Grid.Column="1" Height="Auto" BorderThickness="1 1 1 0"
+                     ItemsSource="{Binding Notices}" ItemContainerStyle="{DynamicResource listBoxItemNoSelection}" >
+                <ListBox.Style>
+                    <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource {x:Type ListBox}}">
+                        <Setter Property="Visibility" Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding HasItems, RelativeSource={RelativeSource Self}}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.Style>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid Height="Auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Margin="3 0 0 0" Foreground="{DynamicResource normalText1}" Opacity="0.8" Text="{Binding NoticeText}" Visibility="{Binding NoticeText, Converter={StaticResource nullToVisibilityConverter}}"/>
+                            <TextBlock Grid.Column="1" Visibility="{Binding NoticeHyperlinkText, Converter={StaticResource nullToVisibilityConverter}}" Margin="6 0 0 0">
+                                    <Hyperlink Foreground="{DynamicResource hyperlink1}" NavigateUri="{Binding NoticeHyperlinkUrl}" RequestNavigate="Notice_RequestNavigate">
+                                        <Run Text="{Binding NoticeHyperlinkText}"/>
+                                    </Hyperlink>
+                            </TextBlock>
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        </Grid>
+
+        <!--Inspector-->
+      <TreeView Grid.Row="2" Name="TreeView1"
+                          ItemTemplateSelector="{StaticResource nodeTemplateSelector}"
+                          SelectedItemChanged="Tree_SelectedItemChanged"
+                          HorizontalContentAlignment="Stretch"
+                          ItemContainerStyle="{StaticResource inspectorTreeViewItem}"
+                          VerticalAlignment="Stretch"
+                          local:VisualItemWrapper.TextMouseDown="Item_MouseDown"
+                          local:VisualItemWrapper.TextMouseMove="Item_MouseMove"
+                          DragOver="TreeView1_DragOver"
+                          Drop="TreeView1_Drop" PreviewMouseRightButtonDown="TreeView1_PreviewMouseRightButtonDown"/>
+                          
+        <GridSplitter ResizeDirection="Rows" Grid.Row="3" Background="{DynamicResource highlight1}" HorizontalAlignment="Stretch" Height="4"/>
+        <TabControl Grid.Row="4">
+            <TabItem Header="Plots">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource border1}">
+                        <DockPanel Grid.Row="0" LastChildFill="False">
+                            <Button DockPanel.Dock="Left" Name="ShowPlotsButton" ToolTip="Shows all plots." Click="ShowPlotsButton_Click">Show All</Button>
+                            <Button DockPanel.Dock="Left" Name="HidePlotsButton" ToolTip="Hides all plots, data will still be captured." Click="HidePlotsButton_Click">Hide All</Button>
+                            <Button DockPanel.Dock="Left" Name="ResetPlotsPositionsButton" ToolTip="Resets all plots to their original positions and sizes" Click="ResetPlotsPositionsButton_Click">Reset Positions</Button>
+                        </DockPanel>
+                    </Border>
+                    <ListBox Grid.Row="1" Name="plots" Style="{StaticResource plotsListBoxStyle}" ItemsSource="{Binding Mode=OneWay}" ItemTemplate="{StaticResource overlaidPlotTemplate}"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Methods">
+                <ListBox Name="methods" Style="{StaticResource methodsListBoxStyle}" ItemsSource="{Binding Mode=OneWay}" ItemTemplate="{StaticResource actionFieldTemplate}"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</Window>

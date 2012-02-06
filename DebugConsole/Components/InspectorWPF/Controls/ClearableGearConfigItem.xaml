@@ -1,0 +1,13 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.ClearableGearConfigItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    
+    <local:VisualItemBase.Resources>
+    </local:VisualItemBase.Resources>
+    <StackPanel Orientation="Horizontal">
+        <Button Name="ClearButton" Click="ClearButton_Click">Clear</Button>
+        <CheckBox Name="ToggleButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked"></CheckBox>
+    </StackPanel>
+</local:VisualItemBase>

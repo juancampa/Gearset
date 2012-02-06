@@ -1,0 +1,7 @@
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\bin\Debug\InjectModuleInitializer.exe
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\bin\Debug\InjectModuleInitializer.pdb
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\bin\Debug\Mono.Cecil.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\obj\Debug\InjectModuleInitializer.exe
+C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\InjectModuleInitializer\obj\Debug\InjectModuleInitializer.pdb

@@ -1,0 +1,129 @@
+﻿<Window x:Class="Gearset.Component.LicenseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:local="clr-namespace:Gearset.Component"
+        Height="500" 
+        Width="300"
+        Background="{DynamicResource background1}"
+        Foreground="{DynamicResource normalText1}"
+        FontSize="12"
+        WindowStyle="ToolWindow"
+        Title="License Manager"
+        Icon="Cog.ico">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!--<ResourceDictionary Source="Common\CommonStyle.xaml"/>-->
+                <ResourceDictionary>
+                    <Color x:Key="highlightColor">#8ac631</Color>
+                    <!--Blue:#434f74-->
+                    <!--Green:#8ac631-->
+                    <Color x:Key="highlightTextColor">#111</Color>
+                    <Color x:Key="normalColor">#404040</Color>
+                    <Color x:Key="normalTextColor">#ddd</Color>
+                    <Color x:Key="borderColor">#555</Color>
+                    <Color x:Key="backgroundColor">#333</Color>
+
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource highlightColor}"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource highlightTextColor}"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource normalColor}"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{StaticResource normalTextColor}"/>
+
+                    <!--This are the brushes that must be referenced by controls-->
+                    <SolidColorBrush x:Key="highlight1" Color="{StaticResource highlightColor}"/>
+                    <SolidColorBrush x:Key="highlightText1" Color="{StaticResource highlightTextColor}"/>
+                    <SolidColorBrush x:Key="normal1" Color="{StaticResource normalColor}"/>
+                    <SolidColorBrush x:Key="normalText1" Color="{StaticResource normalTextColor}"/>
+                    <SolidColorBrush x:Key="border1" Color="{StaticResource borderColor}"/>
+                    <SolidColorBrush x:Key="background1" Color="{StaticResource backgroundColor}"/>
+
+                    <Style TargetType="TextBox">
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Background" Value="#10FFFFFF"/>
+                    </Style>
+                    <Style x:Key="idTextBox" TargetType="TextBox">
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Background" Value="#10FFFFFF"/>
+                        <Setter Property="FontFamily" Value="Consolas, Courier New"/>
+                        <Setter Property="FontSize" Value="12"/>
+                    </Style>
+                    <Style TargetType="TextBlock">
+
+                    </Style>
+
+                    <BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <Image DockPanel.Dock="Left" MaxWidth="100" MaxHeight="100" Width="100" Height="100" Margin="20" Name="ProductLogo" Source="gearset.png"/>
+
+            <Grid Margin="0 20 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="The Complot&#x0a;License Manager" TextWrapping="Wrap"/>
+                <TextBlock Grid.Row="1" Text="Product name:" Margin="0 5 0 0"/>
+                <TextBlock Grid.Row="2" Foreground="{StaticResource highlight1}" Text="{Binding ProductName}"/>
+            </Grid>
+
+        </DockPanel>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Stretch">
+            <DockPanel DockPanel.Dock="Top">
+                <TextBlock DockPanel.Dock="Left" Text="License Status: " Foreground="#fff" HorizontalAlignment="Stretch" Margin="0" Padding="0" />
+                <TextBlock DockPanel.Dock="Right" Text="{Binding LicenseMessage, Mode=OneWay}" Foreground="{DynamicResource highlight1}" TextWrapping="Wrap"/>
+            </DockPanel>
+
+            <!--<Grid>
+                <Rectangle Fill="#a33" Width="15">
+                    <Rectangle.Style>
+                        <Style TargetType="Rectangle">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsValid, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                                    <Setter Property="Fill" Value="{DynamicResource highlight1}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Rectangle.Style>
+                </Rectangle>
+            </Grid>-->
+
+            <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Visibility="{Binding TimeEnabled, Converter={StaticResource booleanToVisibilityConverter}}">
+                <TextBlock Text="Time trial days remaining: " Foreground="#fff" TextWrapping="Wrap"/>
+                <TextBlock Text="{Binding RemainingDaysString}" Foreground="{DynamicResource highlight1}" TextWrapping="Wrap"/>
+            </StackPanel>
+            
+        </DockPanel>
+        <DockPanel Grid.Row="2">
+            <TextBlock DockPanel.Dock="Top" FontSize="14" Margin="0 5 0 0" Text="Request Code (Hardware ID)"/>
+            <TextBox Text="{Binding HardwareId}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Style="{StaticResource idTextBox}" UndoLimit="0" IsReadOnly="True" IsReadOnlyCaretVisible="True" />
+        </DockPanel>
+
+        <DockPanel Grid.Row="3">
+            <DockPanel DockPanel.Dock="Top">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Left" FontSize="14" Margin="0 5 0 0" Text="Product Key"/>
+                    
+                    <!--<-->
+                </DockPanel>
+            </DockPanel>
+            <TextBox Name="licenseTextBox2" TextWrapping="WrapWithOverflow" Text="{Binding License, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" Style="{StaticResource idTextBox}"/>
+        </DockPanel>
+
+        <TextBlock Grid.Row="4" HorizontalAlignment="Right" Margin="5 0">    
+            <Hyperlink Foreground="#59f" NavigateUri="http://www.thecomplot.com/lib/login" RequestNavigate="Hyperlink_RequestNavigate">Get a Product Key now</Hyperlink>
+        </TextBlock>
+    </Grid>
+</Window>

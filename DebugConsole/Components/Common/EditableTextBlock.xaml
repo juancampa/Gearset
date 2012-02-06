@@ -1,0 +1,30 @@
+﻿<TextBox x:Class="Gearset.Components.EditableTextBlock"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF">
+    <TextBox.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Common\CommonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </TextBox.Resources>
+
+    <TextBox.Template>
+        <ControlTemplate TargetType="TextBox">
+            <Grid>
+                <TextBox Name="PART_TextBox" Visibility="Hidden" Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, Mode=TwoWay}" Background="{TemplateBinding Background}"></TextBox>
+                <TextBlock Name="PART_TextBlock"
+                           Style="{DynamicResource {x:Type TextBlock}}"
+                           Text="{TemplateBinding Text}"
+                           Background="{TemplateBinding Background}"/>
+            </Grid>
+            <ControlTemplate.Triggers>
+                <!--<Trigger Property="IsKeyboardFocusWithin" Value="True">
+                    <Setter Property="Visibility" Value="Hidden" TargetName="block"/>
+                    <Setter Property="Visibility" Value="Visible" TargetName="box"/>
+                </Trigger>-->
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </TextBox.Template>
+</TextBox>

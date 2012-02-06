@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Textures\close.tga</Source>
+      <Name>Textures\close</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Textures\close.xnb</Output>
+      <Time>2010-07-28T19:03:30.2045255-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Textures\cursor.png</Source>
+      <Name>Textures\cursor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Textures\cursor.xnb</Output>
+      <Time>2010-07-28T19:03:30.2105259-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Textures\open.tga</Source>
+      <Name>Textures\open</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Textures\open.xnb</Output>
+      <Time>2010-07-28T19:03:30.2205264-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Textures\black.jpg</Source>
+      <Name>Textures\black</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Textures\black.xnb</Output>
+      <Time>2010-07-28T19:03:30.2145261-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Textures\white.jpg</Source>
+      <Name>Textures\white</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Textures\white.xnb</Output>
+      <Time>2010-07-28T19:03:30.2075257-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Alert.spritefont</Source>
+      <Name>Fonts\Alert</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Fonts\Alert.xnb</Output>
+      <Time>2010-07-28T19:03:30.3395333-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Default.spritefont</Source>
+      <Name>Fonts\Default</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Fonts\Default.xnb</Output>
+      <Time>2010-07-28T19:03:30.3365331-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Fonts\Tiny.spritefont</Source>
+      <Name>Fonts\Tiny</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Fonts\Tiny.xnb</Output>
+      <Time>2010-07-28T19:03:30.335533-04:30</Time>
+    </Item>
+    <Item>
+      <Source>Textures\mark.png</Source>
+      <Importer>TextureImporter</Importer>
+      <Options>None</Options>
+      <Output>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\Textures\mark_0.xnb</Output>
+      <Time>2010-07-28T19:03:30.2235266-04:30</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>WindowsPhone</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\Content\obj\Windows Phone\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Juan\Documents\Visual Studio 2010\Projects\BattleSpin\Xdtk\DebugContent\bin\Windows Phone\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-04:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-04:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-04:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-04:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T12:41:18-04:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T12:41:18-04:30</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2010-09-22T05:05:38.9190041-04:30</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

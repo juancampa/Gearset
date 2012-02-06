@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectGuid>{632999B3-93FA-4F11-B10E-A103051EC809}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gearset</RootNamespace>
+    <AssemblyName>Gearset.WP</AssemblyName>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <XnaCrossPlatformGroupID>879ae131-c5df-4400-9fd4-a8ea54caf2f1</XnaCrossPlatformGroupID>
+    <XnaUpgrade>
+    </XnaUpgrade>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaOutputType>Library</XnaOutputType>
+    <XnaProfile>Reach</XnaProfile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <XapFilename Condition="$(XnaOutputType)=='Game'">$(AssemblyName).xap</XapFilename>
+    <SilverlightManifestTemplate Condition="$(XnaOutputType)=='Game'">Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <XnaWindowsPhoneManifestTemplate Condition="$(XnaOutputType)=='Game'">Properties\WMAppManifest.xml</XnaWindowsPhoneManifestTemplate>
+    <TileImage Condition="$(XnaOutputType)=='Game'">Background.png</TileImage>
+    <TileTitle Condition="$(XnaOutputType)=='Game'">$(AssemblyName)</TileTitle>
+    <SupportedCultures />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
+    <OutputPath>bin\Windows Phone\Debug</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE;WINDOWS_PHONE</DefineConstants>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
+    <OutputPath>bin\Windows Phone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE;WINDOWS_PHONE</DefineConstants>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'FastDeployGame|Windows Phone'">
+    <OutputPath>bin\Windows Phone\FastDeployGame\</OutputPath>
+    <DefineConstants>TRACE;WINDOWS_PHONE</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoStdLib>true</NoStdLib>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Windows Phone\Release\DebugConsole.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <LangVersion>3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;E:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;E:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Components\Alerter\AlerterConfig.cs" />
+    <Compile Include="Components\CurveEditor\CurveEditor.cs" />
+    <Compile Include="Components\CurveEditor\CurveEditorControl.cs" />
+    <Compile Include="Components\CurveEditor\CurveEditorWindow.xaml.cs">
+      <DependentUpon>CurveEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DataSampler\DataSampler.cs" />
+    <Compile Include="Components\DataSampler\DataSamplerConfig.cs" />
+    <Compile Include="Components\Drawers\BoxDrawer.cs" />
+    <Compile Include="Components\Drawers\SolidBoxDrawer.cs" />
+    <Compile Include="Components\Drawers\SphereDrawer.cs" />
+    <Compile Include="Components\Drawers\Transform3Drawer.cs" />
+    <Compile Include="Components\Drawers\Vector2Drawer.cs" />
+    <Compile Include="Components\Drawers\Vector3Drawer.cs" />
+    <Compile Include="Components\Finder\ObjectDescription.cs" />
+    <Compile Include="Components\Gear.cs" />
+    <Compile Include="Components\GearConfig.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorIgnoreAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorMethodAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\NoticeViewModel.cs" />
+    <Compile Include="Components\Labeler\InternalLabeler.cs" />
+    <Compile Include="Components\Labeler\Labeler.cs" />
+    <Compile Include="Components\Labeler\LabelerConfig.cs" />
+    <Compile Include="Components\LineDrawer\InternalLineDrawer.cs" />
+    <Compile Include="Components\LineDrawer\LineDrawerConfig.cs" />
+    <Compile Include="Components\Persistor\IPersistent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Plotter\Plotter.cs" />
+    <Compile Include="Components\Plotter\PlotterConfig.cs" />
+    <Compile Include="Components\TreeView\TreeViewConfig.cs" />
+    <Compile Include="Components\Undo\ICommand.cs" />
+    <Compile Include="Components\Undo\UndoEngine.cs" />
+    <Compile Include="FixedLengthQueue.cs" />
+    <Compile Include="GearConsole.cs" />
+    <Compile Include="GearsetResources.cs" />
+    <Compile Include="GearsetSettings.cs" />
+    <Compile Include="Helpers\BoundingBoxHelper.cs" />
+    <Compile Include="CompileErrorException.cs" />
+    <Compile Include="Components\Alerter\Alerter.cs" />
+    <Compile Include="Components\Alerter\DebugItem.cs" />
+    <Compile Include="Components\Attributes\InvokableAttribute.cs" />
+    <Compile Include="KeyboardComponent.cs" />
+    <Compile Include="MouseComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SerializableDummy.cs" />
+    <Compile Include="UI\LayoutBox.cs" />
+    <Compile Include="UI\MouseRouter.cs" />
+    <Compile Include="UI\RefEventHandler.cs" />
+    <Compile Include="UI\UIManager.cs" />
+    <Compile Include="UI\Window.cs" />
+    <Compile Include="Components\LineDrawer\DebugLine.cs" />
+    <Compile Include="KeyedCollection.cs" />
+    <Compile Include="Components\LineDrawer\LineDrawer.cs" />
+    <Compile Include="Components\Marker\DebugMark.cs" />
+    <Compile Include="Components\Marker\Marker.cs" />
+    <Compile Include="Components\Picker\IPickable.cs" />
+    <Compile Include="Components\Picker\Picker.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="DebugEnums.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Components\TreeView\TreeView.cs" />
+    <Compile Include="Components\TreeView\TreeViewNode.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Xna.Framework.3.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft XNA Framework Redistributable 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Xna.Framework.4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Background.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <None Include="Properties\AppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <None Include="Properties\WMAppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <None Include="Resources\Alert.xnb" />
+    <None Include="Resources\black.xnb" />
+    <None Include="Resources\close.xnb" />
+    <None Include="Resources\cursor.xnb" />
+    <None Include="Resources\Default.xnb" />
+    <None Include="Resources\mark.xnb" />
+    <None Include="Resources\open.xnb" />
+    <None Include="Resources\Tiny.xnb" />
+    <None Include="Resources\white.xnb" />
+    <None Include="Resources\Windows Phone\Alert_wp.xnb" />
+    <None Include="Resources\Windows Phone\close_wp.xnb" />
+    <None Include="Resources\Windows Phone\Default_wp.xnb" />
+    <None Include="Resources\Windows Phone\mark_wp.xnb" />
+    <None Include="Resources\Windows Phone\open_wp.xnb" />
+    <None Include="Resources\Windows Phone\Tiny_wp.xnb" />
+    <None Include="Resources\Xbox360\Alert.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\black.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\close.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\cursor.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\Default.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\open.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\Tiny.Xbox360.xnb" />
+    <None Include="Resources\Xbox360\white.Xbox360.xnb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="read-only-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mscorlib">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Components\CurveEditor\CurveEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

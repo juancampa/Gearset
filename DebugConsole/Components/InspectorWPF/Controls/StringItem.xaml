@@ -1,0 +1,45 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.StringItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <!--<ResourceDictionary Source="/AvalonDock.Themes;component/themes/ExpressionDark.xaml"/>-->
+                    <ResourceDictionary Source="..\..\Common\CommonStyle.xaml"/>
+                    <ResourceDictionary>
+                        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+                            <Style.Resources>
+                                <TextBlock x:Key="placeholder" Padding="1 0 1 0" Text="(Empty string)" FontSize="11" Foreground="#666"/>
+                            </Style.Resources>
+                            <Setter Property="TextAlignment" Value="Right"/>
+                            <Style.Triggers>
+                                <Trigger Property="Text" Value="">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <VisualBrush Stretch="None" AlignmentX="Right" Visual="{StaticResource placeholder}"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="Text" Value="{x:Null}">
+                                    <Setter Property="Background">
+                                        <Setter.Value>
+                                            <VisualBrush Stretch="None" AlignmentX="Right" Visual="{StaticResource placeholder}"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="True">
+                                    <Setter Property="Background" Value="{DynamicResource normal1}"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+
+        </Grid.Resources>
+        <TextBox x:Name="TextBox1" MaxWidth="200" MinWidth="100" Width="Auto"/>
+    </Grid>
+</local:VisualItemBase>

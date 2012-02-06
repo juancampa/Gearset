@@ -1,0 +1,24 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.Vector2Spinner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resources\InspectorStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Name="TextBlock1" MaxWidth="200" Width="Auto" TextTrimming="CharacterEllipsis"/>
+        <Button Name="Button1" Grid.Column="1" Style="{StaticResource spinner2DButtonStyle}" Content="XY"/>
+        <Button Name="Button2" Grid.Column="2" Style="{StaticResource spinner2DButtonStyle}" Content="Length"/>
+    </Grid>
+
+</local:VisualItemBase>

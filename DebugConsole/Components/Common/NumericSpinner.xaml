@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="Gearset.Components.NumericSpinner"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    <UserControl.Resources>
+        <!-- Style for SpinnerButtons -->
+        <Style x:Key="spinnerButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="10"/>
+            <Setter Property="Height" Value="17"/>
+            <Setter Property="Margin" Value="0 0 0 0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="#999"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Rectangle Fill="Transparent"/>
+                            <Polygon Points="5,3 2,7 8,7 " Fill="{TemplateBinding Foreground}"/>
+                            <Polygon Points="5,14 2,10 8,10 " Fill="{TemplateBinding Foreground}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TreeViewItem}}}" Value="True">
+                    <Setter Property="Foreground" Value="#eee"/>
+                </DataTrigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#bbb" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--<Style x:Key="plotButtonStyle" BasedOn="{StaticResource {x:Type ToggleButton}}">
+        </Style>-->
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <!--<ToggleButton Name="PlotToggleButton" Checked="PlotToggleButton_Checked" 
+                      Unchecked="PlotToggleButton_Checked" Padding="0" Width="13" Height="13"
+                      ToolTip="Toggle to Plot a graph of the value.">
+            <Image Width="13" Height="13">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Source" Value="../../Common/icon_plot.png"/>
+                        <Style.Triggers>
+                            --><!--<Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Source" Value="../../Common/icon_close_over.png"/>
+                            </Trigger>--><!--
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+        </ToggleButton>-->
+        <TextBox Name="TextBox1" Grid.Column="1" Width="80" Height="Auto" TextAlignment="Right"/>
+        <Button Name="Button1" Grid.Column="2" Style="{StaticResource spinnerButtonStyle}" Cursor="SizeNS"/>
+      
+    </Grid>
+
+</UserControl>

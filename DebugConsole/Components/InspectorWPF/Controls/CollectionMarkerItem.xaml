@@ -1,0 +1,44 @@
+﻿<local:VisualItemBase x:Class="Gearset.Components.InspectorWPF.CollectionMarkerItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    Height="Auto" Width="Auto">
+    <Grid>
+        <Grid.Resources>
+            <local:CollectionMarkerListTemplateSelector x:Key="templateSelector"/>
+
+            <DataTemplate x:Key="textureTemplate">
+                <local:Texture2DItemOnList/>
+            </DataTemplate>
+            <DataTemplate x:Key="genericTemplate">
+                <local:GenericItemOnList/>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListBox Name="ListBox1" Grid.Row="0"
+                MinHeight="100" 
+                MaxHeight="300" 
+                LostFocus="ListView_LostFocus" 
+                GotFocus="ListView_GotFocus" 
+                MouseRightButtonDown="ListView_MouseRightButtonDown"
+                ItemTemplateSelector="{StaticResource templateSelector}">
+            <ListBox.Resources>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <EventSetter Event="MouseDoubleClick" Handler="CollectionListView_DoubleClick" />
+                    <EventSetter Event="PreviewMouseRightButtonDown" Handler="ListView_MouseRightButtonDown" />
+                </Style>
+
+            </ListBox.Resources>
+        </ListBox>
+        <Border Grid.Row="1" BorderThickness="1 0 1 1" BorderBrush="#555">
+            <DockPanel LastChildFill="False">
+                <TextBlock DockPanel.Dock="Right" Name="CountTextBlock"/>
+                <TextBlock DockPanel.Dock="Right" Text="Count:"/>
+                <Button DockPanel.Dock="Left" Content="Refresh" Click="Button_Click_1"/>
+            </DockPanel>
+        </Border>
+    </Grid>
+</local:VisualItemBase>
