@@ -49,10 +49,10 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DebugConsole\ObfuscationSettings.cs">
+    <Compile Include="..\Gearset\ObfuscationSettings.cs">
       <Link>ObfuscationSettings.cs</Link>
     </Compile>
-    <Compile Include="..\DebugConsole\WindowHelper.cs">
+    <Compile Include="..\Gearset\WindowHelper.cs">
       <Link>WindowHelper.cs</Link>
     </Compile>
     <Compile Include="Base32.cs" />
