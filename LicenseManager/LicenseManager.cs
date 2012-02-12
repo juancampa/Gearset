@@ -91,7 +91,7 @@ namespace Gearset.Component
 
         private void OnLicenseChanged()
         {
-            Console.WriteLine("License Changing, LicenseChanged event not null? {0}, new License: {1}", LicenseChanged!=null, this.License);
+            //Console.WriteLine("License Changing, LicenseChanged event not null? {0}, new License: {1}", LicenseChanged!=null, this.License);
             if (LicenseChanged != null)
                 LicenseChanged(this, EventArgs.Empty);
         }
@@ -170,7 +170,7 @@ namespace Gearset.Component
 
         void license_LicenseChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("License Manager: License Just Changed, Checking Permission");
+            //Console.WriteLine("License Manager: License Just Changed, Checking Permission");
             CheckPermitsUse();
         }
 
@@ -181,16 +181,16 @@ namespace Gearset.Component
 
         private bool CheckPermitsUse()
         {
-            Console.WriteLine("Checking Permits Use");
+            //Console.WriteLine("Checking Permits Use");
             if (license.TimeEnabled && CheckFirstRun())
             {
-                Console.WriteLine("First Run");
+                //Console.WriteLine("First Run");
                 if (license.TimeEnabled)
                     SaveInitialData();
             }
             else
             {
-                Console.WriteLine("Not First Run");
+                //Console.WriteLine("Not First Run");
                 if (license.IsValid = CheckLicense())
                     return true;
                 else if (!license.TimeEnabled)
@@ -199,28 +199,28 @@ namespace Gearset.Component
                     return false;
             }
 
-            Console.WriteLine("Checking clock hack");
+            //Console.WriteLine("Checking clock hack");
             if (CheckClockHack())
             {
-                Console.WriteLine("Saving Last Use time stamp");
+                //Console.WriteLine("Saving Last Use time stamp");
                 SaveLastUse();
                 int remainingDays;
                 if (CheckTimeTrial(out remainingDays))
                 {
-                    Console.WriteLine("Time trial still on");
+                    //Console.WriteLine("Time trial still on");
                     license.RemainingDays = remainingDays;
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("Time trial is over");
+                    //Console.WriteLine("Time trial is over");
                     license.RemainingDays = remainingDays;
                     return false;
                 }
             }
             else
             {
-                Console.WriteLine("WTF, returning false");
+                //Console.WriteLine("WTF, returning false");
                 return false;
             }
         }
@@ -365,7 +365,7 @@ namespace Gearset.Component
         /// <returns></returns>
         private bool CheckLicense()
         {
-            Console.WriteLine("License={0} (length={1})", license.License, license.License.Length);
+            //Console.WriteLine("License={0} (length={1})", license.License, license.License.Length);
             if (license.License == null || license.License.Length == 0)
             {
                 if (!licenseNullMessageThrown)
