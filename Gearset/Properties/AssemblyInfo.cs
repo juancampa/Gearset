@@ -45,12 +45,13 @@ using System.Windows.Markup;
 //      Revision
 //
 
-#if WINDOWS
-[assembly: AssemblyVersion("1.1.*")]
-#else
-// Wire-up here the version number of the Windows build so all platforms have the same build number.
-[assembly: AssemblyVersion("1.1.4277.155")]
-#endif
+//#if WINDOWS
+////[assembly: AssemblyVersion("1.2.*")]
+//#else
+//// Wire-up here the version number of the Windows build so all platforms have the same build number.
+//[assembly: AssemblyVersion("1.2.4277.155")]
+//#endif
+[assembly: AssemblyVersion("1.3.0")]
 
 // Adding this attribute will force the Obfuscator to stop obfuscating internals
 // which ends up showing too much code to customers. WARNING.

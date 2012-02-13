@@ -88,12 +88,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ComponentNamespace.cs" />
-    <Compile Include="Components\Bender\CurveTreeContainerStyleSelector.cs" />
     <Compile Include="Components\Common\ItemRemovedEventArgs.cs" />
     <Compile Include="Components\Finder\ObjectDescription.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Debug.cs" />
     <Compile Include="GearConsole %28Dummy%29.cs" />
+    <Compile Include="GearsetComponent.cs" />
+    <Compile Include="IGearsetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
