@@ -26,6 +26,8 @@ namespace Gearset.Components
     /// </summary>
     public partial class CurveEditorWindow : Window
     {
+        private bool isDragging;
+        private System.Windows.Point downPosition;
         internal bool WasHiddenByGameMinimize { get; set; }
 
         public CurveEditorWindow()
@@ -148,5 +150,42 @@ namespace Gearset.Components
             if (leaf != null)
                 GearsetResources.Console.RemoveCurve(leaf.Curve.Curve);
         }
+
+        private void NewCurve_Click(object sender, RoutedEventArgs e)
+        {
+            GearsetResources.Console.Bender.AddCurve("New Curve", new Microsoft.Xna.Framework.Curve());
+        }
+
+        private void curveTree_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            downPosition = Mouse.GetPosition(this);
+        }
+
+        private void curveTree_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (curveTree.SelectedItem == null)
+                return;
+            if (Mouse.LeftButton == MouseButtonState.Pressed && !isDragging)
+            {
+                if (e.OriginalSource is System.Windows.Controls.TextBox)
+                    return;
+                System.Windows.Point pos = Mouse.GetPosition(this);
+                if (Math.Abs(pos.X - downPosition.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                    Math.Abs(pos.Y - downPosition.Y) > SystemParameters.MinimumVerticalDragDistance)
+                {
+                    StartDrag();
+                }
+            }
+        }
+
+        private void StartDrag()
+        {
+            isDragging = true;
+            DataObject data = new DataObject(typeof(Object), ((CurveTreeLeaf)curveTree.SelectedItem).Curve.Curve);
+            DragDropEffects de = DragDrop.DoDragDrop(curveTree, data, DragDropEffects.Copy | DragDropEffects.Move | DragDropEffects.None);
+            isDragging = false;
+        }
+
+        
     }
 }

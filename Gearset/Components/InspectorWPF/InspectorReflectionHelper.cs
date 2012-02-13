@@ -219,8 +219,8 @@ namespace Gearset.Components.InspectorWPF
                     // Return
                     ilGenerator.Emit(OpCodes.Ret);
 
-                    if (myMethod.InitLocals == false)
-                        System.Diagnostics.Debugger.Break();
+                    //if (myMethod.InitLocals == false)
+                    //    System.Diagnostics.Debugger.Break();
 
                     setterGetterDict[memberInfo].Getter = (Getter)myMethod.CreateDelegate(typeof(Getter));
                 }
@@ -357,8 +357,8 @@ namespace Gearset.Components.InspectorWPF
                     // Return
                     ilGenerator.Emit(OpCodes.Ret);
 
-                    if (myMethod.InitLocals == false)
-                        System.Diagnostics.Debugger.Break();
+                    //if (myMethod.InitLocals == false)
+                    //    System.Diagnostics.Debugger.Break();
 
                     setterGetterDict[memberInfo].Setter = (Setter)myMethod.CreateDelegate(typeof(Setter));
 

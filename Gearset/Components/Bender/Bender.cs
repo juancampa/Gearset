@@ -33,30 +33,30 @@ namespace Gearset.Components
             Window.IsVisibleChanged += new System.Windows.DependencyPropertyChangedEventHandler(Window_IsVisibleChanged);
 
 
-            Curve c1 = new Curve();
-            AddCurve("MyObject.X", c1);
-            c1 = new Curve();
-            AddCurve("MyObject.Y", c1);
-            c1 = new Curve();
-            AddCurve("MyObject.Z", c1);
-            c1 = new Curve();
-            AddCurve("MyObject.Alpha", c1);
+            //Curve c1 = new Curve();
+            //AddCurve("MyObject.X", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject.Y", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject.Z", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject.Alpha", c1);
 
-            c1 = new Curve();
-            AddCurve("MyObject2.X", c1);
-            c1 = new Curve();
-            AddCurve("MyObject2.Y", c1);
-            c1 = new Curve();
-            AddCurve("MyObject2.Z", c1);
-            c1 = new Curve();
-            AddCurve("MyObject2.Alpha", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject2.X", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject2.Y", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject2.Z", c1);
+            //c1 = new Curve();
+            //AddCurve("MyObject2.Alpha", c1);
 
-            c1 = new Curve();
-            AddCurve("Lonely curve", c1);
-            c1 = new Curve();
-            AddCurve("Another curve", c1);
+            //c1 = new Curve();
+            //AddCurve("Lonely curve", c1);
+            //c1 = new Curve();
+            //AddCurve("Another curve", c1);
 
-            RemoveCurveOrGroup("Another curve");
+            //RemoveCurveOrGroup("Another curve");
         }
 
         void Window_IsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)

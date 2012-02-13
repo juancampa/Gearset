@@ -83,12 +83,9 @@ namespace Gearset.Components.InspectorWPF
 
         private void StartDrag()
         {
-            //GiveFeedbackEventHandler handler = new GiveFeedbackEventHandler(DragSource_GiveFeedback);
-            //this.treeView1.GiveFeedback += handler;
             isDragging = true;
-            DataObject data = new DataObject(((InspectorNode)TreeView1.SelectedItem).Type, this.TreeView1.SelectedItem);
-            DragDropEffects de = DragDrop.DoDragDrop(this.TreeView1, data, DragDropEffects.Move);
-            //this.treeView1.GiveFeedback -= handler;
+            DataObject data = new DataObject(typeof(Object), ((InspectorNode)TreeView1.SelectedItem).Property);
+            DragDropEffects de = DragDrop.DoDragDrop(this.TreeView1, data, DragDropEffects.Copy | DragDropEffects.Move | DragDropEffects.None);
             isDragging = false;
         }
 
@@ -96,22 +93,22 @@ namespace Gearset.Components.InspectorWPF
         {
             InspectorNode targetTreeNode = ((FrameworkElement)e.OriginalSource).DataContext as InspectorNode;
             if (targetTreeNode == null)
-                return;
-
-            Object data = e.Data.GetData(e.Data.GetFormats()[0]);
-            InspectorNode sourceTreeNode = data as InspectorNode;
-            Type sourceType = data.GetType();
-            if (sourceTreeNode != null)
             {
-                sourceType = sourceTreeNode.Type;
-                data = sourceTreeNode.Property;
+                return;
             }
+
+            Object data = e.Data.GetData(typeof(Object));
+            if (data == null)
+                return;
+            Type dataType = data.GetType();
             Type targetType = targetTreeNode.Type;
 
-            if (targetType.IsAssignableFrom(sourceType))
+            if (targetType.IsAssignableFrom(dataType) ||
+                targetType == typeof(float) && dataType == typeof(double) ||
+                targetType == typeof(double) && dataType == typeof(float))
             {
-                //e.Effects = DragDropEffects.Copy;
-                //e.Handled = true;
+                e.Effects = DragDropEffects.Move;
+                e.Handled = true;
             }
             else
             {
@@ -125,36 +122,29 @@ namespace Gearset.Components.InspectorWPF
             InspectorNode targetTreeNode = ((FrameworkElement)e.OriginalSource).DataContext as InspectorNode;
             if (targetTreeNode == null)
                 return;
-            Object data = e.Data.GetData(e.Data.GetFormats()[0]);
-            InspectorNode sourceTreeNode = data as InspectorNode;
-            Type sourceType = data.GetType();
-            if (sourceTreeNode != null)
-            {
-                sourceType = sourceTreeNode.Type;
-                data = sourceTreeNode.Property;
-            }
+
+            Object data = e.Data.GetData(typeof(Object));
+            if (data == null)
+                return;
+            Type dataType = data.GetType();
             Type targetType = targetTreeNode.Type;
 
-            if (targetType.IsAssignableFrom(sourceType))
+            if (targetType.IsAssignableFrom(dataType))
             {
                 targetTreeNode.Property = data;
                 e.Handled = true;
             }
+            else if (targetType == typeof(float) && dataType == typeof(double))
+                targetTreeNode.Property = (float)((double)data);
+            else if (targetType == typeof(double) && dataType == typeof(float))
+                targetTreeNode.Property = (double)((float)data);
         }
 
-        //void SaveValue_Click(object sender, RoutedEventArgs e)
-        //{
-        //    InspectorNode item = ((InspectorNode)TreeView1.SelectedItem);
-        //    if (item.Parent == null)
-        //        return;
-
-        //    Object o = item.Parent.Property;
-        //    if (o is IPersistent)
-        //    {
-        //        IPersistent persistent = o as IPersistent;
-        //        GearsetResources.Console.SavePersistentValue(persistent.Ids, item.Name, item.Property);
-        //    }
-        //}
+        protected override void OnGiveFeedback(GiveFeedbackEventArgs e)
+        {
+            e.UseDefaultCursors = true;
+            base.OnGiveFeedback(e);
+        }
 
         public void Inspect_Click(object sender, RoutedEventArgs e)
         {

@@ -22,9 +22,9 @@ namespace Gearset
             undoStack = new LinkedList<IUndoable>();
             redoStack = new LinkedList<IUndoable>();
 
-#if DEBUG
-            GearsetResources.Console.Inspect("Undo Engine", this);
-#endif
+//#if DEBUG
+//            GearsetResources.Console.Inspect("Undo Engine", this);
+//#endif
         }
 
         /// <summary>
