@@ -155,13 +155,13 @@ namespace Gearset
                 }
                 else
                 {
-                    Console.WriteLine("No settings file found, using a fresh set.");
+                    Console.WriteLine("No gearset.conf file found, using a fresh config.");
                     Instance = new GearsetSettings();
                 }
             }
             catch
             {
-                Console.WriteLine("Problem while reading settings, using a fresh set.");
+                Console.WriteLine("Problem while reading gearset.conf, using a fresh config.");
                 Instance = new GearsetSettings();
             }
 #else

@@ -75,8 +75,8 @@ namespace GearsetTest
             XPosition = new Curve();
             YPosition = new Curve();
 
-            XdtkWrapper.AddCurve("Sprite2.X", XPosition);
-            XdtkWrapper.AddCurve("Sprite2.Y", YPosition);
+            XdtkWrapper.Console.AddCurve("Sprite2.X", XPosition);
+            XdtkWrapper.Console.AddCurve("Sprite2.Y", YPosition);
 
             TestMode = true;
         }

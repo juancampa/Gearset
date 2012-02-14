@@ -686,7 +686,11 @@ namespace Gearset
         }
         #endregion
 
+        
         #region Wrapper functions
+        // Do not delete the WRAPPER FUNCTION comment below.
+        // It's a mark for the function extractor
+        // WRAPPER FUNCTIONS BEGIN
 
         #region Tree View
         /// <summary>
@@ -1467,7 +1471,9 @@ namespace Gearset
         }
         #endregion
 
+        // WRAPPER FUNCTIONS END
         #endregion
+        
 
         /// <summary>
         /// Clears all Gearset Components erasing all retained data. Inspector and Logger won't be cleared.

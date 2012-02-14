@@ -1,0 +1,3708 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gearset</name>
+    </assembly>
+    <members>
+        <member name="M:Gearset.Components.GearConfig.OnPropertyChanged(System.String)">
+            <summary>
+            Call this method when a data-bound property changes so the UI gets notified.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.GearConfig.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Gearset.Components.Gear"/> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Gearset.Components.GearConfig.Visible">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Gearset.Components.Gear"/> is visible.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Gearset.Components.EditableTextBlock">
+            <summary>
+            Textblock that can be eddited.
+            </summary>
+            <summary>
+            EditableTextBlock
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.EditableTextBlock.IsEditingProperty">
+            <summary>
+            Gets or sets whether this TextBlock is editing or not.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.EditableTextBlock.StartEdit">
+            <summary>
+            Same as setting IsEditing
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.EditableTextBlock.StopEdit">
+            <summary>
+            Same as unsetting IsEditing
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.EditableTextBlock.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.NumericSpinner">
+            <summary>
+            Interaction logic for the NumericSpinner control
+            </summary>
+            <summary>
+            NumericSpinner
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.NumericSpinner.ModeProperty">
+            <summary>
+            What type of numeric value will this spinner handle
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.NumericSpinner.ValueProperty">
+            <summary>
+            The numeric value held by this spinner. It must be unboxed
+            to the type defined by the spinner mode.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.NumericSpinner.ShowNaNProperty">
+            <summary>
+            Determines whether the spinner should be blank instead of 
+            showing a "NaN" value.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.NumericSpinner.IsEditing">
+            <summary>
+            Defines the state of the spinner, if IsEditing 
+            is because the user is currently editing the value
+            so the Updating value of the TreeNode will be set 
+            to false until the control loses focus.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.NumericSpinner.WasUpdating">
+            <summary>
+            True if the TreeNode was Updating before the user
+            started to edit it.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.NumericSpinner.traversalRequest">
+            <summary>
+            Defines a way to move the focus out of the
+            textbox when enter is pressed.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.NumericSpinner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CSExpressionParser.CSExpression`1.ExpressionMethod">
+            <summary>
+            Delegate to evaluate expression without using MethodInfo.Invoke.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CSExpressionParser.CSExpression`1.#ctor">
+            <summary>
+            Construct a new CSExpression that returns default(T).
+            Add parameters the this expression before changing the
+            Expression, otherwise it will be invalid.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CSExpressionParser.CSExpression`1.Evaluate">
+            <summary>
+            Evaluates the expression if any, else return de default <c>T</c>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gearset.Components.CSExpressionParser.CSExpression`1.SetParameter(System.String,System.Object)">
+            <summary>
+            Sets a parameter that will be used in the expression.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CSExpressionParser.CSExpression`1.Value">
+            <summary>
+            Evaluates the expression and return its value.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CSExpressionParser.CSExpression`1.Expression">
+            <summary>
+            A c# expression that can be evaluated and return a value of type T.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.ChangeTangentCommand">
+            <summary>
+            Changes the tangent value of a given key.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.CurveEditorCommand">
+            <summary>
+            Base class for all curve editor commands.
+            </summary>
+        </member>
+        <member name="M:Gearset.IUndoable.Do">
+            <summary>
+            Does what the command does
+            </summary>
+        </member>
+        <member name="M:Gearset.IUndoable.Undo">
+            <summary>
+            Reverts the effect of do
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ChangeTangentCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,System.Int64,Gearset.Components.CurveEditorControl.TangentSelectionMode)">
+            <summary>
+            Creates a new command to select the given keys. You can pass null to deselect all.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ChangeTangentCommand.UpdateOffset(System.Single)">
+            <summary>
+            This method will update the offset and update the key tangent accordingly.
+            This is to be used while dragging, before the mouse is released and the command
+            added (without calling Do()) to the history.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ChangeTangentCommand.ChangeTangent(System.Single)">
+            <summary>
+            Performs the actual movement of the keys.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.AddKeyCommand">
+            <summary>
+            Selects the provided set of keys.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.AddKeyCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,System.Int64,System.Single,System.Single)">
+            <summary>
+            Creates a new command to select the given keys. You can pass null to deselect all.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.ChangeTangentModeCommand">
+            <summary>
+            Changes the tangent value of a given key.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ChangeTangentModeCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,System.Nullable{Gearset.Components.CurveEditorControl.KeyTangentMode},System.Nullable{Gearset.Components.CurveEditorControl.KeyTangentMode})">
+            <summary>
+            Creates a new command to select the given keys. You can pass null to deselect all.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.ChangeContinuityCommand">
+            <summary>
+            Changes the tangent value of a given key.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ChangeContinuityCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,Microsoft.Xna.Framework.CurveContinuity)">
+            <summary>
+            Creates a new command to select the given keys. You can pass null to deselect all.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.ScaleKeysCommand">
+            <summary>
+            Scales a set of keys.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ScaleKeysCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,System.Windows.Point,System.Windows.Point,Gearset.Components.CurveEditorControl.ScaleBoxHandle)">
+            <summary>
+            Creates a new command to scale a set of keys.
+            </summary>
+            <param name="min">The minimum position of the scale box grabbing all selected keys</param>
+            <param name="max">The maximum position of the scale box grabbing all selected keys</param>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ScaleKeysCommand.UpdateOffsets(System.Windows.Point)">
+            <summary>
+            This method will move will update the offset and move the keys accordingly.
+            This is to be used while dragging, before the mouse is released and the command
+            added (without calling Do()) to the history.
+            </summary>
+            <param name="offset">offset in curve coords</param>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.ScaleKeysCommand.ScaleKeys(System.Windows.Point,System.Windows.Point)">
+            <summary>
+            Performs the actual movement of the keys.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.DeleteKeysCommand">
+            <summary>
+            Selects the provided set of keys.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.DeleteKeysCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2)">
+            <summary>
+            Creates a new command to select the given keys. You can pass null to deselect all.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.MoveKeysCommand">
+            <summary>
+            Moves a set of keys.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.MoveKeysCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,System.Single,System.Single)">
+            <summary>
+            Creates a new command to move a set of keys.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.MoveKeysCommand.UpdateOffsets(System.Single,System.Single)">
+            <summary>
+            This method will move will update the offset and move the keys accordingly.
+            This is to be used while dragging, before the mouse is released and the command
+            added (without calling Do()) to the history.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.MoveKeysCommand.MoveKeys(System.Single,System.Single)">
+            <summary>
+            Performs the actual movement of the keys.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.SelectKeysCommand">
+            <summary>
+            Selects the provided set of keys.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.SelectKeysCommand.#ctor(Gearset.Components.CurveEditorControl.CurveEditorControl2,System.Collections.Generic.IList{System.Int64})">
+            <summary>
+            Creates a new command to select the given keys. You can pass null to deselect all.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.GridRuler.InitializeResources">
+            <summary>
+            Initializes all general pens and brushes.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveTreeNode.#ctor(Gearset.Components.CurveTreeNode)">
+            <summary>
+            Only to be used by subclasses that override the name property.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Gear">
+            <summary>
+            A Gear's methods will be called by the GearConsole
+            pretty much like a DrawableGameComponent gets called
+            by XNA.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Gear.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Called every frame so that the component can get updated.
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:Gearset.Components.Gear.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Called several times every frame, one for each render pass.
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:Gearset.Components.Gear.OnResolutionChanged">
+            <summary>
+            Called for every component when the game resolution changes.
+            So that it can adjust things like drawing positions.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Gear.OnEnabledChanged">
+            <summary>
+            Override to implement functionality when the value
+            of Enabled changes.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Gear.OnVisibleChanged">
+            <summary>
+            Override to implement functionality when the value
+            of Visible changes.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Gear.Enabled">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Gearset.Components.Gear"/> is enabled.
+            </summary>
+            <value><c>true</c> if enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Gearset.Components.Gear.Visible">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Gearset.Components.Gear"/> is visible.
+            </summary>
+            <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Gearset.Components.Gear.Game">
+            <summary>
+            Gets the game.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Bender.AddCurve(System.String,Microsoft.Xna.Framework.Curve)">
+            <summary>
+            Adds the provided curve to Bender
+            </summary>
+            <param name="name">The name of the curve, a dot-separated path can be used to group curves</param>
+            <param name="curve">The curve to add to Bender</param>
+        </member>
+        <member name="M:Gearset.Components.Bender.RemoveCurve(Microsoft.Xna.Framework.Curve)">
+            <summary>
+            Removes the provided Curve from Bender.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Bender.RemoveCurveOrGroup(System.String)">
+            <summary>
+            Removes a Curve or a Group by name. The complete dot-separated
+            path to the curve or group must be given.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CurveTreeViewModel.random">
+            <summary>
+            A random used to generate colors, used with a predefined seed so multiple
+            runs of the same code path will yield the same colors.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveTreeViewModel.RemoveCurve(Microsoft.Xna.Framework.Curve)">
+            <summary>
+            Removes the provided Curve from Bender.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveTreeViewModel.RemoveNodeAndCurves(Gearset.Components.CurveTreeNode)">
+            <summary>
+            Will remove the whole subtree of nodes below the provided node (from the control).
+            The provided node must be removed from the tree by the calling code.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveTreeViewModel.AddCurve(System.String,Microsoft.Xna.Framework.Curve)">
+            <summary>
+            Adds the curve to the TreeView and also the CurveEditorControl.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.CurveWrapperCollection">
+            <summary>
+            A collection of Curve Wrappers. It can be accessed as a dictionary
+            using the [] semantic either by name or index.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CurveEditorControl.CurveEditorControl2.keyToWrapperMap">
+            <summary>
+            Map keys to wrappers for O(1) retrieval. This map must be updated
+            by wrappers every time their wrapped key changes.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CurveEditorControl.CurveEditorControl2.keyAddedOnMouseDown">
+            <summary>
+            Will only have a value after a mouse down when a key was added
+            and will be reset to null on mouse up.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CurveEditorControl.CurveEditorControl2.moveKeysWithMouse">
+            <summary>
+            Determines if we should move the keys when a mouse move event occurs.
+            This is MouseDown -> MouseMove communication.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.UpdateKeyMap(Gearset.Components.CurveEditorControl.KeyWrapper,Microsoft.Xna.Framework.CurveKey)">
+            <summary>
+            This method is called by KeyWrappers so the map gets updated.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.GetWrapper(Microsoft.Xna.Framework.CurveKey)">
+            <summary>
+            Gets the KeyWrapper of a given CurveKey.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.ComputeScaleBox">
+            <summary>
+            Computes the boundaries of the scale box based on the current selection.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.InitializePenAndBrushes">
+            <summary>
+            Initializes all general pens and brushes.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.SetKeysContinuity(Microsoft.Xna.Framework.CurveContinuity)">
+            <summary>
+            Sets the provided KeyTangentMode to the current selection
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.SetTangentModes(System.Nullable{Gearset.Components.CurveEditorControl.KeyTangentMode},System.Nullable{Gearset.Components.CurveEditorControl.KeyTangentMode})">
+            <summary>
+            Sets the provided KeyTangentMode to the current selection
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.DeselectAllKeysOwnedBy(Gearset.Components.CurveEditorControl.CurveWrapper)">
+            <summary>
+            Deselects all keys (if any) owned by the provided curve.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.GetKeysInSelectionBox(System.Boolean)">
+            <summary>
+            Returns a list of key ids that lie inside the selection box, it takes into
+            account the size of the key (i.e. selected vs unselected). 
+            
+            If the box contains
+            any tangent handles of the selected keys they will be returned as negative values
+            (see TangentSelection enum) and keys without a tangent won't be returned. Each
+            tangent will be followed by it's corresponding key id.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveEditorControl2.Keys">
+            <summary>
+            Dictionary of all keys of all curves. The key of the dictionary
+            represents the Id of the key.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveEditorControl2.Selection">
+            <summary>
+            List of selected curve keys.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveEditorControl2.SelectingWithBox">
+            <summary>
+            Determines whether we're currently drawing a selection box.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveEditorControl2.ToolMode">
+            <summary>
+            Gets or set the current tool used by the control.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveEditorControl2.SelectionBoundingBox.EnsureMaxMin">
+            <summary>
+            Make sure that p1 is min and p2 is max.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CurveEditorControl.ToolMode.SelectMove">
+            <summary>
+            Default mode, select/move/etc.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorWindow">
+            <summary>
+            
+            </summary>
+            <summary>
+            CurveEditorWindow
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.KeySelection">
+            <summary>
+            Contains the selected key set. It will automatically set the IsSelected
+            property to the keys in it, and unset it when they're removed. If a key
+            is already selected, it won't be added again.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.KeyWrapperCollection">
+            <summary>
+            A collection of Key Wrappers. It can be accessed as a dictionary
+            using the [] semantic.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapperCollection.GetWrapper(Microsoft.Xna.Framework.CurveKey)">
+            <summary>
+            Returns the KeyWrapper of the provided key. This is a relatively
+            expensive O(n) method because it iterates over the values of a dict.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.CurveEditorControlsViewModel">
+            <summary>
+            ViewModel class used to bind WPF controls to CurveEditorControl properties
+            and methods.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveEditorControlsViewModel.Control">
+            <summary>
+            Gets the control associated with this view-model.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveLoopTypeToBooleanConverter">
+            <summary>
+            This class is the same as the BooleanToVisibilityConverter
+            but negated.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.CurveWrapper">
+            <summary>
+            Wraps a Curve, giving it an Id and a Name.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveWrapper.AddKey(Microsoft.Xna.Framework.CurveKey,System.Int64)">
+            <summary>
+            This is the method to use when adding a key in the editor. It will create
+            the corresponding KeyWrapper and add it to the control.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveWrapper.RestoreKey(Gearset.Components.CurveEditorControl.KeyWrapper)">
+            <summary>
+            This method is only to be used when undoing a RemoveKeys command.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveWrapper.RemoveKey(System.Int64)">
+            <summary>
+            This is the method to use when removing a key in the editor. It will remove
+            the corresponding KeyWrapper from the control.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveWrapper.GetKeyAt(System.Int32)">
+            <summary>
+            Returns the KeyWrapper of the key at the provided position. This is a
+            relatively expensive method because it iterates over the dictionary's values.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveWrapper.Evaluate(System.Single)">
+            <summary>
+            Wraps the curve's Evaluate method.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.CurveWrapper.ComputeTangents">
+            <summary>
+            Computes the tangents of all automatic keys.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.Visible">
+            <summary>
+            Gets or sets whether this curve is visible on the control for editing.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.PreLoop">
+            <summary>
+            Wraps the Curve's Loop property making sure the control gets invalidated
+            when its set.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.PostLoop">
+            <summary>
+            Wraps the Curve's Loop property making sure the control gets invalidated
+            when its set.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.Curve">
+            <summary>
+            Wrapped curve instance. Do not edit it directly, use the CurveWrapper
+            methods instead.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.Id">
+            <summary>
+            Id of the curve, this is used by undo commands to reference
+            a modification to the wrapped key.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.Pen">
+            <summary>
+            Pen used to draw this curve.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.DashedPen">
+            <summary>
+            Pen used to draw this curve.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.Name">
+            <summary>
+            Friendly name of the Wrapped Curve.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.ColorBrush">
+            <summary>
+            The color used to build the pens.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.CurveWrapper.Control">
+            <summary>
+            Reference to the control that contains this wrapper.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.CurveEditorControl.KeyWrapper">
+            <summary>
+            Wraps a CurveKey, giving it an ID and a reference to it's owner curve.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.#ctor(Microsoft.Xna.Framework.CurveKey,Gearset.Components.CurveEditorControl.CurveWrapper,Gearset.Components.CurveEditorControl.KeyTangentMode,System.Int64)">
+            <summary>
+            Initializes a KeyWrapper
+            </summary>
+            <param name="curveKey">The key to wrap</param>
+            <param name="curve">The curve that owns curveKey</param>
+            <param name="id">Pass -1 to autogenerate a new id</param>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.MoveKey(System.Single,System.Single)">
+            <summary>
+            Moves the key by the given offset. It will actually remove the old key
+            from the curve and add a new offseted curve.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.ComputeTangentIfAuto">
+            <summary>
+            Computes the tangent of this key (if set to some automatic mode). It will also
+            recomute the tangents of adjacent keys if they're also auto.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.IsTangentModeAuto(Gearset.Components.CurveEditorControl.KeyTangentMode)">
+            <summary>
+            Returns true if the passed KeyTangentMode is automatically, i.e. it is
+            supposed to be calculated everytime the key is moved.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.GetPosition">
+            <summary>
+            Returns the position of the key in curve coords.
+            </summary>
+            <param name="control"></param>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.GetTangentHandleScreenPositions(System.Windows.Point@,System.Windows.Point@)">
+            <summary>
+            Gets the positions of the tangent handles in screen coords.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveEditorControl.KeyWrapper.GetPrevAndNextDistance(System.Single@,System.Single@)">
+            <summary>
+            Get distance between given index key position and previous/next key. Based
+            on XNA's curve editor method.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.KeyWrapper.Key">
+            <summary>
+            Wrapped CurveKey instance.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.KeyWrapper.Curve">
+            <summary>
+            The curve where the wrapped CurveKey belongs.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.KeyWrapper.Id">
+            <summary>
+            Id of the curve, this is used by undo commands to reference
+            a modification to the wrapped key.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.KeyWrapper.IsSelected">
+            <summary>
+            Determines whether this key is selected or not.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.KeyWrapper.TangentInMode">
+            <summary>
+            Determines the way the in tangent is handled.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.CurveEditorControl.KeyWrapper.TangentOutMode">
+            <summary>
+            Determines the way the out Tangent is handled.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.DataSampler">
+            <summary>
+            Keeps the history of a function.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.DataSampler.TakeSample">
+            <summary>
+            Takes a sample from the bound function.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.DataSampler.InsertSample(System.Single)">
+            <summary>
+            Inserts a sample. This method must be used with samplers that are
+            not bound to a function.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="T:Gearset.Components.DataSamplerManager">
+            <summary>
+            Keeps values of functions so they can be plotted.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.DataSamplerManager.AddSampler(System.String,System.Int32,System.Int32,System.Func{System.Single})">
+            <summary>
+            Adds an sampler which is bound to a <c>function</c> that will be sampled
+            every <c>sampleRate</c> frames. <c>historyLength</c> values will be kept.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.DataSamplerManager.AddSampler(System.String,System.Int32,System.Int32,System.Func{System.Single,System.Single})">
+            <summary>
+            Adds an sampler which is bound to a <c>function</c> that will be sampled
+            every <c>sampleRate</c> frames. <c>historyLength</c> values will be kept.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.DataSamplerManager.AddSample(System.String,System.Single)">
+            <summary>
+            Adds a single sample to the sampler of the specified name, if the sampler does
+            not exists it will be created. This function is intended to be used with sampler that
+            are not bound to a function.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.DataSamplerManager.AddSample(System.String,System.Single,System.Int32)">
+            <summary>
+            Adds a single sample to the sampler of the specified name, if the sampler does
+            not exists it will be created with the specified historyLength. 
+            This function is intended to be used with sampler that are not bound to a function.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.DataSamplerConfig">
+            <summary>
+            This whole class is ignored by the inspector.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.BoxDrawer">
+            <summary>
+            Draws 2D/3D Boxes 
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Finder">
+            <summary>
+            Lets the user search for a object in its game.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Finder.DefaultSearchFunction(System.String)">
+            <summary>
+            The default search function. It will search through the GameComponentCollection
+            of the Game.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Finder.Window">
+            <summary>
+            WPF window instance.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.FinderConfig.SearchFunction">
+            <summary>
+            The function that will be called everytime the query string changes.
+            </summary>
+        </member>
+        <member name="T:Wpf.Behaviours.GridViewColumnResize">
+            <summary>
+            Static class used to attach to wpf control
+            </summary>
+        </member>
+        <member name="T:Wpf.Behaviours.GridViewColumnResize.GridViewColumnResizeBehavior">
+            <summary>
+            GridViewColumn class that gets attached to the GridViewColumn control
+            </summary>
+        </member>
+        <member name="T:Wpf.Behaviours.GridViewColumnResize.ListViewResizeBehavior">
+            <summary>
+            ListViewResizeBehavior class that gets attached to the ListView control
+            </summary>
+        </member>
+        <member name="M:Gearset.ObjectDescription.#ctor(System.Object,System.String)">
+            <summary>
+            Creates an ObjectDescription. The name field will be taken out
+            of the object's ToString() method.
+            </summary>
+            <param name="o">The matching object.</param>
+            <param name="description">A string describing the object.</param>
+        </member>
+        <member name="M:Gearset.ObjectDescription.#ctor(System.Object,System.String,System.String)">
+            <summary>
+            Creates an ObjectDescription.
+            </summary>
+            <param name="o">The matching object.</param>
+            <param name="description">A string describing the object.</param>
+            <param name="name">The name to use instead of the object's ToString. Pass null to use the Object's ToString.</param>
+        </member>
+        <member name="T:Gearset.InspectorIgnoreAttribute">
+            <summary>
+            Add this attribute to fields or properties that need 
+            to be customized when shown in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="T:Gearset.InspectorMethodAttribute">
+            <summary>
+            Add this attribute to fields or properties that need 
+            to be customized when shown in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="P:Gearset.InspectorMethodAttribute.FriendlyName">
+            <summary>
+            The name to show in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="P:Gearset.InspectorMethodAttribute.Tooltip">
+            <summary>
+            The tooltip to show in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.ClearableGearConfigItem">
+            <summary>
+            
+            </summary>
+            <summary>
+            ClearableGearConfigItem
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.VisualItemBase">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.VisualItemBase.traversalRequest">
+            <summary>
+            Defines a way to move the focus out of the
+            textbox when enter is pressed.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.VisualItemBase.TreeNodeProperty">
+            <summary>
+            Registers a dependency property as backing store for the FloatValue property
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.VisualItemBase.#ctor">
+            <summary>
+            Empty constructor
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.VisualItemBase.UpdateUI(System.Object)">
+            <summary>
+            Override this method and add logic to update
+            the control to reflect the new value.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.VisualItemBase.UpdateVariable">
+            <summary>
+            Override this method and add logic to update
+            the value of the variable of the treenode.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.VisualItemBase.TreeNode">
+            <summary>
+            The InspectorTreeNode that this float spinner affetcs.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.VisualItemBase.UpdateIfExpanded">
+            <summary>
+            This will make the TreeNode stop calling UpdateUI on this
+            node if we're expanded. Ussually used for the genericItem
+            because the ToString() representation of a variable is 
+            the same as watching it's children updating.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.ClearableGearConfigItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.ColorItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            ColorItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.ColorItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.CollectionMarkerItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            CollectionMarkerItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.CollectionMarkerItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.CollectionMarkerListTemplateSelector.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.CurveItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            CurveItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.CurveItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.GenericItemOnList">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            GenericItemOnList
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.GenericItemOnList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Texture2DItemOnList">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            Texture2DItemOnList
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.Texture2DItemOnList.currentTexture">
+            <summary>
+            Registers a dependency property
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Texture2DItemOnList.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.StringItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            StringItem
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.StringItem.wasUpdating">
+            <summary>
+            Store the valur of IsUpdating when the textbox
+            gets focus.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.StringItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.TextBox">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            TextBox
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.TextBox.PlaceholderTextProperty">
+            <summary>
+            Registers a dependency property
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.TextBox.TextAlignmentProperty">
+            <summary>
+            Registers a dependency property
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.TextBox.TextProperty">
+            <summary>
+            Registers a dependency property
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.TextBox.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.TextBox.PlaceholderText">
+            <summary>
+            What text to show as placeholder
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.TextBox.TextAlignment">
+            <summary>
+            Text alignment
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.TextBox.Text">
+            <summary>
+            Text to show, if this value is empty, the palceholder will be shown instead.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Vector3Spinner">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            Vector3Spinner
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.Vector3Spinner.WasUpdating">
+            <summary>
+            True if the TreeNode was Updating before the user
+            started to edit it.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Vector3Spinner.UpdateUI(System.Object)">
+            <summary>
+            Updates the UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Vector3Spinner.UpdateVariable">
+            <summary>
+            Updates the variable fromt he UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Vector3Spinner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Texture2DMarkerItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            Texture2DMarkerItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Texture2DMarkerItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.NodeTemplateSelector.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.NullToVisibilityConverter">
+            <summary>
+            This class is the same as the BooleanToVisibilityConverter
+            but negated.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.CollectionMarker">
+            <summary>
+            This class does nothing, it is added to the Children
+            collection of a InspectorNode that wraps an ICollection,
+            then a template is used to show it as a listView
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Texture2DItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            Texture2DItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Texture2DItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.GearConfigItem">
+            <summary>
+            
+            </summary>
+            <summary>
+            GearConfigItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.GearConfigItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.QuaternionSpinner">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            QuaternionSpinner
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.QuaternionSpinner.WasUpdating">
+            <summary>
+            True if the TreeNode was Updating before the user
+            started to edit it.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.QuaternionSpinner.UpdateUI(System.Object)">
+            <summary>
+            Updates the UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.QuaternionSpinner.UpdateVariable">
+            <summary>
+            Updates the variable fromt he UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.QuaternionSpinner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Vector2Spinner">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            Vector2Spinner
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.Vector2Spinner.WasUpdating">
+            <summary>
+            True if the TreeNode was Updating before the user
+            started to edit it.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Vector2Spinner.UpdateUI(System.Object)">
+            <summary>
+            Updates the UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Vector2Spinner.UpdateVariable">
+            <summary>
+            Updates the variable fromt he UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Vector2Spinner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.InspectorAttribute">
+            <summary>
+            Add this attribute to fields or properties that need 
+            to be customized when shown in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="P:Gearset.InspectorAttribute.FriendlyName">
+            <summary>
+            The name to show in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="P:Gearset.InspectorAttribute.Tooltip">
+            <summary>
+            The tooltip to show in Gearset's inspector window.
+            </summary>
+        </member>
+        <member name="P:Gearset.InspectorAttribute.HideCantWriteIcon">
+            <summary>
+            Set to true if you don't want the "Can Write" icon to be shown.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Texture2DMarker">
+            <summary>
+            This class does nothing, it is added to the Children
+            collection of a InspectorNode that wraps a Texture2D field/prop,
+            then a template is used to show it as Image control
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InternalLabeler">
+            <summary>
+            Shows labels of text in 2D positions or 3d (TODO)s unprojected positions.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.ShowLabel(System.String,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Shows a label in the specified position. or changes a label position.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.ShowLabel(System.String,Microsoft.Xna.Framework.Vector2,System.String)">
+            <summary>
+            Creates a label, or changes its values.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.ShowLabel(System.String,Microsoft.Xna.Framework.Vector2,System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Creates a label or changes its values
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.ShowLabel(System.String,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Shows a label in the specified position. or changes a label position.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.ShowLabel(System.String,Microsoft.Xna.Framework.Vector3,System.String)">
+            <summary>
+            Creates a label, or changes its values.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.ShowLabel(System.String,Microsoft.Xna.Framework.Vector3,System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Creates a label or changes its values
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLabeler.HideLabel(System.String)">
+            <summary>
+            Remove a persistent label if exists.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Labeler">
+            <summary>
+            Shows labels of text in 2D positions or 3d (TODO)s unprojected positions.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.LabelerConfig.Clear">
+            <summary>
+            Clears all lines
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.LabelerConfig.DefaultColor">
+            <summary>
+            Gets or sets the default color of the labels shown.
+            </summary>
+        </member>
+        <member name="E:Gearset.Components.LabelerConfig.Cleared">
+            <summary>
+            Raised when the user request labels to be cleared.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InternalLineDrawer">
+            <summary>   
+            Draw lines in 3D space, can draw line lists and line strips.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.MaxLineCount">
+            <summary>
+            Sets a maximun of lines we can draw.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.persistentLine3DTable">
+            <summary>
+            Maps an id to an index in the dictionary.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.persistentLine2DTable">
+            <summary>
+            Maps an id to an index in the dictionary.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.singleFrameLine2DCount">
+            <summary>
+            Number of lines to be drawn on this frame. There
+            will be twice as vertices in the singleFrameVertices array.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.singleFrameLine3DCount">
+            <summary>
+            Number of lines to be drawn on this frame. There
+            will be twice as vertices in the singleFrameVertices array.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.persistentLine3DCount">
+            <summary>
+            Number of lines to be drawn on this frame. There
+            will be twice as vertices in the singleFrameVertices array.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.persistentLine2DCount">
+            <summary>
+            Number of lines to be drawn on this frame. There
+            will be twice as vertices in the singleFrameVertices array.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.freeSpots3D">
+            <summary>
+            When a persistent line is deleted it's index will be
+            stored here so the next one can take it.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.freeSpots2D">
+            <summary>
+            When a persistent line is deleted it's index will be
+            stored here so the next one can take it.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InternalLineDrawer.CoordinateSpace">
+            <summary>
+            Defines the way that coordinates will be interpreted in 2D space. Defaults to Screen space.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLine(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line and keeps drawing it, its values can be changed
+            by calling ShowLine again with the same key. If you want to
+            make more efficient subsequent calls, get the returned index (
+            and call it again but with the index overload.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLine(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line and keeps drawing it, its values can be changed
+            by calling ShowLine again with the same key. If you want to
+            make more efficient subsequent calls, get the returned index (
+            and call it again but with the index overload.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLine(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Use this method only once, then if you want to update the line
+            use the (int, Vector3, Vector3, Color) overload with the index
+            returned by this method.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLine(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Use this method only once, then if you want to update the line
+            use the (int, Vector2, Vector2, Color) overload with the index
+            returned by this method.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLine(System.Int32,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Only use this method if you know you have a valid index. You
+            can get a valid index by calling the other overlaods.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLine(System.Int32,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Only use this method if you know you have a valid index. You
+            can get a valid index by calling the other overlaods.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLineOnce(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line for one frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.ShowLineOnce(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line for one frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.DeleteLine3(System.String)">
+            <summary>
+            If a line with the specified key existe, remove it. Else, do nothing.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.DeleteLine3(System.Int32)">
+            <summary>
+            If a line with the specified key existe, remove it. Else, do nothing.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.DeleteLine2(System.String)">
+            <summary>
+            If a line with the specified key exists, remove it. Else, do nothing.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InternalLineDrawer.DeleteLine2(System.Int32)">
+            <summary>
+            If a line with the specified key exists, remove it. Else, do nothing.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InternalLineDrawer.Config">
+            <summary>
+            Gets or sets the config for the Line Drawer.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CoordinateSpace.ScreenSpace">
+            <summary>
+            The geometry will be interpreted as being in screen space.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.CoordinateSpace.GameSpace">
+            <summary>
+            The geometry will be interpreted as being in game space, thus the Transform2D matrix will be applied.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.LineDrawerConfig.Clear">
+            <summary>
+            Clears all lines
+            </summary>
+        </member>
+        <member name="E:Gearset.Components.LineDrawerConfig.Cleared">
+            <summary>
+            Raised when the user request lines to be cleared.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Logger.LoggerWindow">
+            <summary>
+            Interaction logic for Window1.xaml
+            </summary>
+            <summary>
+            LoggerWindow
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.UI.Window">
+            <summary>
+            A Window, with a title bar to show a title and drag it. 
+            Also a scale nob at the bottom-right corner
+            </summary>
+        </member>
+        <member name="T:Gearset.UI.LayoutBox">
+            <summary>
+            A box.
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.DrawCrossLines(Microsoft.Xna.Framework.Color)">
+            <summary>
+            Helper methods, draws the border of the box. Must be called every frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.DrawBorderLines(Microsoft.Xna.Framework.Color)">
+            <summary>
+            Helper methods, draws the border of the box. Must be called every frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.DrawBorderLines(Microsoft.Xna.Framework.Color,Gearset.Components.InternalLineDrawer)">
+            <summary>
+            Helper methods, draws the border of the box. Must be called every frame.
+            TODO: Move this to a UI debug drawer or something similar
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.Contains(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Returns true if the passed point is contained in this box.
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.WorldToLocal(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Returns the passed world point in local point of this LayoutBox.
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.RaiseMouseDown(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Only to be called by the MouseRouter
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.RaiseMouseUp(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Only to be called by the MouseRouter
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.RaiseClick(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Only to be called by the MouseRouter
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.LayoutBox.RaiseDragged(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Only to be called by the MouseRouter
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.LayoutBox.Parent">
+            <summary>
+            Gets or sets the parent of this LayoutBox.
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.LayoutBox.Position">
+            <summary>
+            Gets or sets the position of this LayoutBox.
+            </summary>
+            <value>The position</value>
+        </member>
+        <member name="P:Gearset.UI.LayoutBox.DrawArea">
+            <summary>
+            Returns the area where the elements of this UI box must be drawn.
+            </summary>
+        </member>
+        <member name="M:Gearset.UI.Window.UpdateLayout">
+            <summary>
+            Positions (and sizes) the title bar and the scale nob.
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.Window.TitleBar">
+            <summary>
+            Gets the title bar LayoutBox
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.Window.ScaleNob">
+            <summary>
+            Gets the scale nob LayoutBox.
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.Window.TitleBarSize">
+            <summary>
+            Defines a hight for the title bar.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Data.Plot.Visible">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="T:Gearset.Components.Data.Plot"/> is visible.
+            </summary>
+            <value><c>true</c> if visible; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:Gearset.Components.Data.Plotter">
+            <summary>
+            Class that takes a DataSampler and plots its values to the screen.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.Data.Plotter.plots">
+            <summary>
+            Current plots.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.Data.Plotter.lastPlotAdded">
+            <summary>
+            Keep a reference to the last plot added so we can position the next one.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.Data.Plotter.plotBeignRemoved">
+            <summary>
+            If a plot is beign removed, the change of visibility to false will not
+            imply that the plot should be added to the hidden list.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.ShowPlot(System.String)">
+            <summary>
+            Shows a plot of the sampler with the specified name if the sampler does
+            not exist it is created.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.GetNextPosition">
+            <summary>
+            Calculates a position for a new plot.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.RemovePlot(System.String)">
+            <summary>
+            Removes a plot, if ShowPlot is called again for this plot, it will be shown
+            again
+            </summary>
+            <param name="name">Name of the plot to remove.</param>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.Clear">
+            <summary>
+            Removes all plots, if ShowPlot is called again, plots will be shown
+            again.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.HideAll">
+            <summary>
+            Hides all plots, data will still be captured.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.ShowAll">
+            <summary>
+            Hides all plots, data will still be captured.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Data.Plotter.ResetPositions">
+            <summary>
+            Resets the positions of all overlaid plots.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Data.Plotter.Config">
+            <summary>
+            Gets or sets the config object.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.BoolButton">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            BoolButton
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.BoolButton.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.CharSpinner">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            CharSpinner
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.CharSpinner.charValue">
+            <summary>
+            The real char value.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.CharSpinner.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.NumericItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            NumericItem
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.NumericItem.ModeProperty">
+            <summary>
+            The mode of the Numeric Item
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.NumericItem.IsEditing">
+            <summary>
+            Defines the state of the spinner, if IsEditing 
+            is because the user is currently editing the value
+            so the Updating value of the TreeNode will be set 
+            to false until the control loses focus.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.NumericItem.WasUpdating">
+            <summary>
+            True if the TreeNode was Updating before the user
+            started to edit it.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.NumericItem.UpdateUI(System.Object)">
+            <summary>
+            Updates the UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.NumericItem.UpdateVariable">
+            <summary>
+            Updates the variable fromt he UI.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.NumericItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.NumericItem.Mode">
+            <summary>
+            What type of numeric value will this spinner handle
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Logger.LogItem.Color">
+            <summary>
+            The background color to use for this Log, it is the same for 
+            items in the same update.
+            </summary>
+            <value>The color.</value>
+        </member>
+        <member name="P:Gearset.Components.Logger.LogItem.UpdateNumber">
+            <summary>
+            The number of the update where this log was generated
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Logger.LogItem.Stream">
+            <summary>
+            The name of the string where this logItem belongs.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Logger.LogItem.Content">
+            <summary>
+            The actual contents of the log
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.SaveLogToFile">
+            <summary>
+            Shows a dialog asking for a filename and saves the log file.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.SaveLogToFile(System.String)">
+            <summary>
+            Saves the log to the specified file.
+            </summary>
+            <param name="filename">Name of the file to save the log (usually ending in .log)</param>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.Log(System.String,System.String,System.Object)">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The first format parameter</param>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.Log(System.String,System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The first format parameter</param>
+            <param name="arg1">The second format parameter</param>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.Log(System.String,System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The first format parameter</param>
+            <param name="arg1">The second format parameter</param>
+            <param name="arg2">The third format parameter</param>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.Log(System.String,System.String,System.Object[])">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The format parameters</param>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.Log(System.String,System.String)">
+            <summary>
+            Los a message to the specified stream.
+            </summary>
+            <param name="streamName">Name of the Stream to log the message to</param>
+            <param name="message">Message to log</param>
+        </member>
+        <member name="M:Gearset.Components.Logger.LoggerManager.Log(System.String)">
+            <summary>
+            Logs the specified message in the default stream.
+            </summary>
+            <param name="content">The message to log.</param>
+        </member>
+        <member name="M:Gearset.Components.PlotterConfig.Clear">
+            <summary>
+            Clears all lines
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.PlotterConfig.DefaultSize">
+            <summary>
+            Gets or sets the default size.
+            </summary>
+            <value>The default size</value>
+        </member>
+        <member name="E:Gearset.Components.PlotterConfig.Cleared">
+            <summary>
+            Raised when the user request plots to be cleared.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.TreeViewConfig.Clear">
+            <summary>
+            Clears all lines
+            </summary>
+        </member>
+        <member name="E:Gearset.Components.TreeViewConfig.Cleared">
+            <summary>
+            Raised when the user request lines to be cleared.
+            </summary>
+        </member>
+        <member name="T:Gearset.AboutWindow">
+            <summary>
+            Interaction logic for LicenseWindow.xaml
+            </summary>
+            <summary>
+            AboutWindow
+            </summary>
+        </member>
+        <member name="M:Gearset.AboutWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Gearset.UndoEngine.undoStack">
+            <summary>
+            History of commands for undo.
+            </summary>
+        </member>
+        <member name="F:Gearset.UndoEngine.redoStack">
+            <summary>
+            History of commands for redo.
+            </summary>
+        </member>
+        <member name="M:Gearset.UndoEngine.Execute(Gearset.IUndoable)">
+            <summary>
+            Executes a command and adds it to the command history so it can
+            be undone/redone.
+            </summary>
+            <param name="command">The command to execute and keep history of.</param>
+        </member>
+        <member name="M:Gearset.UndoEngine.Undo">
+            <summary>
+            Undoes the last done command
+            </summary>
+        </member>
+        <member name="M:Gearset.UndoEngine.Redo">
+            <summary>
+            Redo the last undone command
+            </summary>
+        </member>
+        <member name="M:Gearset.UndoEngine.AddCommand(Gearset.IUndoable)">
+            <summary>
+            Adds a command to the history without executing it. This is usefull if
+            the command was executed somewhere else but still needs undo/redo.
+            </summary>
+            <param name="currentMover"></param>
+        </member>
+        <member name="F:Gearset.FixedLengthQueue`1.DequeueTarget">
+            <summary>
+            When an item is dequeued it will get queued into <c>DequeueTarget</c>, if any.
+            </summary>
+        </member>
+        <member name="M:Gearset.FixedLengthQueue`1.Enqueue(`0)">
+            <summary>
+            Enqueues the specified item. If the queue is full, the oldest item
+            will be droppped.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:Gearset.FixedLengthQueue`1.Dequeue">
+            <summary>
+            Dequeues the oldest item.
+            </summary>
+        </member>
+        <member name="P:Gearset.FixedLengthQueue`1.Count">
+            <summary>
+            Gets the number of items in the queue.
+            </summary>
+            <value>The count</value>
+        </member>
+        <member name="P:Gearset.FixedLengthQueue`1.Capacity">
+            <summary>
+            Setting this is O(abs(Capacity - value))
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.KeyboardComponent">
+            <summary>
+            This is a game component that implements IUpdateable.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.KeyboardComponent.State">
+            <summary>
+            Gets the current state of the keyboard.
+            </summary>
+        </member>
+        <member name="M:Gearset.BoundingBoxHelper.DrawBoundingBox(Microsoft.Xna.Framework.BoundingBox)">
+            <summary>
+            Draws White a specified Bounding Box.
+            </summary>
+        </member>
+        <member name="M:Gearset.BoundingBoxHelper.DrawBoundingBox(Microsoft.Xna.Framework.BoundingBox,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws with the specified color, the specified BBox.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Alerter">
+            <summary>
+            Shows important alerts on the screen
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.Alerter.toRemove">
+            <summary>
+            We use this list to delete elements that are not
+            being shown anymore.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.ActionItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            ActionItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.ActionItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.NegatedBoolToVisibilityConverter">
+            <summary>
+            This class is the same as the BooleanToVisibilityConverter
+            but negated.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.FinderWindow">
+            <summary>
+            
+            </summary>
+            <summary>
+            FinderWindow
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.FinderWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.TypeToSpinnerModeConverter">
+            <summary>
+            This class is the same as the BooleanToVisibilityConverter
+            but negated.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.MethodCallerTemplateSelector.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.EnumItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            EnumItem
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.EnumItem.isEventFake">
+            <summary>
+            When the variable changes, the UpdateUI method
+            will trigger a SelectionChanged event which would
+            update the variable back (not wanted)
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.EnumItem.OnTreeNodeChanged">
+            <summary>
+            When the treeNode is set, we populate the comboBox.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.EnumItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.MethodCaller.CallMethod">
+            <summary>
+            Calls the method 
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.MethodCaller.Update">
+            <summary>
+            If the methodCaller should be called every
+            frame, this can be done in this 
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.MethodCaller.UIContainer">
+            <summary>
+            The TreeViewNode which holds this node.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.MethodCaller.IsReady">
+            <summary>
+            Determines if all parameters have been set so the method
+            can be invoked.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.MethodCaller.Parameters">
+            <summary>
+            Parameters for the invocation of the method. On a especific
+            implementation of a Method caller, the CallMethod method
+            should use a delegate to speed things up, and of course
+            not use this list to pass parameters but still use it to expose
+            it to the UI.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.GenericMethodCaller.invocationTarget">
+            <summary>
+            TargetObject for instance methods.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.GenericMethodCaller.#ctor(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="methodInfo"></param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.GenericMethodCaller.CallMethod">
+            <summary>
+            Calls the method with the established parameters.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.GenericMethodCaller.IsStatic">
+            <summary>
+            True if the method is an instance method.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.GenericItem">
+            <summary>
+            Interaction logic for Spinner.xaml
+            </summary>
+            <summary>
+            GenericItem
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.GenericItem.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.ModuleInitializer">
+            <summary>
+            This class provides a method that will be run at module initialization
+            because we have a PostBuild Task that injects this method
+            into the Module static constructor. This is needed to be able to load 
+            a dll (specifically the LicenseManager dlls) from the Resource stream.
+            http://tech.einaregilsson.com/2009/12/16/module-initializers-in-csharp/
+            http://blogs.msdn.com/b/microsoft_press/archive/2010/02/03/jeffrey-richter-excerpt-2-from-clr-via-c-third-edition.aspx?PageIndex=2#comments
+            </summary>
+        </member>
+        <member name="T:Gearset.Resource1">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Gearset.Resource1.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Gearset.Resource1.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Gearset.UI.MouseRouter">
+            <summary>
+            Routes the mouse events in to the appopiate box in the box list.
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.MouseRouter.IsLeftJustDown">
+            <summary>
+            True if the mouse was just pressed, last one frame true.
+            </summary>
+        </member>
+        <member name="P:Gearset.UI.MouseRouter.IsLeftJustUp">
+            <summary>
+            True if the mouse was just released, last one frame true.
+            </summary>
+        </member>
+        <member name="T:Gearset.UI.RefEventHandler`1">
+            <summary>
+            Event handler that passes the event arguments by ref.
+            </summary>
+        </member>
+        <member name="T:Gearset.GearsetSettings">
+            <summary>
+            This class holds the settings of Gearset.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearsetSettings.Save">
+            <summary>
+            Saves the current state of the configuration.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearsetSettings.Load">
+            <summary>
+            Loads a saved configuration
+            </summary>
+        </member>
+        <member name="P:Gearset.GearsetSettings.Instance">
+            <summary>
+            Actual settings.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.WidgetWindow">
+            <summary>
+            Widget that is shown above the Game's titlebar.
+            </summary>
+            <summary>
+            WidgetWindow
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.WidgetWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.VisualItemWrapper">
+            <summary>
+            Holds items
+            </summary>
+            <summary>
+            VisualItemWrapper
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.VisualItemWrapper.TextProperty">
+            <summary>
+            Registers a dependency property
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.VisualItemWrapper.TextChangedCallback(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            Calls the handler that updates the textBlock with the new value.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.VisualItemWrapper.UpdateText(System.String)">
+            <summary>
+            Updates the textBlock with the new value.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.VisualItemWrapper.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.VisualItemWrapper.Text">
+            <summary>
+            The InspectorTreeNode that this control affetcs.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.CurveTreeTemplateSelector.#cctor">
+            <summary>
+            Static constructor
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorManager.InspectedObjects">
+            <summary>
+            Objects being inspected.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorManager.WatchedNodes">
+            <summary>
+            Nodes shown in the Watch window.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorManager.MethodCallers">
+            <summary>
+            Methods Callers
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorManager.updateSearchFilteringDelay">
+            <summary>
+            It is set to the seconds to wait between the user stop typing and the filtering
+            is actually performed. It is reset to some value with every keystroke.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorManager.notices">
+            <summary>
+            List of notices to show.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.#ctor">
+            <summary>
+            Constructor, creates the inspector logger.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.UpdatePosition">
+            <summary>
+            Updates the position of the inspector if its attached
+            to the game window.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Updates each component on the inspector TreeView.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.Inspect(System.String,System.Object)">
+            <summary>
+            Adds the object to the inspector logger so the user
+            can inspect its fields, properties and methods. The node
+            will be autoExpanded.
+            </summary>
+            <param name="name">A friendly name to use in the Inspector Tree.</param>
+            <param name="o">The object to inspect.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.Inspect(System.String,System.Object,System.Boolean)">
+            <summary>
+            Adds the object to the inspector logger so the user
+            can inspect its fields, properties and methods.
+            </summary>
+            <param name="name">A friendly name to use in the Inspector Tree.</param>
+            <param name="o">The object to inspect.</param>
+            <param name="autoExpand">Determines whether the node should automatically expand when added to the Inspector Tree.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.Watch(Gearset.Components.InspectorWPF.InspectorNode)">
+            <summary>
+            Adds the object to the inspector logger so the user
+            can inspect its fields, properties and methods.
+            </summary>
+            <param name="name">A friendly name to use in the Inspector Tree.</param>
+            <param name="o">The object to inspect.</param>
+            <param name="autoExpand">Determines whether the node should automatically expand when added to the Inspector Tree.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.RemoveInspect(System.Object)">
+            <summary>
+            Remove the object from the inspector, if exist.
+            </summary>
+            <param name="o">The object to remove.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.ItemContainerGenerator1_StatusChanged(System.Object,System.EventArgs)">
+            <summary>
+            Get the TreeViewItems (containers) and let the InspectorTreeNodes
+            know where they are.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.ItemContainerGenerator2_StatusChanged(System.Object,System.EventArgs)">
+            <summary>
+            Get the TreeViewItems (containers) and let the InspectorTreeNodes
+            know where they are.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorManager.ClearCache">
+            <summary>
+            Clears the cache so the Reflection Helper checks the license validity again.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorManager.Config">
+            <summary>
+            Gets the Inspector's config.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Inspector">
+            <summary>
+            Interaction logic for Window1.xaml
+            </summary>
+            <summary>
+            Inspector
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.Inspector.downPosition">
+            <summary>
+            position where the mouse was clicked.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.Inspector.nodeToExpandAfterUpdate">
+            <summary>
+            If the node expansion was generated because the currently selected node
+            dissapeared (because we're adding private fields, for example) then this
+            would generate a conflict with the expansion.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.Inspector.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorNode.ExtensionMethodTypes">
+            <summary>
+            This list contains a list of Types that 
+            contain extension methods that we will call
+            on types.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorNode.VisualItem">
+            <summary>
+            The VisualItem that can Update the variable 
+            and Update the UI
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.#ctor(Gearset.Components.InspectorWPF.InspectorNode,System.Type,System.String,Gearset.Components.InspectorWPF.Setter,Gearset.Components.InspectorWPF.Getter,System.Boolean)">
+            <summary>
+            Use this constructor to create child nodes.
+            </summary>
+            <param name="type">The type of the field this node represets</param>
+            <param name="name">The name of the field this node represets</param>
+            <param name="setter">Helper delegate to set the value of the field.</param>
+            <param name="getter">Helper delegate to get the value of the field.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.#ctor(System.Object,System.String,System.Boolean)">
+            <summary>
+            Use this constructor to create the root node
+            </summary>
+            <param name="type">The type of the field this node represets</param>
+            <param name="name">The name of the field this node represets</param>
+            <param name="setter">Helper delegate to set the value of the field.</param>
+            <param name="getter">Helper delegate to get the value of the field.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.Expand(System.Boolean,System.Boolean)">
+            <summary>
+            Fills the list of Children with nodes.
+            </summary>
+            <param name="force">if set to <c>true</c> the children, if any, will be deleted and the node reexpanded.</param>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.ItemContainerGenerator_StatusChanged(System.Object,System.EventArgs)">
+            <summary>
+            Get the TreeViewItems (containers) and let the InspectorTreeNodes
+            know where they are.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorNode.Method">
+            <summary>
+            Only set for Nodes of Type Void (methods) (no getter nor setter).
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.GetPath">
+            <summary>
+            Returns the path that leads to this node from the
+            Target object with and added point at the end.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.OnPropertyChanged(System.String)">
+            <summary>
+            Method to rise the event.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorNode.Update">
+            <summary>
+            Calls the update callback so the UI can get updated
+            and recursively call Update on it's children.
+            </summary>
+        </member>
+        <member name="E:Gearset.Components.InspectorWPF.InspectorNode.PropertyChanged">
+            <summary>
+            So we can notify when a bound property changes.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.UIContainer">
+            <summary>
+            The TreeViewNode which holds this node.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Root">
+            <summary>
+            Returns the root of the tree.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.RootTarget">
+            <summary>
+            This value will only be set in the root node.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.IsExtraNode">
+            <summary>
+            Returns true if the node is an ExtraNode, that means that it does not correspond 
+            to any field or property of the parent but is added as an extra control to better
+            manipulate the parent.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.UserModified">
+            <summary>
+            Will turn true when the user modify this property through the UI.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Updating">
+            <summary>
+            If true, the UI will be updated every frame to reflect
+            the node value.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Force">
+            <summary>
+            If true, the value set in the UI will be set to
+            this node every frame.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.ShowCantWriteIcon">
+            <summary>
+            If false, the "Cant write" icon won't be showed. This property is to be binded by WPF.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.IsShowingPrivate">
+            <summary>
+            Gets or sets whether the private children of this node are shown or not.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Target">
+            <summary>
+            The target object (always represented by the root of the tree)
+            so it is looked up recursively.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Itself">
+            <summary>
+            Used to reference this node in XAML
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Name">
+            <summary>
+            The name of the field this node represents.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.FriendlyName">
+            <summary>
+            Name of this node shown in Inspector tree.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Type">
+            <summary>
+            The type of the field this node represents.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Children">
+            <summary>
+            A list that contains nodes that represent the
+            fields of the object represented by this node.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.ChildrenView">
+            <summary>
+            The children as must be viewed by the UI layer.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Methods">
+            <summary>
+            A list that contains methods available for this object.
+            TODO: a global Dictionary(Type, List(Method)) might be better.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.CanWrite">
+            <summary>
+            True if the value this node represents can be set.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.CanRead">
+            <summary>
+            True if the value this node represents can be get.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.IsProperty">
+            <summary>
+            True if this node represents a property, otherwise
+            it represents a field. We store this information
+            in order to know when a ValueType is encapsulated 
+            so we should instanciate it.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.IsPrivate">
+            <summary>
+            Gets whether this node is declared private inside its parent.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.IsRoot">
+            <summary>
+            True if Parent equals null.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.AutoExpand">
+            <summary>
+            True for nodes that will be auto-expanded when the UI
+            for it is generated. Setting this value will only have
+            effect if the UI hasn't been created.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.InspectorWPF.InspectorNode.Property">
+            <summary>
+            The object this node represents.
+            This will produce boxing/unboxing.
+            </summary>
+        </member>
+        <member name="F:Gearset.KeyedCollection`1.keyIndexTable">
+            <summary>
+            Dictionary that maps a key (string) to
+            an index in the IList.
+            </summary>
+        </member>
+        <member name="F:Gearset.KeyedCollection`1.list">
+            <summary>
+            The list that holds the values.
+            </summary>
+        </member>
+        <member name="M:Gearset.KeyedCollection`1.#ctor(System.Collections.Generic.IList{`0})">
+            <summary>
+            Constructs a KeyCollection and uses the specified
+            list to hold the values. The list must be empty and
+            if it doesn't resize dynamically then it must have
+            enough space to hold everything inserted.
+            </summary>
+        </member>
+        <member name="M:Gearset.KeyedCollection`1.#ctor">
+            <summary>
+            Constructs a KeyedCollection with a List of T
+            to holds the values.
+            </summary>
+        </member>
+        <member name="M:Gearset.KeyedCollection`1.Set(System.String,`0)">
+            <summary>
+            Adds a new value to the keyed collection. If the key
+            already exist, the value will be changed.
+            </summary>
+        </member>
+        <member name="M:Gearset.KeyedCollection`1.Set(System.Int32,`0)">
+            <summary>
+            Adds a new value to the keyed collection
+            </summary>
+        </member>
+        <member name="M:Gearset.KeyedCollection`1.Add(`0)">
+            <summary>
+            Adds a new value and returns its index.
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:Gearset.KeyedCollection`1.List">
+            <summary>
+            Returns a reference to the back-end list.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.LineDrawer">
+            <summary>   
+            Draw lines in 2D/3D space, can draw line lists and line strips.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Marker">
+            <summary>
+            Places marks on 3D space with labels on 2D space
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Marker.ShowMark(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            ScreenSpace Mark.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Marker.ShowMark(System.String,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            ScreenSpace Mark.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Persistor.IPersistent">
+            <summary>
+            Defines an object which members (fields and properties)
+            can be initialized by the XDTK's Persistor Component.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.Persistor.IPersistent.Ids">
+            <summary>
+            A comma separeted string of all IDs this persistent object
+            will get its members initialized from.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Persistor.Persistor">
+            <summary>
+            Handles persistance of object members. Can store and load data
+            from/to an object as when it is being initialized. With this
+            component variables can be edited, stored and reloaded.
+            This class is not threadsafe as it uses the same StringBuilder
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.Persistor.Persistor.data">
+            <summary>
+            The data stored by the dictionary it maps the an id
+            with a dictionary of stored values for that id.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.Persistor.Persistor.commaDelimiter">
+            <summary>
+            One instance for all calls to String.Split. Avoids
+            garbage generation.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.#ctor">
+            <summary>
+            Constructor, will load everything.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.Load(System.String)">
+            <summary>
+            Loads a pre-saved Persistor data set.
+            <see>Save</see>
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.Save(System.String)">
+            <summary>
+            Saves the current state of the configuration with a settings name.
+            This allows to create several settings, useful for example to debug
+            different components of your game.
+            </summary>
+            <param name="SettingsName"></param>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.InitializeObject(Gearset.Components.Persistor.IPersistent)">
+            <summary>
+            Initializes fields and properties of the object o, with
+            data of the specified category and of the specified id.
+            </summary>
+            <param name="o">Object to get its fields initialized.</param>
+            <param name="type">The category this object belongs, all objects
+            of the same category will get the same values.</param>
+            <param name="id">The id of the object which identifies it inside
+            its category, it </param>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.TrySetValue(Gearset.Components.Persistor.IPersistent,System.Reflection.FieldInfo,System.Object)">
+            <summary>
+            Sets the value of the field defined by info on the object o
+            to the value value. If the fields aren't of the same type
+            it will be silently ignored.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.TrySetValue(Gearset.Components.Persistor.IPersistent,System.Reflection.PropertyInfo,System.Object)">
+            <summary>
+            Sets the value of the property defined by info on the object o
+            to the value value. If the fields aren't of the same type
+            it will be silently ignored.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Persistor.Persistor.SaveValue``1(System.String,System.String,``0)">
+            <summary>
+            Call this method to save a value that will be later initialized
+            to the object o.
+            </summary>
+            <param name="id">The id to which the value will be saved.</param>
+            <param name="info">The field or property info to be saved.</param>
+            <param name="value">The value to save for the specified field.</param>
+        </member>
+        <member name="T:Gearset.Components.IPickable`1">
+            <summary>
+            Implement to allow the console pick this object, Type T
+            defines kind of Pickable Volume that will be intersected
+            with the casted ray.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Gearset.Components.IPickable.Picked">
+            <summary>
+            This method will be called when the object has been
+            picked with the mouse
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.IPickable`1.PickableVolume">
+            <summary>
+            The pickable Volume
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.Picker">
+            <summary>
+            Class that handles picking objects from the screen
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.Picker.AddPickable(Gearset.Components.IPickable)">
+            <summary>
+            Adds a new Pickable so it can be picked with
+            the mouse.
+            </summary>
+            <param name="pickable"></param>
+        </member>
+        <member name="T:Gearset.SettingsHelper">
+            <summary>
+            Used to save data to/from a file.
+            </summary>
+        </member>
+        <member name="F:Gearset.SettingsHelper.configuration">
+            <summary>
+            The place where all config values get saved.
+            </summary>
+        </member>
+        <member name="F:Gearset.SettingsHelper.CurrentSettingsName">
+            <summary>
+            The filename of the configuration file, initialized
+            by default with "$username$.default.DebugConsoleConfig"
+            </summary>
+        </member>
+        <member name="M:Gearset.SettingsHelper.Set(System.String,System.Object)">
+            <summary>
+            Sets a specified configuration value, or overwrite the current
+            if present.
+            </summary>
+            <param name="key">The name of the configuration value, as a rule of thumb
+            use the following format for keys "filename.variableName" (without
+            the .cs extension)</param>
+            <param name="value">The value, only serializable objects should be used here.</param>
+        </member>
+        <member name="M:Gearset.SettingsHelper.Get(System.String,System.Object)">
+            <summary>
+            Retrieves a configuratio value.
+            </summary>
+            <param name="key">The name of the configuration value</param>
+            <param name="defaultValue">This valus is returned if the key is not found</param>
+            <returns>The prevoiuly stored configuration value.</returns>
+        </member>
+        <member name="M:Gearset.SettingsHelper.Save">
+            <summary>
+            Saves the current state of the configuration.
+            </summary>
+        </member>
+        <member name="M:Gearset.SettingsHelper.Load">
+            <summary>
+            Loads a saved configuration
+            </summary>
+        </member>
+        <member name="T:Gearset.GearConsole">
+            <summary>
+            This is the main Gearset class. Provides wrapper methods for
+            easily accessing the its components functionality.
+            </summary>
+            <remarks>
+            Create a single instance of this class in your game
+            and keep it in a static variable you can reach with ease.
+            (i.e Util.Console).
+            
+            For 3D games, the Gearset camera matrices must be updated using
+            the SetMatrices method.
+            </remarks>
+        </member>
+        <member name="F:Gearset.GearConsole.Components">
+            <summary>
+            Collection of DebugComponents
+            </summary>
+        </member>
+        <member name="F:Gearset.GearConsole.DrawCount">
+            <summary>
+            Test variable, mainly to know if Xdtk is running or not.
+            </summary>
+        </member>
+        <member name="F:Gearset.GearConsole.UpdateCount">
+            <summary>
+            Counts the number of updates that has occured, it is used
+            by the Logger.
+            </summary>
+        </member>
+        <member name="F:Gearset.GearConsole.lastSaveTime">
+            <summary>
+            Time in ticks when the last update was made.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.#ctor(Microsoft.Xna.Framework.Game)">
+            <summary>
+            Creates the GearConsole. if you want the console
+            to draw 3D debug stuff you need to update the World/View/Projection
+            matrices using the <c>SetMatrices</c> or setting them manually.
+            </summary>
+            <param name="game"></param>
+        </member>
+        <member name="M:Gearset.GearConsole.Initialize">
+            <summary>
+            Initialize Gearset, this method should be called from your Game's Initialize
+            and before any other Gearset method.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.InitializeForAllPlatforms">
+            <summary>
+            Initializes componenets that work in all platforms.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.InitializeForWindows">
+            <summary>
+            Initialize components that work on Windows.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.CheckNewVersion(System.Object)">
+            <summary>
+            Check if the latest version posted on The Complot site is different
+            from our current version.
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:Gearset.GearConsole.SetMatrices(Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@)">
+            <summary>
+            Use this method after every Update of your game to update the camera
+            matrices so 3D overlays can be drawn correctly.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.SetMatrices(Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@,Microsoft.Xna.Framework.Matrix@)">
+            <summary>
+            Use this method after every Update of your game to update the camera
+            matrices so 3D overlays can be drawn correctly.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.Show(System.String)">
+            <summary>
+            Adds or modifiy a key without value on the overlaid tree view.
+            </summary>
+            <param name="key">A dot-separated list of keys.</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Show(System.String,System.Object)">
+            <summary>
+            Adds or modifies a key/value pair to the overlaid tree view.
+            </summary>
+            <param name="key">A dot-separated list of keys.</param>
+            <param name="value">The value to show.</param>
+        </member>
+        <member name="M:Gearset.GearConsole.AddQuickAction(System.String,System.Action)">
+            <summary>
+            Adds an action button to the bottom of the game window.
+            </summary>
+            <param name="name">Name of the action as it will appear on the button.</param>
+            <param name="action">Action to perform when the button is clicked.</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Plot(System.String,System.Single)">
+            <summary>
+            Adds the provided value to the plot with the provided plotName.
+            </summary>
+            <param name="plotName">A name that represent a data set.</param>
+            <param name="value">The value to add to the sampler</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Plot(System.String,System.Single,System.Int32)">
+            <summary>
+            Adds the provided value to the plot with the provided plotName. At the same time modifies
+            the history length of the sampler.
+            </summary>
+            <param name="plotName">A name that represent a data set.</param>
+            <param name="value">The value to add to the sampler</param>
+            <param name="historyLength">The number of samples that the sampler will remember at any given time.</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Log(System.String,System.String)">
+            <summary>
+            Los a message to the specified stream.
+            </summary>
+            <param name="streamName">Name of the Stream to log the message to</param>
+            <param name="message">Message to log</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Log(System.String)">
+            <summary>
+            Logs the specified message in the default stream.
+            </summary>
+            <param name="content">The message to log.</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Log(System.String,System.String,System.Object)">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The first format parameter</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Log(System.String,System.String,System.Object,System.Object)">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The first format parameter</param>
+            <param name="arg1">The second format parameter</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Log(System.String,System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The first format parameter</param>
+            <param name="arg1">The second format parameter</param>
+            <param name="arg2">The third format parameter</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Log(System.String,System.String,System.Object[])">
+            <summary>
+            Logs a formatted string to the specified stream.
+            </summary>
+            <param name="streamName">Stream to log to</param>
+            <param name="format">The format string</param>
+            <param name="arg0">The format parameters</param>
+        </member>
+        <member name="M:Gearset.GearConsole.SaveLogToFile">
+            <summary>
+            Shows a dialog asking for a filename and saves the log to the specified file.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.SaveLogToFile(System.String)">
+            <summary>
+            Saves the log to the specified file.
+            </summary>
+            <param name="filename">Name of the file to save the log (usually ending in .log)</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowMark(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            This is an experimental feature.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowMark(System.String,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            This is an experimental feature.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowMark(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            This is an experimental feature.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowMark(System.String,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            This is an experimental feature.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.Alert(System.String)">
+            <summary>
+            Shows huge text on the center of the screen which fades
+            out quickly.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLine(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Draws a line between two points.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLine(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line between two points.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLineOnce(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Draws a line between two points for one frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLineOnce(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line between two points for one frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLine(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws a line between two points.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLine(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line between two points.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLineOnce(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Draws a line between two points for one frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLineOnce(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Draws a line between two points for one frame.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBox(System.String,Microsoft.Xna.Framework.BoundingBox)">
+            <summary>
+            Shows an axis aligned bounding box.
+            <param name="key">Name of the persistent box</param>
+            <param name="box">The box to draw</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBox(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Shows an axis aligned bounding box.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBox(System.String,Microsoft.Xna.Framework.BoundingBox,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows an axis aligned bounding box.
+            <param name="key">Name of the persistent box</param>
+            <param name="box">The box to draw</param>
+            <param name="color">The color that will be used to draw the box</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBox(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows an axis aligned bounding box.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBoxOnce(Microsoft.Xna.Framework.BoundingBox)">
+            <summary>
+            Shows an axis aligned bounding box for one frame.
+            <param name="box">The BoundingBox to draw</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBoxOnce(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Shows an axis aligned bounding box for one frame.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBoxOnce(Microsoft.Xna.Framework.BoundingBox,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows an axis aligned bounding box for one frame.
+            <param name="box">The BoundingBox to draw</param>
+            <param name="color">The color that will be used to draw the box</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowBoxOnce(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows an axis aligned bounding box for one frame.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            <param name="color">The color that will be used to draw the box</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphere(System.String,Microsoft.Xna.Framework.BoundingSphere)">
+            <summary>
+            Shows a sphere on the screen.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphere(System.String,Microsoft.Xna.Framework.Vector3,System.Single)">
+            <summary>
+            Shows a sphere on the screen.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphere(System.String,Microsoft.Xna.Framework.BoundingSphere,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a sphere on the screen.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphere(System.String,Microsoft.Xna.Framework.Vector3,System.Single,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a sphere on the screen.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphereOnce(Microsoft.Xna.Framework.BoundingSphere)">
+            <summary>
+            Shows a sphere on the screen for one frame.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphereOnce(Microsoft.Xna.Framework.Vector3,System.Single)">
+            <summary>
+            Shows a sphere on the screen for one frame.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphereOnce(Microsoft.Xna.Framework.BoundingSphere,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a sphere on the screen for one frame.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowSphereOnce(Microsoft.Xna.Framework.Vector3,System.Single,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a sphere on the screen for one frame.
+            <param name="min">Minimum values of the box in each axis</param>
+            <param name="max">Maximum values of the box in each axis</param>
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLabel(System.String,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Shows a label at the specified position (the text will be the label's name).
+            </summary>
+            <param name="name">Name of the label as well of the text to show. Subsequent calls with the same name will modify this label</param>
+            <param name="position">Position where the label will be shown</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLabel(System.String,Microsoft.Xna.Framework.Vector2,System.String)">
+            <summary>
+            Shows a label at the specified positon that displays the specified text.
+            </summary>
+            <param name="name">Name of the label. Subsequent calls with the same name will modify this label</param>
+            <param name="position">Position of the label</param>
+            <param name="text">Text to show on the label</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLabel(System.String,Microsoft.Xna.Framework.Vector2,System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a label at the specified positon that displays the specified text.
+            </summary>
+            <param name="name">Name of the label. Subsequent calls with the same name will modify this label</param>
+            <param name="position">Position of the label</param>
+            <param name="text">Text to show on the label</param>
+            <param name="color">Color of the text</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLabel(System.String,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Shows a label at the specified position (the text will be the label's name).
+            </summary>
+            <param name="name">Name of the label as well of the text to show. Subsequent calls with the same name will modify this label</param>
+            <param name="position">Position where the label will be shown</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLabel(System.String,Microsoft.Xna.Framework.Vector3,System.String)">
+            <summary>
+            Shows a label at the specified positon that displays the specified text.
+            </summary>
+            <param name="name">Name of the label. Subsequent calls with the same name will modify this label</param>
+            <param name="position">Position of the label</param>
+            <param name="text">Text to show on the label</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowLabel(System.String,Microsoft.Xna.Framework.Vector3,System.String,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a label at the specified positon that displays the specified text.
+            </summary>
+            <param name="name">Name of the label. Subsequent calls with the same name will modify this label</param>
+            <param name="position">Position of the label</param>
+            <param name="text">Text to show on the label</param>
+            <param name="color">Color of the text</param>
+        </member>
+        <member name="M:Gearset.GearConsole.Inspect(System.String,System.Object)">
+            <summary>
+            Sends an object to the Inspector window.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.Inspect(System.String,System.Object,System.Boolean)">
+            <summary>
+            Sends an object to the Inspector window.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.RemoveInspect(System.Object)">
+            <summary>
+            Removes an object from the Inspector window.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ClearInspector">
+            <summary>
+            Clears the Inspector Window.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.SetFinderSearchFunction(Gearset.SearchFunction)">
+            <summary>
+            Sets the function that is used by Gearset when a query is written to the
+            Finder by the user. It usually searches through your game objects and returns
+            a collection of the ones whose name or Type matches the query.
+            A search function receives a String and return IEnumerable (e.g. a List)
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowTransform(System.String,Microsoft.Xna.Framework.Matrix,System.Single)">
+            <summary>
+            Shows a persistent Matrix Transform on the screen as 3 orthogonal vectors.
+            </summary>
+            <param name="name">Name of the persistent Matrix</param>
+            <param name="transform">Transform to draw</param>
+            <param name="axisScale">Scale to apply to each axis</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowTransform(System.String,Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Shows a persistent Matrix Transform on the screen as 3 orthogonal vectors.
+            </summary>
+            <param name="name">Name of the persistent Matrix</param>
+            <param name="transform">Transform to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowTransformOnce(Microsoft.Xna.Framework.Matrix)">
+            <summary>
+            Shows a one-frame Matrix Transform on the screen as 3 orthogonal vectors.
+            </summary>
+            <param name="transform">Transform to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowTransformOnce(Microsoft.Xna.Framework.Matrix,System.Single)">
+            <summary>
+            Shows a one-frame Matrix Transform on the screen as 3 orthogonal vectors.
+            </summary>
+            <param name="transform">Transform to draw</param>
+            <param name="axisScale">Scale to apply to each axis</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector3(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a persistent Vector3 on the screen as an arrow.
+            </summary>
+            <param name="name">Name of the persistent Vector</param>
+            <param name="location">Location of the vector to draw (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+            <param name="color">Color of the arrow to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector3(System.String,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Shows a persistent Vector3 on the screen as an arrow.
+            </summary>
+            <param name="name">Name of the persistent Vector</param>
+            <param name="location">Location of the vector to draw (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector3Once(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3)">
+            <summary>
+            Shows a Vector3 on the screen as an arrow for one frame.
+            </summary>
+            <param name="location">Location of the vector to show (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector3Once(Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Vector3,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a Vector3 on the screen as an arrow for one frame.
+            </summary>
+            <param name="location">Location of the vector to show (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+            <param name="color">Color of the arrow to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector2(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a persistent Vector2 on the screen as an arrow (Screen space coordinates).
+            </summary>
+            <param name="name">Name of the persistent Vector</param>
+            <param name="location">Location of the vector to draw (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+            <param name="color">Color of the arrow to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector2(System.String,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Shows a persistent Vector2 on the screen as an arrow (Screen space coordinates).
+            </summary>
+            <param name="name">Name of the persistent Vector</param>
+            <param name="location">Location of the vector to draw (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector2Once(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            Shows a Vector2 on the screen as an arrow for one frame (Screen space coordinates).
+            </summary>
+            <param name="location">Location of the vector to show (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+        </member>
+        <member name="M:Gearset.GearConsole.ShowVector2Once(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color)">
+            <summary>
+            Shows a Vector2 on the screen as an arrow for one frame.
+            </summary>
+            <param name="location">Location of the vector to show (i.e. position of the start of the arrow)</param>
+            <param name="vector">Vector to show</param>
+            <param name="color">Color of the arrow to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.RemoveCurve(Microsoft.Xna.Framework.Curve)">
+            <summary>
+            Removes the provided curve from Bender.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.RemoveCurveOrGroup(System.String)">
+            <summary>
+            Removes a Curve or a Group by name. The complete dot-separated
+            path to the curve or group must be given.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.ClearAll">
+            <summary>
+            Clears all Gearset Components erasing all retained data. Inspector and Logger won't be cleared.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Call this method at the end of your game's Update method.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.Draw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Call this method at the end of your game's Draw method.
+            </summary>
+        </member>
+        <member name="M:Gearset.GearConsole.DrawPurchaseGearsetProText">
+            <summary>
+            Draws a text overlaid in the center of the screen asking the user to get Gearset Pro.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.WorldMatrix">
+            <summary>
+            The World Matrix of the game. The prefered method to 
+            update all matrices is by using <c>SetMatrices</c>.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.ViewMatrix">
+            <summary>
+            The View Matrix of the game camera. The prefered method to 
+            update all matrices is by using <c>SetMatrices</c>.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.ProjectionMatrix">
+            <summary>
+            The Projection Matrix of game camera. The prefered method to 
+            update all matrices is by using <c>SetMatrices</c>.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Transform2D">
+            <summary>
+            The Transform Matrix to apply to all 2D overlaids of the client game. 
+            Use this if you're creating a 2D game where the camera moves (e.g. a scroller).
+            The prefered method to update all matrices is by using <c>SetMatrices</c>.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.BenderNeedlePosition">
+            <summary>
+            Returns the needle position of the curves in Bender. The game can use this
+            value to let designers preview curve animations.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.TreeView">
+            <summary>
+            Displays a Hierarchy of values on the screen for easy
+            tracing, the values must be manually updating using the 
+            <c>Show</c> method
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Marker">
+            <summary>
+            Displays marks on 3D space.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Alerter">
+            <summary>
+            Used to display huge text on the middle of the screen,
+            useful when the developer want to be alerted of an important
+            event.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.LineDrawer">
+            <summary>
+            Used to draw lines on 3D or 2D space. Lines can be persistant
+            (with a name) or be drawn for a single frame.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.DataSamplerManager">
+            <summary>
+            Data Sampler used to sample data which can be plotted by a plotter.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Plotter">
+            <summary>
+            Plots graph of Data.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Labeler">
+            <summary>
+            Shows labels (text) on the screen.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Vector3Drawer">
+            <summary>
+            Draw Vectors in 3D space as arrows
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Vector2Drawer">
+            <summary>
+            Draw Vectors in 2D space as arrows
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Transform3Drawer">
+            <summary>
+            Draw Trasforms (Matrices) in 3D space as 3 orthogonal vectors.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.SphereDrawer">
+            <summary>
+            Draw 3 axis aligned, orthogonally oriented circles that represent spheres.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.BoxDrawer">
+            <summary>
+            Draw axis aligned bounding boxes.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.SolidBoxDrawer">
+            <summary>
+            Draw axis aligned bounding boxes.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Picker">
+            <summary>
+            Components that keeps a list of pickable game elements and
+            interacts with the mouse to get notified when they are being
+            picked. Useful to visually place objects in the Inspector.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Inspector">
+            <summary>
+            Component that let the game developer inspect game objects
+            in real time, showing the value of public fields. The inspector
+            is also capable of calling methods on objects.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Widget">
+            <summary>
+            Widget that places itself on top of the windows titlebar.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Logger">
+            <summary>
+            Component that logs events.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Bender">
+            <summary>
+            Component used to edit XNA curves.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Finder">
+            <summary>
+            Provides UI to find a Game Object.
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Settings">
+            <summary>
+            Gearset settings
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.VisibleOverlays">
+            <summary>
+            Gets or sets a value indicating whether the Gearset's overlays will be visible.
+            A shortcut for Settings.Visible;
+            </summary>
+        </member>
+        <member name="P:Gearset.GearConsole.Initialized">
+            <summary>
+            Gets or sets a value indicating whether the Gearset's Initialize method has been called.
+            </summary>
+        </member>
+        <member name="T:Gearset.MarkType">
+            <summary>
+            The type of mark that the Marker class should draw. In the future
+            this enum should not be internal and the user should be able to
+            select a mark type.
+            </summary>
+        </member>
+        <member name="T:Gearset.RenderPass">
+            <summary>
+            Every DebugComponent will be called (Draw())
+            for each of these modes, so they can draw
+            when they need to.
+            </summary>
+        </member>
+        <member name="F:Gearset.RenderPass.SpriteBatchPass">
+            <summary>
+            DebugComponents should draw only using
+            spriteBatch here (without Begin() or End())
+            </summary>
+        </member>
+        <member name="F:Gearset.RenderPass.BasicEffectPass">
+            <summary>
+            DebugComponents should draw using the 
+            common effect, and without changing any 
+            parameters from it.
+            </summary>
+        </member>
+        <member name="F:Gearset.RenderPass.CustomPass">
+            <summary>
+            DebugComponents can draw whatever they want
+            in this pass, they can change the params
+            of the spritebatch and the basiceffect or even
+            use their own effects.
+            </summary>
+        </member>
+        <member name="F:Gearset.RenderPass.ScreenSpacePass">
+            <summary>
+            Similar to BasicEffectPass but with matrices
+            work with screen space coordinates.
+            </summary>
+        </member>
+        <member name="F:Gearset.RenderPass.GameSpacePass">
+            <summary>
+            Similar to ScreenSpacePass but with matrices
+            passed by the game, so it's a transformed
+            screen space.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.MouseComponent">
+            <summary>
+            This is a game component that implements IUpdateable.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.MouseComponent.justClicked">
+            <summary>
+            Can last only one frame true
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.MouseComponent.justDragging">
+            <summary>
+            Can last only one frame true
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.MouseComponent.mouseDown">
+            <summary>
+            Remains true while the left mouse button is pressed.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.MouseComponent.mouseDownTime">
+            <summary>
+            How long the mouse was down.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.MouseComponent.mouseDownPosition">
+            <summary>
+            The position where the left button became pressed.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsLeftJustDown">
+            <summary>
+            True if the mouse was just pressed, last one frame true.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsLeftJustUp">
+            <summary>
+            True if the mouse was just released, last one frame true.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsLeftClick">
+            <summary>
+            True if mouse did a released-pressed-released cycle
+            without moving the ClickThreshold.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsRightJustDown">
+            <summary>
+            True if the mouse was just pressed, last one frame true.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsRightJustUp">
+            <summary>
+            True if the mouse was just released, last one frame true.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsDragging">
+            <summary>
+            The mouse mave moved the ClickThreshold since it was pressed.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Gearset.Components.MouseComponent.IsJustDragging">
+            <summary>
+            The mouse just moved the threshold, this will only be true
+            for one frame.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.MouseComponent.ClickThreshold">
+            <summary>
+            The distance the (down left) mouse can move without being
+            considered a drag (still a click). Should be zero for PC
+            games and some higher value for tablets.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.MouseComponent.KeepMouseInWindow">
+            <summary>
+            Set to true if the component should force the mouse to 
+            stay inside the client logger bounds.
+            </summary>
+        </member>
+        <member name="P:Gearset.Components.MouseComponent.DragOffset">
+            <summary>
+            Get the movement the mouse have made since it started dragging.
+            If the mouse is not dragging it will return Vector2.Zero.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.TreeView">
+            <summary>
+            Displays a hierarchy of values that need to be traced.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.TreeView.Set(System.String,System.Object)">
+            <summary>
+            Sets the value of a specified key, if the key is not present
+            in the tree, then is added.
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Getter">
+            <summary>
+            Delegate used for methods that return the value of a variable.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.Setter">
+            <summary>
+            Delegate used for methods that sets the value of a variable.
+            </summary>
+        </member>
+        <member name="F:Gearset.Components.InspectorWPF.InspectorReflectionHelper.setterGetterCache">
+            <summary>
+            Used to store the setters and getters for types we've
+            already generated.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorReflectionHelper.GetSetterGetterDict3(Gearset.Components.InspectorWPF.InspectorNode)">
+            <summary>
+            Method that creates a Diccionary of methods to set/get the value of
+            each member of an object of the specified type. But this object only
+            reachable by the path specified. For example, to get the Position (Vector3)
+            from a player, the parameters must be: path="Position.", t=Vector3.
+            If the object being ispected is the class World which contains a
+            player then parameters must be: path="Player.Position.", t=Vector3.
+            
+            This method is ~10X faster than the first one which created C# code.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorReflectionHelper.GetSetterGetterDict2(Gearset.Components.InspectorWPF.InspectorNode)">
+            <summary>
+            Method that creates a Diccionary of methods to set/get the value of
+            each member of an object of the specified type. But this object only
+            reachable by the path specified. For example, to get the Position (Vector3)
+            from a player, the parameters must be: path="Position.", t=Vector3.
+            If the object being ispected is the class World which contains a
+            player then parameters must be: path="Player.Position.", t=Vector3.
+            
+            This method is ~10X faster than the previous one that creaated C# code.
+            </summary>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorReflectionHelper.GetSetterGetterDict(Gearset.Components.InspectorWPF.InspectorNode)">
+            <summary>
+            Method that creates a Diccionary of methods to set/get the value of
+            each member of an object of the specified type. But this object only
+            reachable by the path specified. For example, to get the Position (Vector3)
+            from a player, the parameters must be: path="Position.", t=Vector3.
+            If the object being ispected is the class World which contains a
+            player then parameters must be: path="Player.Position.", t=Vector3.
+            </summary>
+            <param name="path">Path to get to object of type t, including the 
+            name of the object itself and a point at the end.</param>
+            <param name="o">Type of the object to get methods for.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gearset.Components.InspectorWPF.InspectorReflectionHelper.AddReferencedAssemblies(System.Type)">
+            <summary>
+            Adds all the needed assemblies to deal with a specified type.
+            Add references to all types needed, including generic parameters and
+            implemented interfaces.
+            We go up the hierarchy, baseType could be null if the type is 
+            a Interface.
+            </summary>
+        </member>
+        <member name="T:Gearset.Components.InspectorWPF.InspectorReflectionHelper.SetterGetterPair">
+            <summary>
+            Helper class to store a setter and a getter for a specified
+            FieldInfo in the setterGetterCache dictionary.
+            </summary>
+        </member>
+        <member name="F:Gearset.ReflectionHelper.CodeProvider">
+            <summary>
+            The provider used to compile C# Code.
+            </summary>
+        </member>
+        <member name="F:Gearset.ReflectionHelper.CompilerParameters">
+            <summary>
+            The parameters to be passed to the compiler.
+            </summary>
+        </member>
+        <member name="M:Gearset.ReflectionHelper.CompileCSharpMethod(System.String,System.Type)">
+            <summary>
+            Creates a C# Method that can be called from the specified code
+            </summary>
+            <param name="code"></param>
+            <param name="returnType">Set it to null if the method should return void.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Gearset.ReflectionHelper.CompileCSharpMethodBatch(System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            This method is not intended as a generic way to compile CSHARP
+            code, it is highly coupled with the InspectorManager.
+            </summary>
+            <param name="codes"></param>
+            <param name="returnTypes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gearset.ReflectionHelper.RunCSharpLine(System.String,System.Object[])">
+            <summary>
+            Compiles and run the passed C# Code without returning results. 
+            Parameters can be accesed using the notation "(type)p[i]" where 
+            type is the Type of the passed parameter in the i direction. We
+            tryied to make this method with a generic parameter so it wouldn't 
+            generate garbage when dealing with Value Types, but the Invoke method 
+            will return an Object and garbage would have been still generated.
+            </summary>
+        </member>
+        <member name="M:Gearset.ReflectionHelper.RunCSharpLineAndReturnValue(System.String,System.Object[])">
+            <summary>
+            Compiles and run the passed C# Code. Returns the value of the line.
+            </summary>
+        </member>
+        <member name="M:Gearset.ReflectionExtensionMethods.GetInstanceFields(System.Type,System.Boolean)">
+            <summary>
+            Return public Instance fields.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Gearset.ReflectionExtensionMethods.GetInstanceProperties(System.Type,System.Boolean)">
+            <summary>
+            Return public Instance properties.
+            </summary>
+        </member>
+        <member name="M:Gearset.ReflectionExtensionMethods.GetInstanceMethods(System.Type)">
+            <summary>
+            Return public Instance methods.
+            </summary>
+        </member>
+        <member name="M:Gearset.ReflectionExtensionMethods.GetStaticMethods(System.Type)">
+            <summary>
+            Return public Static methods.
+            </summary>
+        </member>
+        <member name="T:Gearset.TextHelper">
+            <summary>
+            Contains some helper methods for handling text.
+            </summary>
+        </member>
+        <member name="M:Gearset.TextHelper.DrawText(System.String,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            A Helper method to draw some text. No SpriteBatch.Begin() is
+            called so this must be done by the calling method.
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

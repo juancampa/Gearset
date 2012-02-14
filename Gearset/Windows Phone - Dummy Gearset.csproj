@@ -92,10 +92,8 @@
     <Compile Include="Components\Finder\ObjectDescription.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Debug.cs" />
     <Compile Include="GearConsole %28Dummy%29.cs" />
     <Compile Include="GearsetComponent.cs" />
-    <Compile Include="IGearsetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

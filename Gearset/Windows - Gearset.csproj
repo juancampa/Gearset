@@ -268,7 +268,6 @@
     <Compile Include="Components\Widget\Widget.cs" />
     <Compile Include="FixedLengthQueue.cs" />
     <Compile Include="GearsetComponent.cs" />
-    <Compile Include="IGearsetService.cs" />
     <Compile Include="KeyboardComponent.cs" />
     <Compile Include="Helpers\BoundingBoxHelper.cs" />
     <Compile Include="CompileErrorException.cs" />
@@ -346,7 +345,6 @@
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="WindowHelper.cs" />
-    <Compile Include="Debug.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

@@ -80,7 +80,7 @@ namespace Gearset.UI
             titleBar.Width = Width;
             titleBar.Height = TitleBarSize;
 
-            scaleNob.Position = this.Size;
+            scaleNob.Position = this.Size + new Vector2(1);
         }
     }
 }
