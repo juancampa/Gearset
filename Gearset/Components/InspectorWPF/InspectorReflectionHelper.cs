@@ -25,9 +25,6 @@ namespace Gearset.Components.InspectorWPF
         /// already generated.
         /// </summary>
         private static Dictionary<String, Dictionary<MemberInfo, SetterGetterPair>> setterGetterCache;
-
-        // An obfuscated boolean that tells us if we're on lite or pro.
-        internal static int LicenseCheckCache_14MeansCanUse;
         
         /// <summary>
         /// Helper class to store a setter and a getter for a specified
@@ -246,13 +243,9 @@ namespace Gearset.Components.InspectorWPF
 
                     ILGenerator ilGenerator = myMethod.GetILGenerator();
 
-                    // This is where we check if our license is correct, it have some manual
-                    // obfuscation to make it a little harder.
-                    if (LicenseCheckCache_14MeansCanUse == 0)
-                    {
-                        LicenseCheckCache_14MeansCanUse = 10 + (((Gearset.Component.GraphicsDeviceManager)GearsetResources.Console.manager).IsAvailable ? 4 : 1);
-                    }
-                    bool willGenerateSetter = LicenseCheckCache_14MeansCanUse == 14;
+                    // This boolean used to be how we controlled the licensing of Gearset, but now
+                    // is hard-wired to true.
+                    bool willGenerateSetter = true;
                     if (node.Type.Assembly == typeof(GearConsole).Assembly ||
                         (node.Parent != null && node.Parent.Type.Assembly == typeof(GearConsole).Assembly))
                         willGenerateSetter = true;
@@ -578,13 +571,9 @@ namespace Gearset.Components.InspectorWPF
 
                     ILGenerator ilGenerator = myMethod.GetILGenerator();
 
-                    // This is where we check if our license is correct, it have some manual
-                    // obfuscation to make it a little harder.
-                    if (LicenseCheckCache_14MeansCanUse == 0)
-                    {
-                        LicenseCheckCache_14MeansCanUse = 10 + (((Gearset.Component.GraphicsDeviceManager)GearsetResources.Console.manager).IsAvailable ? 4 : 1);
-                    }
-                    bool willGenerateSetter = LicenseCheckCache_14MeansCanUse == 14;
+                    // This boolean used to be how we controlled the licensing of Gearset, but now
+                    // is hard-wired to true.
+                    bool willGenerateSetter = true;
                     if (node.Type.Assembly == typeof(GearConsole).Assembly ||
                         (node.Parent != null && node.Parent.Type.Assembly == typeof(GearConsole).Assembly))
                         willGenerateSetter = true;

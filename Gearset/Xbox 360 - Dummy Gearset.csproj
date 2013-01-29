@@ -76,6 +76,7 @@
     </Compile>
     <Compile Include="GearConsole %28Dummy%29.cs" />
     <Compile Include="GearsetComponent.cs" />
+    <Compile Include="GearsetComponentBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

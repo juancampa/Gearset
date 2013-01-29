@@ -14,7 +14,7 @@ namespace Gearset.Components
         private int boxCount;
         public Texture2D noiseTexture;
         private SamplerState wrapSamplerState;
-        private bool inspected;
+        //private bool inspected;
 
         public SolidBoxDrawer()
             : base (new GearConfig())
@@ -44,9 +44,9 @@ namespace Gearset.Components
 
         public override void Update(GameTime gameTime)
         {
-            if (!inspected)
-                GearsetResources.Console.Inspect("SOlidBoxDrawer", this);
-            inspected = true;
+            //if (!inspected)
+            //    GearsetResources.Console.Inspect("SOlidBoxDrawer", this);
+            //inspected = true;
             base.Update(gameTime);
         }
 

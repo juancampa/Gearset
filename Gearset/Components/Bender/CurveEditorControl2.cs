@@ -247,7 +247,7 @@ namespace Gearset.Components.CurveEditorControl
             Curves.ItemAdded += new EventHandler<ItemAddedEventArgs<CurveWrapper>>(Curves_ItemAdded);
             Curves.ItemRemoved += new EventHandler<ItemRemovedEventArgs<CurveWrapper>>(Curves_ItemRemoved);
 
-            GearsetResources.Console.Inspect("Dispatcher", Dispatcher);
+            //GearsetResources.Console.Inspect("Dispatcher", Dispatcher);
         }
 
         private class CurveKeyInstanceComparer : IEqualityComparer<CurveKey>

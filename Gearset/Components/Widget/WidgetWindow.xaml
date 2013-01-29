@@ -25,7 +25,6 @@
     </Window.Resources>
     <Window.ContextMenu>
         <ContextMenu Name="ContextMenu" MenuItem.Click="ContextMenu_Click">
-            <MenuItem Name="LicenseManagerMenuItem" Header="License Manager"/>
             <MenuItem Header="Support/Feature Request"/>
             <Separator/>
             <MenuItem Header="About"/>

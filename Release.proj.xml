@@ -9,6 +9,7 @@
     <DestFolder>Deploy\</DestFolder>
     <Configuration>Release</Configuration>
     <DocumentationFile>Gearset.xml</DocumentationFile>
+    <Version>2.0.1</Version>
   </PropertyGroup>
   <ItemGroup>
     <LicenseManagerProj Include="LicenseManager\LicenseManager.csproj"/>
@@ -16,6 +17,7 @@
     <DummyProjects Include="Gearset\Windows Phone - Dummy Gearset.csproj"/>
     <DummyProjects Include="Gearset\Xbox 360 - Dummy Gearset.csproj"/>
     <Documentation Include="Gearset\bin\x86\Release\$(DocumentationFile)"/>
+    <Misc Include="Misc/*"/>
   </ItemGroup>
 
   <PropertyGroup>
@@ -60,11 +62,16 @@
           DestinationFiles="@(Documentation->'$(DestFolder)%(RecursiveDir)%(Filename)%(Extension)')" >
       <Output ItemName="CopiedFilesDoc" TaskParameter="CopiedFiles"/>
     </Copy>
+    <Copy SourceFiles="@(Misc)"
+          DestinationFiles="@(Misc->'$(DestFolder)%(RecursiveDir)%(Filename)%(Extension)')" >
+      <Output ItemName="CopiedMisc" TaskParameter="CopiedFiles"/>
+    </Copy>
   </Target>
 
   <Target Name="MakeZip">
-    <Zip Files="@(CopiedFilesDummies);@(CopiedFilesWin);@(CopiedFilesDoc)"
-         ZipFileName="$(DestFolder)Gearset.zip" />
+    <Zip Files="@(CopiedFilesDummies);@(CopiedFilesWin);@(CopiedFilesDoc);@(CopiedMisc)"
+         WorkingDirectory="$(DestFolder)"
+         ZipFileName="$(DestFolder)Gearset-$(Version).zip" />
   </Target>
 
 

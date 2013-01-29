@@ -27,7 +27,7 @@ namespace Gearset
         internal static SpriteFont FontTiny;
         internal static SpriteFont FontAlert;
         internal static ResourceContentManager Content;
-        internal static GraphicsDevice Device;
+        internal static GraphicsDevice Device { get { return Game.GraphicsDevice; } }
         internal static GearConsole Console;
 
         internal static float GlobalAlpha;

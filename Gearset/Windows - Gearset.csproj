@@ -266,6 +266,7 @@
     <Compile Include="Components\Undo\IUndoable.cs" />
     <Compile Include="Components\Undo\UndoEngine.cs" />
     <Compile Include="Components\Widget\Widget.cs" />
+    <Compile Include="GearsetComponentBase.cs" />
     <Compile Include="FixedLengthQueue.cs" />
     <Compile Include="GearsetComponent.cs" />
     <Compile Include="KeyboardComponent.cs" />
@@ -577,13 +578,6 @@
     <Resource Include="Components\Common\icon_plot.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LicenseManager\LicenseManager.csproj">
-      <Project>{0FEE8658-3E13-47DC-8A34-4E173124E75C}</Project>
-      <Name>LicenseManager</Name>
-      <Private>True</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="..\LicenseManager\bin\Release\LicenseManager.dll">
       <Link>LicenseManager.dll</Link>
     </EmbeddedResource>
@@ -591,9 +585,8 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />
   <PropertyGroup>
-    <PostBuildEvent>"$(ProjectDir)\InjectModuleInitializer.exe" "$(TargetPath)" 
-if /I "$(ConfigurationName)" == "Release" Eazfuscator.NET.exe "$(TargetPath)" --msbuild-project-path "$(ProjectPath)" --msbuild-project-configuration "$(ConfigurationName)" --msbuild-project-platform "$(PlatformName)" --msbuild-solution-path "$(SolutionPath)" -n --newline-flush -v 3.1
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets. 

@@ -61,7 +61,7 @@ namespace GearsetTest
             CpuParticleSystem.DefaultRenderPassBits = (int)RenderPassFlags.Particles;
             Sprite.DefaultRenderPassBits = (int)RenderPassFlags.UI;
 
-            Engine.Initialize(this);
+            Engine.Initialize();
             
             Screen.Manager.Push(new MainScreen());
 

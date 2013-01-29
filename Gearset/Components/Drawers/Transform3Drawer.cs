@@ -28,9 +28,9 @@ namespace Gearset.Components
         {
             Vector3 t = transform.Translation;
             float scale = AxisSize * axisScale;
-            vectors.ShowVector3(name + "x", t, t + transform.Right * scale, Color.Red);
-            vectors.ShowVector3(name + "y", t, t + transform.Up * scale, Color.Green);
-            vectors.ShowVector3(name + "z", t, t + transform.Forward * scale, Color.Blue);
+            vectors.ShowVector3(name + "x", t, transform.Right * scale, Color.Red);
+            vectors.ShowVector3(name + "y", t, transform.Up * scale, Color.Green);
+            vectors.ShowVector3(name + "z", t, transform.Forward * scale, Color.Blue);
         }
 
         internal void ShowTransformOnce(Matrix transform)
@@ -42,9 +42,9 @@ namespace Gearset.Components
         {
             Vector3 t = transform.Translation;
             float scale = AxisSize * axisScale;
-            vectors.ShowVector3Once(t, t + transform.Right * scale, Color.Red);
-            vectors.ShowVector3Once(t, t + transform.Up * scale, Color.Green);
-            vectors.ShowVector3Once(t, t + transform.Forward * scale, Color.Blue);
+            vectors.ShowVector3Once(t, transform.Right * scale, Color.Red);
+            vectors.ShowVector3Once(t, transform.Up * scale, Color.Green);
+            vectors.ShowVector3Once(t, transform.Forward * scale, Color.Blue);
         }
     }
 }

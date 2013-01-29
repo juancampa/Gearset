@@ -47,7 +47,10 @@
       <Link>GearConsole.cs</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Debug.Template.cs">
+    <Content Include="GS.Template.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="GearConsoleDummy.Template.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Compile Include="Program.cs" />

@@ -235,20 +235,6 @@ namespace Gearset
             get { return initialized; }
             private set
             {
-#   if WINDOWS
-                //Settings.Enabled = false;
-                // If the license has already being entered, just unlockit.
-                var licenseManager = this.manager as Gearset.Component.GraphicsDeviceManager;
-                if (!licenseManager.IsAvailable)
-                {
-                    licenseManager.Reset += manager_Reset;
-                    System.Windows.Controls.ContextMenu menu = Widget.Window.FindName("ContextMenu") as System.Windows.Controls.ContextMenu;
-                    System.Windows.Controls.MenuItem menuItem = new System.Windows.Controls.MenuItem() { Header = "Get Gearset Pro" };
-                    menu.Items.Add(menuItem);
-                }
-#   else
-                //Unlock();
-#   endif
                 Settings.Enabled = true;
                 initialized = true;
             }
@@ -291,7 +277,6 @@ namespace Gearset
 #if WINDOWS
             String versionFull = typeof(GearConsole).Assembly.GetName().Version.ToString();
             String version = typeof(GearConsole).Assembly.GetName().Version.Major.ToString();
-            this.manager = new Gearset.Component.GraphicsDeviceManager("Gearset v" + version);
 
             String productName = String.Empty;
             String copyright = String.Empty;
@@ -315,9 +300,8 @@ namespace Gearset
             InitializeForXbox();
             InitializeForWindows();
             InitializeForWindowsPhone();
-
-            // This is where we check our license.
             Initialized = true;
+
 #if WINDOWS
             if (Logger != null)
                 Log("Gearset", "Gearset {0}. Go to www.thecomplot.com/gearset.html for more info.", typeof(GearConsole).Assembly.GetName().Version);
@@ -327,12 +311,6 @@ namespace Gearset
 
         void manager_Reset(object sender, EventArgs e)
         {
-#if WINDOWS
-            if (((Gearset.Component.GraphicsDeviceManager)manager).IsAvailable)
-            {
-                Inspector.ClearCache();
-            }
-#endif
         }
         #endregion
 
@@ -342,11 +320,13 @@ namespace Gearset
         /// </summary>
         private void InitializeForAllPlatforms()
         {
-            GearsetResources.Device = GearsetResources.Game.GraphicsDevice;
             GearsetResources.Content = new ResourceContentManager(GearsetResources.Game.Services, Resource1.ResourceManager);
-            GearsetResources.Effect = new BasicEffect(GearsetResources.Device);
 
+            // Graphics device stuff.
+            GearsetResources.Effect = new BasicEffect(GearsetResources.Device);
             GearsetResources.Effect2D = new BasicEffect(GearsetResources.Device);
+            GearsetResources.SpriteBatch = new SpriteBatch(GearsetResources.Device);
+            
             Matrix projection = Matrix.CreateOrthographicOffCenter(0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height, 0, 0, 1);
             Matrix halfScreenOffset = Matrix.CreateTranslation(-0.5f, -0.5f, 0);
             GearsetResources.Effect2D.View = halfScreenOffset * projection;
@@ -354,7 +334,7 @@ namespace Gearset
             GearsetResources.Effect2D.World = Matrix.Identity;
             GearsetResources.Effect2D.VertexColorEnabled = true;
 
-            GearsetResources.SpriteBatch = new SpriteBatch(GearsetResources.Device);
+            
             GearsetResources.Keyboard = new KeyboardComponent();
             BoundingBoxHelper.Initialize();
 
@@ -391,14 +371,16 @@ namespace Gearset
             game.GraphicsDevice.DeviceReset += new EventHandler<EventArgs>(GraphicsDevice_DeviceReset);
         }
 
+        void RecreateGraphicResources()
+        {
+            GearsetResources.Effect = new BasicEffect(GearsetResources.Device);
+            GearsetResources.Effect2D = new BasicEffect(GearsetResources.Device);
+            GearsetResources.SpriteBatch = new SpriteBatch(GearsetResources.Device);
+        }
+
         void GraphicsDevice_DeviceReset(object sender, EventArgs e)
         {
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height, 0, 0, 1);
-            Matrix halfScreenOffset = Matrix.CreateTranslation(-0.5f, -0.5f, 0);
-            GearsetResources.Effect2D.View = halfScreenOffset * projection;
-            GearsetResources.Effect2D.Projection = Matrix.Identity;
-            GearsetResources.Effect2D.World = Matrix.Identity;
-            GearsetResources.Effect2D.VertexColorEnabled = true;
+            RecreateGraphicResources();
 
             foreach (var component in Components)
             {
@@ -443,21 +425,12 @@ namespace Gearset
 
             this.Widget = new Widget();
             this.Components.Add(Widget);
-            this.Widget.Window.Event += new EventHandler(Window_Event);
-            //this.Widget.Window.Show();
 
             this.Inspector = new InspectorManager();
             this.Components.Add(Inspector);
-            if (((Gearset.Component.GraphicsDeviceManager)manager).IsStarted)
-            {
-                Inspector.AddNotice("Time trial days left: " + ((Gearset.Component.GraphicsDeviceManager)manager).ParameterIndex,
-                                    "http://www.thecomplot.com/gearsetdownload.html",
-                                    "Get Product Key");
-            }
-            else
-            {
-                ThreadPool.QueueUserWorkItem(CheckNewVersion);
-            }
+
+            // Asynchronously check if there's a new version available
+            ThreadPool.QueueUserWorkItem(CheckNewVersion);
             
             this.Finder = new Finder();
             this.Components.Add(Finder);
@@ -573,11 +546,11 @@ namespace Gearset
         /// Check if the latest version posted on The Complot site is different
         /// from our current version.
         /// </summary>
-        /// <param name="state"></param>
         private void CheckNewVersion(Object state)
         {
 #if WINDOWS
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://www.thecomplot.com/latestversion");
+            webRequest.UserAgent = typeof(GearConsole).Assembly.GetName().Version.ToString();
             webRequest.Method = "GET";
             try
             {
@@ -587,7 +560,6 @@ namespace Gearset
                     String latestVersion = reader.ReadLine();
                     var latestVersionNumbers = latestVersion.Split('.');
                     var currentVersionNumbers = typeof(GearConsole).Assembly.GetName().Version.ToString().Split('.');
-                    
                     // WARNING: 2 bools to represent 3 states. Both true is invalid.
                     bool newVersionAvailable = false;
                     bool currentVersionIsDev = false;
@@ -625,12 +597,6 @@ namespace Gearset
 #endif
         }
 
-        void Window_Event(object sender, EventArgs e)
-        {
-#if WINDOWS
-            ((Gearset.Component.GraphicsDeviceManager)manager).Show();
-#endif
-        }
         #endregion
 
         #region Initialize (Xbox)
@@ -1447,6 +1413,11 @@ namespace Gearset
         #endregion
 
         #region Bender
+        /// <summary>
+        /// Adds a curve for editing in Bender
+        /// </summary>
+        /// <param name="name">Name of the curve to add. Group using dot separators.</param>
+        /// <param name="curve">Curve to edit in Bender.</param>
         public void AddCurve(String name, Curve curve)
         {
             if (!Enabled) return;
@@ -1471,9 +1442,8 @@ namespace Gearset
         }
         #endregion
 
-        // WRAPPER FUNCTIONS END
-        #endregion
         
+        #endregion
 
         /// <summary>
         /// Clears all Gearset Components erasing all retained data. Inspector and Logger won't be cleared.
@@ -1485,6 +1455,8 @@ namespace Gearset
             Settings.LineDrawerConfig.Clear();
             Settings.PlotterConfig.Clear();
         }
+
+        // WRAPPER FUNCTIONS END
 
         #region Update
         /// <summary>
@@ -1505,12 +1477,6 @@ namespace Gearset
             if (!Enabled) return;
             this.Show("Gearset.Update Count", UpdateCount);
             this.Show("Gearset.Draw Count", DrawCount);
-
-
-            if (LiteVersionNoticeAlpha > 0)
-            {
-                LiteVersionNoticeAlpha -= 0.04f;
-            }
 
             UI.UIManager.Update(gameTime);
 
@@ -1563,9 +1529,13 @@ namespace Gearset
 
             if (!Settings.Enabled || GearsetResources.GlobalAlpha <= 0) return;
 
+            if (GearsetResources.Effect.GraphicsDevice.IsDisposed)
+                RecreateGraphicResources();
+
             if (GearsetResources.Game.IsMouseVisible == false)
             {
                 Vector2 pos = GearsetResources.Mouse.Position;
+                Show("Position", pos);
                 Matrix t = Matrix.Invert(GearsetResources.Transform2D);
                 LineDrawer.ShowLineOnce(Vector2.Transform(pos + Vector2.UnitY * 2, t), Vector2.Transform(pos - Vector2.UnitY * 3, t), Color.White);
                 LineDrawer.ShowLineOnce(Vector2.Transform(pos + Vector2.UnitX * 2, t), Vector2.Transform(pos - Vector2.UnitX * 3, t), Color.White);
@@ -1595,8 +1565,13 @@ namespace Gearset
                     DrawRecursively(component, gameTime);
 
             // 2D (Screen Space)
-            GearsetResources.Effect2D.Alpha = GearsetResources.GlobalAlpha;
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height, 0, 0, 1);
+            Matrix halfScreenOffset = Matrix.CreateTranslation(-0.5f, -0.5f, 0);
+            GearsetResources.Effect2D.View = halfScreenOffset * projection;
+            GearsetResources.Effect2D.Projection = Matrix.Identity;
             GearsetResources.Effect2D.World = Matrix.Identity;
+            GearsetResources.Effect2D.VertexColorEnabled = true;
+            GearsetResources.Effect2D.Alpha = GearsetResources.GlobalAlpha;
             GearsetResources.Effect2D.Techniques[0].Passes[0].Apply();
             GearsetResources.CurrentRenderPass = RenderPass.ScreenSpacePass;
             foreach (Gear component in Components)
@@ -1620,10 +1595,6 @@ namespace Gearset
             foreach (Gear component in Components)
                 if (component.Visible)
                     DrawRecursively(component, gameTime);
-            if (LiteVersionNoticeAlpha > 0)
-            {
-                DrawPurchaseGearsetProText();
-            }
             GearsetResources.SpriteBatch.End(); 
             #endregion
 
@@ -1634,37 +1605,6 @@ namespace Gearset
                     DrawRecursively(component, gameTime);
             #endregion
 
-        }
-
-        /// <summary>
-        /// Draws a text overlaid in the center of the screen asking the user to get Gearset Pro.
-        /// </summary>
-        private static void DrawPurchaseGearsetProText()
-        {
-            String text = "Modifying values is not available in Gearset Lite";
-            String text2 = "Consider purchasing Gearset Pro";
-            Vector2 size = GearsetResources.Font.MeasureString(text);
-            Vector2 screenSize = new Vector2(GearsetResources.Game.GraphicsDevice.Viewport.Width, GearsetResources.Game.GraphicsDevice.Viewport.Height);
-            Vector2 position = screenSize * .5f - size * .5f;
-            position.X = (int)position.X;
-            position.Y = (int)position.Y;
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text, position + Vector2.UnitX, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text, position - Vector2.UnitX, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text, position + Vector2.UnitY, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text, position - Vector2.UnitY, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text, position, Color.White * MathHelper.Clamp(LiteVersionNoticeAlpha, 0, 1));
-
-            size = GearsetResources.Font.MeasureString(text2);
-            screenSize = new Vector2(GearsetResources.Game.GraphicsDevice.Viewport.Width, GearsetResources.Game.GraphicsDevice.Viewport.Height);
-            position = screenSize * .5f - size * .5f + new Vector2(0, size.Y);
-            position.X = (int)position.X;
-            position.Y = (int)position.Y;
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text2, position + Vector2.UnitX, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text2, position - Vector2.UnitX, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text2, position + Vector2.UnitY, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text2, position - Vector2.UnitY, new Color(0f, 0, 0, LiteVersionNoticeAlpha));
-            GearsetResources.SpriteBatch.DrawString(GearsetResources.Font, text2, position, Color.White * MathHelper.Clamp(LiteVersionNoticeAlpha, 0, 1));
-            // new Color(0.54f, 0.77f, 0.19f, 1)
         }
 
         private void DrawRecursively(Gear gear, GameTime gameTime)

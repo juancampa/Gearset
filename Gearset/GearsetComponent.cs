@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-
 namespace Gearset
 {
     /// <summary>
@@ -14,7 +13,7 @@ namespace Gearset
     /// attribute to your Main(string[] args) method (usually in
     /// program.cs)
     /// </summary>
-    class GearsetComponent : DrawableGameComponent
+    public class GearsetComponent : GearsetComponentBase
     {
         public GearConsole Console { get; private set; }
 
@@ -22,11 +21,11 @@ namespace Gearset
             : base(game)
         {
             this.UpdateOrder = int.MaxValue - 1;
+            Console = new GearConsole(this.Game);
         }
 
         public override void Initialize()
         {
-            Console = new GearConsole(this.Game);
             Console.Initialize();
             base.Initialize();
         }

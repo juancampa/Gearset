@@ -120,23 +120,14 @@ namespace Gearset.Components
         public void ContextMenu_Click(object sender, RoutedEventArgs e)
         {
             MenuItem item = e.Source as MenuItem;
-            if (((String)item.Header) == "License Manager")
-            {
-                if (Event != null)
-                    Event(this, EventArgs.Empty);
-            }
-            else if (((String)item.Header) == "About")
+            if (((String)item.Header) == "About")
             {
                 GearsetResources.AboutWindow.Show();
+                e.Handled = true;
             }
             else if (((String)item.Header) == "Support/Feature Request")
             {
                 System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("http://www.thecomplot.com/lib/support"));
-                e.Handled = true;
-            }
-            else if (((String)item.Header) == "Get Gearset Pro")
-            {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("http://www.thecomplot.com/lib/login"));
                 e.Handled = true;
             }
         }

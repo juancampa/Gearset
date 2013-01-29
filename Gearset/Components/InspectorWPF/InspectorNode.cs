@@ -127,8 +127,7 @@ namespace Gearset.Components.InspectorWPF
                 isShowingPrivate = value;
 
                 // Don't show private members of our own code.
-                if (Type.Assembly != typeof(InspectorNode).Assembly &&
-                    Type.Assembly != typeof(Gearset.Component.GraphicsDeviceManager).Assembly)
+                if (Type.Assembly != typeof(InspectorNode).Assembly)
                     Expand(true, isShowingPrivate); 
             } 
         }

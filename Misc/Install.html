@@ -1,0 +1,66 @@
+<html>
+<head>
+<title>Gearset Install instructions</title>
+<body>
+<h1>Gearset Install Instructions</h1>
+
+For the latest installation instruction and User Guide, go to:
+<a href="http://www.thecomplot.com/gearsetguide.html">http://www.thecomplot.com/gearsetguide.html</a>
+
+
+<h3>HOW TO USE IT IN YOUR PROJECT</h3>
+
+<ol>
+<li>Download Gearset.dll from <a href="http://www.thecomplot.com/gearsetdownload.html">http://www.thecomplot.com/gearsetdownload.html</a>
+</li>
+<li>Include Gearset.dll as a reference in your XNA 4.0 project.
+</li>
+<li>Copy the included GS.cs file to your project, it provides you with quick access to Gearset's methods and properties while allowing you to completely remove Gearset when your game is ready to be shipped.
+</li>
+<li> Right click on your project -> Properties -> Application -> Target Framework. And make sure it says ".NET Framework 4" instead of ".NET Framework 4 Client Profile".
+</li>	
+<li> Right click on your project -> Properties -> Build -> Conditional Compilation Symbols -> append ";USE_GEARSET" to it. When you want to completely remove gearset, simply remove that.
+<li>At the beginning of your Game.Initialize method, add this to start Gearset components:
+<pre>
+    public override void Initialize()
+    {
+        Gearset.GS.Initialize(this);
+    }
+</pre>
+</li>
+<li>In your program's Main method (usually located either in Program.cs or 
+   your main Game code file) add the [STAThread] attribute:
+<pre>
+    [STAThread]
+    static void Main(string[] args)
+    {
+        ...
+    }
+</pre>
+</li>
+<li>Press F5 and run your game!
+
+</li>
+<li>Aditionally for 3D, or 2D scrolling games your camera matrices must be passed to Gearset in order to render overlays correctly. Inside your Game.Update method add:
+<pre>
+    public override void Update(GameTime gameTime)
+    {
+        ...
+        Gearset.GS.SetMatrices(ref World, ref View, ref Projection, ref Transform2D);
+    }
+</pre>
+</li>
+</ol>
+
+<h3>OTHER PLATFORMS</h3>
+
+Currently Gearset will only work on Windows, however we provide you with two dummy assemblies (assemblies with no code, only the method signatures) named "Gearset.WP.dll" for Windows Phone and Gearset.Xbox.dll for XBox360 so you don't have to modify your game code to make it compile for other platforms. For this to work you will have to do the following:
+
+<ul>
+  <li>Remove the reference to Gearset.dll on your WindowsPhone/Xbox project, if any.</li>
+  <li>For a Windows Phone Game: Add a reference to Gearset.WP.dll</li>
+  <li>For an Xbox 360 Game: Add a reference to Gearset.Xbox.dll</li>
+</ul>
+
+</body>
+</html>

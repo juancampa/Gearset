@@ -545,14 +545,6 @@ namespace Gearset.Components.InspectorWPF
             notice.NoticeHyperlinkText = linkText;
             Window.Dispatcher.BeginInvoke((System.Windows.Forms.MethodInvoker) delegate { Notices.Add(notice); });
         }
-
-        /// <summary>
-        /// Clears the cache so the Reflection Helper checks the license validity again.
-        /// </summary>
-        internal void ClearCache()
-        {
-            InspectorReflectionHelper.LicenseCheckCache_14MeansCanUse = 0;
-        }
     }
 
     public class ValueTypeWrapper<T> where T:struct

@@ -10,7 +10,8 @@
     <RootNamespace>ReleaseTest</RootNamespace>
     <AssemblyName>ReleaseTest</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>HiDef</XnaProfile>
@@ -60,7 +61,7 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Gearset, Version=1.1.4318.34098, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Gearset, Version=1.1.4318.34412, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Gearset.dll</HintPath>
     </Reference>

@@ -133,6 +133,9 @@ namespace Gearset.Components
                 bool matches = true;
                 String type = component.GetType().ToString();
 
+                if (component is GearsetComponentBase)
+                    continue;
+
                 // Check if it matches all search params.
                 for (int i = 0; i < searchParams.Length; i++)
                 {

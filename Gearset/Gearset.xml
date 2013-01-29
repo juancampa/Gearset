@@ -1820,6 +1820,11 @@
             </summary>
             <param name="currentMover"></param>
         </member>
+        <member name="T:Gearset.GearsetComponentBase">
+            <summary>
+            Base class for Gearset game components.
+            </summary>
+        </member>
         <member name="F:Gearset.FixedLengthQueue`1.DequeueTarget">
             <summary>
             When an item is dequeued it will get queued into <c>DequeueTarget</c>, if any.
@@ -1846,6 +1851,15 @@
         <member name="P:Gearset.FixedLengthQueue`1.Capacity">
             <summary>
             Setting this is O(abs(Capacity - value))
+            </summary>
+        </member>
+        <member name="T:Gearset.GearsetComponent">
+            <summary>
+            Provides a simple way to add Gearset to your game. Simply
+            add this component to your Game's Component collection and
+            you're set. (Additionally you have to add the [STAThread]
+            attribute to your Main(string[] args) method (usually in
+            program.cs)
             </summary>
         </member>
         <member name="T:Gearset.Components.KeyboardComponent">
@@ -3200,6 +3214,13 @@
             <param name="location">Location of the vector to show (i.e. position of the start of the arrow)</param>
             <param name="vector">Vector to show</param>
             <param name="color">Color of the arrow to draw</param>
+        </member>
+        <member name="M:Gearset.GearConsole.AddCurve(System.String,Microsoft.Xna.Framework.Curve)">
+            <summary>
+            Adds a curve for editing in Bender
+            </summary>
+            <param name="name">Name of the curve to add. Group using dot separators.</param>
+            <param name="curve">Curve to edit in Bender.</param>
         </member>
         <member name="M:Gearset.GearConsole.RemoveCurve(Microsoft.Xna.Framework.Curve)">
             <summary>
