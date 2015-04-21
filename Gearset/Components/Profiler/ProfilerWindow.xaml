@@ -1,0 +1,156 @@
+﻿<Window x:Class="Gearset.Components.Profiler.ProfilerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:diag="clr-namespace:System.Diagnostics;assembly=WindowsBase"
+    xmlns:local="clr-namespace:Gearset.Components.InspectorWPF"
+    xmlns:profiler="clr-namespace:Gearset.Components.Profiler"
+    xmlns:behaviours="clr-namespace:Wpf.Behaviours"
+    Title="Profiler"
+    Height="238"
+    Width="330"
+    FontSize="11"
+    Background="{DynamicResource background1}"
+    Foreground="{DynamicResource normalText1}"
+    WindowStyle="None"
+    UseLayoutRounding="True"
+    Icon="..\..\Cog.ico"
+    ShowInTaskbar="False"
+    ShowActivated="False">
+
+    <Window.Resources>        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Common\CommonStyle.xaml"/>
+                <ResourceDictionary Source="..\Common\ScrollViewerStyle.xaml"/>
+                <ResourceDictionary>
+                    <!--Levels-->
+                    <DataTemplate x:Key="levelTemplate" DataType="profiler:LevelItem">
+                        <DockPanel>
+                            <CheckBox DockPanel.Dock="Left" IsChecked="{Binding Path=Enabled}" Margin="0 0 5 0"/>
+                            <TextBlock Text="{Binding Name}" />
+                        </DockPanel>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+  
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <!--Tool Bar-->
+        <Border Margin="0" BorderBrush="{DynamicResource border1}" BorderThickness="1">
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="3">
+            <Button DockPanel.Dock="Right" Name="CloseButton" Width="16" Height="16" Click="CloseClick">
+                <Image Width="7" Height="7">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="../Common/icon_close.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="../Common/icon_close_over.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+            <Button DockPanel.Dock="Right" Name="MaximizeButton" Width="16" Height="16" Click="MaximizeClick">
+                <Image Width="9" Height="7">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="../Common/icon_maximize.png"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Source" Value="../Common/icon_maximize_over.png"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Button>
+                <!--Left side-->
+            <Image DockPanel.Dock="Left" Width="12" Margin="0 0 2 0" Source="../Common/icon_title.png"/>
+            <TextBlock DockPanel.Dock="Left" FontSize="12" Foreground="White" MouseLeftButtonDown="TitleBarMouseLeftButtonDown">Profiler</TextBlock>
+            <Rectangle Fill="Transparent" MouseLeftButtonDown="TitleBarMouseLeftButtonDown"/>
+        </DockPanel>
+            </Border>
+        <Grid Grid.Row="1">
+
+            <TabControl>
+                <TabItem Header="Performance Graph">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+             
+                        <!-- Performance Graph -->
+                        <DockPanel Grid.Column="0" Grid.Row="1">
+                            <!-- Action Buttons -->
+                            <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource border1}">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Button Width="Auto" Name="pgEnableAllButton" Click="pgEnableAllButton_Click">Show All</Button>
+                                    <Button Width="Auto" Name="pgDisableAllButton" Click="pgDisableAllButton_Click">Hide All</Button>
+                                </StackPanel>
+                            </Border>
+                            <!-- Levels ListView -->
+                            <ListView Name="pgLevelsListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource levelTemplate}" Background="Transparent" BorderThickness="0
+                                      " />
+                        </DockPanel>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Time Ruler">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Performance Graph -->
+                        <DockPanel Grid.Column="0" Grid.Row="1">
+                            <!-- Action Buttons -->
+                            <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource border1}">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Button Width="Auto" Name="trEnableAllButton" Click="trEnableAllButton_Click">Show All</Button>
+                                    <Button Width="Auto" Name="trDisableAllButton" Click="trDisableAllButton_Click">Hide All</Button>
+                                </StackPanel>
+                            </Border>
+                            <!-- Levels ListView -->
+                            <ListView Name="trLevelsListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource levelTemplate}" Background="Transparent" BorderThickness="0" />
+                        </DockPanel>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Summary Log">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <!-- Profiler Summary -->
+                        <DockPanel Grid.Column="0" Grid.Row="1">
+                            <!-- Action Buttons -->
+                            <Border DockPanel.Dock="Top" BorderThickness="0 1 0 0" BorderBrush="{DynamicResource border1}">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <Button Width="Auto" Name="psEnableAllButton" Click="psEnableAllButton_Click">Show All</Button>
+                                    <Button Width="Auto" Name="psDisableAllButton" Click="psDisableAllButton_Click">Hide All</Button>
+                                </StackPanel>
+                            </Border>
+                            <!-- Levels ListView -->
+                            <ListView Name="psLevelsListBox" ItemsSource="{Binding}" ItemTemplate="{StaticResource levelTemplate}" Background="Transparent" BorderThickness="0" />
+                        </DockPanel>
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+
+</Window>
