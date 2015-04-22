@@ -335,7 +335,9 @@ namespace Gearset.Components.Logger
             // Log even if the stream is disabled.
             var logItem = new LogItem { Stream = stream, Content = message, UpdateNumber = GearsetResources.Console.UpdateCount };
             LogItems.Enqueue(logItem);
-            scrollViewer.ScrollToEnd();
+
+            if (stream.Enabled)
+                scrollViewer.ScrollToEnd();
         }
 
         /// <summary>

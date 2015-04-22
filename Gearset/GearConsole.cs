@@ -552,6 +552,9 @@ namespace Gearset
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://www.thecomplot.com/latestversion");
             webRequest.UserAgent = typeof(GearConsole).Assembly.GetName().Version.ToString();
             webRequest.Method = "GET";
+            webRequest.Proxy = WebRequest.GetSystemWebProxy();
+            webRequest.Proxy.Credentials = CredentialCache.DefaultCredentials;
+            webRequest.Credentials = CredentialCache.DefaultCredentials;
             try
             {
                 WebResponse response = webRequest.GetResponse();
