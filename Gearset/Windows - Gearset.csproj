@@ -577,11 +577,6 @@
   <ItemGroup>
     <Resource Include="Components\Common\icon_plot.png" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="..\LicenseManager\bin\Release\LicenseManager.dll">
-      <Link>LicenseManager.dll</Link>
-    </EmbeddedResource>
-  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />
   <PropertyGroup>

@@ -20,8 +20,10 @@ namespace Gearset.Components
             : base (GearsetSettings.Instance.BenderConfig)
         {
             Window = new CurveEditorWindow();
-            Window.Show();
 
+            if (Config.Visible)
+                Window.Show();
+            
             curveTreeViewModel = new CurveTreeViewModel(Window.curveEditorControl);
 
             Window.DataContext = Window.curveEditorControl.ControlsViewModel;
