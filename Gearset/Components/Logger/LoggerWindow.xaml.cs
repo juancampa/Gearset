@@ -79,9 +79,6 @@ namespace Gearset.Components.Logger
         {
             GearsetResources.Console.Logger.EnableAllStreams();
         }
-
-
-        
     }
 
     internal class SoloRequestedEventArgs : EventArgs

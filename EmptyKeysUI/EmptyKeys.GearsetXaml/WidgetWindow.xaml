@@ -1,0 +1,41 @@
+﻿<UserControl 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    mc:Ignorable="d" 
+    d:DesignHeight="640" d:DesignWidth="800"
+    x:Class="EmptyKeys.GearsetXaml.WidgetWindow">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/EmptyKeys.GearsetXaml;component/CommonStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="toggleButton" TargetType="ToggleButton">
+                <Setter Property="Padding" Value="5, 0, 1, 0"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Height" Value="24"/>
+                <Setter Property="IsThreeState" Value="False"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Background="#9000">
+        <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding Enabled}" Command="{Binding MasterSwitchButtonClick}">Master Switch</ToggleButton>
+        <!--<ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding InspectorWindowVisible}" Command="{Binding InspectorButtonClick}">Inspector</ToggleButton>-->
+        <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding FinderWindowVisible}" Command="{Binding FinderButtonClick}">Finder</ToggleButton>
+        <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding LoggerWindowVisible}" Command="{Binding LoggerButtonClick}">Logger</ToggleButton>
+        <!--<ToggleButton Style="{StaticResource toggleButton}">Bender</ToggleButton>-->
+        <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding ProfilerWindowVisible}" Command="{Binding ProfilerButtonClick}">Profiler</ToggleButton>
+        <Grid Background="#000">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="10 4, 1, 0">Opacity</TextBlock>
+            <Slider Grid.Column="1" Margin="10, 3, 20, 0" Width="100" Value="{Binding SliderValue}"></Slider>
+        </Grid>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModuleInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Name>Gearset</Name>
+  <DefaultAction>resync</DefaultAction>
+  <DefaultWindowsPlatforms>Windows,Windows8,WindowsGL,WindowsXNA,WindowsEmptyKeys</DefaultWindowsPlatforms>
+  <DefaultMacOSPlatforms>MacOS</DefaultMacOSPlatforms>
+  <DefaultLinuxPlatforms>Linux</DefaultLinuxPlatforms>
+  <GenerateNuGetRepositories>true</GenerateNuGetRepositories>
+  <SupportedPlatforms>Linux,MacOS,Windows,Windows8,WindowsGL,WindowsXNA,WindowsEmptyKeys</SupportedPlatforms>
+  <DisableSynchronisation xsi:nil="true" />
+  <ModuleAssemblies />
+</ModuleInfo>

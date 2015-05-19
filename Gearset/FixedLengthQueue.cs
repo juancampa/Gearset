@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
 using System.Collections.Specialized;
 #endif
 using System.Collections;
 
 namespace Gearset
 {
-    public class FixedLengthQueue<T> : 
-#if WINDOWS
-        INotifyCollectionChanged, 
+    public class FixedLengthQueue<T> :
+#if WINDOWS || LINUX || MONOMAC
+ INotifyCollectionChanged, 
 #endif
         IEnumerable<T>
     {
@@ -43,7 +43,7 @@ namespace Gearset
             }
         }
 
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 #endif
 
@@ -65,7 +65,7 @@ namespace Gearset
                 T removedItem = queue.Dequeue();
                 if (DequeueTarget != null)
                     DequeueTarget.Enqueue(removedItem);
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
                 if (CollectionChanged != null)
                 {
                     NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, removedItem, 0);
@@ -75,7 +75,7 @@ namespace Gearset
             }
             queue.Enqueue(item);
 
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             if (CollectionChanged != null)
             {
                 NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, item, queue.Count - 1);
@@ -91,7 +91,7 @@ namespace Gearset
         public T Dequeue()
         {
             T t = queue.Dequeue();
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             if (CollectionChanged != null)
             {
                 NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, t);
