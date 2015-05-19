@@ -1,0 +1,2509 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EmptyKeys.UserInterface.Generator</name>
+    </assembly>
+    <members>
+        <member name="T:EmptyKeys.UserInterface.Generator.CodeComHelper">
+            <summary>
+            Code Com helper methods
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.#cctor">
+            <summary>
+            Initializes the <see cref="T:EmptyKeys.UserInterface.Generator.CodeComHelper"/> class.
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateEnumField``1(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the enum field.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateField``1(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the field.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateFieldDoubleToFloat(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the field double to float.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.String,System.Object)">
+            <summary>
+            Generates the field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="fieldName">Name of the field.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateGridLengthField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the grid length field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateToolTipField(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the tool tip field.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateThicknessField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the thickness field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateFontFamilyField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the font family field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateFontFamilyExpression(System.Windows.Media.FontFamily)">
+            <summary>
+            Generates the font family expression.
+            </summary>
+            <param name="family">The family.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateFontStyleField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the font style field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="fontStyle">The font style.</param>
+            <param name="fontWeight">The font weight.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateFontStyleExpression(System.Windows.FontStyle,System.Windows.FontWeight)">
+            <summary>
+            Generates the font style expression.
+            </summary>
+            <param name="style">The style.</param>
+            <param name="weight">The weight.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBrushField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the brush field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBrushInstance(System.CodeDom.CodeMemberMethod,System.Windows.Media.Brush,System.String)">
+            <summary>
+            Generates the brush instance.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="brush">The brush.</param>
+            <param name="variableName">Name of the variable.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBitmapImageField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Uri,System.String,System.String)">
+            <summary>
+            Generates the bitmap image.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="fieldReference">The field reference.</param>
+            <param name="uriSource">The URI source.</param>
+            <param name="variableName">Name of the variable.</param>
+            <param name="sourceProperty">The asset property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBitmapImageValue(System.CodeDom.CodeMemberMethod,System.Uri,System.String)">
+            <summary>
+            Generates the bitmap image value.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="uriSource">The URI source.</param>
+            <param name="variableName">Name of the variable.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateError(System.CodeDom.CodeMemberMethod,System.String)">
+            <summary>
+            Generates the error.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="errorText">The error text.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBrushToColorField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the brush to color field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.IsValidForFieldGenerator(System.Object)">
+            <summary>
+            Determines whether [is valid for field generator] [the specified value].
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBindings(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.String,System.CodeDom.CodeExpression,System.Boolean)">
+            <summary>
+            Generates the bindings.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="sourceName">Name of the source.</param>
+            <param name="bindingSource">The binding source.</param>
+            <param name="setBindingSource">if set to <c>true</c> [set binding source].</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateBinding(System.CodeDom.CodeMemberMethod,System.Windows.Data.Binding,System.String)">
+            <summary>
+            Generates the binding.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="binding">The binding.</param>
+            <param name="varName">Name of the variable.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateResourceReferences(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.FrameworkElement)">
+            <summary>
+            Generates the resource references.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateAttachedProperties(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.String)">
+            <summary>
+            Generates the attached properties.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="propertyParentTypeName">Name of the property parent type.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateSoundSources(System.CodeDom.CodeMemberMethod,EmptyKeys.UserInterface.Designer.SoundSourceCollection,System.String)">
+            <summary>
+            Generates the sound sources.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="sounds">The sounds.</param>
+            <param name="collVar">The coll variable.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateTemplateStyleField(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the template style field.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateTemplateStyleField(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty,System.String)">
+            <summary>
+            Generates the template style field.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+            <param name="name">The name.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GetResourceKeyExpression(System.Object)">
+            <summary>
+            Gets the resource key expression.
+            </summary>
+            <param name="resourceKey">The resource key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GetValueExpression(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Gets the value expression.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateTemplate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Windows.DependencyObject,System.String)">
+            <summary>
+            Generates the template.
+            </summary>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="content">The content.</param>
+            <param name="templateVariableName">Name of the template variable.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateTriggers(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.String,System.Type,System.Windows.TriggerCollection)">
+            <summary>
+            Generates the triggers.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="variableName">Name of the variable.</param>
+            <param name="targetType">Type of the target.</param>
+            <param name="triggers">The triggers.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateSetter(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Type,System.Windows.Setter,System.String)">
+            <summary>
+            Generates the setter.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="targetType">Type of the target.</param>
+            <param name="setter">The setter.</param>
+            <param name="setterVarName">Name of the setter variable.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateEventTrigger(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.String,System.CodeDom.CodeExpression,System.String,System.Int32,System.Windows.EventTrigger)">
+            <summary>
+            Generates the event trigger.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="typeName">Name of the type.</param>
+            <param name="fieldReference">The field reference.</param>
+            <param name="parentName">Name of the parent.</param>
+            <param name="index">The index.</param>
+            <param name="trigger">The trigger.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateEasingFunction(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.String,System.Windows.Media.Animation.EasingFunctionBase)">
+            <summary>
+            Generates the easing function.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="parentAnimation">The parent animation.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="easingFunc">The easing function.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateColorField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,EmptyKeys.UserInterface.Designer.SolidColorBrushAnimation,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the color field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateRectangleField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.Media.RectangleGeometry,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the rectangle field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GeneratePointField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.Media.Geometry,System.Windows.DependencyProperty)">
+            <summary>
+            Generates the point field.
+            </summary>
+            <param name="method">The method.</param>
+            <param name="target">The target.</param>
+            <param name="source">The source.</param>
+            <param name="property">The property.</param>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.FontGenerator">
+            <summary>
+            Implements Font and Font asset generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontGenerator.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:EmptyKeys.UserInterface.Generator.FontGenerator"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontGenerator.AddFont(System.Windows.Media.FontFamily,System.Double,System.Windows.FontStyle,System.Windows.FontWeight,System.CodeDom.CodeMemberMethod)">
+            <summary>
+            Adds the font.
+            </summary>
+            <param name="family">The family.</param>
+            <param name="size">The size.</param>
+            <param name="style">The style.</param>
+            <param name="weight">The weight.</param>
+            <param name="method">The method.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontGenerator.GenerateFontAssets(System.String,EmptyKeys.UserInterface.Generator.RenderMode)">
+            <summary>
+            Generates the font assets.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="renderMode">The render mode.</param>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.FontGenerator.Instance">
+            <summary>
+            Gets the instance.
+            </summary>
+            <value>
+            The instance.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.FontInfo">
+            <summary>
+            Describes font
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontInfo.#ctor(System.Windows.Media.FontFamily,System.Double,System.Windows.FontStyle,System.Windows.FontWeight)">
+            <summary>
+            Initializes a new instance of the <see cref="T:EmptyKeys.UserInterface.Generator.FontInfo"/> class.
+            </summary>
+            <param name="family">The family.</param>
+            <param name="size">The size.</param>
+            <param name="style">The style.</param>
+            <param name="weight">The weight.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontInfo.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/>, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object"/> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontInfo.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+            </returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.FontInfo.FontFamily">
+            <summary>
+            Gets or sets the font family.
+            </summary>
+            <value>
+            The font family.
+            </value>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.FontInfo.FontSize">
+            <summary>
+            Gets or sets the size of the font.
+            </summary>
+            <value>
+            The size of the font.
+            </value>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.FontInfo.FontStyle">
+            <summary>
+            Gets or sets the font style.
+            </summary>
+            <value>
+            The font style.
+            </value>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.FontInfo.FontWeight">
+            <summary>
+            Gets or sets the font weight.
+            </summary>
+            <value>
+            The font weight.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.IGeneratorValue">
+            <summary>
+            Describes generator value interface
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.IGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.IGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.ImageAssets">
+            <summary>
+            Implements Image assets store
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.AddImage(System.String)">
+            <summary>
+            Adds the image.
+            </summary>
+            <param name="fileName">Name of the asset.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.CopyImagesToAssetDirectory(System.String)">
+            <summary>
+            Copies the images from the current working directory to the specified asset target directory.
+            </summary>
+            <param name="TargetDir">The assets directory.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.CopyImagesToAssetDirectory(System.String,System.String)">
+            <summary>
+            Copies the images from the specified source directory to the specified asset target directory.
+            </summary>
+            <param name="TargetDir">The assets directory.</param>
+            <param name="SourceDir">The directory to copy assets from.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.ImageAssets.Instance">
+            <summary>
+            Gets the instance.
+            </summary>
+            <value>
+            The instance.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.TypeGenerator">
+            <summary>
+            Implements generator for XAML types
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.TypeGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:EmptyKeys.UserInterface.Generator.TypeGenerator"/> class.
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.TypeGenerator.HasGenerator(System.Type)">
+            <summary>
+            Determines whether the specified type has generator.
+            </summary>
+            <param name="type">The type.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.TypeGenerator.ProcessGenerators(System.Object,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Processes the generators.
+            </summary>
+            <param name="source">source</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateFields">if set to <c>true</c> [generate fields].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.TypeGenerator.Generators">
+            <summary>
+            Gets the generators.
+            </summary>
+            <value>
+            The generators.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.IGeneratorType">
+            <summary>
+            Describes Generator Type interface
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.IGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">The dependency object</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.IGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.IGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="method">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.IGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.RenderMode">
+            <summary>
+            Render modes
+            </summary>
+        </member>
+        <member name="F:EmptyKeys.UserInterface.Generator.RenderMode.SunBurn">
+            <summary>
+            Synapse Gaming Sunburn engine
+            </summary>
+        </member>
+        <member name="F:EmptyKeys.UserInterface.Generator.RenderMode.MonoGame">
+            <summary>
+            MonoGame
+            </summary>
+        </member>
+        <member name="F:EmptyKeys.UserInterface.Generator.RenderMode.FNA">
+            <summary>
+            FNA
+            </summary>
+        </member>
+        <member name="F:EmptyKeys.UserInterface.Generator.RenderMode.CocosSharp">
+            <summary>
+            Cocos Sharp
+            </summary>
+        </member>
+        <member name="F:EmptyKeys.UserInterface.Generator.RenderMode.Paradox">
+            <summary>
+            Paradox engine
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.ResourceDictionaryGenerator">
+            <summary>
+            Implements resource dictionary generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ResourceDictionaryGenerator.Generate(System.Windows.ResourceDictionary,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression)">
+            <summary>
+            Generates the specified dictionary.
+            </summary>
+            <param name="dictionary">The dictionary.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="fieldReference">The field reference.</param>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridBoundColumnGeneratorType">
+            <summary>
+            Implements generator for Data Grind bound column
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridColumnGeneratorType">
+            <summary>
+            Implements generator for DataGridColumn type
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridColumnGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridColumnGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">The dependency object</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridColumnGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="method">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridColumnGeneratorType.ColumnName">
+            <summary>
+            Gets or sets the name of the column.
+            </summary>
+            <value>
+            The name of the column.
+            </value>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridColumnGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridBoundColumnGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridBoundColumnGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridCheckBoxColumnGeneratorType">
+            <summary>
+            Implements generator for boolean column with check box
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridCheckBoxColumnGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridCheckBoxColumnGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridTemplateColumnGeneratorType">
+            <summary>
+            Implements generator for Data Grid Template Column
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridTemplateColumnGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method"></param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridTemplateColumnGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridTextColumnGeneratorType">
+            <summary>
+            Implements generator for text column
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridTextColumnGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DataGridTextColumnGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.DockPanelGeneratorType">
+            <summary>
+            Implements DockPanel control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.PanelGeneratorType">
+            <summary>
+            Implements Panel control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ElementGeneratorType">
+            <summary>
+            Implements UI Element generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ElementGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">The dependency object</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ElementGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ElementGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ElementGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.PanelGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">The dependency object</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.PanelGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.PanelGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.DockPanelGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified initialize method.
+            </summary>
+            <param name="source">The dependency object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.DockPanelGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.CanvasGeneratorType">
+            <summary>
+            Implements Canvas control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.CanvasGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified initialize method.
+            </summary>
+            <param name="source">The dependency object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.CanvasGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.HeaderedItemsControlGeneratorType">
+            <summary>
+            Implements Headered Items Control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ItemsControlGeneratorType">
+            <summary>
+            Implements Items Control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ControlGeneratorType">
+            <summary>
+            Implements Control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ItemsControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ItemsControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.HeaderedItemsControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.HeaderedItemsControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.TreeViewGeneratorType">
+            <summary>
+            Implements Tree View control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.TreeViewGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.TreeViewGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.TreeViewItemGeneratorType">
+            <summary>
+            Implements Tree View Item generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.TreeViewItemGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.TreeViewItemGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.WrapPanelGeneratorType">
+            <summary>
+            Implements generator for WrapPanel control
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.WrapPanelGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified initialize method.
+            </summary>
+            <param name="source">The dependency object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.WrapPanelGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.CustomUserControlGeneratorType">
+            <summary>
+            Implements fake generator for custom User Controls (in data templates for MVVM support)
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ContentControlGeneratorType">
+            <summary>
+            Implements Content Control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ContentControlGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">source</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ContentControlGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ContentControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ContentControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.CustomUserControlGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">source</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.CustomUserControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.AnimatedImageGeneratorType">
+            <summary>
+            Implements Image control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ImageGeneratorType">
+            <summary>
+            Implements Image control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ImageGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ImageGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.AnimatedImageGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.AnimatedImageGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.NumericTextBoxGeneratorType">
+            <summary>
+            Implements type generator for Numeric Text Box control
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.TextBoxGeneratorType">
+            <summary>
+            Implements Text Box control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.TextBoxBaseGeneratorType">
+            <summary>
+            Implements Text Box base generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.TextBoxBaseGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.TextBoxBaseGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.TextBoxGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.TextBoxGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.NumericTextBoxGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.NumericTextBoxGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.PasswordBoxGeneratorType">
+            <summary>
+            Implements Password Box control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.PasswordBoxGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.PasswordBoxGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Shapes.LineGeneratorType">
+            <summary>
+            Implements Type Generator for Line shape
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Shapes.ShapeGeneratorType">
+            <summary>
+            Implements Shape type generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Shapes.ShapeGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Shapes.ShapeGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Shapes.LineGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Shapes.LineGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Shapes.PathGeneratorType">
+            <summary>
+            Implements Path shape type generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Shapes.PathGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Shapes.PathGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Shapes.EllipseGeneratorType">
+            <summary>
+            Implements Ellipse shape type generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Shapes.EllipseGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Shapes.EllipseGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Shapes.RectangleGeneratorType">
+            <summary>
+            Implements Rectangle shape type generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Shapes.RectangleGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Shapes.RectangleGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.SliderGeneratorType">
+            <summary>
+            Implements Slider UI Generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.RangeBaseGeneratorType">
+            <summary>
+            Implements Range Base generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.RangeBaseGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.RangeBaseGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.SliderGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.SliderGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ThumbGeneratorType">
+            <summary>
+            Implements UI generator for Thumb WPF control
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ThumbGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ThumbGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.TrackGeneratorType">
+            <summary>
+            Implements UI Generator for Track WPF control
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.TrackGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.TrackGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.UserControlGeneratorType">
+            <summary>
+            Implements User Control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.UserControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.UserControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.UserInterfaceGenerator">
+            <summary>
+            Implements main code for UI generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.UserInterfaceGenerator.GenerateCode(System.String,System.String,EmptyKeys.UserInterface.Generator.RenderMode,System.String)">
+            <summary>
+            Generates the code.
+            </summary>
+            <param name="inputFileName">Name of the input file.</param>
+            <param name="inputFileContent">Content of the input file.</param>
+            <param name="renderMode">The render mode.</param>
+            <param name="desiredNamespace">The desired namespace.</param>
+            <returns></returns>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.BorderGeneratorType">
+            <summary>
+            Implements Border generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.BorderGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">The source.</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.BorderGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.BorderGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.BorderGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ButtonGeneratorType">
+            <summary>
+            Implements Button control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ButtonGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ButtonGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.CheckBoxGeneratorType">
+            <summary>
+            Implements Check Box control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ToggleButtonGeneratorType">
+            <summary>
+            Implements Toggle Button control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ToggleButtonGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ToggleButtonGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.CheckBoxGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ComboBoxGeneratorType">
+            <summary>
+            Implements Combo Box control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.SelectorGeneratorType">
+            <summary>
+            Implements Selector control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.SelectorGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.SelectorGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ComboBoxGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ComboBoxGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ComboBoxItemGeneratorType">
+            <summary>
+            Implements Combo Box Item control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ListBoxItemGeneratorType">
+            <summary>
+            Implements List Box Item control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ListBoxItemGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ListBoxItemGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ComboBoxItemGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ComboBoxItemGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ContentPresenterGeneratorType">
+            <summary>
+            Implements Content Presenter control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ContentPresenterGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">source</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ContentPresenterGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ContentPresenterGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ContentPresenterGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.DataGridGeneratorType">
+            <summary>
+            Implements Data Grid generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.DataGridGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.DataGridGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ExpanderGeneratorType">
+            <summary>
+            Implements Expander control generator
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.HeaderedContentControlGeneratorType">
+            <summary>
+            Implements Headered Content Control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.HeaderedContentControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.HeaderedContentControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ExpanderGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ExpanderGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.GridGeneratorType">
+            <summary>
+            Implements Grid control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.GridGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.GridGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ListBoxGeneratorType">
+            <summary>
+            Implements List Box control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ListBoxGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ListBoxGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ProgressBarGeneratorType">
+            <summary>
+            Implements Progress Bar control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ProgressBarGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ProgressBarGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.RepeatButtonGeneratorType">
+            <summary>
+            Implements Repeat Button control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.RepeatButtonGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.RepeatButtonGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ScrollBarGeneratorType">
+            <summary>
+            Implements Scroll Bar control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ScrollBarGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ScrollBarGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ScrollContentPresenterGeneratorType">
+            <summary>
+            Implements Scroll Content Presenter generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ScrollContentPresenterGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ScrollContentPresenterGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.ScrollViewerGeneratorType">
+            <summary>
+            Implements Scroll Viewer control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.ScrollViewerGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.ScrollViewerGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.StackPanelGeneratorType">
+            <summary>
+            Implements Stack Panel control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.StackPanelGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified initialize method.
+            </summary>
+            <param name="source">The dependency object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.StackPanelGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.TabControlGeneratorType">
+            <summary>
+            Implements Tab Control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.TabControlGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.TabControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.TabItemGeneratorType">
+            <summary>
+            Implements Tab Item control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.TabItemGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The dependence object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField"></param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.TabItemGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.TextBlockGeneratorType">
+            <summary>
+            Implements Text Block control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.TextBlockGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates code
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.TextBlockGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.UIRootGeneratorType">
+            <summary>
+            Implements UI Root control generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.UIRootGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates control fields
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.UIRootGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.ValueGenerator">
+            <summary>
+            Implements generator for value types (values in resource dictionary, values for setters/triggers)
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ValueGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:EmptyKeys.UserInterface.Generator.ValueGenerator"/> class.
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ValueGenerator.ProcessGenerators(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Processes the generators.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.ValueGenerator.Generators">
+            <summary>
+            Gets the generators.
+            </summary>
+            <value>
+            The generators.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.BitmapImageGeneratorValue">
+            <summary>
+            Implements generator for Bitmap Image
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.BitmapImageGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.BitmapImageGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.BrushGeneratorValue`1">
+            <summary>
+            Implements generator for all brushes
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.BrushGeneratorValue`1.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates the specified parent class.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.BrushGeneratorValue`1.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.ColorGeneratorValue">
+            <summary>
+            Implements value generator for Color type
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.ColorGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.ColorGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.DoubleAnimationGeneratorValue">
+            <summary>
+            Implements value generator for DoubleAnimation type
+            </summary>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.TimelineGeneratorValue">
+            <summary>
+            Implements value generator for Timeline animation type
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.TimelineGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.TimelineGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.DoubleAnimationGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.DoubleAnimationGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.EllipseGeometryGeneratorValue">
+            <summary>
+            Implements Ellipse Geometry value generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.EllipseGeometryGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.EllipseGeometryGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.FontFamilyGeneratorValue">
+            <summary>
+            Implements generator for Font Family value
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.FontFamilyGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.FontFamilyGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.LineGeometryGeneratorValue">
+            <summary>
+            Implements value generator for Line Geometry
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.LineGeometryGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.LineGeometryGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.RectangleGeometryGeneratorValue">
+            <summary>
+            Implements Rectangle Geometry value generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.RectangleGeometryGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.RectangleGeometryGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.SolidColorBrushAnimGeneratorValue">
+            <summary>
+            Implements generator for SolidColorBrushAnimation
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.SolidColorBrushAnimGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.SolidColorBrushAnimGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.ThicknessAnimationGeneratorValue">
+            <summary>
+            Implements generator for ThicknessAnimation
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.ThicknessAnimationGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.ThicknessAnimationGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.ThicknessGeneratorValue">
+            <summary>
+            Implements generator for Thickness value
+            </summary>    
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.ThicknessGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.ThicknessGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.SoundSourceGeneratorValue">
+            <summary>
+            Implements generator for Sound Source Collection value
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.SoundSourceGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.SoundSourceGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.StyleGeneratorValue">
+            <summary>
+            Implements generator for Style
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.StyleGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.StyleGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.ControlTemplateGeneratorValue">
+            <summary>
+            Implements generator for Control Template
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.ControlTemplateGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.ControlTemplateGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.DataTemplateGeneratorValue">
+            <summary>
+            Implements generator for Data Template
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.DataTemplateGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.DataTemplateGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.ItemsPanelTemplateGeneratorValue">
+            <summary>
+            Implements generator for Items Panel Template
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.ItemsPanelTemplateGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.ItemsPanelTemplateGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.PrimitiveGeneratorValue`1">
+            <summary>
+            Implements generator for all primitive types
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.PrimitiveGeneratorValue`1.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates code for value
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.PrimitiveGeneratorValue`1.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Values.ResourceExtGeneratorValue">
+            <summary>
+            Implements generator for DynamicResourceExtension
+            </summary>    
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Values.ResourceExtGeneratorValue.Generate(System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Object,System.String,System.Windows.ResourceDictionary)">
+            <summary>
+            Generates the specified parent class.
+            </summary>
+            <param name="parentClass">The parent class.</param>
+            <param name="method">The method.</param>
+            <param name="value">The value.</param>
+            <param name="baseName">Name of the base.</param>
+            <param name="dictionary">The dictionary.</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Values.ResourceExtGeneratorValue.ValueType">
+            <summary>
+            Gets the type of the value.
+            </summary>
+            <value>
+            The type of the value.
+            </value>
+        </member>
+    </members>
+</doc>

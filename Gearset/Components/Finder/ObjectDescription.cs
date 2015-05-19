@@ -1,30 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections;
+﻿using System.Collections.Generic;
 
 namespace Gearset
 {
-    public delegate FinderResult SearchFunction(String queryString);
+    public delegate FinderResult SearchFunction(string queryString);
 
     public class ObjectDescription
     {
-        public String Name { get { return name == null ? Object.ToString() : name; } }
-        private String name;
-        public Object Object { get; set; }
-        public String Description { get; set; }
+        public string Name { get { return _name ?? Object.ToString(); } }
+        private readonly string _name;
+        public object Object { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
-        /// Creates an ObjectDescription. The name field will be taken out
-        /// of the object's ToString() method.
+        /// Creates an ObjectDescription. The name field will be taken out of the object's ToString() method.
         /// </summary>
         /// <param name="o">The matching object.</param>
         /// <param name="description">A string describing the object.</param>
-        public ObjectDescription(Object o, String description)
+        public ObjectDescription(object o, string description)
         {
-            this.Object = o;
-            this.Description = description;
+            Object = o;
+            Description = description;
         }
 
         /// <summary>
@@ -32,17 +27,17 @@ namespace Gearset
         /// </summary>
         /// <param name="o">The matching object.</param>
         /// <param name="description">A string describing the object.</param>
-        /// <param name="name">The name to use instead of the object's ToString. Pass null to use the Object's ToString.</param>
-        public ObjectDescription(Object o, String description, String name)
+        /// <param name="name">The name to use instead of the object's ToString. Pass null to use the object's ToString.</param>
+        public ObjectDescription(object o, string description, string name)
         {
-            this.name = name;
-            this.Object = o;
-            this.Description = description;
+            _name = name;
+            Object = o;
+            Description = description;
         }
 
         public override string ToString()
         {
-            return Object.ToString() + " (" + Description + ")";
+            return Object + " (" + Description + ")";
         }
     }
 

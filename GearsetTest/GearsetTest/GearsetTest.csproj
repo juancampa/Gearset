@@ -120,14 +120,6 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Dronengine\Dronengine\Windows - Dronengine.csproj">
-      <Project>{2D2DD0C9-9323-4598-84FC-552EB3557593}</Project>
-      <Name>Windows - Dronengine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Dronengine\Pipeline - SharedTypes\Pipeline - Dronengine Shared Types.csproj">
-      <Project>{529C0D59-0B7E-4DF6-8114-5D0003EB6129}</Project>
-      <Name>Pipeline - Dronengine Shared Types</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Gearset\Windows - Gearset.csproj">
       <Project>{972591D9-EC31-44F2-B860-A060F4A7D9C5}</Project>
       <Name>Windows - Gearset</Name>

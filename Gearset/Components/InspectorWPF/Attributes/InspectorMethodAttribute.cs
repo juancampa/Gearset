@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Gearset
 {
@@ -20,9 +17,5 @@ namespace Gearset
         /// The tooltip to show in Gearset's inspector window.
         /// </summary>
         public string Tooltip { get; set; }
-
-        public InspectorMethodAttribute()
-        {
-        }
     }
 }

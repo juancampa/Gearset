@@ -1,0 +1,53 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:designer="clr-namespace:EmptyKeys.UserInterface.Designer;assembly=EmptyKeys.UserInterface.Designer"
+    xmlns:gearsetModel="clr-namespace:EmptyKeys.GearsetModel;assembly=EmptyKeys.GearsetModel">
+    
+    <Color x:Key="highlightColor">#8ac631</Color>
+    <Color x:Key="alertColor">#bb4444</Color>
+    <Color x:Key="highlightTextColor">#111</Color>
+    <Color x:Key="normalColor">#404040</Color>
+    <Color x:Key="normalTextColor">#ddd</Color>
+    <Color x:Key="normalTextMouseOverColor">#fff</Color>
+    <Color x:Key="borderColor">#555</Color>
+    <Color x:Key="backgroundColor">#0000</Color>
+    <Color x:Key="hyperlinkColor">#59f</Color>
+    <Color x:Key="subtleColor">#777</Color>
+    <Color x:Key="translucidColor">#a777</Color>
+    <Color x:Key="textSelectionColor">#777</Color>
+    <Color x:Key="textSelectionHighlightColor">#444</Color>
+
+    <!--This are the brushes that must be referenced by controls-->
+    <SolidColorBrush x:Key="highlight1" Color="{StaticResource highlightColor}"/>
+    <SolidColorBrush x:Key="alert1" Color="{StaticResource alertColor}"/>
+    <SolidColorBrush x:Key="highlightText1" Color="{StaticResource highlightTextColor}"/>
+    <SolidColorBrush x:Key="normal1" Color="{StaticResource normalColor}"/>
+    <SolidColorBrush x:Key="normalText1" Color="{StaticResource normalTextColor}"/>
+    <SolidColorBrush x:Key="normalTextMouseOver1" Color="{StaticResource normalTextMouseOverColor}"/>
+    <SolidColorBrush x:Key="subtle1" Color="{StaticResource subtleColor}"/>
+    <SolidColorBrush x:Key="border1" Color="{StaticResource borderColor}"/>
+    <SolidColorBrush x:Key="background1" Color="{StaticResource backgroundColor}"/>
+    <SolidColorBrush x:Key="hyperlink1" Color="{StaticResource hyperlinkColor}"/>
+    <SolidColorBrush x:Key="translucid1" Color="{StaticResource translucidColor}"/>
+    <SolidColorBrush x:Key="textSelection1" Color="{StaticResource textSelectionColor}"/>
+    <SolidColorBrush x:Key="textSelectionHighlight1" Color="{StaticResource textSelectionHighlightColor}"/>
+
+    <SolidColorBrush x:Key="caretBrush" Color="{StaticResource normalTextColor}"/>
+
+    <DataTemplate DataType="{x:Type gearsetModel:TreeNode}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="{Binding Name}" Margin="2" />
+        </Grid>
+    </DataTemplate>
+    
+    <designer:SoundSourceCollection x:Key="Sounds">
+        <designer:SoundSource SoundType="ButtonsClick" SoundAsset="Click" />
+        <designer:SoundSource SoundType="TextBoxKeyPress" SoundAsset="KeyPress" />
+        <designer:SoundSource SoundType="TabControlMove" SoundAsset="Move" />
+        <designer:SoundSource SoundType="TabControlSelect" SoundAsset="Select" />
+    </designer:SoundSourceCollection>
+</ResourceDictionary>

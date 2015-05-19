@@ -68,7 +68,7 @@ namespace Gearset.Components.Persistor
         /// <param name="SettingsName"></param>
         public void Save(String SettingsName)
         {
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             CurrentSettingsName = SettingsName;
             //try
             //{

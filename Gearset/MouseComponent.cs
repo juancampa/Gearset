@@ -117,15 +117,15 @@ namespace Gearset.Components
 
             // Keep the mouse inside
             if (KeepMouseInWindow)
-            {
-                Rectangle rect = Game.Window.ClientBounds; // Rectangle to clip (in screen coordinates)
-#if WINDOWS
+            {       
+#if WINDOWS 
+				Rectangle rect = Game.Window.ClientBounds; // Rectangle to clip (in screen coordinates)
                 System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(rect.X, rect.Y, rect.Width, rect.Height);
 #endif
             }
             else
             {
-#if WINDOWS
+#if WINDOWS 
                 System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(int.MinValue / 2, int.MinValue / 2, int.MaxValue, int.MaxValue);
 #endif
             }
