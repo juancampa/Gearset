@@ -68,6 +68,7 @@
             <ToggleButton VerticalAlignment="Top" Height="16" IsThreeState="False" IsChecked="{Binding FinderConfig.Visible}">Finder</ToggleButton>
             <ToggleButton VerticalAlignment="Top" Height="16" IsThreeState="False" IsChecked="{Binding LoggerConfig.Visible}">Logger</ToggleButton>
             <ToggleButton VerticalAlignment="Top" Height="16" IsThreeState="False" IsChecked="{Binding BenderConfig.Visible}">Bender</ToggleButton>
+            <ToggleButton VerticalAlignment="Top" Height="16" IsThreeState="False" IsChecked="{Binding ProfilerConfig.Visible}">Profiler</ToggleButton>
             <ListView VerticalAlignment="Top" Height="16" Name="buttonList" Background="Transparent" Margin="0" Padding="0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
