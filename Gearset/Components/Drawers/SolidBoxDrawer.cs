@@ -100,12 +100,12 @@ namespace Gearset.Components
             {
                 GearsetResources.Effect2D.Texture = noiseTexture;
                 GearsetResources.Effect2D.TextureEnabled = true;
-                GearsetResources.Effect2D.Techniques[0].Passes[0].Apply();
+                GearsetResources.Effect2D.CurrentTechnique.Passes[0].Apply();
                 GearsetResources.Game.GraphicsDevice.SamplerStates[0] = wrapSamplerState;
                 GearsetResources.Device.DrawUserPrimitives<VertexPositionColorTexture>(PrimitiveType.TriangleList, Vertices, 0, boxCount * 2);
                 GearsetResources.Effect2D.Texture = null;
                 GearsetResources.Effect2D.TextureEnabled = false;
-                GearsetResources.Effect2D.Techniques[0].Passes[0].Apply();
+                GearsetResources.Effect2D.CurrentTechnique.Passes[0].Apply();
 
                 boxCount = 0;
             }

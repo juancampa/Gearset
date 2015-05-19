@@ -60,17 +60,17 @@ namespace Gearset.Components.Profiler
                 _skipFrames = value;
                 if (SkipFramesChanged != null)
                     SkipFramesChanged(this, EventArgs.Empty);
-                
-                #if WINDOWS
+
+                #if WINDOWS || LINUX || MONOMAC
                     if (SkipFramesChanged != null)
-                        SkipFramesChanged(this, new PropertyChangedEventArgs("SkipFrames"));
+                            SkipFramesChanged(this, new PropertyChangedEventArgs("SkipFrames"));
                 #endif
             }
         }
 
         internal event EventHandler SkipFramesChanged;
 
-        internal PerformanceGraph(Profiler profiler, ProfilerConfig.UIViewConfig uiviewConfig, Vector2 size) : base(profiler, uiviewConfig, size)
+        internal PerformanceGraph(ProfilerManager profiler, ProfilerConfig.UIViewConfig uiviewConfig, Vector2 size) : base(profiler, uiviewConfig, size)
         {
             for (var i = 0; i < MaxFrames; i++)
                 _frames.Enqueue(new Frame());
@@ -78,12 +78,12 @@ namespace Gearset.Components.Profiler
             DisplayedFrameCount = MaxFrames;
         }
 
-        internal void Draw(InternalLabeler labeler, Profiler.FrameLog frameLog)
+        internal void Draw(InternalLabeler labeler, ProfilerManager.FrameLog frameLog)
         {
             if (GearsetResources.CurrentRenderPass != RenderPass.BasicEffectPass)
                 return;
 
-            if (Visible == false || Config.PerformanceGraphConfig.VisibleLevelsFlags == 0)
+            if (frameLog == null || Visible == false || Config.PerformanceGraphConfig.VisibleLevelsFlags == 0)
             {
                 labeler.HideLabel("__performanceGraph");
                 return;
@@ -152,7 +152,7 @@ namespace Gearset.Components.Profiler
 
                 foreach (var timeInfo in frame.TimingInfos)
                 {
-                    if (Levels[timeInfo.Level].Enabled == false)
+                    if (IsVisibleLevelsFlagSet(timeInfo.Level) == false)
                         continue;
 
                     var durationMilliseconds = timeInfo.EndMilliseconds - timeInfo.StartMilliseconds;

@@ -91,7 +91,7 @@ namespace Gearset.Components
 
         public DataSamplerConfig Config { get { return GearsetSettings.Instance.DataSamplerConfig; } }
 
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
         public ObservableCollection<DataSampler> observableSamplers;
         public ReadOnlyObservableCollection<DataSampler> Samplers { get; private set; }
 #else
@@ -102,7 +102,7 @@ namespace Gearset.Components
             : base(GearsetSettings.Instance.DataSamplerConfig)
         {
             samplers = new Dictionary<string, DataSampler>();
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             observableSamplers = new ObservableCollection<DataSampler>();
             Samplers = new ReadOnlyObservableCollection<DataSampler>(observableSamplers);
 #else

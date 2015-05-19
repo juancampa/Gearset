@@ -7,7 +7,7 @@ using Gearset;
 using System.ComponentModel;
 using Gearset.Components;
 using System.IO;
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.AccessControl;
 #endif
@@ -39,7 +39,6 @@ namespace Gearset
         }
         private float saveFrequency;
 
-#if WINDOWS
         [Inspector(FriendlyName = "Inspector", HideCantWriteIcon = true)]
         public InspectorConfig InspectorConfig { get; internal set; }
 
@@ -51,7 +50,6 @@ namespace Gearset
 
         [Inspector(FriendlyName = "Bender", HideCantWriteIcon = true)]
         public BenderConfig BenderConfig { get; set; }
-#endif
 
         [Inspector(FriendlyName = "Profiler", HideCantWriteIcon = true)]
         public ProfilerConfig ProfilerConfig { get; internal set; }
@@ -83,9 +81,8 @@ namespace Gearset
         {
             Enabled = true;
             ShowOverlays = true;
-#if WINDOWS
-            InspectorConfig = new Components.InspectorConfig();
-            LoggerConfig = new Components.LoggerConfig();
+#if WINDOWS || LINUX || MONOMAC
+            InspectorConfig = new Components.InspectorConfig();          
 #endif
             ProfilerConfig = new ProfilerConfig();
             DataSamplerConfig = new Components.DataSamplerConfig();
@@ -94,9 +91,8 @@ namespace Gearset
             LabelerConfig= new Components.LabelerConfig();
             LineDrawerConfig = new Components.LineDrawerConfig();
             AlerterConfig = new Components.AlerterConfig();
-#if WINDOWS
+            LoggerConfig = new Components.LoggerConfig();
             FinderConfig = new Components.FinderConfig();
-#endif
 
             // IMPORTANT:
             // NEW CONFIG INSTANCES SHOULD BE ADDED IN THE LOAD METHOD BELOW.
@@ -120,12 +116,17 @@ namespace Gearset
         /// </summary>
         internal static void Save()
         {
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             try
             {
                 using (MemoryStream memFile = new MemoryStream())
                 {
-                    BinaryFormatter formatter = new BinaryFormatter();
+                    #if MONOGAME
+                        var formatter = new BinarySerializer();
+                    #else
+                        var formatter = new BinaryFormatter();
+                    #endif
+
                     formatter.Serialize(memFile, Instance);
 
                     // If the file serialized correctly to the memfile, dump it to an actual file.
@@ -147,15 +148,20 @@ namespace Gearset
         /// </summary>
         internal static void Load()
         {
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             try
             {
                 if (File.Exists("gearset.conf"))
                 {
                     using (FileStream file = new FileStream("gearset.conf", FileMode.Open))
                     {
-                        BinaryFormatter formatter = new BinaryFormatter();
-                        Instance = formatter.Deserialize(file) as GearsetSettings;
+                        #if MONOGAME
+                            var formatter = new BinarySerializer();
+                            Instance = formatter.Deserialize<GearsetSettings>(file) as GearsetSettings;
+                        #else
+                            var formatter = new BinaryFormatter();
+                            Instance = formatter.Deserialize(file) as GearsetSettings;
+                        #endif
                     }
                 }
                 else
@@ -177,7 +183,6 @@ namespace Gearset
 
         private static void InitializeSettingsIntroducedAfterV1()
         {
-#if WINDOWS
             // Here we should check Configs added after 1st release to permit backward
             // compatibility with old gearset.conf files.
             if (Instance.FinderConfig == null)
@@ -188,7 +193,6 @@ namespace Gearset
 
             if (Instance.BenderConfig == null)
                 Instance.BenderConfig = new BenderConfig();
-#endif
 
             if (Instance.PlotterConfig.HiddenPlots == null)
                 Instance.PlotterConfig.HiddenPlots = new List<string>();

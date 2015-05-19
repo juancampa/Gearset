@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{556DEE67-1170-4F93-88DE-2175C97FCF3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EmptyKeys.GearsetUI</RootNamespace>
+    <AssemblyName>EmptyKeys.GearsetUI</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Profile49</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="InspectorWindow.cs" />
+    <Compile Include="FinderWindow.cs" />
+    <Compile Include="GeneratedUI\FinderWindow.xaml.cs" />
+    <Compile Include="GeneratedUI\InspectorWindow.xaml.cs" />
+    <Compile Include="GearsetUI.cs" />
+    <Compile Include="GeneratedUI\GearsetUI.xaml.cs" />
+    <Compile Include="GeneratedUI\LoggerWindow.xaml.cs" />
+    <Compile Include="GeneratedUI\ProfilerWindow.xaml.cs" />
+    <Compile Include="GeneratedUI\WidgetWindow.xaml.cs" />
+    <Compile Include="LoggerWindow.cs" />
+    <Compile Include="GeneratedUI\CommonStyle.xaml.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\EmptyKeys.GearsetModel\EmptyKeys.GearsetModel.Xamarin.csproj">
+      <Project>{5E94B177-0B26-42B6-9D6D-828930C49C5F}</Project>
+      <Name>EmptyKeys.GearsetModel.Xamarin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EmptyKeys.UserInterface.Core">
+      <HintPath>..\Common\AnyCPU\EmptyKeys.UserInterface.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EmptyKeys.UserInterface">
+      <HintPath>..\Common\AnyCPU\EmptyKeys.UserInterface.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

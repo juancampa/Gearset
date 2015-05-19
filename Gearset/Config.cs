@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Xml.Serialization;
 
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Principal;
 #endif
@@ -76,7 +76,7 @@ namespace Gearset
         /// </summary>
         internal void Save()
         {
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             try
             {
                 using (FileStream file = new FileStream("gearset.config", FileMode.Create))
@@ -97,7 +97,7 @@ namespace Gearset
         /// </summary>
         internal void Load()
         {
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             try
             {
                 if (File.Exists("gearset.config"))
