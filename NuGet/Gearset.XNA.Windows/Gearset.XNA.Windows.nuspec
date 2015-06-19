@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Gearset.XNA.Windows</id>
+    <version>3.0.0</version>
+    <authors>Paul.Cunningham</authors>
+    <owners>Paul.Cunningham</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Gearset is an open source debugging toolkit for MonoGame and XNA based games.</description>
+    <releaseNotes>Initial package.</releaseNotes>
+    <copyright>Copyright 2015</copyright>
+		<iconUrl>https://www.nuget.org/packages/MonoGame.Framework.WindowsDX/</iconUrl>
+    <tags>MonoGame XNA</tags>
+    <dependencies>
+      <!--<dependency id="SampleDependency" version="1.0" />-->
+    </dependencies>
+  </metadata>
+</package>

@@ -10,7 +10,6 @@ namespace Gearset.Components.Profiler
         private const int MaxBoxes = 6000;
         private readonly VertexPositionColor[] Vertices;
         private int boxCount;
-        public Texture2D noiseTexture;
 
         public TempBoxDrawer() : base (new GearConfig())
         {

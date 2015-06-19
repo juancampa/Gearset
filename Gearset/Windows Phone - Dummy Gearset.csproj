@@ -97,6 +97,10 @@
     <Compile Include="Components\InspectorWPF\Attributes\InspectorIgnoreAttribute.cs" />
     <Compile Include="Components\InspectorWPF\Attributes\InspectorMethodAttribute.cs" />
     <Compile Include="Components\Profiler\ProfilerManager.cs" />
+    <Compile Include="GameWindowMonitor.cs" />
+    <Compile Include="GameWindowMonitor.Designer.cs">
+      <DependentUpon>GameWindowMonitor.cs</DependentUpon>
+    </Compile>
     <Compile Include="GearConsole %28Dummy%29.cs" />
     <Compile Include="GearsetComponent.cs" />
     <Compile Include="GearsetComponentBase.cs" />
@@ -463,6 +467,11 @@
     <Content Include="UserInterface\Wpf\Common\icon_title.png" />
     <Content Include="UserInterface\Wpf\Widget\icon.png" />
     <Content Include="UserInterface\Wpf\Widget\icon_over.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="GameWindowMonitor.resx">
+      <DependentUpon>GameWindowMonitor.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />

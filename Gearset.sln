@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleGame..XNA.Windows", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmptyKeys.GearsetModel", "EmptyKeysUI\EmptyKeys.GearsetModel\EmptyKeys.GearsetModel.csproj", "{5E94B177-0B26-42B6-9D6D-828930C49C5F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EmptyKeysUI", "EmptyKeysUI", "{BAFF54DA-5F33-4270-8572-CD43AD1E1E52}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -140,7 +142,6 @@ Global
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.MinimalLoad|Xbox 360.Build.0 = FastDeployGame|Windows Phone
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.Release|Any CPU.ActiveCfg = Release|Windows Phone
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.Release|Mixed Platforms.ActiveCfg = Release|Windows Phone
-		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.Release|Mixed Platforms.Build.0 = Release|Windows Phone
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.Release|Windows Phone.Build.0 = Release|Windows Phone
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16}.Release|x86.ActiveCfg = Release|Windows Phone
@@ -174,7 +175,6 @@ Global
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.MinimalLoad|Xbox 360.Build.0 = Release|Xbox 360
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.Release|Any CPU.ActiveCfg = Release|Xbox 360
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.Release|Mixed Platforms.ActiveCfg = Release|Xbox 360
-		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.Release|Mixed Platforms.Build.0 = Release|Xbox 360
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.Release|Windows Phone.ActiveCfg = Release|Xbox 360
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.Release|Windows Phone.Build.0 = Release|Xbox 360
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D}.Release|x86.ActiveCfg = Release|Xbox 360
@@ -203,7 +203,6 @@ Global
 		{451DE2D6-2961-40C7-870D-794CE846F5A3}.MinimalLoad|Xbox 360.ActiveCfg = Release|x86
 		{451DE2D6-2961-40C7-870D-794CE846F5A3}.Release|Any CPU.ActiveCfg = Release|x86
 		{451DE2D6-2961-40C7-870D-794CE846F5A3}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{451DE2D6-2961-40C7-870D-794CE846F5A3}.Release|Mixed Platforms.Build.0 = Release|x86
 		{451DE2D6-2961-40C7-870D-794CE846F5A3}.Release|Windows Phone.ActiveCfg = Release|x86
 		{451DE2D6-2961-40C7-870D-794CE846F5A3}.Release|x86.ActiveCfg = Release|x86
 		{451DE2D6-2961-40C7-870D-794CE846F5A3}.Release|x86.Build.0 = Release|x86
@@ -452,5 +451,8 @@ Global
 		{0E5787C6-AEF0-4E28-859D-4CDE1EC0106D} = {A5D6AB53-AFEB-4F10-A063-327E0D7F1C31}
 		{BBEBBFB9-9E08-437B-967B-5308D7059E16} = {A5D6AB53-AFEB-4F10-A063-327E0D7F1C31}
 		{451DE2D6-2961-40C7-870D-794CE846F5A3} = {7DB833C5-334F-42A4-B902-C8124ACFC8BB}
+		{E66E4C19-43B7-42AC-BF64-98C3A6D2C4D1} = {BAFF54DA-5F33-4270-8572-CD43AD1E1E52}
+		{556DEE67-1170-4F93-88DE-2175C97FCF3C} = {BAFF54DA-5F33-4270-8572-CD43AD1E1E52}
+		{5E94B177-0B26-42B6-9D6D-828930C49C5F} = {BAFF54DA-5F33-4270-8572-CD43AD1E1E52}
 	EndGlobalSection
 EndGlobal
