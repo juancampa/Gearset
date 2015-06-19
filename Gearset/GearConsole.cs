@@ -406,17 +406,20 @@ namespace Gearset
             GearsetResources.FontTiny = GearsetResources.Content.Load<SpriteFont>("Tiny");
             GearsetResources.FontAlert = GearsetResources.Content.Load<SpriteFont>("Alert");
 
-            #if MONOGAME && WINDOWS
-				GearsetResources.GameWindow = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(game.Window.Handle);
+            #if WINDOWS && !EMPTYKEYS
+                GearsetResources.GameWindow = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(game.Window.Handle);
 
-                if (GearsetResources.GameWindow == null)
-                {
-                    GearsetResources.GameWindow = new GameWindowMonitor(game);
-                    GearsetResources.GameWindow.Show();
-                    GearsetResources.GameWindow.TopMost = true;
-                    GearsetResources.GameWindow.TopMost = false;
-                }
+                #if MONOGAME
+                    if (GearsetResources.GameWindow == null)
+                    {
+                        GearsetResources.GameWindow = new GameWindowMonitor(game);
+                        GearsetResources.GameWindow.Show();
+                        GearsetResources.GameWindow.TopMost = true;
+                        GearsetResources.GameWindow.TopMost = false;
+                    }
+                #endif
             #endif
+
             GearsetResources.Mouse = new MouseComponent();
 
             // Add the game assembly to the compiler references.
