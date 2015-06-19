@@ -1,88 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Gearset.UserInterface;
 using Microsoft.Xna.Framework;
-using System.Windows.Controls;
-using Gearset.Components.InspectorWPF;
-using System.Windows;
-using System.Windows.Media;
-using System.Collections.ObjectModel;
 
-namespace Gearset.Components
+namespace Gearset.Components.Widget
 {
-    internal class ActionItem
-    {
-        internal Action Action;
-        internal String Name;
-        public override string ToString()
-        {
-            return Name;
-        }
-    }
-
     public class Widget : Gear
     {
-        private ObservableCollection<ActionItem> buttonActions;
-        internal WidgetWindow Window { get; private set; }
-        private int initialPositionSetDelay = 3;
+        readonly IUserInterface _userInterface;
+    
+        private int _initialPositionSetDelay = 3;
 
-        public Widget()
+        public Widget(IUserInterface userInterface)
             : base(new GearConfig())
         {
-            Window = new WidgetWindow();
-            Window.DataContext = GearsetSettings.Instance;
-            GearsetResources.GameWindow.Move += new EventHandler(GameWindow_Move);
-            GearsetResources.GameWindow.GotFocus += new EventHandler(GameWindow_GotFocus);
-            GearsetResources.GameWindow.VisibleChanged += new EventHandler(GameWindow_VisibleChanged);
+            _userInterface = userInterface;
+            _userInterface.CreateWidget();
 
-            // Data bind to action buttons.
-            buttonActions = new ObservableCollection<ActionItem>();
-            Window.buttonList.ItemsSource = buttonActions;
+            //TODO: can this move to UserInterface
+            if (GearsetResources.GameWindow != null)
+            {
+                GearsetResources.GameWindow.Move += GameWindowMove;
+                GearsetResources.GameWindow.VisibleChanged += (sender, args) => _userInterface.WidgetVisible = GearsetResources.GameWindow.Visible;
+            }
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (initialPositionSetDelay > 0)
+            if (_initialPositionSetDelay > 0)
             {
-                initialPositionSetDelay--;
-                GameWindow_Move(this, null);
+                _initialPositionSetDelay--;
+                GameWindowMove(this, null);
             }
             base.Update(gameTime);
         }
 
-        void GameWindow_VisibleChanged(object sender, EventArgs e)
+        void GameWindowMove(object sender, EventArgs e)
         {
-            Window.Visibility = GearsetResources.GameWindow.Visible ? System.Windows.Visibility.Visible : System.Windows.Visibility.Hidden;
-        }
-
-        void GameWindow_GotFocus(object sender, EventArgs e)
-        {
-            Window.Topmost = true;
-            Window.Topmost = false;
-        }
-
-        void GameWindow_Move(object sender, EventArgs e)
-        {
-            System.Windows.Forms.Form form = GearsetResources.GameWindow;
-            Window.Top = form.Top - Window.Height;
-            Window.Left = GearsetResources.GameWindow.Left + 20;
+            //TODO: can this move to UserInterface
+			if (GearsetResources.GameWindow != null) 
+			{
+				_userInterface.MoveTo (GearsetResources.GameWindow.Left, GearsetResources.GameWindow.Top);
+			}
         }
 
         public void AddAction(string name, Action action)
         {
-            // Search for an action with that name.
-            for (int i = 0; i < buttonActions.Count; i++)
-            {
-                if (buttonActions[i].Name == name)
-                {
-                    buttonActions[i].Action = action;
-                    return;
-                }
-            }
-            // New action
-            if (name != null && action != null)
-                buttonActions.Add(new ActionItem() { Name = name, Action = action });
+            _userInterface.AddAction(name, action);
         }
     }
 }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace Gearset
 {
@@ -25,9 +22,5 @@ namespace Gearset
         /// Set to true if you don't want the "Can Write" icon to be shown.
         /// </summary>
         public bool HideCantWriteIcon { get; set; }
-
-        public InspectorAttribute()
-        {
-        }
     }
 }

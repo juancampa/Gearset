@@ -88,14 +88,160 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ComponentNamespace.cs" />
+    <Compile Include="Components\CachedTemplate.cs" />
     <Compile Include="Components\Common\ItemRemovedEventArgs.cs" />
     <Compile Include="Components\Finder\ObjectDescription.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorIgnoreAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorMethodAttribute.cs" />
+    <Compile Include="Components\Profiler\ProfilerManager.cs" />
     <Compile Include="GearConsole %28Dummy%29.cs" />
     <Compile Include="GearsetComponent.cs" />
     <Compile Include="GearsetComponentBase.cs" />
+    <Compile Include="Helpers\ReflectionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInterface\IUserInterface.cs" />
+    <Compile Include="UserInterface\LevelItemChangedEventArgs.cs" />
+    <Compile Include="UserInterface\StreamChangedEventArgs.cs" />
+    <Compile Include="UserInterface\UserInterface.cs" />
+    <Compile Include="UserInterface\Wpf\About\AboutViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\About\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\Bender\Commands\AddKeyCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\ChangeContinuityCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\ChangeTangentCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\ChangeTangentModeCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\CurveEditorCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\DeleteKeysCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\MoveKeysCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\ScaleKeysCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Commands\SelectKeysCommand.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveEditorControl2.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveEditorControlsViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveEditorWindow.xaml.cs">
+      <DependentUpon>CurveEditorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\Bender\CurveLoopTypeToBooleanConverter.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveTreeContainerStyleSelector.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveTreeLeaf.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveTreeNode.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveTreeTemplateSelector.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveTreeViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\CurveWrapperCollection.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\GridRuler.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\KeySelection.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\KeyWrapperCollection.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Wrappers\CurveWrapper.cs" />
+    <Compile Include="UserInterface\Wpf\Bender\Wrappers\KeyWrapper.cs" />
+    <Compile Include="UserInterface\Wpf\Common\EditableTextBlock.xaml.cs">
+      <DependentUpon>EditableTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\Common\NumericSpinner.xaml.cs">
+      <DependentUpon>NumericSpinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\Finder\FinderWindow.xaml.cs">
+      <DependentUpon>FinderWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\GridViewColumnResize.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorUI.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\ActionItem.xaml.cs">
+      <DependentUpon>ActionItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\BoolButton.xaml.cs">
+      <DependentUpon>BoolButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\CharSpinner.xaml.cs">
+      <DependentUpon>CharSpinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\ClearableGearConfigItem.xaml.cs">
+      <DependentUpon>ClearableGearConfigItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\CollectionMarkerItem.xaml.cs">
+      <DependentUpon>CollectionMarkerItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\ColorItem.xaml.cs">
+      <DependentUpon>ColorItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\CurveItem.xaml.cs">
+      <DependentUpon>CurveItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\EnumItem.xaml.cs">
+      <DependentUpon>EnumItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\GearConfigItem.xaml.cs">
+      <DependentUpon>GearConfigItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\GenericItem.xaml.cs">
+      <DependentUpon>GenericItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\GenericItemOnList.xaml.cs">
+      <DependentUpon>GenericItemOnList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\NumericItem.xaml.cs">
+      <DependentUpon>NumericItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\QuaternionSpinner.xaml.cs">
+      <DependentUpon>QuaternionSpinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\StringItem.xaml.cs">
+      <DependentUpon>StringItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\TextBox.xaml.cs">
+      <DependentUpon>TextBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\Texture2DItem.xaml.cs">
+      <DependentUpon>Texture2DItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\Texture2DItemOnList.xaml.cs">
+      <DependentUpon>Texture2DItemOnList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\Texture2DMarkerItem.xaml.cs">
+      <DependentUpon>Texture2DMarkerItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\Vector2Spinner.xaml.cs">
+      <DependentUpon>Vector2Spinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Controls\Vector3Spinner.xaml.cs">
+      <DependentUpon>Vector3Spinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\GenericMethodCaller.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Inspector.xaml.cs">
+      <DependentUpon>Inspector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\InspectorWPF\InspectorExtensionsMethods.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\InspectorNode.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\InspectorReflectionHelper.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Markers\CollectionMarker.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\Markers\Texture2DMarker.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\MethodCaller.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\MethodCallerTemplateSelector.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\MethodParamContainer.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\NegatedBoolToVisibilityConverter.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\NodeTemplateSelector.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\NoticeViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\NullToVisibilityConverter.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\TypeToSpinnerModeConverter.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\VisualItemBase.cs" />
+    <Compile Include="UserInterface\Wpf\InspectorWPF\VisualItemWrapper.xaml.cs">
+      <DependentUpon>VisualItemWrapper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\IWindow.cs" />
+    <Compile Include="UserInterface\Wpf\Logger\LoggerViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\Logger\LoggerWindow.xaml.cs">
+      <DependentUpon>LoggerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\Profiler\ProfilerViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\Profiler\ProfilerWindow.xaml.cs">
+      <DependentUpon>ProfilerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\Widget\WidgetViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\Widget\WidgetWindow.xaml.cs">
+      <DependentUpon>WidgetWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\WpfUserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -172,6 +318,151 @@
     <Reference Include="System.Xml.Linq">
       <Private>False</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="UserInterface\Wpf\About\AboutWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Bender\CurveEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Common\CommonStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Common\EditableTextBlock.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Common\NumericSpinner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Common\ScrollViewerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Finder\FinderWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\ActionItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\BoolButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\CharSpinner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\ClearableGearConfigItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\CollectionMarkerItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\ColorItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\CurveItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\EnumItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\GearConfigItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\GenericItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\GenericItemOnList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\NumericItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\QuaternionSpinner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\StringItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\TextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\Texture2DItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\Texture2DItemOnList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\Texture2DMarkerItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\Vector2Spinner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Controls\Vector3Spinner.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Inspector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\Resources\InspectorStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\InspectorWPF\VisualItemWrapper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Logger\LoggerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Profiler\ProfilerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\Widget\WidgetWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="UserInterface\Wpf\About\gearset.png" />
+    <Content Include="UserInterface\Wpf\Common\icon_close.png" />
+    <Content Include="UserInterface\Wpf\Common\icon_close_over.png" />
+    <Content Include="UserInterface\Wpf\Common\icon_maximize.png" />
+    <Content Include="UserInterface\Wpf\Common\icon_maximize_over.png" />
+    <Content Include="UserInterface\Wpf\Common\icon_plot.png" />
+    <Content Include="UserInterface\Wpf\Common\icon_title.png" />
+    <Content Include="UserInterface\Wpf\Widget\icon.png" />
+    <Content Include="UserInterface\Wpf\Widget\icon_over.png" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" Condition="" />

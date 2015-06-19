@@ -1,75 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Gearset.UserInterface;
 using Microsoft.Xna.Framework;
-using Gearset.Components.CurveEditorControl;
-using System.Windows;
 
-namespace Gearset.Components
+namespace Gearset.Components.Bender
 {
     class Bender : Gear
     {
-        private CurveTreeViewModel curveTreeViewModel;
+        readonly IUserInterface _userInterface;
 
-        public CurveEditorWindow Window { get; private set; }
-        public float SeekNeedlePosition { get { return (float)Window.horizontalRuler.NeedlePosition; } }
+        public float SeekNeedlePosition { get { return _userInterface.BenderHorizontalRulerNeedlePosition; } }
         public BenderConfig Config { get { return GearsetSettings.Instance.BenderConfig; } }
 
-        public Bender()
+        public Bender(IUserInterface userInterface)
             : base (GearsetSettings.Instance.BenderConfig)
         {
-            Window = new CurveEditorWindow();
-
-            if (Config.Visible)
-                Window.Show();
-            
-            curveTreeViewModel = new CurveTreeViewModel(Window.curveEditorControl);
-
-            Window.DataContext = Window.curveEditorControl.ControlsViewModel;
-            Window.curveTree.DataContext = curveTreeViewModel;
-            Window.Top = Config.Top;
-            Window.Left = Config.Left;
-            Window.Width = Config.Width;
-            Window.Height = Config.Height;
-            Window.IsVisibleChanged += new System.Windows.DependencyPropertyChangedEventHandler(Window_IsVisibleChanged);
-
-
-            //Curve c1 = new Curve();
-            //AddCurve("MyObject.X", c1);
-            //c1 = new Curve();
-            //AddCurve("MyObject.Y", c1);
-            //c1 = new Curve();
-            //AddCurve("MyObject.Z", c1);
-            //c1 = new Curve();
-            //AddCurve("MyObject.Alpha", c1);
-
-            //c1 = new Curve();
-            //AddCurve("MyObject2.X", c1);
-            //c1 = new Curve();
-            //AddCurve("MyObject2.Y", c1);
-            //c1 = new Curve();
-            //AddCurve("MyObject2.Z", c1);
-            //c1 = new Curve();
-            //AddCurve("MyObject2.Alpha", c1);
-
-            //c1 = new Curve();
-            //AddCurve("Lonely curve", c1);
-            //c1 = new Curve();
-            //AddCurve("Another curve", c1);
-
-            //RemoveCurveOrGroup("Another curve");
-        }
-
-        void Window_IsVisibleChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-            Config.Visible = Window.IsVisible;
+            _userInterface = userInterface;
+            _userInterface.CreateBender(Config);
         }
 
         protected override void OnVisibleChanged()
         {
-            if (Window != null)
-                Window.Visibility = Visible ? Visibility.Visible : Visibility.Hidden;
+            _userInterface.BenderVisible = Visible;
+        }
+
+        public void Show()
+        {
+            _userInterface.BenderShow();
+        }
+
+        public void Focus()
+        {
+            _userInterface.BenderFocus();
         }
 
         /// <summary>
@@ -77,9 +37,9 @@ namespace Gearset.Components
         /// </summary>
         /// <param name="name">The name of the curve, a dot-separated path can be used to group curves</param>
         /// <param name="curve">The curve to add to Bender</param>
-        public void AddCurve(String name, Curve curve)
+        public void AddCurve(string name, Curve curve)
         {
-            curveTreeViewModel.AddCurve(name, curve);
+            _userInterface.AddCurve(name, curve);
         }
 
         /// <summary>
@@ -87,30 +47,16 @@ namespace Gearset.Components
         /// </summary>
         public void RemoveCurve(Curve curve)
         {
-            curveTreeViewModel.RemoveCurve(curve);
+            _userInterface.RemoveCurve(curve);
         }
 
         /// <summary>
         /// Removes a Curve or a Group by name. The complete dot-separated
         /// path to the curve or group must be given.
         /// </summary>
-        public void RemoveCurveOrGroup(String name)
+        public void RemoveCurveOrGroup(string name)
         {
-            curveTreeViewModel.RemoveCurveOrGroup(name);
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            Window.curveEditorControl.UpdateRender();
-            Window.horizontalRuler.UpdateRender();
-            Window.verticalRuler.UpdateRender();
-            base.Update(gameTime);
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            
-            base.Draw(gameTime);
+            _userInterface.RemoveCurveOrGroup(name);
         }
     }
 }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ExternalProject Name="MonoGame.Framework">
+  			
+	<!--<Platform Type="Linux">
+    <Binary 
+			Name="MonoGame.Framework" 
+			Path="MonoGame.Framework.dll" />
+  </Platform>-->
+	
+	<Platform Type="Windows">
+    <Binary 
+			Name="MonoGame.Framework" 
+			Path="..\..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll" />
+  </Platform>
+	
+	<Platform Type="Windows8">
+    <Binary 
+			Name="MonoGame.Framework" 
+			Path="..\..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows8\MonoGame.Framework.dll" />
+  </Platform>
+	
+	<Platform Type="WindowsGL">
+    <Binary 
+			Name="MonoGame.Framework" 
+			Path="..\..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\WindowsGL\MonoGame.Framework.dll" />
+  </Platform>
+									
+	<Platform Type="WindowsXNA">
+		<Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
+  </Platform>
+	
+	<Platform Type="WindowsEmptyKeys">
+    <Binary 
+			Name="MonoGame.Framework" 
+			Path="..\..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll" />
+  </Platform>
+	
+</ExternalProject>

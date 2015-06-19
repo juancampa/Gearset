@@ -1,25 +1,14 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Collections.ObjectModel;
-using System.Windows.Media;
 using Microsoft.Xna.Framework;
 
 namespace Gearset.Components.Profiler
 {
-    public abstract class UIView : UI.Window
-#if WINDOWS
-        , INotifyPropertyChanged
+    public abstract class UIView : UI.Window, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged(String name)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-        }
-#else
-    {
-#endif
-        protected readonly Profiler Profiler;
+
+        protected readonly ProfilerManager Profiler;
 
         bool _visible;
 
@@ -39,18 +28,20 @@ namespace Gearset.Components.Profiler
                 if (VisibleChanged != null)
                     VisibleChanged(this, EventArgs.Empty);
                 
-                #if WINDOWS
-                    if (PropertyChanged != null)
-                        PropertyChanged(this, new PropertyChangedEventArgs("Visible"));
-                #endif
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Visible"));
             }
+        }
+
+        protected void OnPropertyChanged(String name)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
         internal event EventHandler VisibleChanged;
 
-        internal ObservableCollection<Profiler.LevelItem> Levels = new ObservableCollection<Profiler.LevelItem>();
-
-        protected UIView(Profiler profiler, ProfilerConfig.UIViewConfig uiviewConfig, Vector2 size)
+        protected UIView(ProfilerManager profiler, ProfilerConfig.UIViewConfig uiviewConfig, Vector2 size)
             : base(uiviewConfig.Position, size) 
         {
             Profiler = profiler;
@@ -58,57 +49,38 @@ namespace Gearset.Components.Profiler
             Visible = true;
 
             VisibleLevelsFlags = uiviewConfig.VisibleLevelsFlags;
-
-            for(var i = 0; i < Profiler.MaxLevels; i++)
-            {
-                var levelItem = new Profiler.LevelItem(i) { Name = Profiler.GetLevelNameFromLevelId(i), Enabled = IsVisibleLevelsFlagSet(i)};
-                Levels.Add(levelItem);
-
-                levelItem.PropertyChanged += (sender, args) => { 
-                    if (args.PropertyName == "Enabled")
-                        SyncVisibleLevelsFlags((Profiler.LevelItem)sender);
-                };
-            }
         }
-
-        internal event EventHandler LevelsEnabledChanged;
 
         public void EnableAllLevels()
         {
-            foreach (var level in Levels)
-                level.Enabled = true;
+            VisibleLevelsFlags = byte.MaxValue;
         }
 
         public void DisableAllLevels()
         {
-            foreach (var level in Levels)
-                level.Enabled = false;
+            VisibleLevelsFlags = 0;
         }
 
-        public int VisibleLevelsFlags { get; private set; }
+        public int VisibleLevelsFlags { get; set; }
 
         static int GetFlagFromLevelId(int levelId)
         {
             return (1 << levelId);
         }
 
-        bool IsVisibleLevelsFlagSet(int levelId)
+        public bool IsVisibleLevelsFlagSet(int levelId)
         {
             var flag = GetFlagFromLevelId(levelId);
             return (VisibleLevelsFlags & flag) != 0;
         }
 
-        void SyncVisibleLevelsFlags(Profiler.LevelItem levelItem)
+        public void SetLevel(int levelId, bool enabled)
         {
-            var flag = GetFlagFromLevelId(levelItem.LevelId);
-
-            if (levelItem.Enabled)
+            var flag = GetFlagFromLevelId(levelId);
+            if (enabled)
                 VisibleLevelsFlags |= flag;
             else
-                VisibleLevelsFlags = VisibleLevelsFlags & ~flag;
-
-            if (LevelsEnabledChanged != null)
-                LevelsEnabledChanged(this, EventArgs.Empty);
+                VisibleLevelsFlags &= ~flag;
         }
     }
 }

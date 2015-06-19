@@ -14,14 +14,14 @@ namespace Gearset.Components.Profiler
         readonly StringBuilder _logString = new StringBuilder(512);
         readonly StringBuilder _logStringTimings = new StringBuilder(512);
 
-        internal ProfilerSummary(Profiler profiler, ProfilerConfig.UIViewConfig uiviewConfig, Vector2 size) : base(profiler, uiviewConfig, size)
+        internal ProfilerSummary(ProfilerManager profiler, ProfilerConfig.UIViewConfig uiviewConfig, Vector2 size) : base(profiler, uiviewConfig, size)
         {
 
         }
 
-        internal void Draw(InternalLabeler labeler, Profiler.FrameLog frameLog)
+        internal void Draw(InternalLabeler labeler, ProfilerManager.FrameLog frameLog)
         {
-            if (Visible == false || Config.ProfilerSummaryConfig.VisibleLevelsFlags == 0)
+            if (frameLog == null || Visible == false || Config.ProfilerSummaryConfig.VisibleLevelsFlags == 0)
             {
                 labeler.HideLabel("__profilerSummary");
                 return;
@@ -34,12 +34,12 @@ namespace Gearset.Components.Profiler
             _logStringTimings.Length = 0;
             foreach (var markerInfo in Profiler.Markers)
             {
-                for (var i = 0; i < Profiler.MaxLevels; ++i)
+                for (var i = 0; i < ProfilerManager.MaxLevels; ++i)
                 {
                     if (!markerInfo.Logs[i].Initialized)
                         continue;
 
-                    if (Levels[i].Enabled == false)
+                    if (IsVisibleLevelsFlagSet(i) == false)
                         continue;
                         
                     if (_logString.Length > 0)
@@ -86,10 +86,10 @@ namespace Gearset.Components.Profiler
 
                 foreach (var markerInfo in Profiler.Markers)
                 {
-                    for (var i = 0; i < Profiler.MaxLevels; ++i)
+                    for (var i = 0; i < ProfilerManager.MaxLevels; ++i)
                     {
-                        if (Levels[i].Enabled == false)
-                        continue;
+                        if (IsVisibleLevelsFlagSet(i) == false)
+                            continue;
 
                         if (markerInfo.Logs[i].Initialized == false)
                             continue;
