@@ -18,6 +18,77 @@
 // so it's recommended that you don't add code here because then you will
 // have to move it when a new Gearset version is released.
 
+// HOW TO USE
+// ----------
+
+// See http://www.thecomplot.com/gearset.html for details
+
+// QUICK GUIDE
+//------------
+
+// Initialise Gearset
+// protected override void Initialize()
+// {
+//     GS.Initialize(this);
+//     base.Initialize();
+// }
+
+// PROFILER 
+// You must call StartFrame at the top of Update to indicate to the Profiler that a new frame has started.
+// protected override void Update(GameTime gameTime)
+// {
+//     GS.StartFrame();
+// 
+//     // Wrap code to profile in Begin/EndMArk calls (nested calls are allowed)
+//     GS.BeginMark("SomeLabel", Color.Blue);
+//     // Code to profile goes here...
+//     GS.EndMark("SomeLabel");
+//
+//     GS.BeginMark("GameObjects", Color.Green);
+//     GS.BeginMark("Bullets", Color.Yellow);
+//     // Code to profile goes here...
+//     GS.EndMark("Bullets");
+//     GS.BeginMark("Enemies", Color.Pink);
+//     // Oher code here...
+//     GS.EndMark("Enemies");
+//     GS.EndMark("GameObjects");
+//
+//     //rest of code...
+// }
+
+// LOGGER
+// Logging is simple!
+// GS.Log("I am a log message - and I write to the default stream");
+// GS.Log("CustomStream", "I log to a custom stream");
+
+// PLOTS
+// Plot graph values over time
+// protected override void Update(GameTime gameTime)
+// {
+//     GS.Plot("FPS", MyFPSComponent.Value);
+// }
+
+// LABELS
+// Add labels to items in your scene / world
+// protected override void Update(GameTime gameTime)
+// {
+//     GS.ShowLabel("I follow the mouse pointer!", new Vector2(mouseState.X, mouseState.Y));
+// }
+
+// ALERTS
+// Indicate when certain game events occur
+// protected override void Update(GameTime gameTime)
+// {
+//     if GC HAS RUN
+//         GS.Alert("Garbage Collection!");
+// }
+
+// SOURCE CODE
+// -----------
+// Full source code is available from GITHUB.
+// https://github.com/juancampa/Gearset
+// https://github.com/PumpkinPaul/Gearset
+
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
