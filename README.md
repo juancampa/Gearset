@@ -10,6 +10,11 @@ Gearset is completely independent of whichever engine or framework you're using 
 
 Anything that XNA or MonoGame support really but some features will be limited to desktop platforms.
 
+## Installation
+* Build from source - use the *master* branch for a stable code base or *development* for bleeding edge.
+* Use one of the available [Nuget packages] (https://www.nuget.org/packages?q=Gearset)
+* Use the older version binaries directly from [The Complot](http://www.thecomplot.com/index.html)
+
 ## Quick Start
 
 * Please see the Samples/SampleGame project for an idea of how to setup Gearset.
