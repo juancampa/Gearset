@@ -15,7 +15,7 @@ namespace Gearset.UserInterface
 
         event EventHandler<LevelItemChangedEventArgs> LevelItemChanged;
         
-        void Initialise(ContentManager content, int width, int height);
+        void Initialise(ContentManager content, int width, int height); 
         void CreateWidget();
         void CreateInspector(InspectorManager inspectorManager);
         void CreateLogger(LoggerConfig config);

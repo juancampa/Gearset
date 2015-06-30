@@ -284,17 +284,24 @@ namespace Gearset.UserInterface.Wpf
         {
             foreach (var window in _windows)
             {
-                if (window.IsVisible)
-                {
-                    window.Topmost = true;
-                    window.Topmost = false;
-                }
-                    
-                if (window.WasHiddenByGameMinimize && !window.IsVisible)
-                    window.Show();
-
-                window.WasHiddenByGameMinimize = false;
+                FocusWindow(window);
             }
+
+            FocusWindow(_widgetWindow);
+        }
+
+        static void FocusWindow(IWindow window)
+        {
+            if (window.IsVisible)
+            {
+                window.Topmost = true;
+                window.Topmost = false;
+            }
+
+            if (window.WasHiddenByGameMinimize && !window.IsVisible)
+                window.Show();
+
+            window.WasHiddenByGameMinimize = false;
         }
 
         public override void Resize()

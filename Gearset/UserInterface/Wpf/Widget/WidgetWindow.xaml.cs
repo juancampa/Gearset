@@ -15,7 +15,8 @@
         /// </summary>
         public partial class WidgetWindow : IWindow
         {
-            readonly AboutWindow _aboutWindow;
+            readonly AboutViewModel _aboutViewModel;
+            AboutWindow _aboutWindow;
 
             public ListView ButtonList { get { return buttonList; } }
 
@@ -47,11 +48,7 @@
                         copyright = assemblyCopyright.Copyright;
                 }
 
-                _aboutWindow = new AboutWindow
-                {
-                    DataContext = new AboutViewModel(productName + " v" + versionFull, copyright)
-                };
-                
+                _aboutViewModel = new AboutViewModel(productName + " v" + versionFull, copyright);
             }
 
             #region Don't show in alt-tab
@@ -147,6 +144,10 @@
                 switch (((String)item.Header))
                 {
                     case "About":
+                        if (_aboutWindow == null || PresentationSource.FromVisual(_aboutWindow) == null)
+                        {
+                            _aboutWindow = new AboutWindow { DataContext = _aboutViewModel };
+                        }
                         _aboutWindow.Show();
                         e.Handled = true;
                         break;
