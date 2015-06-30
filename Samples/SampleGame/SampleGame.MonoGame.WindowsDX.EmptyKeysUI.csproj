@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SampleGame</RootNamespace>
-    <AssemblyName>SampleGame.Windows.MonoGameMinimalDX</AssemblyName>
+    <AssemblyName>SampleGame.MonoGame.WindowsDX.EmptyKeysUI</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>WindowsGL</MonoGamePlatform>
     <MonoGameContentBuilderExe>

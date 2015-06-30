@@ -25,4 +25,4 @@ Anything that XNA or MonoGame support really but some features will be limited t
 
 A massive thank you to [@Juan Campa](https://twitter.com/juancampa) for creating Gearset and kindly making it open source.
 
-The [EmptyKeys](http://emptykeys.com/) user interface library which we use an alternative to WPF for platforms where that technology is not available
+The [EmptyKeys](http://emptykeys.com/) user interface library which we use as an alternative to WPF for platforms where that technology is not available.
