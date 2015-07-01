@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gearset</RootNamespace>
-    <AssemblyName>Gearset</AssemblyName>
+    <AssemblyName>Gearset.XNA.Windows</AssemblyName>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaCrossPlatformGroupID>879ae131-c5df-4400-9fd4-a8ea54caf2f1</XnaCrossPlatformGroupID>

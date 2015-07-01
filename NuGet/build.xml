@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="BuildProjects" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		
+	<PropertyGroup Condition="'$(Configuration)'==''">
+		<Configuration>Release</Configuration>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<BuildRoot>$(MSBuildProjectDirectory)\tmp</BuildRoot>
+		<PublishRoot>$(MSBuildProjectDirectory)\</PublishRoot>
+	</PropertyGroup>
+	
+	<Target Name="Clean">
+		<RemoveDir Directories="$(BuildRoot)" />
+  </Target>
+		 
+	<Target Name="BuildXNA">
+		<PropertyGroup Condition="'$(Platform)'==''">
+			<Platform>x86</Platform>
+		</PropertyGroup>
+		
+		<ItemGroup>      
+				<BuildProjectsInputFiles Include="../Gearset/Gearset.XNA.Windows.csproj" />
+		</ItemGroup>
+
+		<MSBuild 
+			Projects="@(BuildProjectsInputFiles)" 
+			Properties="Configuration=$(Configuration);OutputPath=$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib);">
+				<Output 
+					TaskParameter="TargetOutputs" 						
+					ItemName="BuildProjectsOutputFiles" />
+		</MSBuild>
+		
+		<Copy SourceFiles="$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.XNA.Windows.dll" DestinationFolder="$(PublishRoot)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\" ContinueOnError="false" />
+	</Target>
+	
+	<Target Name="BuildMonoGame">
+		<PropertyGroup Condition="'$(Platform)'==''">
+			<Platform>Any CPU</Platform>
+		</PropertyGroup>
+		
+		<ItemGroup>      
+				<BuildProjectsInputFiles Include="../Gearset/Gearset.MonoGame.WindowsDX.csproj" />
+				<BuildProjectsInputFiles Include="../Gearset/Gearset.MonoGame.WindowsGL.csproj" />
+		</ItemGroup>
+
+		<MSBuild 
+			Projects="@(BuildProjectsInputFiles)" 
+			Properties="TargetFrameworkVersion=$(TargetFrameworkVersion);Configuration=$(Configuration);OutputPath=$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib);">
+				<Output 
+					TaskParameter="TargetOutputs" 						
+					ItemName="BuildProjectsOutputFiles" />
+		</MSBuild>
+		
+		<Copy SourceFiles="$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.MonoGame.dll" DestinationFolder="$(PublishRoot)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\" ContinueOnError="false" />
+	
+	</Target>
+</Project>
