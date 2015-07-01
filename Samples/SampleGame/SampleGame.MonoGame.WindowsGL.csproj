@@ -104,9 +104,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Gearset\Gearset.MonoGame.WindowsGL.csproj">
-      <Project>{d69b67fd-1781-4d42-9b91-86338292dce9}</Project>
-      <Name>Gearset.MonoGame.WindowsGL</Name>
+    <ProjectReference Include="..\..\Gearset\Gearset.MonoGame.WindowsDX.csproj">
+      <Project>{3a1c5411-9202-41e6-9c13-f492f2b155bc}</Project>
+      <Name>Gearset.MonoGame.WindowsDX</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

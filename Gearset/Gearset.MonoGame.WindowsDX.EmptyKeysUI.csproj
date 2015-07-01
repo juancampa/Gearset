@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Gearset</RootNamespace>
-    <AssemblyName>Gearset.MonoGameMinimal</AssemblyName>
+    <AssemblyName>Gearset.MonoGame.WindowsDX.EmptyKeysUI</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Debug\Gearset.MonoGame.WindowsDX.EmptyKeysUI\</OutputPath>
     <DefineConstants>TRACE;DEBUG;WINDOWS;XDTK;MONOGAME;EMPTYKEYS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\Release\Gearset.MonoGame.WindowsDX.EmptyKeysUI\</OutputPath>
     <DefineConstants>TRACE;WINDOWS;XDTK;MONOGAME;EMPTYKEYS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

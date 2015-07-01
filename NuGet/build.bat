@@ -9,4 +9,11 @@ msbuild.exe build.xml /clp:NoSummary;NoItemAndPropertyList;ErrorsOnly /p:TargetF
 msbuild.exe build.xml /clp:NoSummary;NoItemAndPropertyList;ErrorsOnly /p:TargetFrameworkVersion=v4.5;lib=45 /target:BuildMonoGame
 msbuild.exe build.xml /target:Clean
 
+nuget pack Gearset.MonoGame.WindowsDX\Gearset.MonoGame.WindowsDX.nuspec
+nuget pack Gearset.MonoGame.WindowsGL\Gearset.MonoGame.WindowsGL.nuspec
+nuget pack Gearset.XNA.Windows\Gearset.XNA.Windows.nuspec
+
+move /Y .\Gearset.MonoGame.WindowsDX*.* .\Gearset.MonoGame.WindowsDX\
+move /Y .\Gearset.MonoGame.WindowsGL*.* .\Gearset.MonoGame.WindowsGL\
+move /Y .\Gearset.XNA.Windows*.* .\Gearset.XNA.Windows\
 pause
