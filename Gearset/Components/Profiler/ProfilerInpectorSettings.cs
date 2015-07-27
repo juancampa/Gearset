@@ -9,9 +9,9 @@
     /// </remarks>
     public class ProfilerInpectorSettings
     {
-        readonly Profiler _profiler;       
+        readonly ProfilerManager _profiler;       
 
-        public ProfilerInpectorSettings(Profiler profiler)
+        public ProfilerInpectorSettings(ProfilerManager profiler)
         {
             _profiler = profiler;
         }

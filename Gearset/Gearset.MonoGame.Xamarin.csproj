@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C8E16EB0-08A6-41CA-BF12-50AEE8C7B3B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gearset</RootNamespace>
+    <AssemblyName>Gearset.MonoGameMinimal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;XDTK;MONOGAME;EMPTYKEYS;MONOMAC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;XDTK;MONOGAME;EMPTYKEYS;MONOMAC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="EmptyKeys.UserInterface.Core">
+      <HintPath>..\EmptyKeysUI\Common\AnyCPU\EmptyKeys.UserInterface.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EmptyKeys.UserInterface">
+      <HintPath>..\EmptyKeysUI\Common\AnyCPU\EmptyKeys.UserInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="EmptyKeys.UserInterface.MonoGame">
+      <HintPath>..\EmptyKeysUI\MonoGame\AnyCPU\EmptyKeys.UserInterface.MonoGame.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\Tao.Sdl.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\packages\MonoGame.Framework.MacOS.3.4.0.459\lib\net45\OpenTK.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BinarySerializer.cs" />
+    <Compile Include="CompileErrorException.cs" />
+    <Compile Include="ComponentNamespace.cs" />
+    <Compile Include="Components\Alerter\Alerter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Alerter\AlerterConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Alerter\DebugItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Bender\Bender.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Bender\BenderConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\CSExpressionParser\CSExpression.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\DataSampler\DataSampler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\DataSampler\DataSamplerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Drawers\BoxDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Drawers\SolidBoxDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Drawers\SphereDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Drawers\Transform3Drawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Drawers\Vector2Drawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Drawers\Vector3Drawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Finder\Finder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Finder\FinderConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Finder\ObjectDescription.cs" />
+    <Compile Include="Components\Gear.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\GearConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorIgnoreAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\Attributes\InspectorMethodAttribute.cs" />
+    <Compile Include="Components\InspectorWPF\InspectorConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\InspectorWPF\InspectorManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Labeler\InternalLabeler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Labeler\Labeler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Labeler\LabelerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\LineDrawer\DebugLine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\LineDrawer\InternalLineDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\LineDrawer\LineDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\LineDrawer\LineDrawerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Logger\Logger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Logger\LoggerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Marker\DebugMark.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Marker\Marker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Persistor\IPersistent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Persistor\Persistor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Persistor\ValueCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Picker\IPickable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Picker\Picker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Plotter\Plotter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Plotter\PlotterConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\PerformanceGraph.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\ProfilerConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\ProfilerInpectorSettings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\ProfilerManager.cs" />
+    <Compile Include="Components\Profiler\ProfilerSummary.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\StringBuilderExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\TempBoxDrawer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\TimeRuler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Profiler\UIView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\TreeView\TreeView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\TreeView\TreeViewConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\TreeView\TreeViewNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Undo\IUndoable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Components\Undo\UndoEngine.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\ReflectionExtensions.cs" />
+    <Compile Include="UserInterface\EmptyKeys\Inspector\InspectorUI.cs" />
+    <Compile Include="UserInterface\EmptyKeys\EmptyKeysUserInterface.cs" />
+    <Compile Include="UserInterface\EmptyKeys\Inspector\InspectorNode.cs" />
+    <Compile Include="UserInterface\EmptyKeys\Inspector\InspectorViewModel.cs" />
+    <Compile Include="UserInterface\EmptyKeys\Styles\WindowStyle.cs" />
+    <Compile Include="UserInterface\IUserInterface.cs" />
+    <Compile Include="UserInterface\LevelItemChangedEventArgs.cs" />
+    <Compile Include="UserInterface\StreamChangedEventArgs.cs" />
+    <Compile Include="UserInterface\UserInterface.cs" />
+    <Compile Include="Components\Widget\Widget.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config.cs" />
+    <Compile Include="DebugEnums.cs" />
+    <Compile Include="FixedLengthQueue.cs" />
+    <Compile Include="GearConsole.cs" />
+    <Compile Include="GearsetComponent.cs" />
+    <Compile Include="GearsetComponentBase.cs" />
+    <Compile Include="GearsetResources.cs" />
+    <Compile Include="GearsetSettings.cs" />
+    <Compile Include="Helpers\BoundingBoxHelper.cs" />
+    <Compile Include="Helpers\ReflectionHelper.cs" />
+    <Compile Include="Helpers\TextHelper.cs" />
+    <Compile Include="KeyboardComponent.cs" />
+    <Compile Include="KeyedCollection.cs" />
+    <Compile Include="ModuleInitializer.cs" />
+    <Compile Include="MouseComponent.cs" />
+    <Compile Include="ObfuscationSettings.cs" />
+    <Compile Include="ObservableFixedLengthQueue.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs" />
+    <Compile Include="SerializableDummy.cs" />
+    <Compile Include="UI\LayoutBox.cs" />
+    <Compile Include="UI\MouseRouter.cs" />
+    <Compile Include="UI\RefEventHandler.cs" />
+    <Compile Include="UI\UIManager.cs" />
+    <Compile Include="UI\Window.cs" />
+    <Compile Include="UserInterface\NoUserInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource1.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Components\Common\icon_close.png" />
+    <Resource Include="Components\Common\icon_close_over.png" />
+    <Resource Include="Components\Common\icon_maximize.png" />
+    <Resource Include="Components\Common\icon_maximize_over.png" />
+    <Resource Include="Components\Common\icon_plot.png" />
+    <Resource Include="Components\Common\icon_title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Click.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Images\icon_title.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Content\Content.contentproj" />
+    <Content Include="Content\Segoe_UI_9_Regular.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\KeyPress.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Move.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Segoe_UI_10_Regular.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Segoe_UI_15_Bold.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Select.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\Alert.xnb" />
+    <None Include="Resources\black.xnb" />
+    <None Include="Resources\close.xnb" />
+    <None Include="Resources\cursor.xnb" />
+    <None Include="Resources\Default.xnb" />
+    <None Include="Resources\mark.xnb" />
+    <None Include="Resources\open.xnb" />
+    <None Include="Resources\Tiny.xnb" />
+    <None Include="Resources\white.xnb" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Cog.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="read-only-icon.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ProjectReference Include="..\EmptyKeysUI\EmptyKeys.GearsetUI\EmptyKeys.GearsetUI.Xamarin.csproj">
+      <Project>{556DEE67-1170-4F93-88DE-2175C97FCF3C}</Project>
+      <Name>EmptyKeys.GearsetUI.Xamarin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmptyKeysUI\EmptyKeys.GearsetModel\EmptyKeys.GearsetModel.Xamarin.csproj">
+      <Project>{5E94B177-0B26-42B6-9D6D-828930C49C5F}</Project>
+      <Name>EmptyKeys.GearsetModel.Xamarin</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

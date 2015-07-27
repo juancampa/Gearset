@@ -11,8 +11,8 @@ using System.ComponentModel;
 namespace Gearset.Components.Data
 {
     public class Plot : UI.Window
-#if WINDOWS
-        , INotifyPropertyChanged
+#if WINDOWS || LINUX || MONOMAC
+, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(String name)
@@ -38,7 +38,7 @@ namespace Gearset.Components.Data
                 visible = value;
                 if (VisibleChanged != null)
                     VisibleChanged(this, EventArgs.Empty);
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
                 if (PropertyChanged != null)
                     PropertyChanged(this, new PropertyChangedEventArgs("Visible"));
 #endif
@@ -80,7 +80,7 @@ namespace Gearset.Components.Data
         /// <summary>
         /// Current plots.
         /// </summary>
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
         private ObservableCollection<Plot> plots;
         public ObservableCollection<Plot> Plots { get { return plots; } }
 #else
@@ -108,7 +108,7 @@ namespace Gearset.Components.Data
         public Plotter()
             : base(GearsetResources.Console.Settings.PlotterConfig)
         {
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
             plots = new ObservableCollection<Plot>();
 #else
             plots = new List<Plot>();

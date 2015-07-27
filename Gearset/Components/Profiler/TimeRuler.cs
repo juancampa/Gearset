@@ -41,18 +41,18 @@ namespace Gearset.Components.Profiler
         // Current display frame count.
         int _sampleFrames = 1;
 
-        internal TimeRuler(Profiler profiler, ProfilerConfig.TimeRulerUIViewConfig uiviewConfig, Vector2 size, int targetSampleFrames)
+        internal TimeRuler(ProfilerManager profiler, ProfilerConfig.TimeRulerUIViewConfig uiviewConfig, Vector2 size, int targetSampleFrames)
             : base(profiler, uiviewConfig, size)
         {
             TargetSampleFrames = targetSampleFrames;
         }
 
-        internal void Draw(Profiler.FrameLog frameLog)
+        internal void Draw(ProfilerManager.FrameLog frameLog)
         {
             if (GearsetResources.CurrentRenderPass != RenderPass.BasicEffectPass)
                 return;
 
-            if (Visible == false || Config.TimeRulerConfig.VisibleLevelsFlags == 0)
+            if (frameLog == null || Visible == false || Config.TimeRulerConfig.VisibleLevelsFlags == 0)
                 return;
                    
             var width = Width;
@@ -64,7 +64,7 @@ namespace Gearset.Components.Profiler
             {
                 var level = frameLog.Levels[levelId];
 
-                if (level.MarkCount <= 0 || Levels[levelId].Enabled == false)
+                if (level.MarkCount <= 0 || IsVisibleLevelsFlagSet(levelId) == false)
                     continue;
 
                 height += BarHeight + BarPadding;
@@ -109,7 +109,7 @@ namespace Gearset.Components.Profiler
             var y = position.Y;
             for (var levelId = 0; levelId < frameLog.Levels.Length; levelId++)
             {
-                if (Levels[levelId].Enabled == false)
+                if (IsVisibleLevelsFlagSet(levelId) == false)
                     continue;
 
                 var level = frameLog.Levels[levelId];

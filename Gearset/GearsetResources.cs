@@ -1,15 +1,45 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Gearset.Components;
-using System.CodeDom.Compiler;
 
-#if WINDOWS
-using System.Windows;
-using Gearset.About;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Resources;
+
+#if MONOMAC
+namespace Microsoft.Xna.Framework.Content
+{
+	public class ResourceContentManager : ContentManager
+	{
+		private ResourceManager resource;
+
+		public ResourceContentManager(IServiceProvider servicesProvider, ResourceManager resource)
+			: base(servicesProvider)
+		{
+			if (resource == null)
+			{
+				throw new ArgumentNullException("resource");
+			}
+			this.resource = resource;
+		}
+
+		protected override System.IO.Stream OpenStream(string assetName)
+		{
+			object obj = this.resource.GetObject(assetName);
+			if (obj == null)
+			{
+				throw new ContentLoadException("Resource not found");
+			}
+			if (!(obj is byte[]))
+			{
+				throw new ContentLoadException("Resource is not in binary format");
+			}
+			return new MemoryStream(obj as byte[]);
+		}
+	}
+}
 #endif
 
 namespace Gearset
@@ -26,7 +56,7 @@ namespace Gearset
         internal static SpriteFont Font;
         internal static SpriteFont FontTiny;
         internal static SpriteFont FontAlert;
-        internal static ResourceContentManager Content;
+		internal static ResourceContentManager Content;
         internal static GraphicsDevice Device { get { return Game.GraphicsDevice; } }
         internal static GearConsole Console;
 
@@ -44,11 +74,9 @@ namespace Gearset
 
         internal static MouseComponent Mouse;
         internal static KeyboardComponent Keyboard;
-#if WINDOWS
-        internal static System.Windows.Forms.Form GameWindow;
-        internal static AboutWindow AboutWindow;
-        internal static AboutViewModel AboutViewModel;
-#endif
+        #if WINDOWS || LINUX || MONOMAC
+            internal static System.Windows.Forms.Form GameWindow;
+        #endif
     }
 
     /// <summary>

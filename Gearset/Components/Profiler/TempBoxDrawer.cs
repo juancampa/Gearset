@@ -10,7 +10,6 @@ namespace Gearset.Components.Profiler
         private const int MaxBoxes = 6000;
         private readonly VertexPositionColor[] Vertices;
         private int boxCount;
-        public Texture2D noiseTexture;
 
         public TempBoxDrawer() : base (new GearConfig())
         {
@@ -62,13 +61,13 @@ namespace Gearset.Components.Profiler
             boxCount += 6;
         }
 
-        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             if (GearsetResources.CurrentRenderPass == RenderPass.ScreenSpacePass && boxCount > 0)
             {
                 GearsetResources.Effect2D.Texture = null;
                 GearsetResources.Effect2D.TextureEnabled = false;
-                GearsetResources.Effect2D.Techniques[0].Passes[0].Apply();
+                GearsetResources.Effect2D.CurrentTechnique.Passes[0].Apply();
                 GearsetResources.Device.DrawUserPrimitives(PrimitiveType.TriangleList, Vertices, 0, boxCount * 2);
 
                 boxCount = 0;

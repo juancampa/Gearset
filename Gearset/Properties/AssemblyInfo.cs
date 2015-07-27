@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-#if WINDOWS
+#if WINDOWS || LINUX || MONOMAC
 using System.Windows;
 using System.Windows.Markup;
 #endif
@@ -12,7 +12,7 @@ using System.Windows.Markup;
 [assembly: AssemblyTitle("Gearset")]
 [assembly: AssemblyProduct("Gearset")]
 
-[assembly: AssemblyDescription("Gearset, XNA Development toolkit")]
+[assembly: AssemblyDescription("Gearset, XNA / MonoGame Development toolkit")]
 [assembly: AssemblyCompany("Complot Games (The Complot)")]
 [assembly: AssemblyCopyright("Copyright © 2011 Complot Games, Inc. All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
@@ -45,13 +45,7 @@ using System.Windows.Markup;
 //      Revision
 //
 
-//#if WINDOWS
-////[assembly: AssemblyVersion("1.2.*")]
-//#else
-//// Wire-up here the version number of the Windows build so all platforms have the same build number.
-//[assembly: AssemblyVersion("1.2.4277.155")]
-//#endif
-[assembly: AssemblyVersion("2.0.1")]
+[assembly: AssemblyVersion("3.0.1")]
 
 // Adding this attribute will force the Obfuscator to stop obfuscating internals
 // which ends up showing too much code to customers. WARNING.
