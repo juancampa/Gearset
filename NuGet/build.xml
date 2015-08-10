@@ -31,7 +31,7 @@
 					ItemName="BuildProjectsOutputFiles" />
 		</MSBuild>
 		
-		<Copy SourceFiles="$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.XNA.Windows.dll" DestinationFiles="$(PublishRoot)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.dll" ContinueOnError="false" />
+		<Copy SourceFiles="$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.XNA.Windows.dll" DestinationFolder="$(PublishRoot)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\" ContinueOnError="false" />
 	</Target>
 	
 	<Target Name="BuildMonoGame">
