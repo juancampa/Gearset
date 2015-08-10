@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public sealed class CommonStyle : ResourceDictionary {
         
         private static CommonStyle singleton = new CommonStyle();
@@ -40,19 +40,22 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Add("textSelectionHighlight1", new SolidColorBrush(new ColorW(68, 68, 68, 255)));
             // Resource - [highlightTextColor] Color
             this.Add("highlightTextColor", new ColorW(17, 17, 17, 255));
+            // Resource - [DataTemplateKey(EmptyKeys.GearsetModel.TreeNode)] DataTemplate
+            Func<UIElement, UIElement> r_2_dtFunc = r_2_dtMethod;
+            this.Add(typeof(EmptyKeys.GearsetModel.TreeNode), new DataTemplate(typeof(EmptyKeys.GearsetModel.TreeNode), r_2_dtFunc));
             // Resource - [alertColor] Color
             this.Add("alertColor", new ColorW(187, 68, 68, 255));
             // Resource - [Sounds] SoundSourceCollection
-            var r_3_sounds = new SoundSourceCollection();
-            r_3_sounds.Add(new SoundSource { SoundType = SoundType.ButtonsClick, SoundAsset = "Click" });
+            var r_4_sounds = new SoundSourceCollection();
+            r_4_sounds.Add(new SoundSource { SoundType = SoundType.ButtonsClick, SoundAsset = "Click" });
             SoundManager.Instance.AddSound("Click");
-            r_3_sounds.Add(new SoundSource { SoundType = SoundType.TextBoxKeyPress, SoundAsset = "KeyPress" });
+            r_4_sounds.Add(new SoundSource { SoundType = SoundType.TextBoxKeyPress, SoundAsset = "KeyPress" });
             SoundManager.Instance.AddSound("KeyPress");
-            r_3_sounds.Add(new SoundSource { SoundType = SoundType.TabControlMove, SoundAsset = "Move" });
+            r_4_sounds.Add(new SoundSource { SoundType = SoundType.TabControlMove, SoundAsset = "Move" });
             SoundManager.Instance.AddSound("Move");
-            r_3_sounds.Add(new SoundSource { SoundType = SoundType.TabControlSelect, SoundAsset = "Select" });
+            r_4_sounds.Add(new SoundSource { SoundType = SoundType.TabControlSelect, SoundAsset = "Select" });
             SoundManager.Instance.AddSound("Select");
-            this.Add("Sounds", r_3_sounds);
+            this.Add("Sounds", r_4_sounds);
             // Resource - [textSelectionHighlightColor] Color
             this.Add("textSelectionHighlightColor", new ColorW(68, 68, 68, 255));
             // Resource - [hyperlink1] SolidColorBrush
@@ -63,9 +66,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Add("border1", new SolidColorBrush(new ColorW(85, 85, 85, 255)));
             // Resource - [highlight1] SolidColorBrush
             this.Add("highlight1", new SolidColorBrush(new ColorW(138, 198, 49, 255)));
-            // Resource - [DataTemplateKey(EmptyKeys.GearsetModel.TreeNode)] DataTemplate
-            Func<UIElement, UIElement> r_9_dtFunc = r_9_dtMethod;
-            this.Add(typeof(EmptyKeys.GearsetModel.TreeNode), new DataTemplate(typeof(EmptyKeys.GearsetModel.TreeNode), r_9_dtFunc));
             // Resource - [highlightText1] SolidColorBrush
             this.Add("highlightText1", new SolidColorBrush(new ColorW(17, 17, 17, 255)));
             // Resource - [alert1] SolidColorBrush
@@ -104,9 +104,10 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Add("normalColor", new ColorW(64, 64, 64, 255));
             // Resource - [borderColor] Color
             this.Add("borderColor", new ColorW(85, 85, 85, 255));
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
-        private static UIElement r_9_dtMethod(UIElement parent) {
+        private static UIElement r_2_dtMethod(UIElement parent) {
             // e_0 element
             Grid e_0 = new Grid();
             e_0.Parent = parent;
@@ -119,7 +120,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_0.Children.Add(e_1);
             e_1.Name = "e_1";
             e_1.Margin = new Thickness(2F, 2F, 2F, 2F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(e_1, 0);
             Binding binding_e_1_Text = new Binding("Name");
             e_1.SetBinding(TextBlock.TextProperty, binding_e_1_Text);

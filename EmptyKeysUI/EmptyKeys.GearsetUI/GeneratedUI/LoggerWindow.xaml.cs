@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public partial class LoggerWindow : UserControl {
         
         private Grid e_18;
@@ -57,7 +57,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this._streamListBox.Name = "_streamListBox";
             this._streamListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this._streamListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Func<UIElement, UIElement> _streamListBox_dtFunc = _streamListBox_dtMethod;
             this._streamListBox.ItemTemplate = new DataTemplate(_streamListBox_dtFunc);
             Grid.SetColumn(this._streamListBox, 0);
@@ -67,7 +66,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this._scrollViewer = new ScrollViewer();
             this.e_18.Children.Add(this._scrollViewer);
             this._scrollViewer.Name = "_scrollViewer";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(this._scrollViewer, 1);
             // _logListBox element
             this._logListBox = new ItemsControl();
@@ -75,11 +73,11 @@ namespace EmptyKeys.UserInterface.Generated {
             this._logListBox.Name = "_logListBox";
             this._logListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this._logListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Func<UIElement, UIElement> _logListBox_dtFunc = _logListBox_dtMethod;
             this._logListBox.ItemTemplate = new DataTemplate(_logListBox_dtFunc);
             Binding binding__logListBox_ItemsSource = new Binding("VisibleLogItems");
             this._logListBox.SetBinding(ItemsControl.ItemsSourceProperty, binding__logListBox_ItemsSource);
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
         private static void InitializeElementResources(UIElement elem) {
@@ -102,7 +100,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_12.Children.Add(e_13);
             e_13.Name = "e_13";
             e_13.Margin = new Thickness(0F, 0F, 5F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             DockPanel.SetDock(e_13, Dock.Left);
             Binding binding_e_13_IsChecked = new Binding("Enabled");
             e_13.SetBinding(CheckBox.IsCheckedProperty, binding_e_13_IsChecked);
@@ -112,7 +109,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_14.Name = "e_14";
             e_14.Margin = new Thickness(0F, 0F, 10F, 0F);
             e_14.VerticalAlignment = VerticalAlignment.Center;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_14_Foreground = new Binding("Color");
             e_14.SetBinding(TextBlock.ForegroundProperty, binding_e_14_Foreground);
             Binding binding_e_14_Text = new Binding("Name");
@@ -136,7 +132,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_15.Children.Add(e_16);
             e_16.Name = "e_16";
             e_16.VerticalAlignment = VerticalAlignment.Center;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(e_16, 0);
             Binding binding_e_16_Text = new Binding("UpdateNumber");
             e_16.SetBinding(TextBlock.TextProperty, binding_e_16_Text);
@@ -144,7 +139,6 @@ namespace EmptyKeys.UserInterface.Generated {
             TextBlock e_17 = new TextBlock();
             e_15.Children.Add(e_17);
             e_17.Name = "e_17";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(e_17, 1);
             Binding binding_e_17_Foreground = new Binding("Color");
             e_17.SetBinding(TextBlock.ForegroundProperty, binding_e_17_Foreground);
@@ -163,7 +157,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_19.Children.Add(e_20);
             e_20.Name = "e_20";
             e_20.Margin = new Thickness(0F, 0F, 5F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             DockPanel.SetDock(e_20, Dock.Left);
             Binding binding_e_20_IsChecked = new Binding("Enabled");
             e_20.SetBinding(CheckBox.IsCheckedProperty, binding_e_20_IsChecked);
@@ -173,7 +166,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_21.Name = "e_21";
             e_21.Margin = new Thickness(0F, 0F, 10F, 0F);
             e_21.VerticalAlignment = VerticalAlignment.Center;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_21_Foreground = new Binding("Color");
             e_21.SetBinding(TextBlock.ForegroundProperty, binding_e_21_Foreground);
             Binding binding_e_21_Text = new Binding("Name");
@@ -197,7 +189,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_22.Children.Add(e_23);
             e_23.Name = "e_23";
             e_23.VerticalAlignment = VerticalAlignment.Center;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(e_23, 0);
             Binding binding_e_23_Text = new Binding("UpdateNumber");
             e_23.SetBinding(TextBlock.TextProperty, binding_e_23_Text);
@@ -205,7 +196,6 @@ namespace EmptyKeys.UserInterface.Generated {
             TextBlock e_24 = new TextBlock();
             e_22.Children.Add(e_24);
             e_24.Name = "e_24";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(e_24, 1);
             Binding binding_e_24_Foreground = new Binding("Color");
             e_24.SetBinding(TextBlock.ForegroundProperty, binding_e_24_Foreground);

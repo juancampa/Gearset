@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public partial class InspectorWindow : UserControl {
         
         private StackPanel e_11;
@@ -46,9 +46,9 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_11.Children.Add(this._treeView);
             this._treeView.Name = "_treeView";
             this._treeView.VerticalAlignment = VerticalAlignment.Stretch;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding__treeView_ItemsSource = new Binding("TreeItems");
             this._treeView.SetBinding(TreeView.ItemsSourceProperty, binding__treeView_ItemsSource);
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
         private static void InitializeElementResources(UIElement elem) {

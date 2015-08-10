@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public partial class WidgetWindow : UserControl {
         
         private StackPanel e_41;
@@ -69,7 +69,6 @@ namespace EmptyKeys.UserInterface.Generated {
             Setter e_42_s_S_3 = new Setter(ToggleButton.IsThreeStateProperty, false);
             e_42_s.Setters.Add(e_42_s_S_3);
             this.e_42.Style = e_42_s;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_42.Content = "Master Switch";
             Binding binding_e_42_Command = new Binding("MasterSwitchButtonClick");
             this.e_42.SetBinding(ToggleButton.CommandProperty, binding_e_42_Command);
@@ -89,7 +88,6 @@ namespace EmptyKeys.UserInterface.Generated {
             Setter e_43_s_S_3 = new Setter(ToggleButton.IsThreeStateProperty, false);
             e_43_s.Setters.Add(e_43_s_S_3);
             this.e_43.Style = e_43_s;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_43.Content = "Finder";
             Binding binding_e_43_Command = new Binding("FinderButtonClick");
             this.e_43.SetBinding(ToggleButton.CommandProperty, binding_e_43_Command);
@@ -109,7 +107,6 @@ namespace EmptyKeys.UserInterface.Generated {
             Setter e_44_s_S_3 = new Setter(ToggleButton.IsThreeStateProperty, false);
             e_44_s.Setters.Add(e_44_s_S_3);
             this.e_44.Style = e_44_s;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_44.Content = "Logger";
             Binding binding_e_44_Command = new Binding("LoggerButtonClick");
             this.e_44.SetBinding(ToggleButton.CommandProperty, binding_e_44_Command);
@@ -129,7 +126,6 @@ namespace EmptyKeys.UserInterface.Generated {
             Setter e_45_s_S_3 = new Setter(ToggleButton.IsThreeStateProperty, false);
             e_45_s.Setters.Add(e_45_s_S_3);
             this.e_45.Style = e_45_s;
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_45.Content = "Profiler";
             Binding binding_e_45_Command = new Binding("ProfilerButtonClick");
             this.e_45.SetBinding(ToggleButton.CommandProperty, binding_e_45_Command);
@@ -150,7 +146,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_47.Name = "e_47";
             this.e_47.Margin = new Thickness(10F, 4F, 1F, 0F);
             this.e_47.Text = "Opacity";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(this.e_47, 0);
             // e_48 element
             this.e_48 = new Slider();
@@ -158,10 +153,10 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_48.Name = "e_48";
             this.e_48.Width = 100F;
             this.e_48.Margin = new Thickness(10F, 3F, 20F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Grid.SetColumn(this.e_48, 1);
             Binding binding_e_48_Value = new Binding("SliderValue");
             this.e_48.SetBinding(Slider.ValueProperty, binding_e_48_Value);
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
         private static void InitializeElementResources(UIElement elem) {

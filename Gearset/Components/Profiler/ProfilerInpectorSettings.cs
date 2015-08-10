@@ -44,5 +44,15 @@
             get { return _profiler.PerformanceGraph.SkipFrames; }
             set { _profiler.PerformanceGraph.SkipFrames = value; }
         }
+
+        public void ResetProfileWindows()
+        {
+            _profiler.TimeRuler.TopLeft = _profiler.Config.TimeRulerConfig.DefaultPosition;
+            _profiler.TimeRuler.Size = _profiler.Config.TimeRulerConfig.DefaultSize;
+            _profiler.PerformanceGraph.TopLeft = _profiler.Config.PerformanceGraphConfig.DefaultPosition;
+            _profiler.PerformanceGraph.Size = _profiler.Config.PerformanceGraphConfig.DefaultSize;
+            _profiler.ProfilerSummary.TopLeft = _profiler.Config.ProfilerSummaryConfig.DefaultPosition;
+            _profiler.ProfilerSummary.Size = _profiler.Config.ProfilerSummaryConfig.DefaultSize;
+        }
     }
 }

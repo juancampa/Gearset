@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public partial class FinderWindow : UserControl {
         
         private Grid e_5;
@@ -70,7 +70,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_7.Foreground = new SolidColorBrush(new ColorW(119, 119, 119, 255));
             this.e_7.Text = "Search finder results...";
             this.e_7.Padding = new Thickness(0F, 7F, 0F, 7F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_7_Visibility = new Binding("SearchTextEmpty");
             this.e_7.SetBinding(TextBlock.VisibilityProperty, binding_e_7_Visibility);
             // _searchTextBox element
@@ -81,7 +80,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this._searchTextBox.Margin = new Thickness(0F, 0F, 0F, 0F);
             this._searchTextBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this._searchTextBox.BorderThickness = new Thickness(1F, 1F, 1F, 1F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this._searchTextBox.CaretBrush = new SolidColorBrush(new ColorW(221, 221, 221, 255));
             Grid.SetColumn(this._searchTextBox, 0);
             Binding binding__searchTextBox_Text = new Binding("SearchText");
@@ -92,7 +90,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this._resultsDataGrid.Name = "_resultsDataGrid";
             this._resultsDataGrid.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this._resultsDataGrid.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Func<UIElement, UIElement> _resultsDataGrid_dtFunc = _resultsDataGrid_dtMethod;
             this._resultsDataGrid.ItemTemplate = new DataTemplate(_resultsDataGrid_dtFunc);
             this._resultsDataGrid.AutoGenerateColumns = false;
@@ -109,6 +106,7 @@ namespace EmptyKeys.UserInterface.Generated {
             Grid.SetRow(this._resultsDataGrid, 1);
             Binding binding__resultsDataGrid_ItemsSource = new Binding("Items");
             this._resultsDataGrid.SetBinding(DataGrid.ItemsSourceProperty, binding__resultsDataGrid_ItemsSource);
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
         private static void InitializeElementResources(UIElement elem) {
@@ -128,7 +126,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_2.Children.Add(e_3);
             e_3.Name = "e_3";
             e_3.Foreground = new SolidColorBrush(new ColorW(221, 221, 221, 255));
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_3_Text = new Binding("Name");
             e_3.SetBinding(TextBlock.TextProperty, binding_e_3_Text);
             // e_4 element
@@ -136,7 +133,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_2.Children.Add(e_4);
             e_4.Name = "e_4";
             e_4.Foreground = new SolidColorBrush(new ColorW(221, 221, 221, 255));
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_4_Text = new Binding("Description");
             e_4.SetBinding(TextBlock.TextProperty, binding_e_4_Text);
             return e_2;
@@ -152,7 +148,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_8.Children.Add(e_9);
             e_9.Name = "e_9";
             e_9.Foreground = new SolidColorBrush(new ColorW(221, 221, 221, 255));
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_9_Text = new Binding("Name");
             e_9.SetBinding(TextBlock.TextProperty, binding_e_9_Text);
             // e_10 element
@@ -160,7 +155,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_8.Children.Add(e_10);
             e_10.Name = "e_10";
             e_10.Foreground = new SolidColorBrush(new ColorW(221, 221, 221, 255));
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_10_Text = new Binding("Description");
             e_10.SetBinding(TextBlock.TextProperty, binding_e_10_Text);
             return e_8;

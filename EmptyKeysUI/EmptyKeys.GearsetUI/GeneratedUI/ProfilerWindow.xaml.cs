@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public partial class ProfilerWindow : UserControl {
         
         private StackPanel e_28;
@@ -55,7 +55,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_29 = new ToggleButton();
             this.e_28.Children.Add(this.e_29);
             this.e_29.Name = "e_29";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_29.Content = "Performance Graph";
             Binding binding_e_29_Command = new Binding("PerformanceGraphButtonClick");
             this.e_29.SetBinding(ToggleButton.CommandProperty, binding_e_29_Command);
@@ -65,7 +64,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_30 = new ToggleButton();
             this.e_28.Children.Add(this.e_30);
             this.e_30.Name = "e_30";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_30.Content = "Time Ruler";
             Binding binding_e_30_Command = new Binding("TimeRulerGraphButtonClick");
             this.e_30.SetBinding(ToggleButton.CommandProperty, binding_e_30_Command);
@@ -75,7 +73,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.e_31 = new ToggleButton();
             this.e_28.Children.Add(this.e_31);
             this.e_31.Name = "e_31";
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.e_31.Content = "Summary Log";
             Binding binding_e_31_Command = new Binding("SummaryLogButtonClick");
             this.e_31.SetBinding(ToggleButton.CommandProperty, binding_e_31_Command);
@@ -87,7 +84,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.pgLevelsListBox.Name = "pgLevelsListBox";
             this.pgLevelsListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this.pgLevelsListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Func<UIElement, UIElement> pgLevelsListBox_dtFunc = pgLevelsListBox_dtMethod;
             this.pgLevelsListBox.ItemTemplate = new DataTemplate(pgLevelsListBox_dtFunc);
             Binding binding_pgLevelsListBox_Visibility = new Binding("PerformanceGraphVisibility");
@@ -100,7 +96,6 @@ namespace EmptyKeys.UserInterface.Generated {
             this.trLevelsListBox.Name = "trLevelsListBox";
             this.trLevelsListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this.trLevelsListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Func<UIElement, UIElement> trLevelsListBox_dtFunc = trLevelsListBox_dtMethod;
             this.trLevelsListBox.ItemTemplate = new DataTemplate(trLevelsListBox_dtFunc);
             Binding binding_trLevelsListBox_Visibility = new Binding("TimeRulerVisibility");
@@ -113,13 +108,13 @@ namespace EmptyKeys.UserInterface.Generated {
             this.psLevelsListBox.Name = "psLevelsListBox";
             this.psLevelsListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this.psLevelsListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Func<UIElement, UIElement> psLevelsListBox_dtFunc = psLevelsListBox_dtMethod;
             this.psLevelsListBox.ItemTemplate = new DataTemplate(psLevelsListBox_dtFunc);
             Binding binding_psLevelsListBox_Visibility = new Binding("SummaryLogVisibility");
             this.psLevelsListBox.SetBinding(ItemsControl.VisibilityProperty, binding_psLevelsListBox_Visibility);
             Binding binding_psLevelsListBox_ItemsSource = new Binding("PsLevels");
             this.psLevelsListBox.SetBinding(ItemsControl.ItemsSourceProperty, binding_psLevelsListBox_ItemsSource);
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
         private static void InitializeElementResources(UIElement elem) {
@@ -139,7 +134,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_25.Children.Add(e_26);
             e_26.Name = "e_26";
             e_26.Margin = new Thickness(0F, 0F, 5F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             DockPanel.SetDock(e_26, Dock.Left);
             Binding binding_e_26_IsChecked = new Binding("Enabled");
             e_26.SetBinding(CheckBox.IsCheckedProperty, binding_e_26_IsChecked);
@@ -148,7 +142,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_25.Children.Add(e_27);
             e_27.Name = "e_27";
             e_27.Padding = new Thickness(0F, 3F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_27_Text = new Binding("Name");
             e_27.SetBinding(TextBlock.TextProperty, binding_e_27_Text);
             return e_25;
@@ -164,7 +157,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_32.Children.Add(e_33);
             e_33.Name = "e_33";
             e_33.Margin = new Thickness(0F, 0F, 5F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             DockPanel.SetDock(e_33, Dock.Left);
             Binding binding_e_33_IsChecked = new Binding("Enabled");
             e_33.SetBinding(CheckBox.IsCheckedProperty, binding_e_33_IsChecked);
@@ -173,7 +165,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_32.Children.Add(e_34);
             e_34.Name = "e_34";
             e_34.Padding = new Thickness(0F, 3F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_34_Text = new Binding("Name");
             e_34.SetBinding(TextBlock.TextProperty, binding_e_34_Text);
             return e_32;
@@ -189,7 +180,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_35.Children.Add(e_36);
             e_36.Name = "e_36";
             e_36.Margin = new Thickness(0F, 0F, 5F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             DockPanel.SetDock(e_36, Dock.Left);
             Binding binding_e_36_IsChecked = new Binding("Enabled");
             e_36.SetBinding(CheckBox.IsCheckedProperty, binding_e_36_IsChecked);
@@ -198,7 +188,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_35.Children.Add(e_37);
             e_37.Name = "e_37";
             e_37.Padding = new Thickness(0F, 3F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_37_Text = new Binding("Name");
             e_37.SetBinding(TextBlock.TextProperty, binding_e_37_Text);
             return e_35;
@@ -214,7 +203,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_38.Children.Add(e_39);
             e_39.Name = "e_39";
             e_39.Margin = new Thickness(0F, 0F, 5F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             DockPanel.SetDock(e_39, Dock.Left);
             Binding binding_e_39_IsChecked = new Binding("Enabled");
             e_39.SetBinding(CheckBox.IsCheckedProperty, binding_e_39_IsChecked);
@@ -223,7 +211,6 @@ namespace EmptyKeys.UserInterface.Generated {
             e_38.Children.Add(e_40);
             e_40.Name = "e_40";
             e_40.Padding = new Thickness(0F, 3F, 0F, 0F);
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             Binding binding_e_40_Text = new Binding("Name");
             e_40.SetBinding(TextBlock.TextProperty, binding_e_40_Text);
             return e_38;

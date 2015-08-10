@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.7.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
     public partial class GearsetUI : UIRoot {
         
         private StackPanel _stackPanel;
@@ -34,7 +34,6 @@ namespace EmptyKeys.UserInterface.Generated {
         }
         
         private void InitializeComponent() {
-            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
             this.SetResourceReference(SoundManager.SoundsProperty, "Sounds");
             InitializeElementResources(this);
             // _stackPanel element
@@ -42,6 +41,7 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Content = this._stackPanel;
             this._stackPanel.Name = "_stackPanel";
             this._stackPanel.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
+            FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
         private static void InitializeElementResources(UIElement elem) {

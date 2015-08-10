@@ -309,7 +309,7 @@
             <param name="baseName">Name of the base.</param>
             <param name="easingFunc">The easing function.</param>
         </member>
-        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateColorField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,EmptyKeys.UserInterface.Designer.SolidColorBrushAnimation,System.Windows.DependencyProperty)">
+        <member name="M:EmptyKeys.UserInterface.Generator.CodeComHelper.GenerateColorField(System.CodeDom.CodeMemberMethod,System.CodeDom.CodeExpression,System.Windows.DependencyObject,System.Windows.DependencyProperty)">
             <summary>
             Generates the color field.
             </summary>
@@ -354,6 +354,12 @@
             <param name="size">The size.</param>
             <param name="style">The style.</param>
             <param name="weight">The weight.</param>
+            <param name="method">The method.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.FontGenerator.GenerateManagerCode(System.CodeDom.CodeMemberMethod)">
+            <summary>
+            Generates the manager code.
+            </summary>
             <param name="method">The method.</param>
         </member>
         <member name="M:EmptyKeys.UserInterface.Generator.FontGenerator.GenerateFontAssets(System.String,EmptyKeys.UserInterface.Generator.RenderMode)">
@@ -434,6 +440,14 @@
             The font weight.
             </value>
         </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.FontInfo.IsManagerCodeGenerated">
+            <summary>
+            Gets or sets a value indicating whether manager code is generated.
+            </summary>
+            <value>
+            <c>true</c> if manager code is generated; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="T:EmptyKeys.UserInterface.Generator.IGeneratorValue">
             <summary>
             Describes generator value interface
@@ -463,11 +477,23 @@
             Implements Image assets store
             </summary>
         </member>
-        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.AddImage(System.String)">
+        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.AddImage(System.String,System.String)">
             <summary>
-            Adds the image.
+            Adds the image asset
             </summary>
-            <param name="fileName">Name of the asset.</param>
+            <param name="assetName">Name of the asset.</param>
+            <param name="extension">The extension.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.GenerateManagerCode(System.CodeDom.CodeMemberMethod)">
+            <summary>
+            Generates the manager code.
+            </summary>
+            <param name="method">The method.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.ClearAssets">
+            <summary>
+            Clears the assets.
+            </summary>
         </member>
         <member name="M:EmptyKeys.UserInterface.Generator.ImageAssets.CopyImagesToAssetDirectory(System.String)">
             <summary>
@@ -926,6 +952,68 @@
             <returns></returns>
         </member>
         <member name="P:EmptyKeys.UserInterface.Generator.Types.HeaderedItemsControlGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.PopupGeneratorType">
+            <summary>
+            Implements Popup generator
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.PopupGeneratorType.GetChildren(System.Windows.DependencyObject)">
+            <summary>
+            Gets the children.
+            </summary>
+            <param name="source">source</param>
+            <returns></returns>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.PopupGeneratorType.AddChild(System.CodeDom.CodeExpression,System.CodeDom.CodeExpression,System.CodeDom.CodeMemberMethod,System.Int32)">
+            <summary>
+            Adds the child.
+            </summary>
+            <param name="parent">The parent.</param>
+            <param name="child">The child.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="index">The index.</param>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.PopupGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified source.
+            </summary>
+            <param name="source">The source.</param>
+            <param name="classType">Type of the class.</param>
+            <param name="method">The method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.PopupGeneratorType.XamlType">
+            <summary>
+            Gets the type of the xaml.
+            </summary>
+            <value>
+            The type of the xaml.
+            </value>
+        </member>
+        <member name="T:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.TabPanelGeneratorType">
+            <summary>
+            Implements generator for TabPanel
+            </summary>
+        </member>
+        <member name="M:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.TabPanelGeneratorType.Generate(System.Windows.DependencyObject,System.CodeDom.CodeTypeDeclaration,System.CodeDom.CodeMemberMethod,System.Boolean)">
+            <summary>
+            Generates the specified initialize method.
+            </summary>
+            <param name="source">The dependency object</param>
+            <param name="classType">Type of the class.</param>
+            <param name="initMethod">The initialize method.</param>
+            <param name="generateField">if set to <c>true</c> [generate field].</param>
+            <returns></returns>
+        </member>
+        <member name="P:EmptyKeys.UserInterface.Generator.Types.Controls.Primitives.TabPanelGeneratorType.XamlType">
             <summary>
             Gets the type of the xaml.
             </summary>
