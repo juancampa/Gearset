@@ -26,6 +26,10 @@ namespace SampleGame
         KeyboardState _keyboardState;
         KeyboardState _previousKeyboardState;
 
+        Matrix _worldMatrix;
+        Matrix _viewMatrix;
+        Matrix _projectionMatrix;
+
         //Finder test! A custom 'scene graph' used by finder
         readonly List<GameObject> _gameObjects = new List<GameObject>(); 
 
@@ -59,6 +63,14 @@ namespace SampleGame
             //You can double click finder result items to add them to the Inspector window!
             //Comment this to use the default search query for finder (by default it's GameComponent based).
             GS.Action(ConfigureFinder);
+
+            //Set Gerset Matrices if you want to show ovelaid geometry (boxes, spheres, etc).
+            var prj = Matrix.CreateOrthographicOffCenter(0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 0, 0, 1);
+            var halfPixelOffset = Matrix.CreateTranslation(-0.5f, -0.5f, 0);
+
+            _worldMatrix = Matrix.Identity;
+            _viewMatrix = Matrix.Identity;
+            _projectionMatrix = halfPixelOffset * prj;
         }
 			
         void ConfigureFinder()
@@ -121,6 +133,8 @@ namespace SampleGame
 
             try
             {
+                base.Update(gameTime);
+
                 //We must call StartFrame at the top of Update to indicate to the Profiler that a new frame has started.
                 GS.StartFrame();
                 GS.BeginMark(mark, FlatTheme.PeterRiver);
@@ -151,25 +165,39 @@ namespace SampleGame
                     }
                 #endif
 
-                //NOTE: You may need to set Gerset Matrices if you have custom World, View or Projection matrices.
-                //GS.SetMatrices(ref World, ref View, ref Projection);
-
                 //PLOT test
                 GS.Plot("FPS", _fpsCounter.Fps);
                 GS.Plot("Total Memory K", _memoryMonitor.TotalMemoryK, 240);
                 GS.Plot("Tick Memory K", _memoryMonitor.TickMemoryK);
 
-                //Label test
                 var mouseState = Mouse.GetState();
-                GS.ShowLabel("I follow the mouse pointer!", new Vector2(mouseState.X, mouseState.Y));
-                
+                var mousePos2 = new Vector2(mouseState.X, mouseState.Y);
+                var mousePos3 = new Vector3(mousePos2, 0);
+
+                //Label test
+                GS.ShowLabel("I follow the mouse pointer!", mousePos2);
+
+                //Line Test
+                //Draw a line but then use the same key to reference it a second time and alter the postion / color
+                GS.ShowLine("TestLine", new Vector2(mouseState.X, mouseState.Y + 20), new Vector2(mouseState.X + 200, mouseState.Y + 20), Color.Green);
+                GS.ShowLine("TestLine", new Vector2(mouseState.X, mouseState.Y - 20), new Vector2(mouseState.X + 200, mouseState.Y - 20), Color.Violet);
+                //Other lines...
+                GS.ShowLineOnce(new Vector2(mouseState.X, mouseState.Y + 25), new Vector2(mouseState.X + 200, mouseState.Y + 25), Color.Pink);
+                GS.ShowLineOnce(new Vector2(mouseState.X, mouseState.Y + 35), new Vector2(mouseState.X + 200, mouseState.Y + 35), Color.Red);
+
                 //ALERT test - press SPACE for an alert message!
                 if (_keyboardState.IsKeyUp(Keys.Space) && _previousKeyboardState.IsKeyDown(Keys.Space))
                     GS.Alert("I am an alert message");
 
                 Thread.Sleep(1);//Let's trick the update into taking some time so that we can see some profile info
 
-                base.Update(gameTime);
+                //Update Gearset matrixes for 3d geometry
+                GS.SetMatrices(ref _worldMatrix, ref _viewMatrix, ref _projectionMatrix);
+
+                //Geometry tests...
+                GS.ShowSphere("TestSphere", mousePos3, 50, Color.Azure);
+                GS.ShowBox("TestBox", new Vector3(mouseState.X + 50, mouseState.Y + 50, 0), new Vector3(mouseState.X + 100, mouseState.Y + 100, 0), Color.Blue);
+                GS.ShowBoxOnce(new Vector3(mouseState.X + 100, mouseState.Y + 100, 0), new Vector3(mouseState.X + 150, mouseState.Y + 150, 0), Color.Red);
             }
             finally
             {
