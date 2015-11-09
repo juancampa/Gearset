@@ -158,7 +158,7 @@ namespace Gearset.Components
                     persistentLine3DTable.Add(key, index);
                     ShowLine(index, v1, v2, color);
                 }
-                else if (persistentLine3DCount + 1 < MaxLineCount)
+                else if (persistentLine3DCount + 1 <= MaxLineCount)
                 {
                     index = (persistentLine3DCount++) * 2;
                     persistentLine3DTable.Add(key, index);
@@ -192,7 +192,7 @@ namespace Gearset.Components
                     persistentLine2DTable.Add(key, index);
                     ShowLine(index, v1, v2, color);
                 }
-                else if (persistentLine2DCount + 1 < MaxLineCount)
+                else if (persistentLine2DCount + 1 <= MaxLineCount)
                 {
                     index = (persistentLine2DCount++) * 2;
                     persistentLine2DTable.Add(key, index);
@@ -217,8 +217,8 @@ namespace Gearset.Components
             {
                 if ((persistentLine3DCount + 1) * 2 + 1 >= persistentVertices3D.Length)
                     return 0;
-                else
-                    index = (persistentLine3DCount++) * 2;
+                
+                index = (persistentLine3DCount++) * 2;
             }
 
             ShowLine(index, v1, v2, color);
@@ -240,8 +240,8 @@ namespace Gearset.Components
             {
                 if ((persistentLine2DCount + 1) * 2 + 1 >= persistentVertices2D.Length)
                     return 0;
-                else
-                    index = (persistentLine2DCount++) * 2;
+                
+                index = (persistentLine2DCount++) * 2;
             }
 
             ShowLine(index, v1, v2, color);
@@ -256,6 +256,7 @@ namespace Gearset.Components
         {
             if (index + 1 >= persistentVertices3D.Length)
                 return;
+
             persistentVertices3D[index + 0].Position = v1;
             persistentVertices3D[index + 0].Color = color;
             persistentVertices3D[index + 1].Position = v2;
@@ -270,6 +271,7 @@ namespace Gearset.Components
         {
             if (index + 1 >= persistentVertices2D.Length)
                 return;
+
             persistentVertices2D[index + 0].Position = new Vector3(v1, 0);
             persistentVertices2D[index + 0].Color = color;
             persistentVertices2D[index + 1].Position = new Vector3(v2, 0);
@@ -283,13 +285,18 @@ namespace Gearset.Components
         {
             if (!Visible || GearsetResources.GlobalAlpha <= 0)
                 return;
-            int index = (singleFrameLine3DCount++) * 2;
-            if (index + 1 >= singleFrameVertices3D.Length)
+
+            if (singleFrameLine3DCount >= MaxLineCount)
                 return;
+
+            var index = singleFrameLine3DCount * 2;
+
             singleFrameVertices3D[index + 0].Position = v1;
             singleFrameVertices3D[index + 0].Color = color;
             singleFrameVertices3D[index + 1].Position = v2;
             singleFrameVertices3D[index + 1].Color = color;
+
+            singleFrameLine3DCount++;
         }
 
         /// <summary>
@@ -299,13 +306,18 @@ namespace Gearset.Components
         {
             if (!Visible || GearsetResources.GlobalAlpha <= 0)
                 return;
-            int index = (singleFrameLine2DCount++) * 2;
-            if (index + 1 >= singleFrameVertices2D.Length)
+
+            if (singleFrameLine2DCount >= MaxLineCount)
                 return;
+
+            var index = singleFrameLine2DCount * 2;
+            
             singleFrameVertices2D[index + 0].Position = new Vector3(v1, 0);
             singleFrameVertices2D[index + 0].Color = color;
             singleFrameVertices2D[index + 1].Position = new Vector3(v2, 0);
             singleFrameVertices2D[index + 1].Color = color;
+
+            singleFrameLine2DCount++;
         }
 
         /// <summary>

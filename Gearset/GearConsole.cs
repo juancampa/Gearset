@@ -44,7 +44,7 @@ namespace Gearset
     /// </remarks>
     public class GearConsole
     {
-        internal bool Enabled { get { return Settings.Enabled; } }
+        internal bool Enabled { get { return Settings != null && Settings.Enabled; } }
 
         private Game game;
 
@@ -534,15 +534,17 @@ namespace Gearset
                     }
 
                     #if WPF
-                        if (newVersionAvailable)
-                        {
-                            Inspector.AddNotice("New Gearset version available", "http://www.thecomplot.com/gearsetdownload.html", "Get it now");
+                        //if (newVersionAvailable)
+                        //{
+                        //    Inspector.AddNotice("New Gearset version available", "http://www.thecomplot.com/gearsetdownload.html", "Get it now");
                         
-                        }
-                        else if (currentVersionIsDev)
-                        {
-                            Inspector.AddNotice("Unreleased version, do not distribute", "http://www.thecomplot.com/gearsetdownload.html", "Get latest release");
-                        }
+                        //}
+                        //else if (currentVersionIsDev)
+                        //{
+                        //    Inspector.AddNotice("Unreleased version, do not distribute", "http://www.thecomplot.com/gearsetdownload.html", "Get latest release");
+                        //}
+                        Inspector.AddNotice("Gearset is now open source at Github", "https://github.com/PumpkinPaul/Gearset", "Please Contribute!");
+                        Inspector.AddNotice("Also available on nuget for XNA and Monogame", "https://www.nuget.org/packages?q=gearset", "Get it now!");
                     #endif
                 }
             }

@@ -10,8 +10,8 @@ namespace Gearset.Components
     internal class SolidBoxDrawer : Gear
     {
         private const int MaxBoxes = 500;
+        int boxCount = 0;
         private VertexPositionColorTexture[] Vertices;
-        private int boxCount;
         public Texture2D noiseTexture;
         private SamplerState wrapSamplerState;
         //private bool inspected;
@@ -47,6 +47,8 @@ namespace Gearset.Components
             //if (!inspected)
             //    GearsetResources.Console.Inspect("SOlidBoxDrawer", this);
             //inspected = true;
+
+            boxCount = 0;
             base.Update(gameTime);
         }
 
@@ -54,6 +56,7 @@ namespace Gearset.Components
         {
             if (boxCount >= MaxBoxes)
                 return;
+
             Vector3 tl = new Vector3(min, 0);
             Vector3 tr = new Vector3(max.X, min.Y, 0);
             Vector3 br = new Vector3(max, 0);
@@ -69,13 +72,14 @@ namespace Gearset.Components
             Vertices[i + 4] = new VertexPositionColorTexture(br, color, new Vector2(1, 1));
             Vertices[i + 5] = new VertexPositionColorTexture(bl, color, new Vector2(0, 1));
 
-            boxCount += 6;
+            boxCount++;
         }
 
         public void ShowGradientBoxOnce(Vector2 min, Vector2 max, Color top, Color bottom)
         {
             if (boxCount >= MaxBoxes)
                 return;
+
             Vector3 tl = new Vector3(min, 0);
             Vector3 tr = new Vector3(max.X, min.Y, 0);
             Vector3 br = new Vector3(max, 0);
@@ -91,7 +95,7 @@ namespace Gearset.Components
             Vertices[i + 4] = new VertexPositionColorTexture(br, bottom, new Vector2(tiling.X, tiling.Y));
             Vertices[i + 5] = new VertexPositionColorTexture(bl, bottom, new Vector2(0, tiling.Y));
 
-            boxCount += 6;
+            boxCount++;
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
