@@ -20,13 +20,22 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.10.0.0")]
     public partial class GearsetUI : UIRoot {
         
         private StackPanel _stackPanel;
         
+        public GearsetUI() : 
+                base() {
+            this.Initialize();
+        }
+        
         public GearsetUI(int width, int height) : 
                 base(width, height) {
+            this.Initialize();
+        }
+        
+        private void Initialize() {
             Style style = RootStyle.CreateRootStyle();
             style.TargetType = this.GetType();
             this.Style = style;

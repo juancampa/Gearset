@@ -20,7 +20,7 @@ namespace EmptyKeys.UserInterface.Generated {
     using EmptyKeys.UserInterface.Themes;
     
     
-    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.8.0.0")]
+    [GeneratedCodeAttribute("Empty Keys UI Generator", "1.10.0.0")]
     public sealed class CommonStyle : ResourceDictionary {
         
         private static CommonStyle singleton = new CommonStyle();
@@ -40,22 +40,22 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Add("textSelectionHighlight1", new SolidColorBrush(new ColorW(68, 68, 68, 255)));
             // Resource - [highlightTextColor] Color
             this.Add("highlightTextColor", new ColorW(17, 17, 17, 255));
-            // Resource - [DataTemplateKey(EmptyKeys.GearsetModel.TreeNode)] DataTemplate
-            Func<UIElement, UIElement> r_2_dtFunc = r_2_dtMethod;
-            this.Add(typeof(EmptyKeys.GearsetModel.TreeNode), new DataTemplate(typeof(EmptyKeys.GearsetModel.TreeNode), r_2_dtFunc));
             // Resource - [alertColor] Color
             this.Add("alertColor", new ColorW(187, 68, 68, 255));
             // Resource - [Sounds] SoundSourceCollection
-            var r_4_sounds = new SoundSourceCollection();
-            r_4_sounds.Add(new SoundSource { SoundType = SoundType.ButtonsClick, SoundAsset = "Click" });
+            var r_3_sounds = new SoundSourceCollection();
+            r_3_sounds.Add(new SoundSource { SoundType = SoundType.ButtonsClick, SoundAsset = "Click" });
             SoundManager.Instance.AddSound("Click");
-            r_4_sounds.Add(new SoundSource { SoundType = SoundType.TextBoxKeyPress, SoundAsset = "KeyPress" });
+            r_3_sounds.Add(new SoundSource { SoundType = SoundType.TextBoxKeyPress, SoundAsset = "KeyPress" });
             SoundManager.Instance.AddSound("KeyPress");
-            r_4_sounds.Add(new SoundSource { SoundType = SoundType.TabControlMove, SoundAsset = "Move" });
+            r_3_sounds.Add(new SoundSource { SoundType = SoundType.TabControlMove, SoundAsset = "Move" });
             SoundManager.Instance.AddSound("Move");
-            r_4_sounds.Add(new SoundSource { SoundType = SoundType.TabControlSelect, SoundAsset = "Select" });
+            r_3_sounds.Add(new SoundSource { SoundType = SoundType.TabControlSelect, SoundAsset = "Select" });
             SoundManager.Instance.AddSound("Select");
-            this.Add("Sounds", r_4_sounds);
+            this.Add("Sounds", r_3_sounds);
+            // Resource - [DataTemplateKey(EmptyKeys.GearsetModel.TreeNode)] DataTemplate
+            Func<UIElement, UIElement> r_4_dtFunc = r_4_dtMethod;
+            this.Add(typeof(EmptyKeys.GearsetModel.TreeNode), new DataTemplate(typeof(EmptyKeys.GearsetModel.TreeNode), r_4_dtFunc));
             // Resource - [textSelectionHighlightColor] Color
             this.Add("textSelectionHighlightColor", new ColorW(68, 68, 68, 255));
             // Resource - [hyperlink1] SolidColorBrush
@@ -107,7 +107,7 @@ namespace EmptyKeys.UserInterface.Generated {
             FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
-        private static UIElement r_2_dtMethod(UIElement parent) {
+        private static UIElement r_4_dtMethod(UIElement parent) {
             // e_0 element
             Grid e_0 = new Grid();
             e_0.Parent = parent;
