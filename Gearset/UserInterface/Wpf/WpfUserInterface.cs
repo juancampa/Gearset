@@ -24,6 +24,8 @@ namespace Gearset.UserInterface.Wpf
 {
     public class WpfUserInterface : UserInterface
     {
+        bool _createUI = true;
+
         readonly List<IWindow> _windows = new List<IWindow>();
             
         //Widget
@@ -58,10 +60,10 @@ namespace Gearset.UserInterface.Wpf
         //Inspector
         InspectorUI _inspectorUI;
 
-        public WpfUserInterface(GraphicsDevice graphicsDevice, int width, int height)
+        public WpfUserInterface(bool createUI, GraphicsDevice graphicsDevice, int width, int height)
             : base(graphicsDevice, width, height)
         {
-
+            _createUI = createUI;
         }
 
         public override void Initialise(ContentManager content, int width, int height)
@@ -71,6 +73,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateWidget()
         {
+            if (_createUI == false)
+                return;
+
             _widgetViewModel = new WidgetViewModel();
 
             _widgetWindow = new WidgetWindow {DataContext = GearsetSettings.Instance};
@@ -83,6 +88,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateInspector(InspectorManager inspectorManager)
         {
+            if (_createUI == false)
+                return;
+
             InspectorNode.ExtensionMethodTypes.Add(typeof(InspectorExtensionsMethods));
 
             _inspectorUI = new InspectorUI(inspectorManager.Config, _windows);
@@ -90,6 +98,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateLogger(LoggerConfig config)
         {
+            if (_createUI == false)
+                return;
+
             _loggerConfig = config;
 
             _loggerViewModel = new LoggerViewModel();
@@ -141,6 +152,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateProfiler(ProfilerConfig config, int enabledTimeRulerLevels, int enabledPerformanceGraphLevels, int enabledProfilerSummaryLevels)
         {
+            if (_createUI == false)
+                return;
+
             _profilerConfig = config;
 
             _profilerViewModel = new ProfilerViewModel(config.TimeRulerConfig.VisibleLevelsFlags, config.PerformanceGraphConfig.VisibleLevelsFlags, config.ProfilerSummaryConfig.VisibleLevelsFlags);
@@ -182,6 +196,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateFinder(Components.Finder.Finder finder)
         {
+            if (_createUI == false)
+                return;
+
             _finderConfig = finder.Config;
 
             _finderWindow = new FinderWindow
@@ -209,6 +226,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateBender(BenderConfig config)
         {
+            if (_createUI == false)
+                return;
+
             _benderConfig = config;
 
             _curveEditorWindow = new CurveEditorWindow
@@ -237,6 +257,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void Update(double deltaTime)
         {
+            if (_createUI == false)
+                return;
+
             if (_loggerLocationJustChanged)
             {
                 _loggerLocationJustChanged = false;
@@ -273,11 +296,15 @@ namespace Gearset.UserInterface.Wpf
                 _benderConfig.Height = _curveEditorWindow.Height;
             }
 
-            _curveEditorWindow.curveEditorControl.UpdateRender();
-            _curveEditorWindow.horizontalRuler.UpdateRender();
-            _curveEditorWindow.verticalRuler.UpdateRender();
+            if (_curveEditorWindow != null)
+            {
+                _curveEditorWindow.curveEditorControl.UpdateRender();
+                _curveEditorWindow.horizontalRuler.UpdateRender();
+                _curveEditorWindow.verticalRuler.UpdateRender();
+            }
 
-            _inspectorUI.Update(deltaTime);
+            if (_inspectorUI != null)
+                _inspectorUI.Update(deltaTime);
         }
 
         public override void GotFocus()
@@ -292,6 +319,9 @@ namespace Gearset.UserInterface.Wpf
 
         static void FocusWindow(IWindow window)
         {
+            if (window == null)
+                return;
+
             if (window.IsVisible)
             {
                 window.Topmost = true;
@@ -318,6 +348,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void MoveTo(int left, int top)
         {
+            if (_widgetWindow == null)
+                return;
+
             _widgetWindow.Top = top - _widgetWindow.Height;
             _widgetWindow.Left = left + 20;
         }
@@ -364,6 +397,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void AddAction(string name, Action action)
         {
+            if (_widgetViewModel == null)
+                return;
+
             _widgetViewModel.AddAction(name, action);
         }
 
@@ -371,6 +407,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void Log(string message, int updateNumber)
         {
+            if (_loggerViewModel == null)
+                return;
+
             var stream = _loggerViewModel.Log(message, updateNumber);
 
             if (stream.Enabled)
@@ -379,6 +418,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void Log(string streamName, string message, int updateNumber)
         {
+            if (_loggerViewModel == null)
+                return;
+
             var stream = _loggerViewModel.Log(streamName, message, updateNumber);
 
             if (stream.Enabled)
@@ -485,6 +527,9 @@ namespace Gearset.UserInterface.Wpf
 
         public override void FinderSearch(FinderResult results)
         {
+            if (_finderWindow == null)
+                return;
+
             _finderWindow.ResultsListBox.ItemsSource = results;
                 
             if (_finderWindow.ResultsListBox.Items.Count > 0)
@@ -494,32 +539,52 @@ namespace Gearset.UserInterface.Wpf
         //Bender
         public override void BenderShow() 
         {
+            if (_curveEditorWindow == null)
+                return; 
+
             _curveEditorWindow.Show();
         }
 
         public override void BenderFocus() 
         {
+            if (_curveEditorWindow == null)
+                return; 
+
             _curveEditorWindow.Focus();
         }
 
         public override void AddCurve(string name, Curve curve)
         {
+            if (_curveTreeViewModel == null)
+                return; 
+
             _curveTreeViewModel.AddCurve(name, curve);
         }
 
         public override void RemoveCurve(Curve curve)
         {
+            if (_curveTreeViewModel == null)
+                return; 
+
             _curveTreeViewModel.RemoveCurve(curve);
         }
 
         public override void RemoveCurveOrGroup(string name)
         {
+            if (_curveTreeViewModel == null)
+                return; 
+
             _curveTreeViewModel.RemoveCurveOrGroup(name);
         }
 
         public override float BenderHorizontalRulerNeedlePosition 
         {
-            get { return (float)_curveEditorWindow.horizontalRuler.NeedlePosition;}
+            get {
+                if (_curveEditorWindow == null)
+                    return 0.0f; 
+
+                return (float)_curveEditorWindow.horizontalRuler.NeedlePosition;
+            }
         }
 
         //Inspector
@@ -531,41 +596,65 @@ namespace Gearset.UserInterface.Wpf
 
         public override void Watch(InspectorNode node) 
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.Watch(node);
         }
 
         public override void Inspect(string name, Object o, bool autoExpand, Type t) 
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.Inspect(name, o, autoExpand, t);
         }
 
         public override void RemoveInspect(Object o) 
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.RemoveInspect(o);
         }
 
         public override void CraftMethodCall(MethodInfo info)
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.CraftMethodCall(info);
         }
 
         public override void ClearInspectedObjects()
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.ClearInspectedObjects();
         }
 
         public override void ClearMethods()
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.ClearMethods();
         }
 
         public override void AddNotice(string message, string url, string linkText)
         {
+            if (_inspectorUI == null)
+                return;
+
             _inspectorUI.AddNotice(message, url, linkText);
         }
 
         public override bool FilterPredicate(object item) 
         {
+            if (_inspectorUI == null)
+                return false;
+
             return _inspectorUI.FilterPredicate(item);
         }
             

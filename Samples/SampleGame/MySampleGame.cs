@@ -21,8 +21,7 @@ namespace SampleGame
 
         //Game Components
         FpsCounter _fpsCounter;
-        MemoryMonitor _memoryMonitor;
-
+        
         KeyboardState _keyboardState;
         KeyboardState _previousKeyboardState;
 
@@ -46,14 +45,27 @@ namespace SampleGame
 
         protected override void Initialize()
         {
-            GS.Initialize(this);
+            //Initialise Gearset with the full UI experience.
+            //GS.Initialize(this);
+            //GS.Initialize(this, createUI: true);
+
+            //Initialise Gearset in 'headless' mode with no 'external' UI - (overlays are still available).
+            //We want to monitor managed memory allocations from our app and the UIs generate a fair amount of garbage which would distort the profiling.
+            GS.Initialize(this, createUI: false);
+
             _fpsCounter = new FpsCounter(this);
-            _memoryMonitor = new MemoryMonitor(this);
             Components.Add(_fpsCounter);
-            Components.Add(_memoryMonitor);
+            
             IsMouseVisible = true;
 
             base.Initialize();
+
+            #if USE_GEARSET
+                GearsetSettings.Instance.MemoryMonitorConfig.Visible = true;
+                GearsetSettings.Instance.MemoryMonitorConfig.MemoryGraphConfig.Visible = true;
+                GearsetSettings.Instance.MemoryMonitorConfig.MemoryGraphConfig.Position = new Vector2(100, 50);
+                GearsetSettings.Instance.MemoryMonitorConfig.MemoryGraphConfig.Size = new Vector2(400, 75);
+            #endif
 
             GS.Action(()=>GS.GearsetComponent.Console.Inspect("Profiler", new ProfilerInpectorSettings(GS.GearsetComponent.Console.Profiler)));
 
@@ -167,8 +179,7 @@ namespace SampleGame
 
                 //PLOT test
                 GS.Plot("FPS", _fpsCounter.Fps);
-                GS.Plot("Total Memory K", _memoryMonitor.TotalMemoryK, 240);
-                GS.Plot("Tick Memory K", _memoryMonitor.TickMemoryK);
+//                GS.Plot("Tick Memory K", _memoryMonitor.TickMemoryK);
 
                 var mouseState = Mouse.GetState();
                 var mousePos2 = new Vector2(mouseState.X, mouseState.Y);
@@ -179,8 +190,8 @@ namespace SampleGame
 
                 //Line Test
                 //Draw a line but then use the same key to reference it a second time and alter the postion / color
-                GS.ShowLine("TestLine", new Vector2(mouseState.X, mouseState.Y + 20), new Vector2(mouseState.X + 200, mouseState.Y + 20), Color.Green);
-                GS.ShowLine("TestLine", new Vector2(mouseState.X, mouseState.Y - 20), new Vector2(mouseState.X + 200, mouseState.Y - 20), Color.Violet);
+//                GS.ShowLine("TestLine", new Vector2(mouseState.X, mouseState.Y + 20), new Vector2(mouseState.X + 200, mouseState.Y + 20), Color.Green);
+//                GS.ShowLine("TestLine", new Vector2(mouseState.X, mouseState.Y - 20), new Vector2(mouseState.X + 200, mouseState.Y - 20), Color.Violet);
                 //Other lines...
                 GS.ShowLineOnce(new Vector2(mouseState.X, mouseState.Y + 25), new Vector2(mouseState.X + 200, mouseState.Y + 25), Color.Pink);
                 GS.ShowLineOnce(new Vector2(mouseState.X, mouseState.Y + 35), new Vector2(mouseState.X + 200, mouseState.Y + 35), Color.Red);
@@ -195,8 +206,9 @@ namespace SampleGame
                 GS.SetMatrices(ref _worldMatrix, ref _viewMatrix, ref _projectionMatrix);
 
                 //Geometry tests...
-                GS.ShowSphere("TestSphere", mousePos3, 50, Color.Azure);
-                GS.ShowBox("TestBox", new Vector3(mouseState.X + 50, mouseState.Y + 50, 0), new Vector3(mouseState.X + 100, mouseState.Y + 100, 0), Color.Blue);
+//                GS.ShowSphere("TestSphere", mousePos3, 50, Color.Azure);
+                GS.ShowSphereOnce(mousePos3, 50, Color.Azure);
+//                GS.ShowBox("TestBox", new Vector3(mouseState.X + 50, mouseState.Y + 50, 0), new Vector3(mouseState.X + 100, mouseState.Y + 100, 0), Color.Blue);
                 GS.ShowBoxOnce(new Vector3(mouseState.X + 100, mouseState.Y + 100, 0), new Vector3(mouseState.X + 150, mouseState.Y + 150, 0), Color.Red);
             }
             finally
@@ -213,7 +225,7 @@ namespace SampleGame
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(new Color(48,48,48,255));
-
+            
             GS.BeginMark("Draw", FlatTheme.Pomegrantate);
 
             GS.BeginMark("Draw Background", FlatTheme.Pumpkin);

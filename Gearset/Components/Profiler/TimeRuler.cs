@@ -75,7 +75,7 @@ namespace Gearset.Components.Profiler
 
             Size = new Vector2(width, height);
 
-            DrawBorderLines(Color.Gray);
+            DrawBorderLines(Color.Gray, Profiler.LineDrawer);
 
             if (ScaleNob.IsMouseOver)
                 ScaleNob.DrawBorderLines(Color.Gray);

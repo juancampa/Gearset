@@ -257,7 +257,7 @@ namespace Gearset.UserInterface.Wpf.Bender
         }
 
         private bool invalidateRequested = false;
-        public new void InvalidateVisual(bool immediate = false)
+        public void InvalidateVisual(bool immediate = false)
         {
             //base.InvalidateVisual();
             //return;

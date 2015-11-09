@@ -1,4 +1,5 @@
 ﻿using Gearset.Components.Profiler;
+using Gearset.Components.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,9 @@ namespace Gearset
         [Inspector(FriendlyName = "Profiler", HideCantWriteIcon = true)]
         public ProfilerConfig ProfilerConfig { get; internal set; }
 
+        [Inspector(FriendlyName = "Memory Monitor", HideCantWriteIcon = true)]
+        public MemoryMonitorConfig MemoryMonitorConfig { get; internal set; }
+
         [Inspector(FriendlyName = "Overlaid Plots", HideCantWriteIcon = true)]
         public PlotterConfig PlotterConfig { get; internal set; }
 
@@ -93,6 +97,7 @@ namespace Gearset
             AlerterConfig = new Components.AlerterConfig();
             LoggerConfig = new Components.LoggerConfig();
             FinderConfig = new Components.FinderConfig();
+            MemoryMonitorConfig = new MemoryMonitorConfig();
 
             // IMPORTANT:
             // NEW CONFIG INSTANCES SHOULD BE ADDED IN THE LOAD METHOD BELOW.
@@ -208,6 +213,12 @@ namespace Gearset
 
             if (Instance.ProfilerConfig.ProfilerSummaryConfig == null)
                 Instance.ProfilerConfig.ProfilerSummaryConfig = new ProfilerConfig.ProfilerSummaryUIViewConfig();
+
+            if (Instance.MemoryMonitorConfig == null)
+                Instance.MemoryMonitorConfig = new MemoryMonitorConfig();
+
+            if (Instance.MemoryMonitorConfig.MemoryGraphConfig == null)
+                Instance.MemoryMonitorConfig.MemoryGraphConfig = new MemoryMonitorConfig.MemoryGraphUIConfig();
         }
     }
 }

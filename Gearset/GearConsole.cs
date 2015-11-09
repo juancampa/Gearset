@@ -19,9 +19,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Gearset.Components.Data;
 using System.Threading;
 using System.IO;
+using Gearset.Components.Memory;
+using Gearset.Components.Plotter;
 #if WINDOWS || LINUX || MONOMAC
 using System.Net;
 #endif
@@ -221,6 +222,11 @@ namespace Gearset
         public ProfilerManager Profiler { get; private set; }
 
         /// <summary>
+        /// Memory monitor.
+        /// </summary>
+        public MemoryMonitor MemoryMonitor { get; private set; }
+
+        /// <summary>
         /// Gearset settings
         /// </summary>
         internal GearsetSettings Settings { get { return GearsetSettings.Instance; } }
@@ -250,13 +256,15 @@ namespace Gearset
         readonly IUserInterface _userInterface;
 
         #region Constructor
+
         /// <summary>
         /// Creates the GearConsole. if you want the console
         /// to draw 3D debug stuff you need to update the World/View/Projection
         /// matrices using the <c>SetMatrices</c> or setting them manually.
         /// </summary>
         /// <param name="game"></param>
-        public GearConsole(Game game)
+        /// <param name="createUI"></param>
+        public GearConsole(Game game, bool createUI)
         {
             this.game = game;
             game.Exiting += OnExit;
@@ -279,7 +287,7 @@ namespace Gearset
 					_userInterface = new EmptyKeysUserInterface(game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
 				#endif
             #elif WPF
-                _userInterface = new WpfUserInterface(game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
+                _userInterface = new WpfUserInterface(createUI, game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
 			#else
 				_userInterface = new NoUserInterface(game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
             #endif
@@ -375,6 +383,9 @@ namespace Gearset
 
             Profiler = new ProfilerManager(_userInterface);
             Components.Add(Profiler);
+
+            MemoryMonitor = new MemoryMonitor();
+            Components.Add(MemoryMonitor);
         }
 
         void RecreateGraphicResources()
@@ -537,7 +548,6 @@ namespace Gearset
                         //if (newVersionAvailable)
                         //{
                         //    Inspector.AddNotice("New Gearset version available", "http://www.thecomplot.com/gearsetdownload.html", "Get it now");
-                        
                         //}
                         //else if (currentVersionIsDev)
                         //{
@@ -1142,6 +1152,33 @@ namespace Gearset
         }
         #endregion
 
+        /// <summary>
+        /// Shows a cylinder on the screen for one frame.
+        /// </summary>
+        /// <param name="center"></param>
+        /// <param name="radius"></param>
+        public void ShowCylinderOnce(Vector3 center, Vector3 radius)
+        {
+            if (!Enabled) 
+                return;
+
+            SphereDrawer.ShowCylinderOnce(center, radius);
+        }
+
+        /// <summary>
+        /// Shows a cylinder on the screen for one frame.
+        /// </summary>
+        /// <param name="center"></param>
+        /// <param name="radius"></param>
+        /// <param name="color"></param>
+        public void ShowCylinderOnce(Vector3 center, Vector3 radius, Color color)
+        {
+            if (!Enabled) 
+                return;
+
+            SphereDrawer.ShowCylinderOnce(center, radius, color);
+        }
+
         #region Label Drawing
         /// <summary>
         /// Shows a label at the specified position (the text will be the label's name).
@@ -1523,8 +1560,8 @@ namespace Gearset
             UpdateCount++;
             if (Enabled)
             {
-                Show("Gearset.Update Count", UpdateCount);
-                Show("Gearset.Draw Count", DrawCount);
+//                Show("Gearset.Update Count", UpdateCount);
+//                Show("Gearset.Draw Count", DrawCount);
 
                 UI.UIManager.Update(gameTime);
 
@@ -1587,7 +1624,7 @@ namespace Gearset
                 if (GearsetResources.Game.IsMouseVisible == false)
                 {
                     Vector2 pos = GearsetResources.Mouse.Position;
-                    Show("Position", pos);
+//                    Show("Position", pos);
                     Matrix t = Matrix.Invert(GearsetResources.Transform2D);
                     LineDrawer.ShowLineOnce(Vector2.Transform(pos + Vector2.UnitY * 2, t), Vector2.Transform(pos - Vector2.UnitY * 3, t), Color.White);
                     LineDrawer.ShowLineOnce(Vector2.Transform(pos + Vector2.UnitX * 2, t), Vector2.Transform(pos - Vector2.UnitX * 3, t), Color.White);

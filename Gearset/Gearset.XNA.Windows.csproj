@@ -140,9 +140,12 @@
     <Compile Include="Components\InspectorWPF\Attributes\InspectorAttribute.cs" />
     <Compile Include="Components\InspectorWPF\Attributes\InspectorIgnoreAttribute.cs" />
     <Compile Include="Components\InspectorWPF\Attributes\InspectorMethodAttribute.cs" />
+    <Compile Include="Components\Memory\MemoryMonitor.cs" />
+    <Compile Include="Components\Memory\MemoryGraph.cs" />
+    <Compile Include="Components\Memory\MemoryMonitorConfig.cs" />
     <Compile Include="Components\Profiler\ProfilerManager.cs" />
     <Compile Include="Components\Profiler\ProfilerSummary.cs" />
-    <Compile Include="Components\Profiler\StringBuilderExtensions.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Components\Profiler\ProfilerInpectorSettings.cs" />
     <Compile Include="Components\Profiler\TempBoxDrawer.cs" />
     <Compile Include="Components\Profiler\UIView.cs" />
@@ -179,6 +182,7 @@
     <Compile Include="Components\Undo\IUndoable.cs" />
     <Compile Include="Components\Undo\UndoEngine.cs" />
     <Compile Include="Components\Widget\Widget.cs" />
+    <Compile Include="FlatTheme.cs" />
     <Compile Include="GearsetComponentBase.cs" />
     <Compile Include="FixedLengthQueue.cs" />
     <Compile Include="GearsetComponent.cs" />

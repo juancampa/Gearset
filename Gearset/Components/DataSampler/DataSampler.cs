@@ -29,6 +29,13 @@ namespace Gearset.Components
             Values = new FixedLengthQueue<float>(GearsetResources.Console.Settings.DataSamplerConfig.DefaultHistoryLength);
         }
 
+        public DataSampler(String name, int historyLength)
+        {
+            this.Name = name;
+            this.SampleRate = 1;
+            Values = new FixedLengthQueue<float>(historyLength);
+        }
+
         public DataSampler(String name, int historyLength, int sampleRate, Func<float, float> function)
         {
             this.Name = name;
@@ -43,6 +50,21 @@ namespace Gearset.Components
             this.Function = function;
             this.SampleRate = sampleRate;
             Values = new FixedLengthQueue<float>(historyLength);
+        }
+
+        public void GetLimits(out float min, out float max)
+        {
+            max = float.MinValue;
+            min = float.MaxValue;
+            foreach (float value in Values)
+            {
+                if (value > max)
+                    max = value;
+                if (value < min)
+                    min = value;
+            }
+            max = (float)Math.Ceiling(max);
+            min = (float)Math.Floor(min);
         }
 
         public void Update(GameTime gameTime)

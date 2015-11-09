@@ -9,7 +9,7 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace Gearset.Profiler.Extensions
+namespace Gearset.Extensions
 {
     /// <summary>
     /// Options for StringBuilder extension methods.
@@ -57,12 +57,39 @@ namespace Gearset.Profiler.Extensions
         /// </summary>
         private static readonly char[] NumberString = new char[32];
 
+        public static StringBuilder SetText(this StringBuilder builder, int number)
+        {
+            builder.Length = 0;
+            return AppendNumberInternal(builder, number, 0, AppendNumberOptions.None);
+        }
+
+        public static StringBuilder SetText(this StringBuilder builder, float number)
+        {
+            builder.Length = 0;
+            return AppendNumber(builder, number, 2, AppendNumberOptions.None);
+        }
+
+        public static StringBuilder SetText(this StringBuilder builder, string text)
+        {
+            builder.Length = 0;
+            return builder.Append(text);
+        }
+
+        public static StringBuilder SetText(this StringBuilder builder, StringBuilder source)
+        {
+            builder.Length = 0;
+            for (var i = 0; i < source.Length; i++)
+                builder.Append(source[i]);
+
+            return builder;
+        }
+
         /// <summary>
         /// Convert integer to string and add to string builder.
         /// </summary>
-        public static void AppendNumber(this StringBuilder builder, int number)
+        public static StringBuilder AppendNumber(this StringBuilder builder, int number)
         {
-            AppendNumberInternal(builder, number, 0, AppendNumberOptions.None);
+            return AppendNumberInternal(builder, number, 0, AppendNumberOptions.None);
         }
 
         /// <summary>
@@ -71,33 +98,33 @@ namespace Gearset.Profiler.Extensions
         /// <param name="builder"></param>
         /// <param name="number"></param>
         /// <param name="options">Format options</param>
-        public static void AppendNumber(this StringBuilder builder, int number, AppendNumberOptions options)
+        public static StringBuilder AppendNumber(this StringBuilder builder, int number, AppendNumberOptions options)
         {
-            AppendNumberInternal(builder, number, 0, options);
+            return AppendNumberInternal(builder, number, 0, options);
         }
 
         /// <summary>
         /// Convert float to string and add to string builder.
         /// </summary>
         /// <remarks>It shows 2 decimal digits.</remarks>
-        public static void AppendNumber(this StringBuilder builder, float number)
+        public static StringBuilder AppendNumber(this StringBuilder builder, float number)
         {
-            AppendNumber(builder, number, 2, AppendNumberOptions.None);
+            return AppendNumber(builder, number, 2, AppendNumberOptions.None);
         }
 
         /// <summary>
         /// Convert float to string and add to string builder.
         /// </summary>
         /// <remarks>It shows 2 decimal digits.</remarks>
-        public static void AppendNumber(this StringBuilder builder, float number, AppendNumberOptions options)
+        public static StringBuilder AppendNumber(this StringBuilder builder, float number, AppendNumberOptions options)
         {
-            AppendNumber(builder, number, 2, options);
+            return AppendNumber(builder, number, 2, options);
         }
 
         /// <summary>
         /// Convert float to string and add to string builder.
         /// </summary>
-        public static void AppendNumber(this StringBuilder builder, float number, int decimalCount, AppendNumberOptions options)
+        public static StringBuilder AppendNumber(this StringBuilder builder, float number, int decimalCount, AppendNumberOptions options)
         {
             // Handle NaN, Infinity cases.
             if (float.IsNaN(number))
@@ -118,9 +145,11 @@ namespace Gearset.Profiler.Extensions
 
                 AppendNumberInternal(builder, intNumber, decimalCount, options);
             }
+
+            return builder;
         }
 
-        static void AppendNumberInternal(StringBuilder builder, int number, int decimalCount, AppendNumberOptions options)
+        static StringBuilder AppendNumberInternal(StringBuilder builder, int number, int decimalCount, AppendNumberOptions options)
         {
             var nfi = CultureInfo.CurrentCulture.NumberFormat;
 
@@ -180,7 +209,8 @@ namespace Gearset.Profiler.Extensions
 
             // Added converted string to StringBuilder.
             builder.Append(NumberString, idx, NumberString.Length - idx);
-        }
 
+            return builder;
+        }
     }
 }

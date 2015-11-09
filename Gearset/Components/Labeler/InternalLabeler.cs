@@ -5,6 +5,7 @@ using System.Text;
 using Gearset.Components;
 using Microsoft.Xna.Framework.Graphics;
 using Gearset;
+using Gearset.Extensions;
 using Microsoft.Xna.Framework;
 
 namespace Gearset.Components
@@ -14,8 +15,25 @@ namespace Gearset.Components
     /// </summary>
     public class InternalLabeler : Gear
     {
+        private Dictionary<String, Label> persistentLabels;
         private Dictionary<String, Label2D> persistent2DLabels;
         private Dictionary<String, Label3D> persistent3DLabels;
+
+        private class Label
+        {
+            public String Name;
+            public StringBuilder _stringBuilder;
+            public Vector2 Position;
+            public Color Color;
+
+            public Label(String name, Vector2 position, Color color)
+            {
+                Name = name;
+                _stringBuilder = new StringBuilder(64);
+                Position = position;
+                Color = color;
+            }
+        }
 
         private class Label2D
         {
@@ -59,6 +77,7 @@ namespace Gearset.Components
         public InternalLabeler(LabelerConfig config)
             : base(config)
         {
+            persistentLabels = new Dictionary<string, Label>();
             persistent2DLabels = new Dictionary<string, Label2D>();
             persistent3DLabels = new Dictionary<string, Label3D>();
             Config.DefaultColor = new Color(0.7f, 0.7f, 0.7f, 0.8f);
@@ -67,6 +86,7 @@ namespace Gearset.Components
 
         void Config_Cleared(object sender, EventArgs e)
         {
+            persistentLabels.Clear();
             persistent2DLabels.Clear();
             persistent3DLabels.Clear();
         }
@@ -124,7 +144,24 @@ namespace Gearset.Components
                 label.Position = position;
                 label.Color = color;
             }
-        } 
+        }
+
+        public void ShowLabelEx(String name, Vector2 position, StringBuilder stringBuilder, Color color)
+        {
+            Label label;
+            if (!persistentLabels.TryGetValue(name, out label))
+            {
+                label = new Label(name, position, color);
+                persistentLabels.Add(name, label);
+            }
+            else
+            {
+                label.Position = position;
+                label.Color = color;
+            }
+
+            label._stringBuilder.SetText(stringBuilder);
+        }
         #endregion
 
         #region Persistent 3D Labels
@@ -197,6 +234,12 @@ namespace Gearset.Components
                 return;
 
             // Draw persistent labels.
+            foreach (Label label in persistentLabels.Values)
+            {
+                GearsetResources.SpriteBatch.DrawString(GearsetResources.FontTiny, label._stringBuilder, label.Position + Vector2.One, Color.Black * GearsetResources.GlobalAlpha);
+                GearsetResources.SpriteBatch.DrawString(GearsetResources.FontTiny, label._stringBuilder, label.Position, label.Color * GearsetResources.GlobalAlpha);
+            }
+
             foreach (Label2D label in persistent2DLabels.Values)
             {
                 GearsetResources.SpriteBatch.DrawString(GearsetResources.FontTiny, label.Text, label.Position + Vector2.One, Color.Black * GearsetResources.GlobalAlpha);

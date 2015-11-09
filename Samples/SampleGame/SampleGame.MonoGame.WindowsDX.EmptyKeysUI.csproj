@@ -43,7 +43,6 @@
     <Compile Include="GameObjects.cs" />
     <Compile Include="Gearset\FpsCounter.cs" />
     <Compile Include="Gearset\GS.cs" />
-    <Compile Include="Gearset\MemoryMonitor.cs" />
     <Compile Include="MySampleGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

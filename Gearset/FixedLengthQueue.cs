@@ -101,7 +101,28 @@ namespace Gearset
             return t;
         }
 
-        public IEnumerator<T> GetEnumerator()
+        /// <summary>
+        /// Dequeues the oldest item.
+        /// </summary>
+        public void Clear()
+        {
+            queue.Clear();
+#if WINDOWS || LINUX || MONOMAC
+            if (CollectionChanged != null)
+            {
+                NotifyCollectionChangedEventArgs args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, null);
+                CollectionChanged(this, args);
+            }
+#endif
+        }
+
+        //Explicit implementation to avoid boxing the Enumerator.
+        public Queue<T>.Enumerator GetEnumerator()
+        {
+            return queue.GetEnumerator();
+        }
+
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return queue.GetEnumerator();
         }

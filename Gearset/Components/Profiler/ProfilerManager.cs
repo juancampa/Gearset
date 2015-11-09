@@ -30,7 +30,7 @@ namespace Gearset.Components.Profiler
         public PerformanceGraph PerformanceGraph { get; private set; }
         public ProfilerSummary ProfilerSummary { get; private set; }
 
-        public ProfilerConfig Config { get { return GearsetSettings.Instance.ProfilerConfig; } }
+        public ProfilerConfig Config => GearsetSettings.Instance.ProfilerConfig;
 
         //Settings the game can use for Profiling scenarios (e.g. to test if CPU/GPU bound)
         public bool Sleep { get; set; }
@@ -170,9 +170,11 @@ namespace Gearset.Components.Profiler
         int _currentLevel = -1;
         readonly Dictionary<string, int> _nameMap = new Dictionary<string, int>();
 
-        internal IEnumerable<MarkerInfo> Markers { get { return _markers; } }
+        internal List<MarkerInfo> Markers => _markers;
 
         readonly object _locker = new object();
+
+        public InternalLineDrawer LineDrawer { get; private set; }
 
         public ProfilerManager(IUserInterface userInterface)
             : base(GearsetSettings.Instance.ProfilerConfig)
@@ -202,6 +204,9 @@ namespace Gearset.Components.Profiler
             };
             
             RefreshSummary = true;
+
+            LineDrawer = new InternalLineDrawer(64);
+            Children.Add(LineDrawer);
 
             Children.Add(_internalLabeler);
             Children.Add(TempBoxDrawer);
@@ -403,7 +408,7 @@ namespace Gearset.Components.Profiler
         void BeginMark(int levelIndex, string markerName, Color color)
         {
             if (levelIndex < 0 || levelIndex >= MaxLevels)
-                throw new ArgumentOutOfRangeException("levelIndex");
+                throw new ArgumentOutOfRangeException(nameof(levelIndex));
 
             var level = _curLog.Levels[levelIndex];
 
@@ -459,7 +464,7 @@ namespace Gearset.Components.Profiler
         int EndMark(int levelIndex, string markerName)
         { 
             if (levelIndex < 0 || levelIndex >= MaxLevels)
-                throw new ArgumentOutOfRangeException("levelIndex");
+                throw new ArgumentOutOfRangeException(nameof(levelIndex));
 
             var level = _curLog.Levels[levelIndex];
 
@@ -468,11 +473,11 @@ namespace Gearset.Components.Profiler
 
             int markerId;
             if (!_markerNameToIdMap.TryGetValue(markerName, out markerId))
-                throw new InvalidOperationException(String.Format("Maker '{0}' is not registered." + "Make sure you specifed same name as you used for BeginMark" + " method.", markerName));
+                throw new InvalidOperationException($"Maker '{markerName}' is not registered. Make sure you specifed same name as you used for BeginMar method.");
 
             var markerIdx = level.MarkerNests[--level.NestCount];
             if (level.Markers[markerIdx].MarkerId != markerId)
-                throw new InvalidOperationException("Incorrect call order of BeginMark/EndMark method." + "You call it like BeginMark(A), BeginMark(B), EndMark(B), EndMark(A)" + " But you can't call it like " + "BeginMark(A), BeginMark(B), EndMark(A), EndMark(B).");
+                throw new InvalidOperationException("Incorrect call order of BeginMark/EndMark method. You call it like BeginMark(A), BeginMark(B), EndMark(B), EndMark(A)" + " But you can't call it like " + "BeginMark(A), BeginMark(B), EndMark(A), EndMark(B).");
                 
             level.Markers[markerIdx].EndTime = (float)_stopwatch.Elapsed.TotalMilliseconds;
 
@@ -488,7 +493,7 @@ namespace Gearset.Components.Profiler
         public float GetAverageTimeInMilliseconds(int levelIndex, string markerName)
         {
             if (levelIndex < 0 || levelIndex >= MaxLevels)
-                throw new ArgumentOutOfRangeException("levelIndex");
+                throw new ArgumentOutOfRangeException(nameof(levelIndex));
 
             float result = 0;
             int markerId;

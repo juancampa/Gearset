@@ -166,6 +166,9 @@
     <Compile Include="Components\Marker\Marker.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Components\Memory\MemoryGraph.cs" />
+    <Compile Include="Components\Memory\MemoryMonitor.cs" />
+    <Compile Include="Components\Memory\MemoryMonitorConfig.cs" />
     <Compile Include="Components\Persistor\IPersistent.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -200,9 +203,6 @@
     <Compile Include="Components\Profiler\ProfilerSummary.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\Profiler\StringBuilderExtensions.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Components\Profiler\TempBoxDrawer.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -227,6 +227,8 @@
     <Compile Include="Components\Undo\UndoEngine.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="FlatTheme.cs" />
     <Compile Include="Helpers\ReflectionExtensions.cs" />
     <Compile Include="UserInterface\EmptyKeys\Inspector\InspectorUI.cs" />
     <Compile Include="UserInterface\EmptyKeys\EmptyKeysUserInterface.cs" />

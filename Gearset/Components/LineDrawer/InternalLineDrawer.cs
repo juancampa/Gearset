@@ -56,6 +56,7 @@ namespace Gearset.Components
         /// Sets a maximun of lines we can draw.
         /// </summary>
         private const int MaxLineCount = 10000;   // Implies a 32k per buffer.
+        private readonly int _lineCount;   // Implies a 32k per buffer.
 
         /// <summary>
         /// When a persistent line is deleted it's index will be
@@ -82,19 +83,23 @@ namespace Gearset.Components
         private LineDrawerConfig config;
 
         #region Constructor
-        public InternalLineDrawer()
-            : this(new LineDrawerConfig())
-        { }
-        public InternalLineDrawer(LineDrawerConfig config)
-            : base(config)
+        public InternalLineDrawer() : this(new LineDrawerConfig(), MaxLineCount) { }
+
+        public InternalLineDrawer(int lineCount) : this(new LineDrawerConfig(), lineCount) { }
+
+        public InternalLineDrawer(LineDrawerConfig config) : this(config, MaxLineCount) { }
+
+        public InternalLineDrawer(LineDrawerConfig config, int lineCount) : base(config)
         {
             this.config = config;
             config.Cleared += new EventHandler(Config_Cleared);
 
-            this.persistentVertices3D = new VertexPositionColor[MaxLineCount * 2];
-            this.persistentVertices2D = new VertexPositionColor[MaxLineCount * 2];
-            this.singleFrameVertices2D = new VertexPositionColor[MaxLineCount * 2];
-            this.singleFrameVertices3D = new VertexPositionColor[MaxLineCount * 2];
+            _lineCount = lineCount;
+
+            this.persistentVertices3D = new VertexPositionColor[_lineCount * 2];
+            this.persistentVertices2D = new VertexPositionColor[_lineCount * 2];
+            this.singleFrameVertices2D = new VertexPositionColor[_lineCount * 2];
+            this.singleFrameVertices3D = new VertexPositionColor[_lineCount * 2];
 
             CoordinateSpace = Components.CoordinateSpace.ScreenSpace;
 
@@ -158,7 +163,7 @@ namespace Gearset.Components
                     persistentLine3DTable.Add(key, index);
                     ShowLine(index, v1, v2, color);
                 }
-                else if (persistentLine3DCount + 1 <= MaxLineCount)
+                else if (persistentLine3DCount + 1 <= _lineCount)
                 {
                     index = (persistentLine3DCount++) * 2;
                     persistentLine3DTable.Add(key, index);
@@ -192,7 +197,7 @@ namespace Gearset.Components
                     persistentLine2DTable.Add(key, index);
                     ShowLine(index, v1, v2, color);
                 }
-                else if (persistentLine2DCount + 1 <= MaxLineCount)
+                else if (persistentLine2DCount + 1 <= _lineCount)
                 {
                     index = (persistentLine2DCount++) * 2;
                     persistentLine2DTable.Add(key, index);
@@ -286,7 +291,7 @@ namespace Gearset.Components
             if (!Visible || GearsetResources.GlobalAlpha <= 0)
                 return;
 
-            if (singleFrameLine3DCount >= MaxLineCount)
+            if (singleFrameLine3DCount >= _lineCount)
                 return;
 
             var index = singleFrameLine3DCount * 2;
@@ -307,7 +312,7 @@ namespace Gearset.Components
             if (!Visible || GearsetResources.GlobalAlpha <= 0)
                 return;
 
-            if (singleFrameLine2DCount >= MaxLineCount)
+            if (singleFrameLine2DCount >= _lineCount)
                 return;
 
             var index = singleFrameLine2DCount * 2;

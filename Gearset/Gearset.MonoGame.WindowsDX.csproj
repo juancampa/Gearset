@@ -56,6 +56,11 @@
     <Compile Include="Components\CachedTemplate.cs" />
     <Compile Include="Components\Common\ItemRemovedEventArgs.cs" />
     <Compile Include="BinarySerializer.cs" />
+    <Compile Include="Components\Memory\MemoryGraph.cs" />
+    <Compile Include="Components\Memory\MemoryMonitor.cs" />
+    <Compile Include="Components\Memory\MemoryMonitorConfig.cs" />
+    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="FlatTheme.cs" />
     <Compile Include="Helpers\ReflectionExtensions.cs" />
     <Compile Include="UserInterface\Wpf\Bender\Wrappers\KeyWrapper.cs" />
     <Compile Include="UserInterface\Wpf\About\AboutViewModel.cs">
@@ -270,9 +275,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\Profiler\ProfilerSummary.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Components\Profiler\StringBuilderExtensions.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\Profiler\TempBoxDrawer.cs">

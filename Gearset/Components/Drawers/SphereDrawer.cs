@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace Gearset.Components
 {
     internal class SphereDrawer : Gear
     {
+        StringBuilder _stringBuilder = new StringBuilder(64);
+
         private readonly InternalLineDrawer lines;
 
         internal int CircleSteps = 20;
@@ -34,6 +37,8 @@ namespace Gearset.Components
 
         internal void ShowSphere(String name, Vector3 center, float radius, Color color)
         {
+            _stringBuilder.Length = 0;
+
             for (int j = 0; j < Sides; j++)
             {
                 float angle = j / (float)Sides * MathHelper.TwoPi;
@@ -52,6 +57,8 @@ namespace Gearset.Components
                     lines.ShowLine(name + "x" + j + i.ToString(), center + y * sin1 + x * cos1 , center + y * sin2 + x * cos2 , color);
                 }
             }
+
+            _stringBuilder.Length = 0;
 
             Vector3 x2 = Vector3.UnitX * radius;
             Vector3 z2 = Vector3.UnitZ * radius;

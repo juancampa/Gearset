@@ -89,7 +89,7 @@ namespace Gearset.Components.Profiler
                 return;
             }
 
-            DrawBorderLines(Color.Gray);
+            DrawBorderLines(Color.Gray, Profiler.LineDrawer);
             GearsetResources.Console.SolidBoxDrawer.ShowGradientBoxOnce(Position, Position + Size, new Color(56, 56, 56, 150), new Color(16, 16, 16, 127));
 
             if (ScaleNob.IsMouseOver)

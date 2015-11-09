@@ -124,7 +124,7 @@ namespace SampleGame.Gearset
         /// Returns the needle position of the curves in Bender. The game can use this
         /// value to let designers preview curve animations.
         /// </summary>
-        public static float BenderNeedlePosition { get { return Console.BenderNeedlePosition; } }
+        public static float BenderNeedlePosition => Console.BenderNeedlePosition;
 
         /// <summary>
         /// The thread that initialized and owns this class.
@@ -140,25 +140,36 @@ namespace SampleGame.Gearset
         /// <summary>
         /// An object to lock on for thread safety.
         /// </summary>
-        private static readonly Object SyncRoot;
+        private static readonly object SyncRoot;
 
         static GS()
         {
-            SyncRoot = new Object();
+            SyncRoot = new object();
             QueuedActions = new Queue<Action>(16);
         }
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------------
+        // NOTE - Breaking change for 3.0.5
+        // Added a boolean paramter to Initialize to control whether the full Gearset UI is created or not.
+        // Pass true to create the Gearet UI (the full Gearset experience as before).
+
+        // Pass false for no (WPF / EmptyKeysUI) UI - this mode is useful for monitoring managed memory allocations from your application 
+        // (as the UIs generate quite a bit of garbage).
+
+        //------------------------------------------------------------------------------------------------------------------------------------------------------
 
         /// <summary>
         /// This is the method you need to work for Gearset to work on your game.
         /// Remember to call SetMatrices to make Gearset's camera match yours.
         /// </summary>
         /// <param name="game">Your game instance</param>
+        /// <param name="createUI">True to create the Gearet UI; otherwise false.</param>
         [Conditional("USE_GEARSET")]
-        internal static void Initialize(Game game)
+        internal static void Initialize(Game game, bool createUI = true)
         {
             // Create the Gearset Component, this will be in charge of
             // Initializing Gearset and Updating/Drawing it every frame.
-            GearsetComponent = new GearsetComponent(game);
+            GearsetComponent = new GearsetComponent(game, createUI);
             game.Components.Add(GearsetComponent);
 
             // This component updates this class allowing it to process
@@ -190,42 +201,6 @@ namespace SampleGame.Gearset
             }
         }
 
-        #region SetMatrices
-        /// <summary>
-        /// Use this method after every Update of your game to update the camera
-        /// matrices so 3D overlays can be drawn correctly.
-        /// </summary>
-        [Conditional("USE_GEARSET")]
-        public static void SetMatrices(ref Matrix world, ref Matrix view, ref Matrix projection)
-        {
-            if (SameThread())
-                Console.SetMatrices(ref world, ref view, ref projection);
-            else
-            {
-                // Capture the parameters for lambda expr.
-                var w = world; var v = view; var p = projection;
-                EnqueueAction(() => Console.SetMatrices(ref w, ref v, ref p));
-            }
-        }
-
-        /// <summary>
-        /// Use this method after every Update of your game to update the camera
-        /// matrices so 3D overlays can be drawn correctly.
-        /// </summary>
-        [Conditional("USE_GEARSET")]
-        public static void SetMatrices(ref Matrix world, ref Matrix view, ref Matrix projection, ref Matrix transform2D)
-        {
-            if (SameThread())
-                Console.SetMatrices(ref world, ref view, ref projection, ref transform2D);
-            else
-            {
-                // Capture the parameters for lambda expr.
-                var w = world; var v = view; var p = projection; var t = transform2D;
-                EnqueueAction((() => Console.SetMatrices(ref w, ref v, ref p, ref t)));
-            }
-        }
-        #endregion
-
         #region Update
         [Conditional("USE_GEARSET")]
         public static void Update(GameTime gameTime)
@@ -243,6 +218,34 @@ namespace SampleGame.Gearset
                     action();
                 }
             }
+        }
+        #endregion
+
+        #region SetMatrices
+        /// <summary>
+        /// Use this method after every Update of your game to update the camera
+        /// matrices so 3D overlays can be drawn correctly.
+        /// </summary>
+        [Conditional("USE_GEARSET")]
+        public static void SetMatrices(ref Matrix world, ref Matrix view, ref Matrix projection)
+        {
+            if (SameThread())
+                Console.SetMatrices(ref world, ref view, ref projection);
+            else
+                EnqueueSetMatrices(ref world, ref view, ref projection);
+        }
+
+        /// <summary>
+        /// Use this method after every Update of your game to update the camera
+        /// matrices so 3D overlays can be drawn correctly.
+        /// </summary>
+        [Conditional("USE_GEARSET")]
+        public static void SetMatrices(ref Matrix world, ref Matrix view, ref Matrix projection, ref Matrix transform2D)
+        {
+            if (SameThread())
+                Console.SetMatrices(ref world, ref view, ref projection, ref transform2D);
+            else
+                EnqueueSetMatrices(ref world, ref view, ref projection, ref transform2D);
         }
         #endregion
 
@@ -273,12 +276,12 @@ namespace SampleGame.Gearset
         /// </summary>
         /// <param name="key">A dot-separated list of keys.</param>
         [Conditional("USE_GEARSET")]
-        public static void Show(String key)
+        public static void Show(string key)
         {
             if (SameThread())
                 Console.Show(key);
             else
-                EnqueueAction(() => Console.Show(key));
+                EnqueueShow(key);
         }
 
         /// <summary>
@@ -287,12 +290,12 @@ namespace SampleGame.Gearset
         /// <param name="key">A dot-separated list of keys.</param>
         /// <param name="value">The value to show.</param>
         [Conditional("USE_GEARSET")]
-        public static void Show(String key, object value)
+        public static void Show(string key, object value)
         {
             if (SameThread())
                 Console.Show(key, value);
             else
-                EnqueueAction((() => Console.Show(key, value)));
+                EnqueueShow(key, value);
         }
 
         /// <summary>
@@ -301,12 +304,12 @@ namespace SampleGame.Gearset
         /// <param name="name">Name of the action as it will appear on the button.</param>
         /// <param name="action">Action to perform when the button is clicked.</param>
         [Conditional("USE_GEARSET")]
-        public static void AddQuickAction(String name, Action action)
+        public static void AddQuickAction(string name, Action action)
         {
             if (SameThread())
                 Console.AddQuickAction(name, action);
             else
-                EnqueueAction((() => Console.AddQuickAction(name, action)));
+                EnqueueAddQuickAction(name, action);
         }
 
         /// <summary>
@@ -315,12 +318,12 @@ namespace SampleGame.Gearset
         /// <param name="plotName">A name that represent a data set.</param>
         /// <param name="value">The value to add to the sampler</param>
         [Conditional("USE_GEARSET")]
-        public static void Plot(String plotName, float value)
+        public static void Plot(string plotName, float value)
         {
             if (SameThread())
                 Console.Plot(plotName, value);
             else
-                EnqueueAction((() => Console.Plot(plotName, value)));
+                EnqueuePlot(plotName, value);
         }
 
         /// <summary>
@@ -331,12 +334,12 @@ namespace SampleGame.Gearset
         /// <param name="value">The value to add to the sampler</param>
         /// <param name="historyLength">The number of samples that the sampler will remember at any given time.</param>
         [Conditional("USE_GEARSET")]
-        public static void Plot(String plotName, float value, int historyLength)
+        public static void Plot(string plotName, float value, int historyLength)
         {
             if (SameThread())
                 Console.Plot(plotName, value, historyLength);
             else
-                EnqueueAction((() => Console.Plot(plotName, value, historyLength)));
+                EnqueuePlot(plotName, value, historyLength);
         }
 
         /// <summary>
@@ -345,12 +348,12 @@ namespace SampleGame.Gearset
         /// <param name="streamName">Name of the Stream to log the message to</param>
         /// <param name="content">Message to log</param>
         [Conditional("USE_GEARSET")]
-        public static void Log(String streamName, String content)
+        public static void Log(string streamName, string content)
         {
             if (SameThread())
                 Console.Log(streamName, content);
             else
-                EnqueueAction((() => Console.Log(streamName, content)));
+                EnqueueLog(streamName, content);
         }
 
         /// <summary>
@@ -358,12 +361,12 @@ namespace SampleGame.Gearset
         /// </summary>
         /// <param name="content">The message to log.</param>
         [Conditional("USE_GEARSET")]
-        public static void Log(String content)
+        public static void Log(string content)
         {
             if (SameThread())
                 Console.Log(content);
             else
-                EnqueueAction((() => Console.Log(content)));
+                EnqueueLog(content);
         }
 
         /// <summary>
@@ -373,12 +376,12 @@ namespace SampleGame.Gearset
         /// <param name="format">The format string</param>
         /// <param name="arg0">The first format parameter</param>
         [Conditional("USE_GEARSET")]
-        public static void Log(String streamName, String format, Object arg0)
+        public static void Log(string streamName, string format, object arg0)
         {
             if (SameThread())
                 Console.Log(streamName, format, arg0);
             else
-                EnqueueAction((() => Console.Log(streamName, format, arg0)));
+                EnqueueLog(streamName, format, arg0);
         }
 
         /// <summary>
@@ -389,12 +392,12 @@ namespace SampleGame.Gearset
         /// <param name="arg0">The first format parameter</param>
         /// <param name="arg1">The second format parameter</param>
         [Conditional("USE_GEARSET")]
-        public static void Log(String streamName, String format, Object arg0, Object arg1)
+        public static void Log(string streamName, string format, object arg0, object arg1)
         {
             if (SameThread())
                 Console.Log(streamName, format, arg0, arg1);
             else
-                EnqueueAction((() => Console.Log(streamName, format, arg0, arg1)));
+                EnqueueLog(streamName, format, arg0, arg1);
         }
 
         /// <summary>
@@ -406,12 +409,12 @@ namespace SampleGame.Gearset
         /// <param name="arg1">The second format parameter</param>
         /// <param name="arg2">The third format parameter</param>
         [Conditional("USE_GEARSET")]
-        public static void Log(String streamName, String format, Object arg0, Object arg1, Object arg2)
+        public static void Log(string streamName, string format, object arg0, object arg1, object arg2)
         {
             if (SameThread())
                 Console.Log(streamName, format, arg0, arg1, arg2);
             else
-                EnqueueAction((() => Console.Log(streamName, format, arg0, arg1, arg2)));
+                EnqueueLog(streamName, format, arg0, arg1, arg2);
         }
 
         /// <summary>
@@ -421,12 +424,12 @@ namespace SampleGame.Gearset
         /// <param name="format">The format string</param>
         /// <param name="args">The format parameters</param>
         [Conditional("USE_GEARSET")]
-        public static void Log(String streamName, String format, params Object[] args)
+        public static void Log(string streamName, string format, params object[] args)
         {
             if (SameThread())
                 Console.Log(streamName, format, args);
             else
-                EnqueueAction((() => Console.Log(streamName, format, args)));
+                EnqueueLog(streamName, format, args);
         }
 
         /// <summary>
@@ -438,7 +441,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.SaveLogToFile();
             else
-                EnqueueAction((() => Console.SaveLogToFile()));
+                EnqueueSaveLogToFile();
         }
 
         /// <summary>
@@ -451,55 +454,55 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.SaveLogToFile(filename);
             else
-                EnqueueAction((() => Console.SaveLogToFile(filename)));
+                EnqueueSaveLogToFile(filename);
         }
 
         /// <summary>
         /// This is an experimental feature.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowMark(String key, Vector3 position, Color color)
+        public static void ShowMark(string key, Vector3 position, Color color)
         {
             if (SameThread())
                 Console.ShowMark(key, position, color);
             else
-                EnqueueAction((() => Console.ShowMark(key, position, color)));
+                EnqueueShowMark(key, position, color);
         }
 
         /// <summary>
         /// This is an experimental feature.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowMark(String key, Vector3 position)
+        public static void ShowMark(string key, Vector3 position)
         {
             if (SameThread())
                 Console.ShowMark(key, position);
             else
-                EnqueueAction((() => Console.ShowMark(key, position)));
+                EnqueueShowMark(key, position);
         }
 
         /// <summary>
         /// This is an experimental feature.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowMark(String key, Vector2 position, Color color)
+        public static void ShowMark(string key, Vector2 position, Color color)
         {
             if (SameThread())
                 Console.ShowMark(key, position, color);
             else
-                EnqueueAction((() => Console.ShowMark(key, position, color)));
+                EnqueueShowMark(key, position, color);
         }
 
         /// <summary>
         /// This is an experimental feature.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowMark(String key, Vector2 position)
+        public static void ShowMark(string key, Vector2 position)
         {
             if (SameThread())
                 Console.ShowMark(key, position);
             else
-                EnqueueAction((() => Console.ShowMark(key, position)));
+                EnqueueShowMark(key, position);
         }
 
         /// <summary>
@@ -507,36 +510,36 @@ namespace SampleGame.Gearset
         /// out quickly.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void Alert(String message)
+        public static void Alert(string message)
         {
             if (SameThread())
                 Console.Alert(message);
             else
-                EnqueueAction((() => Console.Alert(message)));
+                EnqueueAlert(message);
         }
 
         /// <summary>
         /// Draws a line between two points.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowLine(String key, Vector3 v1, Vector3 v2)
+        public static void ShowLine(string key, Vector3 v1, Vector3 v2)
         {
             if (SameThread())
                 Console.ShowLine(key, v1, v2);
             else
-                EnqueueAction((() => Console.ShowLine(key, v1, v2)));
+                EnqueueShowLine(key, v1, v2);
         }
 
         /// <summary>
         /// Draws a line between two points.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowLine(String key, Vector3 v1, Vector3 v2, Color color)
+        public static void ShowLine(string key, Vector3 v1, Vector3 v2, Color color)
         {
             if (SameThread())
                 Console.ShowLine(key, v1, v2, color);
             else
-                EnqueueAction((() => Console.ShowLine(key, v1, v2, color)));
+                EnqueueShowLine(key, v1, v2, color);
         }
 
         /// <summary>
@@ -548,7 +551,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowLineOnce(v1, v2);
             else
-                EnqueueAction((() => Console.ShowLineOnce(v1, v2)));
+                EnqueueShowLineOnce(v1, v2);
         }
 
         /// <summary>
@@ -560,31 +563,31 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowLineOnce(v1, v2, color);
             else
-                EnqueueAction((() => Console.ShowLineOnce(v1, v2, color)));
+                EnqueueShowLineOnce(v1, v2, color);
         }
 
         /// <summary>
         /// Draws a line between two points.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowLine(String key, Vector2 v1, Vector2 v2)
+        public static void ShowLine(string key, Vector2 v1, Vector2 v2)
         {
             if (SameThread())
                 Console.ShowLine(key, v1, v2);
             else
-                EnqueueAction((() => Console.ShowLine(key, v1, v2)));
+                EnqueueShowLine(key, v1, v2);
         }
 
         /// <summary>
         /// Draws a line between two points.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowLine(String key, Vector2 v1, Vector2 v2, Color color)
+        public static void ShowLine(string key, Vector2 v1, Vector2 v2, Color color)
         {
             if (SameThread())
                 Console.ShowLine(key, v1, v2, color);
             else
-                EnqueueAction((() => Console.ShowLine(key, v1, v2, color)));
+                EnqueueShowLine(key, v1, v2, color);
         }
 
         /// <summary>
@@ -596,7 +599,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowLineOnce(v1, v2);
             else
-                EnqueueAction((() => Console.ShowLineOnce(v1, v2)));
+                EnqueueShowLineOnce(v1, v2);
         }
 
         /// <summary>
@@ -608,7 +611,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowLineOnce(v1, v2, color);
             else
-                EnqueueAction((() => Console.ShowLineOnce(v1, v2, color)));
+                EnqueueShowLineOnce(v1, v2, color);
         }
 
         /// <summary>
@@ -617,12 +620,12 @@ namespace SampleGame.Gearset
         /// <param name="box">The box to draw</param>
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowBox(String key, BoundingBox box)
+        public static void ShowBox(string key, BoundingBox box)
         {
             if (SameThread())
                 Console.ShowBox(key, box);
             else
-                EnqueueAction((() => Console.ShowBox(key, box)));
+                EnqueueShowBox(key, box);
         }
 
         /// <summary>
@@ -631,12 +634,12 @@ namespace SampleGame.Gearset
         /// <param name="max">Maximum values of the box in each axis</param>
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowBox(String key, Vector3 min, Vector3 max)
+        public static void ShowBox(string key, Vector3 min, Vector3 max)
         {
             if (SameThread())
                 Console.ShowBox(key, min, max);
             else
-                EnqueueAction((() => Console.ShowBox(key, min, max)));
+                EnqueueShowBox(key, min, max);
         }
 
         /// <summary>
@@ -646,12 +649,12 @@ namespace SampleGame.Gearset
         /// <param name="color">The color that will be used to draw the box</param>
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowBox(String key, BoundingBox box, Color color)
+        public static void ShowBox(string key, BoundingBox box, Color color)
         {
             if (SameThread())
                 Console.ShowBox(key, box, color);
             else
-                EnqueueAction((() => Console.ShowBox(key, box, color)));
+                EnqueueShowBox(key, box, color);
         }
 
         /// <summary>
@@ -660,12 +663,12 @@ namespace SampleGame.Gearset
         /// <param name="max">Maximum values of the box in each axis</param>
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowBox(String key, Vector3 min, Vector3 max, Color color)
+        public static void ShowBox(string key, Vector3 min, Vector3 max, Color color)
         {
             if (SameThread())
                 Console.ShowBox(key, min, max, color);
             else
-                EnqueueAction((() => Console.ShowBox(key, min, max, color)));
+                EnqueueShowBox(key, min, max, color);
         }
 
         /// <summary>
@@ -678,7 +681,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowBoxOnce(box);
             else
-                EnqueueAction((() => Console.ShowBoxOnce(box)));
+                EnqueueShowBoxOnce(box);
         }
 
         /// <summary>
@@ -692,7 +695,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowBoxOnce(min, max);
             else
-                EnqueueAction((() => Console.ShowBoxOnce(min, max)));
+                EnqueueShowBoxOnce(min, max);
         }
 
         /// <summary>
@@ -706,7 +709,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowBoxOnce(box, color);
             else
-                EnqueueAction((() => Console.ShowBoxOnce(box, color)));
+                EnqueueShowBoxOnce(box, color);
         }
 
         /// <summary>
@@ -721,55 +724,55 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowBoxOnce(min, max, color);
             else
-                EnqueueAction((() => Console.ShowBoxOnce(min, max, color)));
+                EnqueueShowBoxOnce(min, max, color);
         }
 
         /// <summary>
         /// Shows a sphere on the screen.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowSphere(String key, BoundingSphere sphere)
+        public static void ShowSphere(string key, BoundingSphere sphere)
         {
             if (SameThread())
                 Console.ShowSphere(key, sphere);
             else
-                EnqueueAction((() => Console.ShowSphere(key, sphere)));
+                EnqueueShowSphere(key, sphere);
         }
 
         /// <summary>
         /// Shows a sphere on the screen.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowSphere(String key, Vector3 center, float radius)
+        public static void ShowSphere(string key, Vector3 center, float radius)
         {
             if (SameThread())
                 Console.ShowSphere(key, center, radius);
             else
-                EnqueueAction((() => Console.ShowSphere(key, center, radius)));
+                EnqueueShowSphere(key, center, radius);
         }
 
         /// <summary>
         /// Shows a sphere on the screen.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowSphere(String key, BoundingSphere sphere, Color color)
+        public static void ShowSphere(string key, BoundingSphere sphere, Color color)
         {
             if (SameThread())
                 Console.ShowSphere(key, sphere, color);
             else
-                EnqueueAction((() => Console.ShowSphere(key, sphere, color)));
+                EnqueueShowSphere(key, sphere, color);
         }
 
         /// <summary>
         /// Shows a sphere on the screen.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void ShowSphere(String key, Vector3 center, float radius, Color color)
+        public static void ShowSphere(string key, Vector3 center, float radius, Color color)
         {
             if (SameThread())
                 Console.ShowSphere(key, center, radius, color);
             else
-                EnqueueAction((() => Console.ShowSphere(key, center, radius, color)));
+                EnqueueShowSphere(key, center, radius, color);
         }
 
         /// <summary>
@@ -781,7 +784,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowSphereOnce(sphere);
             else
-                EnqueueAction((() => Console.ShowSphereOnce(sphere)));
+                EnqueueShowSphereOnce(sphere);
         }
 
         /// <summary>
@@ -793,7 +796,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowSphereOnce(center, radius);
             else
-                EnqueueAction((() => Console.ShowSphereOnce(center, radius)));
+                EnqueueShowSphereOnce(center, radius);
         }
 
         /// <summary>
@@ -805,7 +808,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowSphereOnce(sphere, color);
             else
-                EnqueueAction((() => Console.ShowSphereOnce(sphere, color)));
+                EnqueueShowSphereOnce(sphere, color);
         }
 
         /// <summary>
@@ -817,7 +820,31 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowSphereOnce(center, radius, color);
             else
-                EnqueueAction((() => Console.ShowSphereOnce(center, radius, color)));
+                EnqueueShowSphereOnce(center, radius, color);
+        }
+
+        /// <summary>
+        /// Shows a cylinder on the screen for one frame.
+        /// </summary>
+        [Conditional("USE_GEARSET")]
+        public static void ShowCylinderOnce(Vector3 center, Vector3 radius)
+        {
+            if (SameThread())
+                Console.ShowCylinderOnce(center, radius);
+            else
+                EnqueueShowCylinderOnce(center, radius);
+        }
+    
+        /// <summary>
+        /// Shows a cylinder on the screen for one frame.
+        /// </summary>
+        [Conditional("USE_GEARSET")]
+        public static void ShowCylinderOnce(Vector3 center, Vector3 radius, Color color)
+        {
+            if (SameThread())
+                Console.ShowCylinderOnce(center, radius, color);
+            else
+                EnqueueShowCylinderOnce(center, radius, color);
         }
 
         /// <summary>
@@ -826,12 +853,12 @@ namespace SampleGame.Gearset
         /// <param name="name">Name of the label as well of the text to show. Subsequent calls with the same name will modify this label</param>
         /// <param name="position">Position where the label will be shown</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowLabel(String name, Vector2 position)
+        public static void ShowLabel(string name, Vector2 position)
         {
             if (SameThread())
                 Console.ShowLabel(name, position);
             else
-                EnqueueAction((() => Console.ShowLabel(name, position)));
+                EnqueueShowLabel(name, position);
         }
 
         /// <summary>
@@ -841,12 +868,12 @@ namespace SampleGame.Gearset
         /// <param name="position">Position of the label</param>
         /// <param name="text">Text to show on the label</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowLabel(String name, Vector2 position, String text)
+        public static void ShowLabel(string name, Vector2 position, string text)
         {
             if (SameThread())
                 Console.ShowLabel(name, position, text);
             else
-                EnqueueAction((() => Console.ShowLabel(name, position, text)));
+                EnqueueShowLabel(name, position, text);
         }
 
         /// <summary>
@@ -857,12 +884,12 @@ namespace SampleGame.Gearset
         /// <param name="text">Text to show on the label</param>
         /// <param name="color">Color of the text</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowLabel(String name, Vector2 position, String text, Color color)
+        public static void ShowLabel(string name, Vector2 position, string text, Color color)
         {
             if (SameThread())
                 Console.ShowLabel(name, position, text, color);
             else
-                EnqueueAction((() => Console.ShowLabel(name, position, text, color)));
+                EnqueueShowLabel(name, position, text, color);
         }
 
         /// <summary>
@@ -871,12 +898,12 @@ namespace SampleGame.Gearset
         /// <param name="name">Name of the label as well of the text to show. Subsequent calls with the same name will modify this label</param>
         /// <param name="position">Position where the label will be shown</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowLabel(String name, Vector3 position)
+        public static void ShowLabel(string name, Vector3 position)
         {
             if (SameThread())
                 Console.ShowLabel(name, position);
             else
-                EnqueueAction((() => Console.ShowLabel(name, position)));
+                EnqueueShowLabel(name, position);
         }
 
         /// <summary>
@@ -886,12 +913,12 @@ namespace SampleGame.Gearset
         /// <param name="position">Position of the label</param>
         /// <param name="text">Text to show on the label</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowLabel(String name, Vector3 position, String text)
+        public static void ShowLabel(string name, Vector3 position, string text)
         {
             if (SameThread())
                 Console.ShowLabel(name, position, text);
             else
-                EnqueueAction((() => Console.ShowLabel(name, position, text)));
+                EnqueueShowLabel(name, position, text);
         }
 
         /// <summary>
@@ -902,48 +929,48 @@ namespace SampleGame.Gearset
         /// <param name="text">Text to show on the label</param>
         /// <param name="color">Color of the text</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowLabel(String name, Vector3 position, String text, Color color)
+        public static void ShowLabel(string name, Vector3 position, string text, Color color)
         {
             if (SameThread())
                 Console.ShowLabel(name, position, text, color);
             else
-                EnqueueAction((() => Console.ShowLabel(name, position, text, color)));
+                EnqueueShowLabel(name, position, text, color);
         }
 
         /// <summary>
         /// Sends an object to the Inspector window.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void Inspect(String name, Object o)
+        public static void Inspect(string name, object o)
         {
             if (SameThread())
                 Console.Inspect(name, o);
             else
-                EnqueueAction((() => Console.Inspect(name, o)));
+                EnqueueInspect(name, o);
         }
 
         /// <summary>
         /// Sends an object to the Inspector window.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void Inspect(String name, Object o, bool autoExpand)
+        public static void Inspect(string name, object o, bool autoExpand)
         {
             if (SameThread())
                 Console.Inspect(name, o, autoExpand);
             else
-                EnqueueAction((() => Console.Inspect(name, o, autoExpand)));
+                EnqueueInspect(name, o, autoExpand);
         }
 
         /// <summary>
         /// Removes an object from the Inspector window.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void RemoveInspect(Object o)
+        public static void RemoveInspect(object o)
         {
             if (SameThread())
                 Console.RemoveInspect(o);
             else
-                EnqueueAction((() => Console.RemoveInspect(o)));
+                EnqueueRemoveInspect(o);
         }
 
         /// <summary>
@@ -955,7 +982,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ClearInspector();
             else
-                EnqueueAction((() => Console.ClearInspector()));
+                EnqueueClearInspector();
         }
 
         /// <summary>
@@ -970,7 +997,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.SetFinderSearchFunction(searchFunction);
             else
-                EnqueueAction((() => Console.SetFinderSearchFunction(searchFunction)));
+                EnqueueSetFinderSearchFunction(searchFunction);
         }
 
         /// <summary>
@@ -980,12 +1007,12 @@ namespace SampleGame.Gearset
         /// <param name="transform">Transform to draw</param>
         /// <param name="axisScale">Scale to apply to each axis</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowTransform(String name, Matrix transform, float axisScale)
+        public static void ShowTransform(string name, Matrix transform, float axisScale)
         {
             if (SameThread())
                 Console.ShowTransform(name, transform, axisScale);
             else
-                EnqueueAction((() => Console.ShowTransform(name, transform, axisScale)));
+                EnqueueShowTransform(name, transform, axisScale);
         }
 
         /// <summary>
@@ -994,12 +1021,12 @@ namespace SampleGame.Gearset
         /// <param name="name">Name of the persistent Matrix</param>
         /// <param name="transform">Transform to draw</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowTransform(String name, Matrix transform)
+        public static void ShowTransform(string name, Matrix transform)
         {
             if (SameThread())
                 Console.ShowTransform(name, transform);
             else
-                EnqueueAction((() => Console.ShowTransform(name, transform)));
+                EnqueueShowTransform(name, transform);
         }
 
         /// <summary>
@@ -1012,7 +1039,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowTransformOnce(transform);
             else
-                EnqueueAction((() => Console.ShowTransformOnce(transform)));
+                EnqueueShowTransformOnce(transform);
         }
 
         /// <summary>
@@ -1026,7 +1053,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowTransformOnce(transform, axisScale);
             else
-                EnqueueAction((() => Console.ShowTransformOnce(transform, axisScale)));
+                EnqueueShowTransformOnce(transform, axisScale);
         }
 
         /// <summary>
@@ -1037,12 +1064,12 @@ namespace SampleGame.Gearset
         /// <param name="vector">Vector to show</param>
         /// <param name="color">Color of the arrow to draw</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowVector3(String name, Vector3 location, Vector3 vector, Color color)
+        public static void ShowVector3(string name, Vector3 location, Vector3 vector, Color color)
         {
             if (SameThread())
                 Console.ShowVector3(name, location, vector, color);
             else
-                EnqueueAction((() => Console.ShowVector3(name, location, vector, color)));
+                EnqueueShowVector3(name, location, vector, color);
         }
 
         /// <summary>
@@ -1052,12 +1079,12 @@ namespace SampleGame.Gearset
         /// <param name="location">Location of the vector to draw (i.e. position of the start of the arrow)</param>
         /// <param name="vector">Vector to show</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowVector3(String name, Vector3 location, Vector3 vector)
+        public static void ShowVector3(string name, Vector3 location, Vector3 vector)
         {
             if (SameThread())
                 Console.ShowVector3(name, location, vector);
             else
-                EnqueueAction((() => Console.ShowVector3(name, location, vector)));
+                EnqueueShowVector3(name, location, vector);
         }
 
         /// <summary>
@@ -1071,7 +1098,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowVector3Once(location, vector);
             else
-                EnqueueAction((() => Console.ShowVector3Once(location, vector)));
+                EnqueueShowVector3Once(location, vector);
         }
 
         /// <summary>
@@ -1086,7 +1113,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowVector3Once(location, vector, color);
             else
-                EnqueueAction((() => Console.ShowVector3Once(location, vector, color)));
+                EnqueueShowVector3Once(location, vector, color);
         }
 
         /// <summary>
@@ -1097,12 +1124,12 @@ namespace SampleGame.Gearset
         /// <param name="vector">Vector to show</param>
         /// <param name="color">Color of the arrow to draw</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowVector2(String name, Vector2 location, Vector2 vector, Color color)
+        public static void ShowVector2(string name, Vector2 location, Vector2 vector, Color color)
         {
             if (SameThread())
                 Console.ShowVector2(name, location, vector, color);
             else
-                EnqueueAction((() => Console.ShowVector2(name, location, vector, color)));
+                EnqueueShowVector2(name, location, vector, color);
         }
 
         /// <summary>
@@ -1112,12 +1139,12 @@ namespace SampleGame.Gearset
         /// <param name="location">Location of the vector to draw (i.e. position of the start of the arrow)</param>
         /// <param name="vector">Vector to show</param>
         [Conditional("USE_GEARSET")]
-        public static void ShowVector2(String name, Vector2 location, Vector2 vector)
+        public static void ShowVector2(string name, Vector2 location, Vector2 vector)
         {
             if (SameThread())
                 Console.ShowVector2(name, location, vector);
             else
-                EnqueueAction((() => Console.ShowVector2(name, location, vector)));
+                EnqueueShowVector2(name, location, vector);
         }
 
         /// <summary>
@@ -1131,7 +1158,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowVector2Once(location, vector);
             else
-                EnqueueAction((() => Console.ShowVector2Once(location, vector)));
+                EnqueueShowVector2Once(location, vector);
         }
 
         /// <summary>
@@ -1146,7 +1173,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ShowVector2Once(location, vector, color);
             else
-                EnqueueAction((() => Console.ShowVector2Once(location, vector, color)));
+                EnqueueShowVector2Once(location, vector, color);
         }
 
         /// <summary>
@@ -1155,12 +1182,12 @@ namespace SampleGame.Gearset
         /// <param name="name">Name of the curve to add. Group using dot separators.</param>
         /// <param name="curve">Curve to edit in Bender.</param>
         [Conditional("USE_GEARSET")]
-        public static void AddCurve(String name, Curve curve)
+        public static void AddCurve(string name, Curve curve)
         {
             if (SameThread())
                 Console.AddCurve(name, curve);
             else
-                EnqueueAction((() => Console.AddCurve(name, curve)));
+                EnqueueAddCurve(name, curve);
         }
 
         /// <summary>
@@ -1172,7 +1199,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.RemoveCurve(curve);
             else
-                EnqueueAction((() => Console.RemoveCurve(curve)));
+                EnqueueRemoveCurve(curve);
         }
 
         /// <summary>
@@ -1180,12 +1207,12 @@ namespace SampleGame.Gearset
         /// path to the curve or group must be given.
         /// </summary>
         [Conditional("USE_GEARSET")]
-        public static void RemoveCurveOrGroup(String name)
+        public static void RemoveCurveOrGroup(string name)
         {
             if (SameThread())
                 Console.RemoveCurveOrGroup(name);
             else
-                EnqueueAction((() => Console.RemoveCurveOrGroup(name)));
+                EnqueueRemoveCurveOrGroup(name);
         }
 
         /// <summary>
@@ -1197,7 +1224,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.ClearAll();
             else
-                EnqueueAction((() => Console.ClearAll()));
+                EnqueueClearAll();
         }
 
         /// <summary>
@@ -1209,7 +1236,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.StartFrame();
             else
-                EnqueueAction((() => Console.StartFrame()));
+                EnqueueStartFrame();
         }
 
         /// <summary>
@@ -1223,7 +1250,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.BeginMark(markerName, color);
             else
-                EnqueueAction((() => Console.BeginMark(markerName, color)));
+                EnqueueBeginMark(markerName, color);
         }
 
         /// <summary>
@@ -1236,7 +1263,7 @@ namespace SampleGame.Gearset
             if (SameThread())
                 Console.EndMark(markerName);
             else
-                EnqueueAction((() => Console.EndMark(markerName)));
+                EnqueueEndMark(markerName);
         }
 
         [Conditional("USE_GEARSET")]
@@ -1247,6 +1274,475 @@ namespace SampleGame.Gearset
             else
                 EnqueueAction(action);
         }
+        #endregion
+
+        #region DelayedLambdas
+        //These methods are used to delay the creation of the hidden class created for lambdas when called.
+        //Basically, we delay them to reduce the garbage generated single threaded calls - multithreaded calls
+        //eventually end up in here and BAM, garbage but I can live with that mostly :-)
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueSetMatrices(ref Matrix world, ref Matrix view, ref Matrix projection)
+        {
+            // Capture the parameters for lambda expr.
+            var w = world; var v = view; var p = projection;
+            EnqueueAction(() => Console.SetMatrices(ref w, ref v, ref p));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueSetMatrices(ref Matrix world, ref Matrix view, ref Matrix projection, ref Matrix transform2D)
+        {
+            // Capture the parameters for lambda expr.
+            var w = world; var v = view; var p = projection; var t = transform2D;
+            EnqueueAction((() => Console.SetMatrices(ref w, ref v, ref p, ref t)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShow(string key)
+        {
+            EnqueueAction(() => Console.Show(key));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShow(string key, object value)
+        {
+            EnqueueAction((() => Console.Show(key, value)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueAddQuickAction(string name, Action action)
+        {
+            EnqueueAction((() => Console.AddQuickAction(name, action)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueuePlot(string plotName, float value)
+        {
+            EnqueueAction((() => Console.Plot(plotName, value)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueuePlot(string plotName, float value, int historyLength)
+        {
+            EnqueueAction((() => Console.Plot(plotName, value, historyLength)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueLog(string streamName, string content)
+        {
+            EnqueueAction((() => Console.Log(streamName, content)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueLog(string content)
+        {
+            EnqueueAction((() => Console.Log(content)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueLog(string streamName, string format, object arg0)
+        {
+            EnqueueAction((() => Console.Log(streamName, format, arg0)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueLog(string streamName, string format, object arg0, object arg1)
+        {
+            EnqueueAction((() => Console.Log(streamName, format, arg0, arg1)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueLog(string streamName, string format, object arg0, object arg1, object arg2)
+        {
+            EnqueueAction((() => Console.Log(streamName, format, arg0, arg1, arg2)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueLog(string streamName, string format, params object[] args)
+        {
+            EnqueueAction((() => Console.Log(streamName, format, args)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueSaveLogToFile()
+        {
+            EnqueueAction((() => Console.SaveLogToFile()));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueSaveLogToFile(string filename)
+        {
+            EnqueueAction((() => Console.SaveLogToFile(filename)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowMark(string key, Vector3 position, Color color)
+        {
+            EnqueueAction((() => Console.ShowMark(key, position, color)));
+        }
+
+        public static void EnqueueShowMark(string key, Vector3 position)
+        {
+            EnqueueAction((() => Console.ShowMark(key, position)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowMark(string key, Vector2 position, Color color)
+        {
+            EnqueueAction((() => Console.ShowMark(key, position, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowMark(string key, Vector2 position)
+        {
+            EnqueueAction((() => Console.ShowMark(key, position)));
+        }
+
+        /// <summary>
+        /// Shows huge text on the center of the screen which fades
+        /// out quickly.
+        /// </summary>
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueAlert(string message)
+        {
+            EnqueueAction((() => Console.Alert(message)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLine(string key, Vector3 v1, Vector3 v2)
+        {
+            EnqueueAction((() => Console.ShowLine(key, v1, v2)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLine(string key, Vector3 v1, Vector3 v2, Color color)
+        {
+            EnqueueAction((() => Console.ShowLine(key, v1, v2, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLineOnce(Vector3 v1, Vector3 v2)
+        {
+            EnqueueAction((() => Console.ShowLineOnce(v1, v2)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLineOnce(Vector3 v1, Vector3 v2, Color color)
+        {
+            EnqueueAction((() => Console.ShowLineOnce(v1, v2, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLine(string key, Vector2 v1, Vector2 v2)
+        {
+            EnqueueAction((() => Console.ShowLine(key, v1, v2)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLine(string key, Vector2 v1, Vector2 v2, Color color)
+        {
+            EnqueueAction((() => Console.ShowLine(key, v1, v2, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLineOnce(Vector2 v1, Vector2 v2)
+        {
+            EnqueueAction((() => Console.ShowLineOnce(v1, v2)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        static void EnqueueShowLineOnce(Vector2 v1, Vector2 v2, Color color)
+        {
+            EnqueueAction(() => Console.ShowLineOnce(v1, v2, color));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBox(string key, BoundingBox box)
+        {
+            EnqueueAction((() => Console.ShowBox(key, box)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBox(string key, Vector3 min, Vector3 max)
+        {
+            EnqueueAction((() => Console.ShowBox(key, min, max)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBox(string key, BoundingBox box, Color color)
+        {
+            EnqueueAction((() => Console.ShowBox(key, box, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBox(string key, Vector3 min, Vector3 max, Color color)
+        {
+            EnqueueAction((() => Console.ShowBox(key, min, max, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBoxOnce(BoundingBox box)
+        {
+            EnqueueAction((() => Console.ShowBoxOnce(box)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBoxOnce(Vector3 min, Vector3 max)
+        {
+            EnqueueAction((() => Console.ShowBoxOnce(min, max)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBoxOnce(BoundingBox box, Color color)
+        {
+            EnqueueAction((() => Console.ShowBoxOnce(box, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowBoxOnce(Vector3 min, Vector3 max, Color color)
+        {
+            EnqueueAction((() => Console.ShowBoxOnce(min, max, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphere(string key, BoundingSphere sphere)
+        {
+            EnqueueAction((() => Console.ShowSphere(key, sphere)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphere(string key, Vector3 center, float radius)
+        {
+            EnqueueAction((() => Console.ShowSphere(key, center, radius)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphere(string key, BoundingSphere sphere, Color color)
+        {
+            EnqueueAction((() => Console.ShowSphere(key, sphere, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphere(string key, Vector3 center, float radius, Color color)
+        {
+            EnqueueAction((() => Console.ShowSphere(key, center, radius, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphereOnce(BoundingSphere sphere)
+        {
+            EnqueueAction((() => Console.ShowSphereOnce(sphere)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphereOnce(Vector3 center, float radius)
+        {
+            EnqueueAction((() => Console.ShowSphereOnce(center, radius)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphereOnce(BoundingSphere sphere, Color color)
+        {
+            EnqueueAction((() => Console.ShowSphereOnce(sphere, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowSphereOnce(Vector3 center, float radius, Color color)
+        {
+            EnqueueAction((() => Console.ShowSphereOnce(center, radius, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowCylinderOnce(Vector3 center, Vector3 radius)
+        {
+            EnqueueAction((() => Console.ShowCylinderOnce(center, radius)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowCylinderOnce(Vector3 center, Vector3 radius, Color color)
+        {
+            EnqueueAction((() => Console.ShowCylinderOnce(center, radius, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLabel(string name, Vector2 position)
+        {
+            EnqueueAction((() => Console.ShowLabel(name, position)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLabel(string name, Vector2 position, string text)
+        {
+            EnqueueAction((() => Console.ShowLabel(name, position, text)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLabel(string name, Vector2 position, string text, Color color)
+        {
+            EnqueueAction((() => Console.ShowLabel(name, position, text, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLabel(string name, Vector3 position)
+        {
+            EnqueueAction((() => Console.ShowLabel(name, position)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLabel(string name, Vector3 position, string text)
+        {
+            EnqueueAction((() => Console.ShowLabel(name, position, text)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowLabel(string name, Vector3 position, string text, Color color)
+        {
+            EnqueueAction((() => Console.ShowLabel(name, position, text, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueInspect(string name, object o)
+        {
+            EnqueueAction((() => Console.Inspect(name, o)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueInspect(string name, object o, bool autoExpand)
+        {
+            EnqueueAction((() => Console.Inspect(name, o, autoExpand)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueRemoveInspect(object o)
+        {
+            EnqueueAction((() => Console.RemoveInspect(o)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueClearInspector()
+        {
+            EnqueueAction((() => Console.ClearInspector()));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueSetFinderSearchFunction(SearchFunction searchFunction)
+        {
+            EnqueueAction((() => Console.SetFinderSearchFunction(searchFunction)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowTransform(string name, Matrix transform, float axisScale)
+        {
+            EnqueueAction((() => Console.ShowTransform(name, transform, axisScale)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowTransform(string name, Matrix transform)
+        {
+            EnqueueAction((() => Console.ShowTransform(name, transform)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowTransformOnce(Matrix transform)
+        {
+            EnqueueAction((() => Console.ShowTransformOnce(transform)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowTransformOnce(Matrix transform, float axisScale)
+        {
+            EnqueueAction((() => Console.ShowTransformOnce(transform, axisScale)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector3(string name, Vector3 location, Vector3 vector, Color color)
+        {
+            EnqueueAction((() => Console.ShowVector3(name, location, vector, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector3(string name, Vector3 location, Vector3 vector)
+        {
+            EnqueueAction((() => Console.ShowVector3(name, location, vector)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector3Once(Vector3 location, Vector3 vector)
+        {
+            EnqueueAction((() => Console.ShowVector3Once(location, vector)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector3Once(Vector3 location, Vector3 vector, Color color)
+        {
+            EnqueueAction((() => Console.ShowVector3Once(location, vector, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector2(string name, Vector2 location, Vector2 vector, Color color)
+        {
+            EnqueueAction((() => Console.ShowVector2(name, location, vector, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector2(string name, Vector2 location, Vector2 vector)
+        {
+            EnqueueAction((() => Console.ShowVector2(name, location, vector)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector2Once(Vector2 location, Vector2 vector)
+        {
+            EnqueueAction((() => Console.ShowVector2Once(location, vector)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueShowVector2Once(Vector2 location, Vector2 vector, Color color)
+        {
+            EnqueueAction((() => Console.ShowVector2Once(location, vector, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueAddCurve(string name, Curve curve)
+        {
+            EnqueueAction((() => Console.AddCurve(name, curve)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueRemoveCurve(Curve curve)
+        {
+            EnqueueAction((() => Console.RemoveCurve(curve)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueRemoveCurveOrGroup(string name)
+        {
+            EnqueueAction((() => Console.RemoveCurveOrGroup(name)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueClearAll()
+        {
+            EnqueueAction((() => Console.ClearAll()));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueStartFrame()
+        {
+            EnqueueAction((() => Console.StartFrame()));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueBeginMark(string markerName, Color color)
+        {
+            EnqueueAction((() => Console.BeginMark(markerName, color)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueEndMark(string markerName)
+        {
+            EnqueueAction((() => Console.EndMark(markerName)));
+        }
+
         #endregion
     }
 }

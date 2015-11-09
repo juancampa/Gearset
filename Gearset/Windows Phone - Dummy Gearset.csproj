@@ -56,6 +56,7 @@
     <Optimize>false</Optimize>
     <DefineConstants>DEBUG;TRACE;WINDOWS_PHONE</DefineConstants>
     <XnaCompressContent>false</XnaCompressContent>
+    <LangVersion>6</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -96,7 +97,11 @@
     <Compile Include="Components\InspectorWPF\Attributes\InspectorAttribute.cs" />
     <Compile Include="Components\InspectorWPF\Attributes\InspectorIgnoreAttribute.cs" />
     <Compile Include="Components\InspectorWPF\Attributes\InspectorMethodAttribute.cs" />
+    <Compile Include="Components\Memory\MemoryGraph.cs" />
+    <Compile Include="Components\Memory\MemoryMonitor.cs" />
+    <Compile Include="Components\Memory\MemoryMonitorConfig.cs" />
     <Compile Include="Components\Profiler\ProfilerManager.cs" />
+    <Compile Include="FlatTheme.cs" />
     <Compile Include="GameWindowMonitor.cs" />
     <Compile Include="GameWindowMonitor.Designer.cs">
       <DependentUpon>GameWindowMonitor.cs</DependentUpon>

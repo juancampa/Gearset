@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace Gearset
 {
@@ -15,13 +11,13 @@ namespace Gearset
     /// </summary>
     public class GearsetComponent : GearsetComponentBase
     {
-        public GearConsole Console { get; private set; }
+        public GearConsole Console { get; }
 
-        public GearsetComponent(Game game)
+        public GearsetComponent(Game game, bool createUI)
             : base(game)
         {
-            this.UpdateOrder = int.MaxValue - 1;
-            Console = new GearConsole(this.Game);
+            UpdateOrder = int.MaxValue - 1;
+            Console = new GearConsole(Game, createUI);
         }
 
         public override void Initialize()

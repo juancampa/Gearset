@@ -1,5 +1,7 @@
-﻿using System.Text;
-using Gearset.Profiler.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Gearset.Extensions;
 using Microsoft.Xna.Framework;
 
 namespace Gearset.Components.Profiler
@@ -32,6 +34,7 @@ namespace Gearset.Components.Profiler
             // Generate log string.
             _logString.Length = 0;
             _logStringTimings.Length = 0;
+
             foreach (var markerInfo in Profiler.Markers)
             {
                 for (var i = 0; i < ProfilerManager.MaxLevels; ++i)
@@ -70,8 +73,8 @@ namespace Gearset.Components.Profiler
             Size = namesSize + new Vector2(timingsSize.X, 0) + new Vector2(Padding * 5, Padding * 2);
 
             if (GearsetResources.CurrentRenderPass == RenderPass.BasicEffectPass)
-            {   
-                DrawBorderLines(Color.Gray);
+            {
+                DrawBorderLines(Color.Gray, Profiler.LineDrawer);
                 GearsetResources.Console.SolidBoxDrawer.ShowGradientBoxOnce(Position, Position + Size, new Color(56, 56, 56, 150), new Color(16, 16, 16, 127));
 
                 //Fixed size based on summary contrents
