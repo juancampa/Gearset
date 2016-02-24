@@ -94,6 +94,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Gearset;
+using Gearset.Components.CommandConsole;
 using Microsoft.Xna.Framework;
 
 // to access the GS class.
@@ -112,7 +113,8 @@ namespace SampleGame.Gearset
         /// You don't need to do anything special with this.
         /// </summary>
         public static GearsetComponent GearsetComponent { get; private set; }
-
+        static GearsetWrapperUpdater _gearsetWrapperUpdater;
+        
         /// <summary>
         /// If you're using a transform for your 2D objects (e.g. in the SpriteBatch)
         /// make sure that Gearset knows about it either by setting it here or using 
@@ -149,7 +151,7 @@ namespace SampleGame.Gearset
         }
 
         //------------------------------------------------------------------------------------------------------------------------------------------------------
-        // NOTE - Breaking change for 3.0.5
+        // NOTE - Change for 3.0.5
         // Added a boolean paramter to Initialize to control whether the full Gearset UI is created or not.
         // Pass true to create the Gearet UI (the full Gearset experience as before).
 
@@ -174,10 +176,21 @@ namespace SampleGame.Gearset
 
             // This component updates this class allowing it to process
             // calls from other threads which are queued.
-            game.Components.Add(new GearsetWrapperUpdater(game));
+            game.Components.Add(_gearsetWrapperUpdater = new GearsetWrapperUpdater(game));
 
             Console = GearsetComponent.Console;
             _ownerThread = Thread.CurrentThread;
+        }
+
+        /// <summary>
+        /// Shutdown gearset
+        /// </summary>
+        /// <param name="game">Your game instance</param>
+        [Conditional("USE_GEARSET")]
+        internal static void Shutdown(Game game)
+        {
+            game.Components.Remove(GearsetComponent);
+            game.Components.Remove(_gearsetWrapperUpdater);
         }
 
         /// <summary>
@@ -1274,6 +1287,24 @@ namespace SampleGame.Gearset
             else
                 EnqueueAction(action);
         }
+
+        [Conditional("USE_GEARSET")]
+        public static void RegisterCommand(string name, string description, Action<CommandConsoleManager, string, IList<string>> action)
+        {
+            if (SameThread())
+                Console.RegisterCommand(name, description, action);
+            else
+                EnqueueRegisterCommand(name, description, action);
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void ExecuteCommand(string command)
+        {
+            if (SameThread())
+                Console.ExecuteCommmand(command);
+            else
+                EnqueueExecuteCommand(command);
+        }
         #endregion
 
         #region DelayedLambdas
@@ -1743,6 +1774,17 @@ namespace SampleGame.Gearset
             EnqueueAction((() => Console.EndMark(markerName)));
         }
 
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueRegisterCommand(string name, string description, Action<CommandConsoleManager, string, IList<string>> action)
+        {
+            EnqueueAction((() => Console.RegisterCommand(name, description, action)));
+        }
+
+        [Conditional("USE_GEARSET")]
+        public static void EnqueueExecuteCommand(string command)
+        {
+            EnqueueAction((() => Console.ExecuteCommmand(command)));
+        }
         #endregion
     }
 }

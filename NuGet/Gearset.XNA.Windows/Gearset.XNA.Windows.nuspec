@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Gearset.XNA.Windows</id>
-    <version>3.0.5</version>
+    <version>3.0.6</version>
     <owners>Paul.Cunningham</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Gearset is an open source debugging toolkit for MonoGame and XNA based games.</description>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Gearset.Components;
+using Gearset.Components.CommandConsole;
 using Gearset.Components.Finder;
 using Gearset.Components.InspectorWPF;
 using Gearset.Components.Profiler;
@@ -16,6 +17,8 @@ namespace Gearset.UserInterface
 
         public event EventHandler<LevelItemChangedEventArgs> LevelItemChanged;
 
+        public event EventHandler<ExecuteCommandEventArgs> ExecuteCommand;
+
         protected readonly GraphicsDevice GraphicsDevice;
         protected readonly int Width;
         protected readonly int Height;
@@ -28,12 +31,15 @@ namespace Gearset.UserInterface
         }
 
         public abstract void Initialise(ContentManager content, int width, int height);
+        public abstract void Destory();
+
         public abstract void CreateWidget();
         public abstract void CreateInspector(InspectorManager inspectorManager);
         public abstract void CreateLogger(LoggerConfig config);
         public abstract void CreateProfiler(ProfilerConfig config, int enabledTimeRulerLevels, int enabledPerformanceGraphLevels, int enabledProfilerSummaryLevels);
         public abstract void CreateFinder(Finder finder);
         public abstract void CreateBender(BenderConfig config);
+        public abstract void CreateCommandConsole(CommandConsoleConfig config);
 
         public abstract void Update(double deltaTime);
         public virtual void Draw(double deltaTime) { }
@@ -48,6 +54,7 @@ namespace Gearset.UserInterface
         public abstract bool ProfilerVisible { set; }
         public abstract bool FinderVisible { set; }
         public abstract bool BenderVisible { set; }
+        public abstract bool CommandConsoleVisible { set; }
 
         //Widget
         public abstract void AddAction(string name, Action action);
@@ -93,5 +100,16 @@ namespace Gearset.UserInterface
         public virtual void RemoveCurve(Curve curve) { }
         public virtual void RemoveCurveOrGroup(string name) { }
         public virtual float BenderHorizontalRulerNeedlePosition { get { return 0.0f; } }
+
+        //Command Console
+        public abstract void EchoCommand(CommandConsoleManager.DebugCommandMessage messageType, string text);
+        public abstract void ClearCommandOutput();
+
+        protected virtual void OnExecuteCommand(ExecuteCommandEventArgs e)
+        {
+            var handler = ExecuteCommand;
+            if (handler != null)
+                handler(this, e);
+        }
     }
 }

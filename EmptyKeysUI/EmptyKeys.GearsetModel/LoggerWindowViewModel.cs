@@ -8,7 +8,7 @@ using EmptyKeys.UserInterface.Mvvm;
 namespace EmptyKeys.GearsetModel
 {
     /// <summary>
-    /// MVVM View Model for the Widget Window.
+    /// MVVM View Model for the Logger Window.
     /// </summary>
     public class LoggerWindowViewModel : WindowViewModel
     {

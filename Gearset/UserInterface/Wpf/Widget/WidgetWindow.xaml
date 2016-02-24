@@ -18,6 +18,21 @@
                     <SolidColorBrush x:Key="backgroundBrushSolid" Color="#00404040"/>
                     <BitmapImage x:Key="iconImage" UriSource="icon.png"/>
                     <BitmapImage x:Key="iconImageOver" UriSource="icon_over.png"/>
+                              
+                    <Style x:Key="actionButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="Background" Value="{DynamicResource actioButton}" />
+                        <Setter Property="Foreground" Value="{DynamicResource highlightText1}"/>
+                        <Setter Property ="Padding" Value="7 4 7 4" />
+                        <Setter Property ="Margin" Value="0" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="{DynamicResource highlightText1}"/>
+                                <Setter Property="Background" Value="{DynamicResource actioButtonHighlight}" />
+                                <Setter Property="BorderThickness" Value="0" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
                     
                     <Style x:Key="toggleButton" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
                         <Setter Property="VerticalAlignment" Value="Center" />
@@ -63,7 +78,7 @@
         </ContextMenu>
     </Window.ContextMenu>
 
-    <Grid>
+    <Grid Height="35">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
@@ -88,26 +103,20 @@
             <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding LoggerConfig.Visible}">Logger</ToggleButton>
             <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding BenderConfig.Visible}">Bender</ToggleButton>
             <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding ProfilerConfig.Visible}">Profiler</ToggleButton>
-            <ListView VerticalAlignment="Top" Height="20" Name="buttonList" Background="Transparent" Margin="0" Padding="0">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Button Content="{Binding}" VerticalAlignment="Stretch" Margin="2,0,2,0" MinWidth="0" Click="Button_Click"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
+            <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding CommandConsoleConfig.Visible}">Console</ToggleButton>
 
-                <ListView.Template>
-                    <ControlTemplate>
-                        <ItemsPresenter/>
-                    </ControlTemplate>
-                </ListView.Template>
-                <ListView.ItemsPanel>
+            <ItemsControl Name="buttonList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding}" Style="{StaticResource actionButton}" Click="Button_Click"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" Width="Auto"/>
+                        <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-            </ListView>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </StackPanel>
     </Grid>
 </Window>

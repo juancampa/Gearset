@@ -18,7 +18,7 @@
             readonly AboutViewModel _aboutViewModel;
             AboutWindow _aboutWindow;
 
-            public ListView ButtonList { get { return buttonList; } }
+            public ItemsControl ButtonList { get { return buttonList; } }
 
             public bool WasHiddenByGameMinimize { get; set; }
 

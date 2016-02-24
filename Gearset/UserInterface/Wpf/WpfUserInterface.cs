@@ -9,10 +9,12 @@ using System.Windows.Data;
 using System.Windows.Forms.Integration;
 using System.Windows.Media;
 using Gearset.Components;
+using Gearset.Components.CommandConsole;
 using Gearset.Components.Profiler;
 using Gearset.UserInterface.Wpf.Bender;
 using Gearset.UserInterface.Wpf.Finder;
 using Gearset.Components.InspectorWPF;
+using Gearset.UserInterface.Wpf.CommandConsole;
 using Gearset.UserInterface.Wpf.Logger;
 using Gearset.UserInterface.Wpf.Profiler;
 using Gearset.UserInterface.Wpf.Widget;
@@ -37,7 +39,7 @@ namespace Gearset.UserInterface.Wpf
         LoggerViewModel _loggerViewModel;
         LoggerConfig _loggerConfig;
         ICollectionView _filteredView;
-        ScrollViewer _scrollViewer;
+        ScrollViewer _loggerScrollViewer;
         bool _loggerLocationJustChanged;
 
         //Profiler
@@ -60,6 +62,13 @@ namespace Gearset.UserInterface.Wpf
         //Inspector
         InspectorUI _inspectorUI;
 
+        //CommandConsole
+        CommandConsoleWindow _commandConsoleWindow;
+        CommandConsoleViewModel _commandConsoleViewModel;
+        CommandConsoleConfig _commandConsoleConfig;
+        ScrollViewer _consoleScrollViewer;
+        bool _commandConsoleLocationJustChanged;
+
         public WpfUserInterface(bool createUI, GraphicsDevice graphicsDevice, int width, int height)
             : base(graphicsDevice, width, height)
         {
@@ -69,6 +78,12 @@ namespace Gearset.UserInterface.Wpf
         public override void Initialise(ContentManager content, int width, int height)
         {
 
+        }
+
+        public override void Destory()
+        {
+            foreach (var window in _windows)
+                window.Close();
         }
 
         public override void CreateWidget()
@@ -145,7 +160,7 @@ namespace Gearset.UserInterface.Wpf
 
             _windows.Add(_loggerWindow);
 
-            _scrollViewer = GetDescendantByType(_loggerWindow.LogListView, typeof(ScrollViewer)) as ScrollViewer;
+            _loggerScrollViewer = GetDescendantByType(_loggerWindow.LogListView, typeof(ScrollViewer)) as ScrollViewer;
 
             WindowHelper.EnsureOnScreen(_loggerWindow);
         }
@@ -255,6 +270,50 @@ namespace Gearset.UserInterface.Wpf
             WindowHelper.EnsureOnScreen(_curveEditorWindow);
         }
 
+        public override void CreateCommandConsole(CommandConsoleConfig config)
+        {
+            if (_createUI == false)
+                return;
+
+            _commandConsoleConfig = config;
+
+            _commandConsoleViewModel = new CommandConsoleViewModel();
+
+            _commandConsoleWindow = new CommandConsoleWindow
+            {
+                Top = config.Top,
+                Left = config.Left,
+                Width = config.Width,
+                Height = config.Height
+            };
+
+            _commandConsoleWindow.DataContext = _commandConsoleViewModel;
+
+            _profilerViewModel.LevelItemChanged += (sender, args) =>
+            {
+                OnLevelItemChanged(new LevelItemChangedEventArgs(args.Key, args.LevelId, args.Enabled));
+            };
+
+            _commandConsoleWindow.ClearOutput += (sender, args) =>  _commandConsoleViewModel.ClearOutput(); 
+            _commandConsoleWindow.IsVisibleChanged += (sender, args) => _commandConsoleConfig.Visible = _commandConsoleWindow.IsVisible;
+            _commandConsoleWindow.LocationChanged += (sender, args) => _commandConsoleLocationJustChanged = true;
+            _commandConsoleWindow.SizeChanged += (sender, args) => _commandConsoleLocationJustChanged = true;
+
+            _commandConsoleWindow.ExecuteCommand += (sender, args) => GearsetResources.Console.CommandConsole.ExecuteCommand(args.Command);
+            _commandConsoleWindow.PreviousCommand += (sender, args) => _commandConsoleViewModel.CommandText = GearsetResources.Console.CommandConsole.PreviousCommand();
+            _commandConsoleWindow.NextCommand += (sender, args) => _commandConsoleViewModel.CommandText = GearsetResources.Console.CommandConsole.NextCommand();
+
+            if (_commandConsoleConfig.Visible)
+                _commandConsoleWindow.Show();
+
+            _windows.Add(_commandConsoleWindow);
+
+            _consoleScrollViewer = GetDescendantByType(_commandConsoleWindow.OutputListView, typeof(ScrollViewer)) as ScrollViewer;
+
+            WindowHelper.EnsureOnScreen(_commandConsoleWindow);
+            ElementHost.EnableModelessKeyboardInterop(_commandConsoleWindow);
+        }
+
         public override void Update(double deltaTime)
         {
             if (_createUI == false)
@@ -305,6 +364,15 @@ namespace Gearset.UserInterface.Wpf
 
             if (_inspectorUI != null)
                 _inspectorUI.Update(deltaTime);
+
+            if (_commandConsoleLocationJustChanged)
+            {
+                _commandConsoleLocationJustChanged = false;
+                _commandConsoleConfig.Top = _commandConsoleWindow.Top;
+                _commandConsoleConfig.Left = _commandConsoleWindow.Left;
+                _commandConsoleConfig.Width = _commandConsoleWindow.Width;
+                _commandConsoleConfig.Height = _commandConsoleWindow.Height;
+            }
         }
 
         public override void GotFocus()
@@ -389,6 +457,11 @@ namespace Gearset.UserInterface.Wpf
             set { SetWindowVisibility(_curveEditorWindow, value); }
         }
 
+        public override bool CommandConsoleVisible
+        {
+            set { SetWindowVisibility(_commandConsoleWindow, value); }
+        }
+
         static void SetWindowVisibility(UIElement window, bool isVisible)
         {
             if (window != null)
@@ -413,7 +486,7 @@ namespace Gearset.UserInterface.Wpf
             var stream = _loggerViewModel.Log(message, updateNumber);
 
             if (stream.Enabled)
-                _scrollViewer.ScrollToEnd();
+                _loggerScrollViewer.ScrollToEnd();
         }
 
         public override void Log(string streamName, string message, int updateNumber)
@@ -424,7 +497,7 @@ namespace Gearset.UserInterface.Wpf
             var stream = _loggerViewModel.Log(streamName, message, updateNumber);
 
             if (stream.Enabled)
-                _scrollViewer.ScrollToEnd();
+                _loggerScrollViewer.ScrollToEnd();
         }
 
         protected override void OnStreamChanged(StreamChangedEventArgs e)
@@ -586,7 +659,7 @@ namespace Gearset.UserInterface.Wpf
                 return (float)_curveEditorWindow.horizontalRuler.NeedlePosition;
             }
         }
-
+        
         //Inspector
 
         public override object InspectorSelectedItem
@@ -657,6 +730,17 @@ namespace Gearset.UserInterface.Wpf
 
             return _inspectorUI.FilterPredicate(item);
         }
-            
+
+        //Command Console
+        public override void EchoCommand(CommandConsoleManager.DebugCommandMessage messageType, string text)
+        {
+            _commandConsoleViewModel.EchoCommand(messageType, text);
+            _consoleScrollViewer.ScrollToEnd();
+        }
+
+        public override void ClearCommandOutput()
+        {
+            _commandConsoleViewModel.ClearOutput();
+        }
     }
 }

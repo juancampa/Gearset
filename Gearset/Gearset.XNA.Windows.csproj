@@ -135,6 +135,8 @@
     <Compile Include="ComponentNamespace.cs" />
     <Compile Include="Components\Alerter\AlerterConfig.cs" />
     <Compile Include="Components\CachedTemplate.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleManager.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleConfig.cs" />
     <Compile Include="Components\Common\ItemRemovedEventArgs.cs" />
     <Compile Include="Components\Finder\ObjectDescription.cs" />
     <Compile Include="Components\InspectorWPF\Attributes\InspectorAttribute.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Helpers\ReflectionHelper.cs" />
     <Compile Include="Helpers\TextHelper.cs" />
     <Compile Include="UserInterface\IUserInterface.cs" />
+    <Compile Include="UserInterface\ExecuteCommandEventArgs.cs" />
     <Compile Include="UserInterface\LevelItemChangedEventArgs.cs" />
     <Compile Include="UserInterface\StreamChangedEventArgs.cs" />
     <Compile Include="UserInterface\UserInterface.cs" />
@@ -356,6 +359,10 @@
       <DependentUpon>VisualItemWrapper.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\Wpf\IWindow.cs" />
+    <Compile Include="UserInterface\Wpf\CommandConsole\CommandConsoleViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\CommandConsole\CommandConsoleWindow.xaml.cs">
+      <DependentUpon>CommandConsoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Wpf\Logger\LoggerViewModel.cs" />
     <Compile Include="UserInterface\Wpf\Logger\LoggerWindow.xaml.cs">
       <DependentUpon>LoggerWindow.xaml</DependentUpon>
@@ -543,6 +550,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserInterface\Wpf\InspectorWPF\VisualItemWrapper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\CommandConsole\CommandConsoleWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

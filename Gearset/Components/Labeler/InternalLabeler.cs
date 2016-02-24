@@ -228,6 +228,11 @@ namespace Gearset.Components
             persistent2DLabels.Remove(name);
         }
 
+        public void HideLabelEx(String name)
+        {
+            persistentLabels.Remove(name);
+        }
+
         public override void Draw(GameTime gameTime)
         {
             if (GearsetResources.CurrentRenderPass != RenderPass.SpriteBatchPass)

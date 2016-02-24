@@ -23,7 +23,7 @@ namespace EmptyKeys.UserInterface.Generated {
     [GeneratedCodeAttribute("Empty Keys UI Generator", "1.10.0.0")]
     public partial class InspectorWindow : UserControl {
         
-        private StackPanel e_11;
+        private StackPanel e_20;
         
         private TreeView _treeView;
         
@@ -36,14 +36,14 @@ namespace EmptyKeys.UserInterface.Generated {
         
         private void InitializeComponent() {
             InitializeElementResources(this);
-            // e_11 element
-            this.e_11 = new StackPanel();
-            this.Content = this.e_11;
-            this.e_11.Name = "e_11";
-            this.e_11.Background = new SolidColorBrush(new ColorW(0, 0, 0, 0));
+            // e_20 element
+            this.e_20 = new StackPanel();
+            this.Content = this.e_20;
+            this.e_20.Name = "e_20";
+            this.e_20.Background = new SolidColorBrush(new ColorW(0, 0, 0, 0));
             // _treeView element
             this._treeView = new TreeView();
-            this.e_11.Children.Add(this._treeView);
+            this.e_20.Children.Add(this._treeView);
             this._treeView.Name = "_treeView";
             this._treeView.VerticalAlignment = VerticalAlignment.Stretch;
             Binding binding__treeView_ItemsSource = new Binding("TreeItems");

@@ -48,6 +48,8 @@ namespace Gearset.Components.Memory
         public int Gen1CollectionCount => Frames[FrameId].Gen1CollectionCount;
         public int Gen2CollectionCount => Frames[FrameId].Gen2CollectionCount;
 
+        public int Xbox360CollectionCount { get; private set; }
+
         public bool MonitorXbox360Garbage { get; set; } = true;
 
         public long TotalMemoryK => TotalMemoryBytes / 1024;
@@ -146,7 +148,7 @@ namespace Gearset.Components.Memory
                 if (_xbox360Memory > OneMegabyte)
                 {
                     //XBox collection
-
+                    Xbox360CollectionCount++;
                     CurrentFrame.CollectionType |= CollectionType.Xbox360;
                     _xbox360Memory = 0;
                 }

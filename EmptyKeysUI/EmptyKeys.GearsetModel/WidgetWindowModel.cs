@@ -9,39 +9,46 @@ namespace EmptyKeys.GearsetModel
     /// </summary>
     public class WidgetWindowViewModel : ViewModelBase
     {
-        Boolean _enabled;
-        public Boolean Enabled
+        bool _enabled;
+        public bool Enabled
         {
             get { return _enabled; }
             set { SetProperty(ref _enabled, value); }
         }
 
-        Boolean _inspectorWindowVisible;
-        public Boolean InspectorWindowVisible
+        bool _inspectorWindowVisible;
+        public bool InspectorWindowVisible
         {
             get { return _inspectorWindowVisible; }
             set { SetProperty(ref _inspectorWindowVisible, value); }
         }
 
-        Boolean _loggerWindowVisible;
-        public Boolean LoggerWindowVisible
+        bool _loggerWindowVisible;
+        public bool LoggerWindowVisible
         {
             get { return _loggerWindowVisible; }
             set { SetProperty(ref _loggerWindowVisible, value); }
         }
 
-        Boolean _finderWindowVisible;
-        public Boolean FinderWindowVisible
+        bool _finderWindowVisible;
+        public bool FinderWindowVisible
         {
             get { return _finderWindowVisible; }
             set { SetProperty(ref _finderWindowVisible, value); }
         }
 
-        Boolean _profilerWindowVisible;
-        public Boolean ProfilerWindowVisible
+        bool _profilerWindowVisible;
+        public bool ProfilerWindowVisible
         {
             get { return _profilerWindowVisible; }
             set { SetProperty(ref _profilerWindowVisible, value); }
+        }
+
+        bool _commandConsoleWindowVisible;
+        public bool CommandConsoleWindowVisible
+        {
+            get { return _commandConsoleWindowVisible; }
+            set { SetProperty(ref _commandConsoleWindowVisible, value); }
         }
 
         float _sliderValue;
@@ -57,12 +64,14 @@ namespace EmptyKeys.GearsetModel
         public event EventHandler LoggerButtonClicked;
         public event EventHandler FinderButtonClicked;
         public event EventHandler ProfilerButtonClicked;
+        public event EventHandler CommandConsoleButtonClicked;
 
         public ICommand MasterSwitchButtonClick { get; set; }
         public ICommand InspectorButtonClick { get; set; }
         public ICommand LoggerButtonClick { get; set; }
         public ICommand FinderButtonClick { get; set; }
         public ICommand ProfilerButtonClick { get; set; }
+        public ICommand CommandConsoleButtonClick { get; set; }
 
         public WidgetWindowViewModel()
         {
@@ -73,6 +82,7 @@ namespace EmptyKeys.GearsetModel
             LoggerButtonClick = new RelayCommand(e => { OnLoggerButtonClicked(EventArgs.Empty); });
             FinderButtonClick = new RelayCommand(e => { OnFinderButtonClicked(EventArgs.Empty); });
             ProfilerButtonClick = new RelayCommand(e => { OnProfilerButtonClicked(EventArgs.Empty); });
+            CommandConsoleButtonClick = new RelayCommand(e => { OnCommandConsoleButtonClicked(EventArgs.Empty); });
         }
 
         protected void OnMasterSwitchButtonClicked(EventArgs e)
@@ -106,6 +116,13 @@ namespace EmptyKeys.GearsetModel
         protected void OnProfilerButtonClicked(EventArgs e)
         {
             var handler = ProfilerButtonClicked;
+            if (handler != null)
+                handler(this, e);
+        }
+
+        protected void OnCommandConsoleButtonClicked(EventArgs e)
+        {
+            var handler = CommandConsoleButtonClicked;
             if (handler != null)
                 handler(this, e);
         }

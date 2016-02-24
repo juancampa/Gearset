@@ -58,6 +58,9 @@ namespace Gearset
         [Inspector(FriendlyName = "Memory Monitor", HideCantWriteIcon = true)]
         public MemoryMonitorConfig MemoryMonitorConfig { get; internal set; }
 
+        [Inspector(FriendlyName = "Command Console", HideCantWriteIcon = true)]
+        public CommandConsoleConfig CommandConsoleConfig { get; internal set; }
+
         [Inspector(FriendlyName = "Overlaid Plots", HideCantWriteIcon = true)]
         public PlotterConfig PlotterConfig { get; internal set; }
 
@@ -98,6 +101,7 @@ namespace Gearset
             LoggerConfig = new Components.LoggerConfig();
             FinderConfig = new Components.FinderConfig();
             MemoryMonitorConfig = new MemoryMonitorConfig();
+            CommandConsoleConfig = new Components.CommandConsoleConfig();
 
             // IMPORTANT:
             // NEW CONFIG INSTANCES SHOULD BE ADDED IN THE LOAD METHOD BELOW.
@@ -219,6 +223,9 @@ namespace Gearset
 
             if (Instance.MemoryMonitorConfig.MemoryGraphConfig == null)
                 Instance.MemoryMonitorConfig.MemoryGraphConfig = new MemoryMonitorConfig.MemoryGraphUIConfig();
+
+            if (Instance.CommandConsoleConfig == null)
+                Instance.CommandConsoleConfig = new CommandConsoleConfig();
         }
     }
 }

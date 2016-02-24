@@ -23,13 +23,13 @@ namespace EmptyKeys.UserInterface.Generated {
     [GeneratedCodeAttribute("Empty Keys UI Generator", "1.10.0.0")]
     public partial class ProfilerWindow : UserControl {
         
-        private StackPanel e_28;
+        private StackPanel e_37;
         
-        private ToggleButton e_29;
+        private ToggleButton e_38;
         
-        private ToggleButton e_30;
+        private ToggleButton e_39;
         
-        private ToggleButton e_31;
+        private ToggleButton e_40;
         
         private ItemsControl pgLevelsListBox;
         
@@ -46,41 +46,41 @@ namespace EmptyKeys.UserInterface.Generated {
         
         private void InitializeComponent() {
             InitializeElementResources(this);
-            // e_28 element
-            this.e_28 = new StackPanel();
-            this.Content = this.e_28;
-            this.e_28.Name = "e_28";
-            this.e_28.Background = new SolidColorBrush(new ColorW(0, 0, 0, 0));
-            // e_29 element
-            this.e_29 = new ToggleButton();
-            this.e_28.Children.Add(this.e_29);
-            this.e_29.Name = "e_29";
-            this.e_29.Content = "Performance Graph";
-            Binding binding_e_29_Command = new Binding("PerformanceGraphButtonClick");
-            this.e_29.SetBinding(ToggleButton.CommandProperty, binding_e_29_Command);
-            Binding binding_e_29_IsChecked = new Binding("PerformanceGraphActive");
-            this.e_29.SetBinding(ToggleButton.IsCheckedProperty, binding_e_29_IsChecked);
-            // e_30 element
-            this.e_30 = new ToggleButton();
-            this.e_28.Children.Add(this.e_30);
-            this.e_30.Name = "e_30";
-            this.e_30.Content = "Time Ruler";
-            Binding binding_e_30_Command = new Binding("TimeRulerGraphButtonClick");
-            this.e_30.SetBinding(ToggleButton.CommandProperty, binding_e_30_Command);
-            Binding binding_e_30_IsChecked = new Binding("TimeRulerActive");
-            this.e_30.SetBinding(ToggleButton.IsCheckedProperty, binding_e_30_IsChecked);
-            // e_31 element
-            this.e_31 = new ToggleButton();
-            this.e_28.Children.Add(this.e_31);
-            this.e_31.Name = "e_31";
-            this.e_31.Content = "Summary Log";
-            Binding binding_e_31_Command = new Binding("SummaryLogButtonClick");
-            this.e_31.SetBinding(ToggleButton.CommandProperty, binding_e_31_Command);
-            Binding binding_e_31_IsChecked = new Binding("SummaryLogActive");
-            this.e_31.SetBinding(ToggleButton.IsCheckedProperty, binding_e_31_IsChecked);
+            // e_37 element
+            this.e_37 = new StackPanel();
+            this.Content = this.e_37;
+            this.e_37.Name = "e_37";
+            this.e_37.Background = new SolidColorBrush(new ColorW(0, 0, 0, 0));
+            // e_38 element
+            this.e_38 = new ToggleButton();
+            this.e_37.Children.Add(this.e_38);
+            this.e_38.Name = "e_38";
+            this.e_38.Content = "Performance Graph";
+            Binding binding_e_38_Command = new Binding("PerformanceGraphButtonClick");
+            this.e_38.SetBinding(ToggleButton.CommandProperty, binding_e_38_Command);
+            Binding binding_e_38_IsChecked = new Binding("PerformanceGraphActive");
+            this.e_38.SetBinding(ToggleButton.IsCheckedProperty, binding_e_38_IsChecked);
+            // e_39 element
+            this.e_39 = new ToggleButton();
+            this.e_37.Children.Add(this.e_39);
+            this.e_39.Name = "e_39";
+            this.e_39.Content = "Time Ruler";
+            Binding binding_e_39_Command = new Binding("TimeRulerGraphButtonClick");
+            this.e_39.SetBinding(ToggleButton.CommandProperty, binding_e_39_Command);
+            Binding binding_e_39_IsChecked = new Binding("TimeRulerActive");
+            this.e_39.SetBinding(ToggleButton.IsCheckedProperty, binding_e_39_IsChecked);
+            // e_40 element
+            this.e_40 = new ToggleButton();
+            this.e_37.Children.Add(this.e_40);
+            this.e_40.Name = "e_40";
+            this.e_40.Content = "Summary Log";
+            Binding binding_e_40_Command = new Binding("SummaryLogButtonClick");
+            this.e_40.SetBinding(ToggleButton.CommandProperty, binding_e_40_Command);
+            Binding binding_e_40_IsChecked = new Binding("SummaryLogActive");
+            this.e_40.SetBinding(ToggleButton.IsCheckedProperty, binding_e_40_IsChecked);
             // pgLevelsListBox element
             this.pgLevelsListBox = new ItemsControl();
-            this.e_28.Children.Add(this.pgLevelsListBox);
+            this.e_37.Children.Add(this.pgLevelsListBox);
             this.pgLevelsListBox.Name = "pgLevelsListBox";
             this.pgLevelsListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this.pgLevelsListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
@@ -92,7 +92,7 @@ namespace EmptyKeys.UserInterface.Generated {
             this.pgLevelsListBox.SetBinding(ItemsControl.ItemsSourceProperty, binding_pgLevelsListBox_ItemsSource);
             // trLevelsListBox element
             this.trLevelsListBox = new ItemsControl();
-            this.e_28.Children.Add(this.trLevelsListBox);
+            this.e_37.Children.Add(this.trLevelsListBox);
             this.trLevelsListBox.Name = "trLevelsListBox";
             this.trLevelsListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this.trLevelsListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
@@ -104,7 +104,7 @@ namespace EmptyKeys.UserInterface.Generated {
             this.trLevelsListBox.SetBinding(ItemsControl.ItemsSourceProperty, binding_trLevelsListBox_ItemsSource);
             // psLevelsListBox element
             this.psLevelsListBox = new ItemsControl();
-            this.e_28.Children.Add(this.psLevelsListBox);
+            this.e_37.Children.Add(this.psLevelsListBox);
             this.psLevelsListBox.Name = "psLevelsListBox";
             this.psLevelsListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this.psLevelsListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
@@ -125,95 +125,95 @@ namespace EmptyKeys.UserInterface.Generated {
         }
         
         private static UIElement r_0_dtMethod(UIElement parent) {
-            // e_25 element
-            DockPanel e_25 = new DockPanel();
-            e_25.Parent = parent;
-            e_25.Name = "e_25";
-            // e_26 element
-            CheckBox e_26 = new CheckBox();
-            e_25.Children.Add(e_26);
-            e_26.Name = "e_26";
-            e_26.Margin = new Thickness(0F, 0F, 5F, 0F);
-            DockPanel.SetDock(e_26, Dock.Left);
-            Binding binding_e_26_IsChecked = new Binding("Enabled");
-            e_26.SetBinding(CheckBox.IsCheckedProperty, binding_e_26_IsChecked);
-            // e_27 element
-            TextBlock e_27 = new TextBlock();
-            e_25.Children.Add(e_27);
-            e_27.Name = "e_27";
-            e_27.Padding = new Thickness(0F, 3F, 0F, 0F);
-            Binding binding_e_27_Text = new Binding("Name");
-            e_27.SetBinding(TextBlock.TextProperty, binding_e_27_Text);
-            return e_25;
+            // e_34 element
+            DockPanel e_34 = new DockPanel();
+            e_34.Parent = parent;
+            e_34.Name = "e_34";
+            // e_35 element
+            CheckBox e_35 = new CheckBox();
+            e_34.Children.Add(e_35);
+            e_35.Name = "e_35";
+            e_35.Margin = new Thickness(0F, 0F, 5F, 0F);
+            DockPanel.SetDock(e_35, Dock.Left);
+            Binding binding_e_35_IsChecked = new Binding("Enabled");
+            e_35.SetBinding(CheckBox.IsCheckedProperty, binding_e_35_IsChecked);
+            // e_36 element
+            TextBlock e_36 = new TextBlock();
+            e_34.Children.Add(e_36);
+            e_36.Name = "e_36";
+            e_36.Padding = new Thickness(0F, 3F, 0F, 0F);
+            Binding binding_e_36_Text = new Binding("Name");
+            e_36.SetBinding(TextBlock.TextProperty, binding_e_36_Text);
+            return e_34;
         }
         
         private static UIElement pgLevelsListBox_dtMethod(UIElement parent) {
-            // e_32 element
-            DockPanel e_32 = new DockPanel();
-            e_32.Parent = parent;
-            e_32.Name = "e_32";
-            // e_33 element
-            CheckBox e_33 = new CheckBox();
-            e_32.Children.Add(e_33);
-            e_33.Name = "e_33";
-            e_33.Margin = new Thickness(0F, 0F, 5F, 0F);
-            DockPanel.SetDock(e_33, Dock.Left);
-            Binding binding_e_33_IsChecked = new Binding("Enabled");
-            e_33.SetBinding(CheckBox.IsCheckedProperty, binding_e_33_IsChecked);
-            // e_34 element
-            TextBlock e_34 = new TextBlock();
-            e_32.Children.Add(e_34);
-            e_34.Name = "e_34";
-            e_34.Padding = new Thickness(0F, 3F, 0F, 0F);
-            Binding binding_e_34_Text = new Binding("Name");
-            e_34.SetBinding(TextBlock.TextProperty, binding_e_34_Text);
-            return e_32;
+            // e_41 element
+            DockPanel e_41 = new DockPanel();
+            e_41.Parent = parent;
+            e_41.Name = "e_41";
+            // e_42 element
+            CheckBox e_42 = new CheckBox();
+            e_41.Children.Add(e_42);
+            e_42.Name = "e_42";
+            e_42.Margin = new Thickness(0F, 0F, 5F, 0F);
+            DockPanel.SetDock(e_42, Dock.Left);
+            Binding binding_e_42_IsChecked = new Binding("Enabled");
+            e_42.SetBinding(CheckBox.IsCheckedProperty, binding_e_42_IsChecked);
+            // e_43 element
+            TextBlock e_43 = new TextBlock();
+            e_41.Children.Add(e_43);
+            e_43.Name = "e_43";
+            e_43.Padding = new Thickness(0F, 3F, 0F, 0F);
+            Binding binding_e_43_Text = new Binding("Name");
+            e_43.SetBinding(TextBlock.TextProperty, binding_e_43_Text);
+            return e_41;
         }
         
         private static UIElement trLevelsListBox_dtMethod(UIElement parent) {
-            // e_35 element
-            DockPanel e_35 = new DockPanel();
-            e_35.Parent = parent;
-            e_35.Name = "e_35";
-            // e_36 element
-            CheckBox e_36 = new CheckBox();
-            e_35.Children.Add(e_36);
-            e_36.Name = "e_36";
-            e_36.Margin = new Thickness(0F, 0F, 5F, 0F);
-            DockPanel.SetDock(e_36, Dock.Left);
-            Binding binding_e_36_IsChecked = new Binding("Enabled");
-            e_36.SetBinding(CheckBox.IsCheckedProperty, binding_e_36_IsChecked);
-            // e_37 element
-            TextBlock e_37 = new TextBlock();
-            e_35.Children.Add(e_37);
-            e_37.Name = "e_37";
-            e_37.Padding = new Thickness(0F, 3F, 0F, 0F);
-            Binding binding_e_37_Text = new Binding("Name");
-            e_37.SetBinding(TextBlock.TextProperty, binding_e_37_Text);
-            return e_35;
+            // e_44 element
+            DockPanel e_44 = new DockPanel();
+            e_44.Parent = parent;
+            e_44.Name = "e_44";
+            // e_45 element
+            CheckBox e_45 = new CheckBox();
+            e_44.Children.Add(e_45);
+            e_45.Name = "e_45";
+            e_45.Margin = new Thickness(0F, 0F, 5F, 0F);
+            DockPanel.SetDock(e_45, Dock.Left);
+            Binding binding_e_45_IsChecked = new Binding("Enabled");
+            e_45.SetBinding(CheckBox.IsCheckedProperty, binding_e_45_IsChecked);
+            // e_46 element
+            TextBlock e_46 = new TextBlock();
+            e_44.Children.Add(e_46);
+            e_46.Name = "e_46";
+            e_46.Padding = new Thickness(0F, 3F, 0F, 0F);
+            Binding binding_e_46_Text = new Binding("Name");
+            e_46.SetBinding(TextBlock.TextProperty, binding_e_46_Text);
+            return e_44;
         }
         
         private static UIElement psLevelsListBox_dtMethod(UIElement parent) {
-            // e_38 element
-            DockPanel e_38 = new DockPanel();
-            e_38.Parent = parent;
-            e_38.Name = "e_38";
-            // e_39 element
-            CheckBox e_39 = new CheckBox();
-            e_38.Children.Add(e_39);
-            e_39.Name = "e_39";
-            e_39.Margin = new Thickness(0F, 0F, 5F, 0F);
-            DockPanel.SetDock(e_39, Dock.Left);
-            Binding binding_e_39_IsChecked = new Binding("Enabled");
-            e_39.SetBinding(CheckBox.IsCheckedProperty, binding_e_39_IsChecked);
-            // e_40 element
-            TextBlock e_40 = new TextBlock();
-            e_38.Children.Add(e_40);
-            e_40.Name = "e_40";
-            e_40.Padding = new Thickness(0F, 3F, 0F, 0F);
-            Binding binding_e_40_Text = new Binding("Name");
-            e_40.SetBinding(TextBlock.TextProperty, binding_e_40_Text);
-            return e_38;
+            // e_47 element
+            DockPanel e_47 = new DockPanel();
+            e_47.Parent = parent;
+            e_47.Name = "e_47";
+            // e_48 element
+            CheckBox e_48 = new CheckBox();
+            e_47.Children.Add(e_48);
+            e_48.Name = "e_48";
+            e_48.Margin = new Thickness(0F, 0F, 5F, 0F);
+            DockPanel.SetDock(e_48, Dock.Left);
+            Binding binding_e_48_IsChecked = new Binding("Enabled");
+            e_48.SetBinding(CheckBox.IsCheckedProperty, binding_e_48_IsChecked);
+            // e_49 element
+            TextBlock e_49 = new TextBlock();
+            e_47.Children.Add(e_49);
+            e_49.Name = "e_49";
+            e_49.Padding = new Thickness(0F, 3F, 0F, 0F);
+            Binding binding_e_49_Text = new Binding("Name");
+            e_49.SetBinding(TextBlock.TextProperty, binding_e_49_Text);
+            return e_47;
         }
     }
 }

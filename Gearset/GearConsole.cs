@@ -21,6 +21,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Threading;
 using System.IO;
+using Gearset.Components.CommandConsole;
 using Gearset.Components.Memory;
 using Gearset.Components.Plotter;
 #if WINDOWS || LINUX || MONOMAC
@@ -226,6 +227,8 @@ namespace Gearset
         /// </summary>
         public MemoryMonitor MemoryMonitor { get; private set; }
 
+        public CommandConsoleManager CommandConsole { get; private set; }
+
         /// <summary>
         /// Gearset settings
         /// </summary>
@@ -386,6 +389,9 @@ namespace Gearset
 
             MemoryMonitor = new MemoryMonitor();
             Components.Add(MemoryMonitor);
+
+            CommandConsole = new CommandConsoleManager(_userInterface);
+            Components.Add(CommandConsole);
         }
 
         void RecreateGraphicResources()
@@ -1525,6 +1531,22 @@ namespace Gearset
             if (!Enabled) return;
             Profiler.EndMark(markerName);
         }
+
+        public void RegisterCommand(string name, string description, Action<CommandConsoleManager, string, IList<string>> action)
+        {
+            if (!Enabled) return;
+            CommandConsole.RegisterCommand(name, description, action);
+        }
+        #endregion
+
+        #region Command Console
+        public void ExecuteCommmand(string command)
+        {
+            if (!Enabled)
+                return;
+
+            CommandConsole.ExecuteCommand(command);
+        }
         #endregion
 
         #endregion
@@ -1713,9 +1735,12 @@ namespace Gearset
 
         private void OnExit(Object sender, EventArgs args)
         {
-#if WINDOWS || LINUX || MONOMAC
-            GearsetSettings.Save();
-#endif
+            #if WINDOWS || LINUX || MONOMAC
+                GearsetSettings.Save();
+            #endif
+
+            Components.RemoveAll(c => true);
+            _userInterface.Destory();
         }
 
         private void BackgroundSave(Object state)

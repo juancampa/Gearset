@@ -197,7 +197,13 @@ namespace Gearset.Components.Plotter
             {
                 var plot = _plots[i];
                 if (plot.Visible == false)
+                {
+                    _labels.HideLabelEx(plot.MinLabelName);
+                    _labels.HideLabelEx(plot.MaxLabelName);
                     continue;
+                }
+                    
+
 
                 var count = plot.Sampler.Values.Capacity;
                 float actualmin, actualmax;

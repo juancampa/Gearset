@@ -90,6 +90,8 @@
   <ItemGroup>
     <Compile Include="ComponentNamespace.cs" />
     <Compile Include="Components\CachedTemplate.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleConfig.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleManager.cs" />
     <Compile Include="Components\Common\ItemRemovedEventArgs.cs" />
     <Compile Include="Components\Finder\ObjectDescription.cs">
       <SubType>Code</SubType>
@@ -145,6 +147,10 @@
     <Compile Include="UserInterface\Wpf\Bender\KeyWrapperCollection.cs" />
     <Compile Include="UserInterface\Wpf\Bender\Wrappers\CurveWrapper.cs" />
     <Compile Include="UserInterface\Wpf\Bender\Wrappers\KeyWrapper.cs" />
+    <Compile Include="UserInterface\Wpf\CommandConsole\CommandConsoleViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\CommandConsole\CommandConsoleWindow.xaml.cs">
+      <DependentUpon>CommandConsoleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Wpf\Common\EditableTextBlock.xaml.cs">
       <DependentUpon>EditableTextBlock.xaml</DependentUpon>
     </Compile>
@@ -334,6 +340,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserInterface\Wpf\Bender\CurveEditorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserInterface\Wpf\CommandConsole\CommandConsoleWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

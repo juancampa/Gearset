@@ -84,6 +84,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Components\CachedTemplate.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleConfig.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleManager.cs" />
     <Compile Include="Components\CSExpressionParser\CSExpression.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -235,6 +237,7 @@
     <Compile Include="UserInterface\EmptyKeys\Inspector\InspectorNode.cs" />
     <Compile Include="UserInterface\EmptyKeys\Inspector\InspectorViewModel.cs" />
     <Compile Include="UserInterface\EmptyKeys\Styles\WindowStyle.cs" />
+    <Compile Include="UserInterface\ExecuteCommandEventArgs.cs" />
     <Compile Include="UserInterface\IUserInterface.cs" />
     <Compile Include="UserInterface\LevelItemChangedEventArgs.cs" />
     <Compile Include="UserInterface\StreamChangedEventArgs.cs" />

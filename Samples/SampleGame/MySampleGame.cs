@@ -51,7 +51,7 @@ namespace SampleGame
 
             //Initialise Gearset in 'headless' mode with no 'external' UI - (overlays are still available).
             //We want to monitor managed memory allocations from our app and the UIs generate a fair amount of garbage which would distort the profiling.
-            GS.Initialize(this, createUI: false);
+            GS.Initialize(this, createUI: true);
 
             _fpsCounter = new FpsCounter(this);
             Components.Add(_fpsCounter);
@@ -75,6 +75,52 @@ namespace SampleGame
             //You can double click finder result items to add them to the Inspector window!
             //Comment this to use the default search query for finder (by default it's GameComponent based).
             GS.Action(ConfigureFinder);
+
+            //Quick Actions
+            GS.AddQuickAction("QuickAction1", () => { /* Pass in a delegate here to do something */ });
+            GS.AddQuickAction("QuickAction2", () => { /* Pass in a delegate here to do something */ });
+
+            //Command Console
+            //Comes with 3 built in commands (help, cls, echo).
+            
+            //Some examples of things you can do...
+            GS.RegisterCommand("helloworld", "runs a test command", (host, command, args) => 
+            {
+                host.EchoWarning("Hello World");
+            });
+
+            GS.RegisterCommand("echotest", "echotest message [warning|error]", (host, command, args) =>
+            {
+                if (args.Count < 1)
+                    host.EchoError("You must specify a message");
+                else if (args.Count == 1)
+                    host.Echo(args[0]);
+                else if (args.Count == 2)
+                {
+                    if (args[1] == "warning")
+                        host.EchoWarning(args[0]);
+                    else if (args[1] == "error")
+                        host.EchoError(args[0]);
+                    else
+                        host.Echo(args[0]);
+                }
+                else if (args.Count > 2)
+                {
+                    host.Echo("Too many arguments specified");
+                }
+            });
+
+            GS.RegisterCommand("fixedstep", "toggles Game.IsFixedStep", (host, command, args) =>
+            {
+                IsFixedTimeStep = !IsFixedTimeStep;
+                host.Echo($"IsFixedStep: {IsFixedTimeStep}");
+            });
+
+            //Let's list all those registered commands now...
+            GS.ExecuteCommand("help");
+
+            //Call one of our custom commands...
+            GS.ExecuteCommand("helloworld");
 
             //Set Gerset Matrices if you want to show ovelaid geometry (boxes, spheres, etc).
             var prj = Matrix.CreateOrthographicOffCenter(0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, 0, 0, 1);
@@ -249,6 +295,13 @@ namespace SampleGame
             GS.EndMark("base.Draw");
 
             GS.EndMark("Draw");
+        }
+
+        protected override void OnExiting(object sender, EventArgs args)
+        {
+            base.OnExiting(sender, args);
+
+            GS.Shutdown(this);
         }
     }
 }

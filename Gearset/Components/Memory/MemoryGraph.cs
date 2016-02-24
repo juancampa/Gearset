@@ -107,7 +107,6 @@ namespace Gearset.Components.Memory
             labeler.HideLabel(LabelName.Xbox);
             labeler.HideLabel(LabelName.MinYAxis);
             labeler.HideLabel(LabelName.MaxYAxis);
-
         }
 
         void DrawUIView(InternalLabeler labeler)
@@ -141,7 +140,7 @@ namespace Gearset.Components.Memory
             DrawLegendItem(labeler, position, LabelName.Gen2Label, LabelName.Gen2, "Gen2", currentFrame.Gen2CollectionCount, FlatTheme.Pomegrantate);
 
             position += offset;
-            DrawLegendItem(labeler, position, LabelName.XboxLabel, LabelName.Xbox, "Xbox", currentFrame.Gen2CollectionCount, FlatTheme.Silver);
+            DrawLegendItem(labeler, position, LabelName.XboxLabel, LabelName.Xbox, "Xbox", _memoryMonitor.Xbox360CollectionCount, FlatTheme.Silver);
         }
 
         void DrawLegendItem(InternalLabeler labeler, Vector2 position, string labelName, string valueName, string labelText, int value, Color color)
@@ -202,7 +201,9 @@ namespace Gearset.Components.Memory
             MaybeDrawCollection(memoryFrame, MemoryMonitor.CollectionType.Gen0, position, barSize, Vector2.Zero, new Vector2(10, 5), FlatTheme.Emerald);
             MaybeDrawCollection(memoryFrame, MemoryMonitor.CollectionType.Gen1, position, barSize, new Vector2(0, 5), new Vector2(10, 10), FlatTheme.Carrot);
             MaybeDrawCollection(memoryFrame, MemoryMonitor.CollectionType.Gen2, position, barSize, new Vector2(0, 10), new Vector2(10, 15), FlatTheme.Pomegrantate);
-            MaybeDrawCollection(memoryFrame, MemoryMonitor.CollectionType.Xbox360, position, barSize, new Vector2(0, 15), new Vector2(10, 20), FlatTheme.Silver);
+
+            if (_memoryMonitor.MonitorXbox360Garbage)
+                MaybeDrawCollection(memoryFrame, MemoryMonitor.CollectionType.Xbox360, position, barSize, new Vector2(0, 15), new Vector2(10, 20), FlatTheme.Silver);
         }
 
         void MaybeDrawCollection(MemoryMonitor.MemoryFrame memoryFrame, MemoryMonitor.CollectionType collectionType, Vector2 position, Vector2 barSize, Vector2 offset1, Vector2 offset2, Color color)

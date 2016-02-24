@@ -45,7 +45,7 @@ using System.Windows.Markup;
 //      Revision
 //
 
-[assembly: AssemblyVersion("3.0.4")]
+[assembly: AssemblyVersion("3.0.6")]
 
 // Adding this attribute will force the Obfuscator to stop obfuscating internals
 // which ends up showing too much code to customers. WARNING.

@@ -29,6 +29,7 @@
         <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding LoggerWindowVisible}" Command="{Binding LoggerButtonClick}">Logger</ToggleButton>
         <!--<ToggleButton Style="{StaticResource toggleButton}">Bender</ToggleButton>-->
         <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding ProfilerWindowVisible}" Command="{Binding ProfilerButtonClick}">Profiler</ToggleButton>
+        <ToggleButton Style="{StaticResource toggleButton}" IsChecked="{Binding CommandConsoleWindowVisible}" Command="{Binding CommandConsoleButtonClick}">Console</ToggleButton>
         <Grid Background="#000">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

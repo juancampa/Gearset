@@ -53,9 +53,6 @@ namespace EmptyKeys.UserInterface.Generated {
             r_3_sounds.Add(new SoundSource { SoundType = SoundType.TabControlSelect, SoundAsset = "Select" });
             SoundManager.Instance.AddSound("Select");
             this.Add("Sounds", r_3_sounds);
-            // Resource - [DataTemplateKey(EmptyKeys.GearsetModel.TreeNode)] DataTemplate
-            Func<UIElement, UIElement> r_4_dtFunc = r_4_dtMethod;
-            this.Add(typeof(EmptyKeys.GearsetModel.TreeNode), new DataTemplate(typeof(EmptyKeys.GearsetModel.TreeNode), r_4_dtFunc));
             // Resource - [textSelectionHighlightColor] Color
             this.Add("textSelectionHighlightColor", new ColorW(68, 68, 68, 255));
             // Resource - [hyperlink1] SolidColorBrush
@@ -68,6 +65,9 @@ namespace EmptyKeys.UserInterface.Generated {
             this.Add("highlight1", new SolidColorBrush(new ColorW(138, 198, 49, 255)));
             // Resource - [highlightText1] SolidColorBrush
             this.Add("highlightText1", new SolidColorBrush(new ColorW(17, 17, 17, 255)));
+            // Resource - [DataTemplateKey(EmptyKeys.GearsetModel.TreeNode)] DataTemplate
+            Func<UIElement, UIElement> r_10_dtFunc = r_10_dtMethod;
+            this.Add(typeof(EmptyKeys.GearsetModel.TreeNode), new DataTemplate(typeof(EmptyKeys.GearsetModel.TreeNode), r_10_dtFunc));
             // Resource - [alert1] SolidColorBrush
             this.Add("alert1", new SolidColorBrush(new ColorW(187, 68, 68, 255)));
             // Resource - [textSelection1] SolidColorBrush
@@ -107,23 +107,23 @@ namespace EmptyKeys.UserInterface.Generated {
             FontManager.Instance.AddFont("Segoe UI", 12F, FontStyle.Regular, "Segoe_UI_9_Regular");
         }
         
-        private static UIElement r_4_dtMethod(UIElement parent) {
-            // e_0 element
-            Grid e_0 = new Grid();
-            e_0.Parent = parent;
-            e_0.Name = "e_0";
-            ColumnDefinition col_e_0_0 = new ColumnDefinition();
-            col_e_0_0.Width = new GridLength(1F, GridUnitType.Star);
-            e_0.ColumnDefinitions.Add(col_e_0_0);
-            // e_1 element
-            TextBlock e_1 = new TextBlock();
-            e_0.Children.Add(e_1);
-            e_1.Name = "e_1";
-            e_1.Margin = new Thickness(2F, 2F, 2F, 2F);
-            Grid.SetColumn(e_1, 0);
-            Binding binding_e_1_Text = new Binding("Name");
-            e_1.SetBinding(TextBlock.TextProperty, binding_e_1_Text);
-            return e_0;
+        private static UIElement r_10_dtMethod(UIElement parent) {
+            // e_9 element
+            Grid e_9 = new Grid();
+            e_9.Parent = parent;
+            e_9.Name = "e_9";
+            ColumnDefinition col_e_9_0 = new ColumnDefinition();
+            col_e_9_0.Width = new GridLength(1F, GridUnitType.Star);
+            e_9.ColumnDefinitions.Add(col_e_9_0);
+            // e_10 element
+            TextBlock e_10 = new TextBlock();
+            e_9.Children.Add(e_10);
+            e_10.Name = "e_10";
+            e_10.Margin = new Thickness(2F, 2F, 2F, 2F);
+            Grid.SetColumn(e_10, 0);
+            Binding binding_e_10_Text = new Binding("Name");
+            e_10.SetBinding(TextBlock.TextProperty, binding_e_10_Text);
+            return e_9;
         }
     }
 }

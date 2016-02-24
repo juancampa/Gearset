@@ -18,7 +18,9 @@
     <Color x:Key="translucidColor">#a777</Color>
     <Color x:Key="textSelectionColor">#777</Color>
     <Color x:Key="textSelectionHighlightColor">#444</Color>
-
+    <Color x:Key="actionButtonColor">#4FB8FF</Color>
+    <Color x:Key="actionButtonHiglightColor">#7AC9FF</Color>
+    
     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="{StaticResource highlightColor}"/>
     <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="{StaticResource highlightTextColor}"/>
     <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{StaticResource normalColor}"/>
@@ -40,7 +42,9 @@
     <SolidColorBrush x:Key="translucid1" Color="{StaticResource translucidColor}"/>
     <SolidColorBrush x:Key="textSelection1" Color="{StaticResource textSelectionColor}"/>
     <SolidColorBrush x:Key="textSelectionHighlight1" Color="{StaticResource textSelectionHighlightColor}"/>
-
+    <SolidColorBrush x:Key="actioButton" Color="{StaticResource actionButtonColor}"/>
+    <SolidColorBrush x:Key="actioButtonHighlight" Color="{StaticResource actionButtonHiglightColor}"/>
+    
     <!--Text decoration (green dashed underline)-->
     <TextDecorationCollection x:Key="textDecoration">
         <TextDecoration PenThicknessUnit="Pixel" PenOffset="2">

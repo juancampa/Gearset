@@ -8,13 +8,19 @@ namespace SampleGame
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        #if USE_GEARSET
         [STAThread]
+        #endif
         static void Main(string[] args)
         {
             using (var game = new MySampleGame())
             {
                 game.Run();
             }
+
+            #if USE_GEARSET
+                Environment.Exit(0);
+            #endif
         }
     }
 

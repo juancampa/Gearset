@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\CachedTemplate.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleConfig.cs" />
+    <Compile Include="Components\CommandConsole\CommandConsoleManager.cs" />
     <Compile Include="Components\Common\ItemRemovedEventArgs.cs" />
     <Compile Include="BinarySerializer.cs" />
     <Compile Include="Components\Memory\MemoryGraph.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="FlatTheme.cs" />
     <Compile Include="Helpers\ReflectionExtensions.cs" />
+    <Compile Include="UserInterface\ExecuteCommandEventArgs.cs" />
     <Compile Include="UserInterface\Wpf\Bender\Wrappers\KeyWrapper.cs" />
     <Compile Include="UserInterface\Wpf\About\AboutViewModel.cs">
       <SubType>Code</SubType>
@@ -156,6 +159,10 @@
     </Compile>
     <Compile Include="UserInterface\Wpf\Bender\Wrappers\CurveWrapper.cs">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Wpf\CommandConsole\CommandConsoleViewModel.cs" />
+    <Compile Include="UserInterface\Wpf\CommandConsole\CommandConsoleWindow.xaml.cs">
+      <DependentUpon>CommandConsoleWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\Wpf\Common\EditableTextBlock.xaml.cs">
       <DependentUpon>EditableTextBlock.xaml</DependentUpon>
@@ -453,6 +460,10 @@
     <Page Include="UserInterface\Wpf\Bender\CurveEditorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Wpf\CommandConsole\CommandConsoleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UserInterface\Wpf\Common\EditableTextBlock.xaml">
       <SubType>Designer</SubType>

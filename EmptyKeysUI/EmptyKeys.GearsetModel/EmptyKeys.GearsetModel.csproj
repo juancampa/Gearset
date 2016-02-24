@@ -35,6 +35,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EchoItem.cs" />
+    <Compile Include="CommandConsoleWindowViewModel.cs" />
     <Compile Include="ProfilerLevelcs.cs" />
     <Compile Include="StreamItem.cs" />
     <Compile Include="LogItem.cs" />

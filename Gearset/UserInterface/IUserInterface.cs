@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Gearset.Components;
+using Gearset.Components.CommandConsole;
 using Gearset.Components.Finder;
 using Gearset.Components.InspectorWPF;
 using Gearset.Components.Profiler;
@@ -14,15 +15,19 @@ namespace Gearset.UserInterface
         event EventHandler<StreamChangedEventArgs> StreamChanged;
 
         event EventHandler<LevelItemChangedEventArgs> LevelItemChanged;
-        
-        void Initialise(ContentManager content, int width, int height); 
+        event EventHandler<ExecuteCommandEventArgs> ExecuteCommand;
+
+        void Initialise(ContentManager content, int width, int height);
+        void Destory();
+
         void CreateWidget();
         void CreateInspector(InspectorManager inspectorManager);
         void CreateLogger(LoggerConfig config);
         void CreateProfiler(ProfilerConfig config, int enabledTimeRulerLevels, int enabledPerformanceGraphLevels, int enabledProfilerSummaryLevels);
         void CreateFinder(Finder finder);
         void CreateBender(BenderConfig config);
-        
+        void CreateCommandConsole(CommandConsoleConfig config);
+
         void Update(double deltaTime);
         void Draw(double deltaTime);
 
@@ -36,6 +41,7 @@ namespace Gearset.UserInterface
         bool ProfilerVisible { set; }
         bool FinderVisible { set; }
         bool BenderVisible { set; }
+        bool CommandConsoleVisible { set; }
 
         //Widget
         void AddAction(string name, Action action);
@@ -67,5 +73,9 @@ namespace Gearset.UserInterface
         void RemoveCurve(Curve curve);
         void RemoveCurveOrGroup(string name);
         float BenderHorizontalRulerNeedlePosition { get; }
+
+        //Command Console
+        void EchoCommand(CommandConsoleManager.DebugCommandMessage messageType, string text);
+        void ClearCommandOutput();
     }
 }

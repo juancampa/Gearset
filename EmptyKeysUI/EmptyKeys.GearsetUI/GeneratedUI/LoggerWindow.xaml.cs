@@ -23,7 +23,7 @@ namespace EmptyKeys.UserInterface.Generated {
     [GeneratedCodeAttribute("Empty Keys UI Generator", "1.10.0.0")]
     public partial class LoggerWindow : UserControl {
         
-        private Grid e_18;
+        private Grid e_27;
         
         private ItemsControl _streamListBox;
         
@@ -40,20 +40,20 @@ namespace EmptyKeys.UserInterface.Generated {
         
         private void InitializeComponent() {
             InitializeElementResources(this);
-            // e_18 element
-            this.e_18 = new Grid();
-            this.Content = this.e_18;
-            this.e_18.Name = "e_18";
-            this.e_18.Background = new SolidColorBrush(new ColorW(0, 0, 0, 0));
-            ColumnDefinition col_e_18_0 = new ColumnDefinition();
-            col_e_18_0.Width = new GridLength(1F, GridUnitType.Auto);
-            this.e_18.ColumnDefinitions.Add(col_e_18_0);
-            ColumnDefinition col_e_18_1 = new ColumnDefinition();
-            col_e_18_1.Width = new GridLength(7F, GridUnitType.Star);
-            this.e_18.ColumnDefinitions.Add(col_e_18_1);
+            // e_27 element
+            this.e_27 = new Grid();
+            this.Content = this.e_27;
+            this.e_27.Name = "e_27";
+            this.e_27.Background = new SolidColorBrush(new ColorW(0, 0, 0, 0));
+            ColumnDefinition col_e_27_0 = new ColumnDefinition();
+            col_e_27_0.Width = new GridLength(1F, GridUnitType.Auto);
+            this.e_27.ColumnDefinitions.Add(col_e_27_0);
+            ColumnDefinition col_e_27_1 = new ColumnDefinition();
+            col_e_27_1.Width = new GridLength(7F, GridUnitType.Star);
+            this.e_27.ColumnDefinitions.Add(col_e_27_1);
             // _streamListBox element
             this._streamListBox = new ItemsControl();
-            this.e_18.Children.Add(this._streamListBox);
+            this.e_27.Children.Add(this._streamListBox);
             this._streamListBox.Name = "_streamListBox";
             this._streamListBox.Background = new SolidColorBrush(new ColorW(255, 255, 255, 0));
             this._streamListBox.BorderThickness = new Thickness(0F, 0F, 0F, 0F);
@@ -64,7 +64,7 @@ namespace EmptyKeys.UserInterface.Generated {
             this._streamListBox.SetBinding(ItemsControl.ItemsSourceProperty, binding__streamListBox_ItemsSource);
             // _scrollViewer element
             this._scrollViewer = new ScrollViewer();
-            this.e_18.Children.Add(this._scrollViewer);
+            this.e_27.Children.Add(this._scrollViewer);
             this._scrollViewer.Name = "_scrollViewer";
             Grid.SetColumn(this._scrollViewer, 1);
             // _logListBox element
@@ -91,117 +91,117 @@ namespace EmptyKeys.UserInterface.Generated {
         }
         
         private static UIElement r_0_dtMethod(UIElement parent) {
-            // e_12 element
-            DockPanel e_12 = new DockPanel();
-            e_12.Parent = parent;
-            e_12.Name = "e_12";
-            // e_13 element
-            CheckBox e_13 = new CheckBox();
-            e_12.Children.Add(e_13);
-            e_13.Name = "e_13";
-            e_13.Margin = new Thickness(0F, 0F, 5F, 0F);
-            DockPanel.SetDock(e_13, Dock.Left);
-            Binding binding_e_13_IsChecked = new Binding("Enabled");
-            e_13.SetBinding(CheckBox.IsCheckedProperty, binding_e_13_IsChecked);
-            // e_14 element
-            TextBlock e_14 = new TextBlock();
-            e_12.Children.Add(e_14);
-            e_14.Name = "e_14";
-            e_14.Margin = new Thickness(0F, 0F, 10F, 0F);
-            e_14.VerticalAlignment = VerticalAlignment.Center;
-            Binding binding_e_14_Foreground = new Binding("Color");
-            e_14.SetBinding(TextBlock.ForegroundProperty, binding_e_14_Foreground);
-            Binding binding_e_14_Text = new Binding("Name");
-            e_14.SetBinding(TextBlock.TextProperty, binding_e_14_Text);
-            return e_12;
+            // e_21 element
+            DockPanel e_21 = new DockPanel();
+            e_21.Parent = parent;
+            e_21.Name = "e_21";
+            // e_22 element
+            CheckBox e_22 = new CheckBox();
+            e_21.Children.Add(e_22);
+            e_22.Name = "e_22";
+            e_22.Margin = new Thickness(0F, 0F, 5F, 0F);
+            DockPanel.SetDock(e_22, Dock.Left);
+            Binding binding_e_22_IsChecked = new Binding("Enabled");
+            e_22.SetBinding(CheckBox.IsCheckedProperty, binding_e_22_IsChecked);
+            // e_23 element
+            TextBlock e_23 = new TextBlock();
+            e_21.Children.Add(e_23);
+            e_23.Name = "e_23";
+            e_23.Margin = new Thickness(0F, 0F, 10F, 0F);
+            e_23.VerticalAlignment = VerticalAlignment.Center;
+            Binding binding_e_23_Foreground = new Binding("Color");
+            e_23.SetBinding(TextBlock.ForegroundProperty, binding_e_23_Foreground);
+            Binding binding_e_23_Text = new Binding("Name");
+            e_23.SetBinding(TextBlock.TextProperty, binding_e_23_Text);
+            return e_21;
         }
         
         private static UIElement r_1_dtMethod(UIElement parent) {
-            // e_15 element
-            Grid e_15 = new Grid();
-            e_15.Parent = parent;
-            e_15.Name = "e_15";
-            ColumnDefinition col_e_15_0 = new ColumnDefinition();
-            col_e_15_0.Width = new GridLength(45F, GridUnitType.Pixel);
-            e_15.ColumnDefinitions.Add(col_e_15_0);
-            ColumnDefinition col_e_15_1 = new ColumnDefinition();
-            col_e_15_1.Width = new GridLength(7F, GridUnitType.Star);
-            e_15.ColumnDefinitions.Add(col_e_15_1);
-            // e_16 element
-            TextBlock e_16 = new TextBlock();
-            e_15.Children.Add(e_16);
-            e_16.Name = "e_16";
-            e_16.VerticalAlignment = VerticalAlignment.Center;
-            Grid.SetColumn(e_16, 0);
-            Binding binding_e_16_Text = new Binding("UpdateNumber");
-            e_16.SetBinding(TextBlock.TextProperty, binding_e_16_Text);
-            // e_17 element
-            TextBlock e_17 = new TextBlock();
-            e_15.Children.Add(e_17);
-            e_17.Name = "e_17";
-            Grid.SetColumn(e_17, 1);
-            Binding binding_e_17_Foreground = new Binding("Color");
-            e_17.SetBinding(TextBlock.ForegroundProperty, binding_e_17_Foreground);
-            Binding binding_e_17_Text = new Binding("Content");
-            e_17.SetBinding(TextBlock.TextProperty, binding_e_17_Text);
-            return e_15;
+            // e_24 element
+            Grid e_24 = new Grid();
+            e_24.Parent = parent;
+            e_24.Name = "e_24";
+            ColumnDefinition col_e_24_0 = new ColumnDefinition();
+            col_e_24_0.Width = new GridLength(45F, GridUnitType.Pixel);
+            e_24.ColumnDefinitions.Add(col_e_24_0);
+            ColumnDefinition col_e_24_1 = new ColumnDefinition();
+            col_e_24_1.Width = new GridLength(7F, GridUnitType.Star);
+            e_24.ColumnDefinitions.Add(col_e_24_1);
+            // e_25 element
+            TextBlock e_25 = new TextBlock();
+            e_24.Children.Add(e_25);
+            e_25.Name = "e_25";
+            e_25.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetColumn(e_25, 0);
+            Binding binding_e_25_Text = new Binding("UpdateNumber");
+            e_25.SetBinding(TextBlock.TextProperty, binding_e_25_Text);
+            // e_26 element
+            TextBlock e_26 = new TextBlock();
+            e_24.Children.Add(e_26);
+            e_26.Name = "e_26";
+            Grid.SetColumn(e_26, 1);
+            Binding binding_e_26_Foreground = new Binding("Color");
+            e_26.SetBinding(TextBlock.ForegroundProperty, binding_e_26_Foreground);
+            Binding binding_e_26_Text = new Binding("Content");
+            e_26.SetBinding(TextBlock.TextProperty, binding_e_26_Text);
+            return e_24;
         }
         
         private static UIElement _streamListBox_dtMethod(UIElement parent) {
-            // e_19 element
-            DockPanel e_19 = new DockPanel();
-            e_19.Parent = parent;
-            e_19.Name = "e_19";
-            // e_20 element
-            CheckBox e_20 = new CheckBox();
-            e_19.Children.Add(e_20);
-            e_20.Name = "e_20";
-            e_20.Margin = new Thickness(0F, 0F, 5F, 0F);
-            DockPanel.SetDock(e_20, Dock.Left);
-            Binding binding_e_20_IsChecked = new Binding("Enabled");
-            e_20.SetBinding(CheckBox.IsCheckedProperty, binding_e_20_IsChecked);
-            // e_21 element
-            TextBlock e_21 = new TextBlock();
-            e_19.Children.Add(e_21);
-            e_21.Name = "e_21";
-            e_21.Margin = new Thickness(0F, 0F, 10F, 0F);
-            e_21.VerticalAlignment = VerticalAlignment.Center;
-            Binding binding_e_21_Foreground = new Binding("Color");
-            e_21.SetBinding(TextBlock.ForegroundProperty, binding_e_21_Foreground);
-            Binding binding_e_21_Text = new Binding("Name");
-            e_21.SetBinding(TextBlock.TextProperty, binding_e_21_Text);
-            return e_19;
+            // e_28 element
+            DockPanel e_28 = new DockPanel();
+            e_28.Parent = parent;
+            e_28.Name = "e_28";
+            // e_29 element
+            CheckBox e_29 = new CheckBox();
+            e_28.Children.Add(e_29);
+            e_29.Name = "e_29";
+            e_29.Margin = new Thickness(0F, 0F, 5F, 0F);
+            DockPanel.SetDock(e_29, Dock.Left);
+            Binding binding_e_29_IsChecked = new Binding("Enabled");
+            e_29.SetBinding(CheckBox.IsCheckedProperty, binding_e_29_IsChecked);
+            // e_30 element
+            TextBlock e_30 = new TextBlock();
+            e_28.Children.Add(e_30);
+            e_30.Name = "e_30";
+            e_30.Margin = new Thickness(0F, 0F, 10F, 0F);
+            e_30.VerticalAlignment = VerticalAlignment.Center;
+            Binding binding_e_30_Foreground = new Binding("Color");
+            e_30.SetBinding(TextBlock.ForegroundProperty, binding_e_30_Foreground);
+            Binding binding_e_30_Text = new Binding("Name");
+            e_30.SetBinding(TextBlock.TextProperty, binding_e_30_Text);
+            return e_28;
         }
         
         private static UIElement _logListBox_dtMethod(UIElement parent) {
-            // e_22 element
-            Grid e_22 = new Grid();
-            e_22.Parent = parent;
-            e_22.Name = "e_22";
-            ColumnDefinition col_e_22_0 = new ColumnDefinition();
-            col_e_22_0.Width = new GridLength(45F, GridUnitType.Pixel);
-            e_22.ColumnDefinitions.Add(col_e_22_0);
-            ColumnDefinition col_e_22_1 = new ColumnDefinition();
-            col_e_22_1.Width = new GridLength(7F, GridUnitType.Star);
-            e_22.ColumnDefinitions.Add(col_e_22_1);
-            // e_23 element
-            TextBlock e_23 = new TextBlock();
-            e_22.Children.Add(e_23);
-            e_23.Name = "e_23";
-            e_23.VerticalAlignment = VerticalAlignment.Center;
-            Grid.SetColumn(e_23, 0);
-            Binding binding_e_23_Text = new Binding("UpdateNumber");
-            e_23.SetBinding(TextBlock.TextProperty, binding_e_23_Text);
-            // e_24 element
-            TextBlock e_24 = new TextBlock();
-            e_22.Children.Add(e_24);
-            e_24.Name = "e_24";
-            Grid.SetColumn(e_24, 1);
-            Binding binding_e_24_Foreground = new Binding("Color");
-            e_24.SetBinding(TextBlock.ForegroundProperty, binding_e_24_Foreground);
-            Binding binding_e_24_Text = new Binding("Content");
-            e_24.SetBinding(TextBlock.TextProperty, binding_e_24_Text);
-            return e_22;
+            // e_31 element
+            Grid e_31 = new Grid();
+            e_31.Parent = parent;
+            e_31.Name = "e_31";
+            ColumnDefinition col_e_31_0 = new ColumnDefinition();
+            col_e_31_0.Width = new GridLength(45F, GridUnitType.Pixel);
+            e_31.ColumnDefinitions.Add(col_e_31_0);
+            ColumnDefinition col_e_31_1 = new ColumnDefinition();
+            col_e_31_1.Width = new GridLength(7F, GridUnitType.Star);
+            e_31.ColumnDefinitions.Add(col_e_31_1);
+            // e_32 element
+            TextBlock e_32 = new TextBlock();
+            e_31.Children.Add(e_32);
+            e_32.Name = "e_32";
+            e_32.VerticalAlignment = VerticalAlignment.Center;
+            Grid.SetColumn(e_32, 0);
+            Binding binding_e_32_Text = new Binding("UpdateNumber");
+            e_32.SetBinding(TextBlock.TextProperty, binding_e_32_Text);
+            // e_33 element
+            TextBlock e_33 = new TextBlock();
+            e_31.Children.Add(e_33);
+            e_33.Name = "e_33";
+            Grid.SetColumn(e_33, 1);
+            Binding binding_e_33_Foreground = new Binding("Color");
+            e_33.SetBinding(TextBlock.ForegroundProperty, binding_e_33_Foreground);
+            Binding binding_e_33_Text = new Binding("Content");
+            e_33.SetBinding(TextBlock.TextProperty, binding_e_33_Text);
+            return e_31;
         }
     }
 }
