@@ -26,8 +26,6 @@ namespace Gearset.UserInterface.Wpf
 {
     public class WpfUserInterface : UserInterface
     {
-        bool _createUI = true;
-
         readonly List<IWindow> _windows = new List<IWindow>();
             
         //Widget
@@ -70,10 +68,7 @@ namespace Gearset.UserInterface.Wpf
         bool _commandConsoleLocationJustChanged;
 
         public WpfUserInterface(bool createUI, GraphicsDevice graphicsDevice, int width, int height)
-            : base(graphicsDevice, width, height)
-        {
-            _createUI = createUI;
-        }
+            : base(createUI, graphicsDevice, width, height) { }
 
         public override void Initialise(ContentManager content, int width, int height)
         {
@@ -88,7 +83,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateWidget()
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             _widgetViewModel = new WidgetViewModel();
@@ -103,7 +98,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateInspector(InspectorManager inspectorManager)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             InspectorNode.ExtensionMethodTypes.Add(typeof(InspectorExtensionsMethods));
@@ -113,7 +108,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateLogger(LoggerConfig config)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             _loggerConfig = config;
@@ -167,7 +162,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateProfiler(ProfilerConfig config, int enabledTimeRulerLevels, int enabledPerformanceGraphLevels, int enabledProfilerSummaryLevels)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             _profilerConfig = config;
@@ -211,7 +206,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateFinder(Components.Finder.Finder finder)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             _finderConfig = finder.Config;
@@ -241,7 +236,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateBender(BenderConfig config)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             _benderConfig = config;
@@ -272,7 +267,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void CreateCommandConsole(CommandConsoleConfig config)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             _commandConsoleConfig = config;
@@ -316,7 +311,7 @@ namespace Gearset.UserInterface.Wpf
 
         public override void Update(double deltaTime)
         {
-            if (_createUI == false)
+            if (CreateUI == false)
                 return;
 
             if (_loggerLocationJustChanged)
@@ -511,6 +506,9 @@ namespace Gearset.UserInterface.Wpf
         /// </summary>
         public override void SaveLogToFile()
         {
+            if (_loggerViewModel == null)
+                return;
+
             // Configure save file dialog box
             var dlg = new Microsoft.Win32.SaveFileDialog
             {
@@ -538,6 +536,9 @@ namespace Gearset.UserInterface.Wpf
         /// <param name="filename">Name of the file to save the log (usually ending in .log)</param>
         public override void SaveLogToFile(string filename)
         {
+            if (_loggerViewModel == null)
+                return;
+
             // Generate the log file.
             using (System.IO.TextWriter t = new System.IO.StreamWriter(filename))
             {
@@ -664,7 +665,11 @@ namespace Gearset.UserInterface.Wpf
 
         public override object InspectorSelectedItem
         {
-            get { return _inspectorUI.InspectorSelectedItem; }
+            get {
+                if (_inspectorUI == null)
+                    return null;
+
+                return _inspectorUI.InspectorSelectedItem; }
         }
 
         public override void Watch(InspectorNode node) 
@@ -734,13 +739,19 @@ namespace Gearset.UserInterface.Wpf
         //Command Console
         public override void EchoCommand(CommandConsoleManager.DebugCommandMessage messageType, string text)
         {
+            if (_commandConsoleWindow == null)
+                return;
+
             _commandConsoleViewModel.EchoCommand(messageType, text);
             _consoleScrollViewer.ScrollToEnd();
         }
 
         public override void ClearCommandOutput()
         {
-            _commandConsoleViewModel.ClearOutput();
+            if (_commandConsoleWindow == null)
+                return;
+
+            _commandConsoleViewModel?.ClearOutput();
         }
     }
 }

@@ -282,12 +282,12 @@ namespace Gearset
             GearsetResources.Console = this;
 
             #if EMPTYKEYS
-				#if MONOMAC
-					var graphicsDevice = (IGraphicsDeviceManager)game.Services.GetService(typeof(IGraphicsDeviceManager));
-					var graphicsDeviceManager = graphicsDevice as GraphicsDeviceManager;
-					_userInterface = new EmptyKeysUserInterface(game.GraphicsDevice, graphicsDeviceManager.PreferredBackBufferWidth, graphicsDeviceManager.PreferredBackBufferHeight);
-				#else
-					_userInterface = new EmptyKeysUserInterface(game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
+                #if MONOMAC
+			        var graphicsDevice = (IGraphicsDeviceManager)game.Services.GetService(typeof(IGraphicsDeviceManager));
+			        var graphicsDeviceManager = graphicsDevice as GraphicsDeviceManager;
+			        _userInterface = new EmptyKeysUserInterface(createUI,game.GraphicsDevice, graphicsDeviceManager.PreferredBackBufferWidth, graphicsDeviceManager.PreferredBackBufferHeight);
+                #else
+                    _userInterface = new EmptyKeysUserInterface(createUI, game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
 				#endif
             #elif WPF
                 _userInterface = new WpfUserInterface(createUI, game.GraphicsDevice, game.GraphicsDevice.PresentationParameters.BackBufferWidth, game.GraphicsDevice.PresentationParameters.BackBufferHeight);
@@ -426,7 +426,7 @@ namespace Gearset
             #if WINDOWS && !EMPTYKEYS
 				GearsetResources.GameWindow = (System.Windows.Forms.Form)System.Windows.Forms.Control.FromHandle(game.Window.Handle);
 
-                #if MONOGAME
+                #if MONOGAME || FNA
                     if (GearsetResources.GameWindow == null)
                     {
                         GearsetResources.GameWindow = new GameWindowMonitor(game);

@@ -118,7 +118,7 @@
                         var writer = XmlWriter.Create(streamOut, settings);
                         IntermediateSerializer.Serialize<Curve>(writer, curve, dlg.FileName);
                         writer.Close();
-                    #elif MONOGAME
+                    #elif MONOGAME || FNA
                         var formatter = new XmlSerializer(typeof(Curve));
                         formatter.Serialize(streamOut, curve);
                     #endif                    

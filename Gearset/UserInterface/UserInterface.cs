@@ -13,6 +13,8 @@ namespace Gearset.UserInterface
 {
     public abstract class UserInterface : IUserInterface
     {
+        protected bool CreateUI = true;
+
         public event EventHandler<StreamChangedEventArgs> StreamChanged;
 
         public event EventHandler<LevelItemChangedEventArgs> LevelItemChanged;
@@ -23,8 +25,10 @@ namespace Gearset.UserInterface
         protected readonly int Width;
         protected readonly int Height;
 
-        protected UserInterface(GraphicsDevice graphicsDevice, int width, int height)
+        protected UserInterface(bool createUI, GraphicsDevice graphicsDevice, int width, int height)
         {
+            CreateUI = createUI;
+
             GraphicsDevice = graphicsDevice;
             Width = width;
             Height = height;

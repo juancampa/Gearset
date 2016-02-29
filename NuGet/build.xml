@@ -55,4 +55,25 @@
 		<Copy SourceFiles="$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.MonoGame.dll" DestinationFolder="$(PublishRoot)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\" ContinueOnError="false" />
 	
 	</Target>
+	
+	<Target Name="BuildFNA">
+		<PropertyGroup Condition="'$(Platform)'==''">
+			<Platform>x86</Platform>
+		</PropertyGroup>
+		
+		<ItemGroup>      
+			<BuildProjectsInputFiles Include="../Gearset/Gearset.FNA.Windows.csproj" />
+		</ItemGroup>
+
+		<MSBuild 
+			Projects="@(BuildProjectsInputFiles)" 
+			Properties="TargetFrameworkVersion=$(TargetFrameworkVersion);Configuration=$(Configuration);OutputPath=$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib);">
+				<Output 
+					TaskParameter="TargetOutputs" 						
+					ItemName="BuildProjectsOutputFiles" />
+		</MSBuild>
+		
+		<Copy SourceFiles="$(BuildRoot)\$(Configuration)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\Gearset.FNA.Windows.dll" DestinationFolder="$(PublishRoot)\%(BuildProjectsInputFiles.FileName)\lib\$(lib)\" ContinueOnError="false" />
+	
+	</Target>
 </Project>

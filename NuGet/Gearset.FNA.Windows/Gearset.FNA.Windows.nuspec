@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Gearset.MonoGame.WindowsDX</id>
+    <id>Gearset.FNA.Windows</id>
     <version>3.0.7</version>
     <owners>Paul.Cunningham</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -9,7 +9,7 @@
     <releaseNotes>Initial package.</releaseNotes>
     <copyright>Copyright 2015</copyright>
 		<!--<iconUrl>https://www.nuget.org/packages/MonoGame.Framework.WindowsDX/</iconUrl>-->
-		<title>Gearset.MonoGame.WindowsDX</title>
+		<title>Gearset.FNA.Windows</title>
 		<projectUrl>https://github.com/PumpkinPaul/Gearset</projectUrl>
 		<authors>Juan Campa,Paul Cunningham</authors>
     <tags>XNA MonoGame FNA</tags>

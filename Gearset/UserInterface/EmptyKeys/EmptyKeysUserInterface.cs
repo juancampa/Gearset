@@ -58,8 +58,8 @@ namespace Gearset.UserInterface.EmptyKeys
 
         bool _sizedUI;
 
-        public EmptyKeysUserInterface(GraphicsDevice graphicsDevice, int width, int height)
-            : base(graphicsDevice, width, height)
+        public EmptyKeysUserInterface(bool createUI, GraphicsDevice graphicsDevice, int width, int height)
+            : base(createUI, graphicsDevice, width, height)
         {
             _width = width;
             _height = height;
@@ -115,6 +115,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void CreateWidget()
         {
+            if (CreateUI == false)
+                return;
+
             _widgetWindow = new WidgetWindow
             {
                 DataContext = _widgetWindowViewModel
@@ -153,6 +156,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void CreateLogger(LoggerConfig config)
         {
+            if (CreateUI == false)
+                return;
+
             //Conversion info
             //Logger uses an ItemsControl which does't support grouping
             //I was unable to get ItemsControl to utilise CollectionViewSource correctly so have hacked the stream filtering
@@ -195,6 +201,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void CreateCommandConsole(CommandConsoleConfig config)
         {
+            if (CreateUI == false)
+                return;
+
             _commandConsoleConfig = config;
 
             _commandConsoleWindowViewModel = new CommandConsoleWindowViewModel();
@@ -229,6 +238,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void CreateProfiler(ProfilerConfig config, int enabledTimeRulerLevels, int enabledPerformanceGraphLevels, int enabledProfilerSummaryLevels)
         {
+            if (CreateUI == false)
+                return;
+
             _profilerConfig = config;
 
             _profilerWindowViewModel = new ProfilerWindowViewModel(config.TimeRulerConfig.VisibleLevelsFlags, config.PerformanceGraphConfig.VisibleLevelsFlags, config.ProfilerSummaryConfig.VisibleLevelsFlags);
@@ -258,6 +270,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void CreateFinder(Components.Finder.Finder finder)
         {
+            if (CreateUI == false)
+                return;
+
             _finderConfig = finder.Config;
 
             _finderWindowViewModel = new FinderWindowViewModel();
@@ -290,6 +305,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         void InitialiseWindow(WindowViewModel windowViewModel, double top, double left, double width, double height, bool visible)
         {
+            if (CreateUI == false)
+                return;
+
             windowViewModel.Top = (float)top;
             windowViewModel.Left = MathHelper.Clamp((float)left - 5.0f, 0.0f, _width);
             windowViewModel.Width = MathHelper.Clamp((float)width + 10.0f, 50.0f, _width);
@@ -304,12 +322,18 @@ namespace Gearset.UserInterface.EmptyKeys
 
         static void SetWindowVisibility(WindowViewModel window, bool isVsible)
         {
+            if (window == null)
+                return;
+
             window.IsVisible = isVsible;
         }
 
         public override void Update(double deltaTime)
         {
-			if (_sizedUI == false) 
+            if (CreateUI == false)
+                return;
+
+            if (_sizedUI == false) 
 			{	
 				_gearsetUI.Resize (_width, _height);
 				_sizedUI = true;
@@ -321,6 +345,7 @@ namespace Gearset.UserInterface.EmptyKeys
             _loggerWindowViewModel.Opacity = _widgetWindowViewModel.SliderValue;
             _finderWindowViewModel.Opacity = _widgetWindowViewModel.SliderValue;
             _profilerWindowViewModel.Opacity = _widgetWindowViewModel.SliderValue;
+            _commandConsoleWindowViewModel.Opacity = _widgetWindowViewModel.SliderValue;
 
             _gearsetUI.UpdateInput(deltaTime);
             _gearsetUI.UpdateLayout(deltaTime);
@@ -401,6 +426,9 @@ namespace Gearset.UserInterface.EmptyKeys
         //Logger
         public override void Log(string message, int updateNumber)
         {
+            if (CreateUI == false)
+                return;
+
             var stream = _loggerWindowViewModel.Log(message, updateNumber);
             _loggerWindow.LogListBox.ItemsSource = _loggerWindowViewModel.VisibleLogItems;
 
@@ -410,6 +438,9 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void Log(string streamName, string message, int updateNumber)
         {
+            if (CreateUI == false)
+                return;
+
             var stream = _loggerWindowViewModel.Log(streamName, message, updateNumber);
             _loggerWindow.LogListBox.ItemsSource = _loggerWindowViewModel.VisibleLogItems;
 
@@ -430,6 +461,9 @@ namespace Gearset.UserInterface.EmptyKeys
         //Finder
         public override void FinderSearch(FinderResult results)
         {
+            if (CreateUI == false)
+                return;
+
             var items = new FinderWindowViewModel.FinderResult();
             foreach (var result in results)
             {
@@ -494,12 +528,18 @@ namespace Gearset.UserInterface.EmptyKeys
 
         public override void EchoCommand(CommandConsoleManager.DebugCommandMessage messageType, string text)
         {
+            if (CreateUI == false)
+                return;
+
             _commandConsoleWindowViewModel.EchoCommand((int)messageType, text);
             _commandConsoleScrollViewer.ScrollToBottom();
         }
 
         public override void ClearCommandOutput()
         {
+            if (CreateUI == false)
+                return;
+
             _commandConsoleWindowViewModel.ClearOutput();
         }
     }

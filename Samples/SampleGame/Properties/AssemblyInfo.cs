@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ProfilerTestGame")]
-[assembly: AssemblyProduct("ProfilerTestGame")]
+[assembly: AssemblyTitle("SampleGame")]
+[assembly: AssemblyProduct("SampleGame")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -31,4 +30,4 @@ using System.Runtime.InteropServices;
 //      Build Number 
 //      Revision
 //
-[assembly: AssemblyVersion("3.0.6")]
+[assembly: AssemblyVersion("3.0.7")]

@@ -47,7 +47,14 @@ namespace Gearset
 
         void SetPosition()
         {
+#if FNA
+            int x;
+            int y;
+            SDL2.SDL.SDL_GetWindowPosition(_game.Window.Handle, out x, out y);
+            Location = new Point(x, y - 24);
+#else
             Location = new Point(_game.Window.Position.X, _game.Window.Position.Y);
+#endif
         }
     }
 }

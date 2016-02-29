@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\WindowsGL\Debug\</OutputPath>
+    <OutputPath>bin\x86\Debug\SampleGame.MonoGame.WindowsDX.EmptyKeysUI\</OutputPath>
     <DefineConstants>TRACE;DEBUG;WINDOWS;USE_GEARSET</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,7 +32,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\WindowsGL\Release\</OutputPath>
+    <OutputPath>bin\x86\Release\SampleGame.MonoGame.WindowsDX.EmptyKeysUI\</OutputPath>
     <DefineConstants>TRACE;WINDOWS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
